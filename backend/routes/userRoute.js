@@ -7,7 +7,6 @@ const emailValidate = require('../middlewares/emailValidator')
 router.get('/',(req,res)=>{
     res.send('Welcome')
 })
-// router.post('/loging',logingController.logingValidator,)
 router.get('/show',authenticateUser,isAdmin,UserController.getAllUsers);
 router.get('/get/:id',authenticateUser, UserController.getUserById);
 router.put('/update/:id', UserController.updateUser);
