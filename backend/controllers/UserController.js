@@ -30,19 +30,6 @@ const UserController = {
         }
     },
   
-    // createUser: async (req, res) => {
-    //   const {firstName,lastName,email,address,phone,password,age,country} = req.body
-    //   try {
-    //       const newUser = new User({firstName,lastName,email,address,phone,password,age,country})
-    //       const token = JWT.sign({userid: newUser._id}, 'GAHDYSB', {expiresIn: '1h'})
-    //       newUser.confirmationToken = token
-    //       await newUser.save()
-    //       res.status(201).json({User:newUser,token})
-    //      } catch (error) {
-    //       res.status(500).json(error)
-    //   }
-    // },
-  
     updateUser: async (req,res) => {
       const  userId = req.params.id
       const updates = req.body;

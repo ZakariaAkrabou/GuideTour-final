@@ -1,4 +1,8 @@
 const nodemailer = require('nodemailer')
+require("dotenv").config()
+
+
+
 exports.emailValidate = async(email,link)=>{
 try {
     let transporter = nodemailer.createTransport({
