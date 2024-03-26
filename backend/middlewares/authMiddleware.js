@@ -10,7 +10,7 @@ exports.authenticateUser = async (req, res, next) => {
         const decoded = JWT.verify(token.replace('Bearer ', ''), 'GAHDYSB');
         const user = await User.findById(decoded.userid);
         if (!user) {
-            return res.status(401).json({ error: 'Invalid token: User not found' });
+            return res.status(401).json({ error: 'User not found' });
         }
         req.user = user;
         next();

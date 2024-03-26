@@ -1,15 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const UserController = require('../controllers/UserController'); 
-const {authenticateUser,isAdmin} = require('../middlewares/authMiddleware')
-const emailValidate = require('../middlewares/emailValidator')
+const UserController = require("../controllers/UserController");
+const { authenticateUser } = require("../middlewares/authMiddleware");
 
-router.get('/',(req,res)=>{
-    res.send('Welcome')
-})
-router.get('/show',authenticateUser,isAdmin,UserController.getAllUsers);
-router.get('/get/:id',authenticateUser, UserController.getUserById);
-router.put('/update/:id', UserController.updateUser);
-router.delete('/delete/:id',authenticateUser, UserController.deleteUser);
+
+
+router.get("/user-profile", authenticateUser, UserController.getUserProfile);
+
 
 module.exports = router;
