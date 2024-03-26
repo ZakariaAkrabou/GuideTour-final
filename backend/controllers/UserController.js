@@ -1,7 +1,6 @@
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 const JWT = require('jsonwebtoken')
-const emailValidate = require('../middlewares/emailValidator')
 
 const UserController = {
     getAllUsers: async(req,res)=>{

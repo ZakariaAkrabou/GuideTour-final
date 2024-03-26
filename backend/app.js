@@ -9,6 +9,7 @@ const bookingRoutes = require("./routes/bookingRoute");
 const reviewRoutes = require("./routes/reviewRoute"); 
 const paymentRoutes = require("./routes/paymentRoute"); 
 const AuthRoute = require('./routes/AuthRoute')
+const review = require('./routes/reviewRoute')
 
 require("dotenv").config();
 
@@ -19,8 +20,6 @@ app.use(express.json());
 
 connectDB();
 
-
-// app.use("/api",logingRoute);
 app.use("/api/auth",  AuthRoute);
 app.use("/api/users", userRoutes);
 app.use("/api/guides", guideRoutes);

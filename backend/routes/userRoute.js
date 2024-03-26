@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/UserController'); 
 const {authenticateUser,isAdmin} = require('../middlewares/authMiddleware')
-const emailValidate = require('../middlewares/emailValidator')
 
 router.get('/',(req,res)=>{
     res.send('Welcome')
