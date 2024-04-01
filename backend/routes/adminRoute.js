@@ -7,11 +7,13 @@ const router = express.Router();
 
 //user managment 
 router.get("/allUsers", authenticateUser, isAdmin, AdminController.getAllUsers);
-router.get("/get/:id", authenticateUser, AdminController.getUserById);
-router.put("/update/:id", AdminController.updateUser);
 router.delete("/delete/:id", authenticateUser, AdminController.deleteUser);
 
 //guids managment
-router.get("/guides-profiles", authenticateUser, isAdmin, AdminController.getAllGuides);
+router.get("/allguides", authenticateUser, isAdmin, AdminController.getAllGuides);
+router.get('/guide/:id', authenticateUser, AdminController.getGuideById);
+router.put('/approval/:id/status', authenticateUser, isAdmin, AdminController.updateGuideStatus);
+
+
 
 module.exports = router;
