@@ -7,4 +7,6 @@ const chatSchema = new mongoose.Schema({
     availability: { type: Boolean },
 });
 
-module.exports = mongoose.model('Chat', chatSchema);
+const Chat = mongoose.model('Chat', chatSchema);
+
+module.exports = Chat;
