@@ -36,7 +36,7 @@ exports.loginUser = async (req, res) => {
         if (!passCheck) {
             return res.status(401).json({ message: 'Invalid Email or password' }); 
         }
-        const token = JWT.sign({userid: user._id}, 'GAHDYSB', {expiresIn: '1h'})
+        const token = JWT.sign({userid: user._id}, 'GAHDYSB', {expiresIn: '1d'})
         res.status(200).json({ message: 'Logged successfuly', token });
     } catch (error) {
         res.status(500).json({ error: error.message });
