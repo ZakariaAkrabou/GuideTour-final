@@ -1,6 +1,4 @@
 const express = require("express");
-
-//configs
 const connectDB = require("./configs/database");
 const socket = require('./configs/socket');
 const userRoutes = require("./routes/userRoute");
@@ -10,13 +8,16 @@ const adminRoutes = require("./routes/adminRoute");
 const bookingRoutes = require("./routes/bookingRoute"); 
 const reviewRoutes = require("./routes/reviewRoute"); 
 const paymentRoutes = require("./routes/paymentRoute"); 
-const AuthRoute = require('./routes/AuthRoute')
+
 const socketRoutes = require('./routes/socketRoute');
 
 const initializeSocket = require('./controllers/ChatController')
 const http = require('http');
 // const path = require('path');
 // const guideRoutes = require("./routes/guideRoute");
+
+const review = require('./routes/reviewRoute')
+
 
 require("dotenv").config();
 
@@ -26,8 +27,6 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 
-
-connectDB();
 
 app.use("/api/auth",  AuthRoute);
 app.use("/api/users", userRoutes);
@@ -46,10 +45,6 @@ app.use("/api/chat", socketRoutes);
 //
 
 
-//Socket Server
-const server = http.createServer(app);
-initializeSocket(server);
-
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

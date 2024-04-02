@@ -52,14 +52,6 @@ exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(404).json({ error: "Invalid Email or password" });
-    }
-
-    const passCheck = await bcrypt.compare(password, user.password);
-    if (!passCheck) {
-      return res.status(401).json({ message: "Invalid Email or password" });
     }
     const token = JWT.sign({ userid: user._id }, "GAHDYSB", {
       expiresIn: "1h",

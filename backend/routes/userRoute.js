@@ -6,6 +6,7 @@ const { authenticateUser } = require("../middlewares/authMiddleware");
 
 
 
+
 router.get("/user-profile", authenticateUser, UserController.getUserProfile);
 
 router.put("/switch-profile/:id",authenticateUser,multerMiddleware.fields([
@@ -23,6 +24,15 @@ router.put("/update/:id", UserController.updateUser);
 // router.get('/get/:id',authenticateUser, UserController.getUserById);
 // router.put('/update/:id', UserController.updateUser);
 // router.delete('/delete/:id',authenticateUser, UserController.deleteUser);
+
+=======
+router.get('/',(req,res)=>{
+    res.send('Welcome')
+})
+router.get('/show',authenticateUser,isAdmin,UserController.getAllUsers);
+router.get('/get/:id',authenticateUser, UserController.getUserById);
+router.put('/update/:id', UserController.updateUser);
+router.delete('/delete/:id',authenticateUser, UserController.deleteUser);
 
 
 module.exports = router;
