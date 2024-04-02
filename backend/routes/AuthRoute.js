@@ -8,4 +8,4 @@ router.post('/password-forget',forgetPassword)
 router.post('/rest-password/:token',restPassword)
 router.post('/login', loginUser);
 
-module.exports = router
+module.exports = router;
