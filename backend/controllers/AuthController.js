@@ -6,35 +6,9 @@ const {
   ResetPasswordEmail,
 } = require("../middlewares/emailValidator");
 
-exports.createUser = async (req, res) => {
-  const { firstName, lastName, email, address, phone, password, age, country } =
-    req.body;
-  const existingUser = await User.findOne({ email });
-  if (existingUser) {
-    return res.status(400).json({ message: "User already exists" });
-  }
-  try {
-    const newUser = new User({
-      firstName,
-      lastName,
-      email,
-      address,
-      phone,
-      password,
-      age,
-      country,
-    });
-    const token = JWT.sign({ userid: newUser._id }, "GAHDYSB", {
-      expiresIn: "1h",
-    });
-    newUser.confirmationToken = token;
-    await newUser.save();
-    res.status(201).json({ message: "Registred successfuly " });
-  } catch (error) {
-    res.status(500).json(error);
-  }
 
-  exports.createUser = async (req, res) => {
+
+exports.createUser = async (req, res) => {
     const {
       firstName,
       lastName,
@@ -71,8 +45,8 @@ exports.createUser = async (req, res) => {
     } catch (error) {
       res.status(500).json(error);
     }
-  };
 };
+
 
 exports.loginUser = async (req, res) => {
   try {
