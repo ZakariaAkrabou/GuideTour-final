@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bcrypt = require('bcryptjs')
 
 const userSchema = new Schema({
     firstName: { type: String, required: true },
@@ -14,7 +15,32 @@ const userSchema = new Schema({
     forgotPasswordToken: { type: String, default: null },
     isConfirmed: { type: Boolean, default: false },
     confirmationToken: { type: String, default: null }
-});
+},{
+    toJSON: {
+      transform: function(doc,ret){
+        delete ret._id
+        delete ret.date
+        delete ret.password
+        delete ret.__v
+        delete ret.forgotPasswordToken
+        delete ret.isConfirmed
+        delete ret.confirmationToken
+      }}
+  });
+
+  //hashing password
+userSchema.pre('save', function(next) {
+    if(this.isModified('password')){
+        bcrypt.hash(this.password,10,(error,hash) => {
+            if(error) return next(error);
+            this.password = hash
+            next();
+        })
+    } else{
+      next()
+    }
+  
+  })
 
 const User = mongoose.model('User', userSchema);
 

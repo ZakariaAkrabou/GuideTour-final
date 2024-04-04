@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "fontend",
+=======
+  "name": "frontend",
+>>>>>>> e613decaff9560fc1221dd8b65def74752e6242f
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -21,6 +25,10 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+<<<<<<< HEAD
+=======
+    "tailwindcss": "^3.4.3",
+>>>>>>> e613decaff9560fc1221dd8b65def74752e6242f
     "vite": "^5.2.0"
   }
 }
