@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 // GuideController.js
+=======
+>>>>>>> 30fa2ec3fbceae0297a767b705b64d916bf62507
 const Guide = require("../models/Guide");
 const User = require("../models/User");
 
 const GuideController = {
+<<<<<<< HEAD
   applyForGuide: async (req, res) => {
     try {
       const { userId } = req.body;
@@ -46,6 +50,9 @@ const GuideController = {
       res.status(400).send(error.message);
     }
   },
+=======
+
+>>>>>>> 30fa2ec3fbceae0297a767b705b64d916bf62507
 };
 
 module.exports = GuideController;
