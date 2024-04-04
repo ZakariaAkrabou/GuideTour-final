@@ -20,7 +20,7 @@ app.use(express.json());
 connectDB();
 
 
-// app.use("/api",logingRoute);
+app.use("/api",logingRoute);
 app.use("/api/users", userRoutes);
 app.use("/api/guides", guideRoutes);
 app.use("/api/tours", tourRoutes);

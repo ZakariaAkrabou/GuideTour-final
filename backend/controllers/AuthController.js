@@ -1,8 +1,22 @@
-const User = require('../models/User')
-const bcrypt = require('bcrypt')
-const JWT = require('jsonwebtoken')
 
-exports.logingValidator = async (req, res) => {
+const bcrypt = require('bcryptjs')
+
+
+exports.register = async (req, res) => {
+    const {firstName,lastName,email,address,phone,password,age,country} = req.body
+    try {
+        const newUser = new User({firstName,lastName,email,address,phone,password,age,country})
+        const token = JWT.sign({userid: newUser._id}, 'GAHDYSB', {expiresIn: '1h'})
+        newUser.confirmationToken = token
+        await newUser.save()
+        res.status(201).json({User:newUser,token})
+    } catch (error) {
+        res.status(500).json(error)
+    }
+  },
+
+
+exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
@@ -22,16 +36,3 @@ exports.logingValidator = async (req, res) => {
     }
 };
 
-exports.tokenValidator = async (req, res, next) => {
-    const token = req.header("Authorization");
-    if (!token) {
-        return res.status(401).json({ error: 'Access denied: No token provided' });
-    }
-    try {
-        const decoded = JWT.verify(token.replace('Bearer ', ''), 'GAHDYSB');
-        req.userId = decoded.userid;
-        next();
-    } catch (error) {
-        res.status(401).json({ error: 'Invalid token' });
-    }
-};

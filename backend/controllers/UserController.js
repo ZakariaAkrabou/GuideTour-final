@@ -1,14 +1,20 @@
-const User = require('../models/User')
-const bcrypt = require('bcrypt')
-const JWT = require('jsonwebtoken')
+
+const bcrypt = require('bcryptjs')
+
 const UserController = {
+
     getAllUsers: async(req,res)=>{
       try {
           const allUsers = await User.find()
           if(allUsers.length === 0){
               res.status(404).json("There Is No Users To Show")
           } else{
-              res.status(200).json(allUsers)
+              res.status(200).json({
+
+                message,
+                allUsers
+                
+                });
           }
       } catch (error) {
           res.status(500).json(error)
@@ -28,18 +34,7 @@ const UserController = {
         }
     },
   
-    createUser: async (req, res) => {
-      const {firstName,lastName,email,address,phone,password,age,country} = req.body
-      try {
-          const newUser = new User({firstName,lastName,email,address,phone,password,age,country})
-          const token = JWT.sign({userid: newUser._id}, 'GAHDYSB', {expiresIn: '1h'})
-          newUser.confirmationToken = token
-          await newUser.save()
-          res.status(201).json({User:newUser,token})
-      } catch (error) {
-          res.status(500).json(error)
-      }
-    },
+  
   
     updateUser: async (req,res) => {
       const  userId = req.params.id
