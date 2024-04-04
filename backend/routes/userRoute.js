@@ -15,31 +15,6 @@ router.put("/switch-profile/:id",authenticateUser,multerMiddleware.fields([
       { name: "certificate", maxCount: 1 },
     ]),UserController.switchProfile
   );
-router.put("/update/:id", UserController.updateUser);
-
-
-
-
-// // router.get('/show',authenticateUser,isAdmin,UserController.getAllUsers);
-// // router.get('/get/:id',authenticateUser, UserController.getUserById);
-// // router.put('/update/:id', UserController.updateUser);
-// // router.delete('/delete/:id',authenticateUser, UserController.deleteUser);
-
-
-
-// router.post('/loging',AuthController.logingValidator,)
-// router.post('/register', AuthController.createUser);
-
-
-
-// router.get('/show',logingController.tokenValidator,UserController.getAllUsers);
-// router.get('/get/:id',logingController.tokenValidator, UserController.getUserById);
-
-
-// router.get('/show',authenticateUser,UserController.getAllUsers);
-// router.get('/get/:id',authenticateUser, UserController.getUserById);
-// router.put('/update/:id', UserController.updateUser);
-// router.delete('/delete/:id',authenticateUser, UserController.deleteUser);
-
+router.put("/update/:id", authenticateUser, UserController.updateUser);
 
 module.exports = router;
