@@ -1,4 +1,7 @@
-<<<<<<< HEAD
+
+const JWT = require("jsonwebtoken");
+const User = require("../models/User");
+
 exports.AuthorizationUser = async (req, res, next) => {
     const token = req.header("Authorization");
     if (!token) {
@@ -12,9 +15,7 @@ exports.AuthorizationUser = async (req, res, next) => {
         res.status(401).json({ error: 'Invalid token' });
     }
 };
-=======
-const JWT = require("jsonwebtoken");
-const User = require("../models/User");
+
 
 exports.authenticateUser = async (req, res, next) => {
   try {
@@ -40,4 +41,3 @@ exports.isAdmin = (req, res, next) => {
   }
   next();
 };
->>>>>>> 30fa2ec3fbceae0297a767b705b64d916bf62507

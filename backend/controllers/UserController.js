@@ -1,65 +1,18 @@
-<<<<<<< HEAD
-
-const bcrypt = require('bcryptjs')
-
-const UserController = {
-
-    getAllUsers: async(req,res)=>{
-      try {
-          const allUsers = await User.find()
-          if(allUsers.length === 0){
-              res.status(404).json("There Is No Users To Show")
-          } else{
-              res.status(200).json({
-
-                message,
-                allUsers
-                
-                });
-          }
-      } catch (error) {
-          res.status(500).json(error)
-      }
-    },
-  
-    getUserById: async(req, res) => {
-      try {
-        const user = await User.findById(req.params.id)
-            if(!user){
-                res.status(404).json("No User Was Found")
-            } else{
-                res.status(201).json(user)
-            }
-        } catch (error) {
-            res.status(500).json(error)
-        }
-    },
-  
-  
-  
-    updateUser: async (req,res) => {
-      const  userId = req.params.id
-      const updates = req.body;
-        try {
-            if (updates.password) {
-                const hashedPassword = await bcrypt.hash(updates.password, 10);
-                updates.password = hashedPassword;
-              }
-=======
 const User = require("../models/User");
 const Guide = require("../models/Guide");
->>>>>>> 30fa2ec3fbceae0297a767b705b64d916bf62507
 
 exports.getUserProfile = async function(req, res) {
   try {
     const userId = req.user._id;
     const user = await User.findById(userId).select("-password");
 
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
     if (user.role === "user") {
-     
       return res.json(user);
     } else if (user.role === "guide") {
-     
       const guideInfo = await Guide.findOne({ user_id: userId });
 
       if (!guideInfo) {
@@ -87,12 +40,13 @@ exports.getUserProfile = async function(req, res) {
         },
       };
 
-      return res.status(200).json({data:userProfile});
+      return res.status(200).json({ data: userProfile });
     } else {
       return res.status(400).json({ error: "Invalid user role" });
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -101,6 +55,10 @@ exports.switchProfile = async function(req, res) {
     const { id } = req.params;
     const { user } = req;
 
+    if (!id || !user) {
+      return res.status(400).json({ error: "Invalid request" });
+    }
+
     if (user._id.toString() !== id) {
       return res
         .status(403)
@@ -108,6 +66,14 @@ exports.switchProfile = async function(req, res) {
     }
 
     const guideData = req.body;
+
+    if (!guideData.bio || !guideData.specialization) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    if (!req.files || !req.files["profile_picture"] || !req.files["identity"] || !req.files["certificate"]) {
+      return res.status(400).json({ error: "Missing required files" });
+    }
 
     guideData.profile_picture = req.files["profile_picture"][0].path;
     guideData.identity = req.files["identity"][0].path;
@@ -140,14 +106,21 @@ exports.updateUser = async (req, res) => {
   const userId = req.params.id;
   const updates = req.body;
   try {
+    if (!userId) {
+      return res.status(400).json({ error: "Invalid request" });
+    }
+
     const updatedUser = await User.findByIdAndUpdate(userId, updates, {
       new: true,
     });
+
     if (!updatedUser) {
-      return res.status(404).json({ error: "There is no User with this ID" });
+      return res.status(404).json({ error: "User not found" });
     }
-    res.status(200).json({data:updatedUser});
+
+    res.status(200).json({ data: updatedUser });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };

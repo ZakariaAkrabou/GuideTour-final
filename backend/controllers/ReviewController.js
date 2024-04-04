@@ -3,7 +3,7 @@ const Review = require('../models/Review')
 const User = require('../models/User')
 
 
-//extract user ID from token
+
 exports.extractUserId = (req, res, next) => {
     const token = req.header("Authorization");
     if (!token) {
