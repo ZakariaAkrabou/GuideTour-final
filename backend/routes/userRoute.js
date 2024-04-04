@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const UserController = require('../controllers/UserController');
 const multerMiddleware = require("../middlewares/MulterConfig");
-const UserController = require("../controllers/UserController");
 const { authenticateUser } = require("../middlewares/authMiddleware");
 
 
@@ -15,24 +15,6 @@ router.put("/switch-profile/:id",authenticateUser,multerMiddleware.fields([
       { name: "certificate", maxCount: 1 },
     ]),UserController.switchProfile
   );
-router.put("/update/:id", UserController.updateUser);
-
-
-
-
-// router.get('/show',authenticateUser,isAdmin,UserController.getAllUsers);
-// router.get('/get/:id',authenticateUser, UserController.getUserById);
-// router.put('/update/:id', UserController.updateUser);
-// router.delete('/delete/:id',authenticateUser, UserController.deleteUser);
-
-=======
-router.get('/',(req,res)=>{
-    res.send('Welcome')
-})
-router.get('/show',authenticateUser,isAdmin,UserController.getAllUsers);
-router.get('/get/:id',authenticateUser, UserController.getUserById);
-router.put('/update/:id', UserController.updateUser);
-router.delete('/delete/:id',authenticateUser, UserController.deleteUser);
-
+router.put("/update/:id", authenticateUser, UserController.updateUser);
 
 module.exports = router;

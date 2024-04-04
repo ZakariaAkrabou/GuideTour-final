@@ -1,22 +1,23 @@
 const express = require("express");
 const connectDB = require("./configs/database");
-const socket = require('./configs/socket');
+// const socket = require('./configs/socket');
 const userRoutes = require("./routes/userRoute");
 const tourRoutes = require("./routes/tourRoute");
 const campingRoutes = require("./routes/campingRoute");
 const adminRoutes = require("./routes/adminRoute");
 const bookingRoutes = require("./routes/bookingRoute"); 
 const reviewRoutes = require("./routes/reviewRoute"); 
-const paymentRoutes = require("./routes/paymentRoute"); 
+const paymentRoutes = require("./routes/paymentRoute");
+const reviewRoutes = require('./routes/reviewRoute')
 
-const socketRoutes = require('./routes/socketRoute');
+// const socketRoutes = require('./routes/socketRoute');
 
-const initializeSocket = require('./controllers/ChatController')
-const http = require('http');
+// const initializeSocket = require('./controllers/ChatController')
+// const http = require('http');
 // const path = require('path');
 // const guideRoutes = require("./routes/guideRoute");
 
-const review = require('./routes/reviewRoute')
+
 
 
 require("dotenv").config();
@@ -27,8 +28,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 
-
-app.use("/api/auth",  AuthRoute);
+connectDB();
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/tours", tourRoutes);
