@@ -2,6 +2,7 @@
 const JWT = require("jsonwebtoken");
 const User = require("../models/User");
 
+
 exports.AuthorizationUser = async (req, res, next) => {
     const token = req.header("Authorization");
     if (!token) {
@@ -35,9 +36,9 @@ exports.authenticateUser = async (req, res, next) => {
   }
 };
 
-exports.isAdmin = (req, res, next) => {
-  if (!req.user || req.user.role !== "admin") {
-    return res.status(401).json({ error: "Unauthorized: Only admin users allowed" });
+exports.isGuide = (req, res, next) => {
+  if (!req.user || req.user.role !== "guide") {
+    return res.status(401).json({ error: "Unauthorized: Only guide users allowed" });
   }
   next();
 };

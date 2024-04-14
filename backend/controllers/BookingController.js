@@ -1,4 +1,4 @@
-const Tour = require("../models/Tour");
+const Tour = require("../models/tour");
 const Camping = require("../models/Camping");
 const Booking = require("../models/Booking");
 const Stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
@@ -61,7 +61,7 @@ exports.CheckoutSession = async (req, res) => {
       ],
      
     });
-    console.log("Session:", session);
+    // console.log("Session:", session);
 
     res.status(200).json({ sessionId: session.id, bookingType });
   } catch (err) {

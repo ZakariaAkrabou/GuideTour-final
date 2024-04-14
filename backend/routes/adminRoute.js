@@ -1,19 +1,26 @@
 const express = require('express');
 const AdminController = require("../controllers/AdminController");
-const {authenticateUser,isAdmin} = require('../middlewares/authMiddleware')
+const { authenticateAdmin, isAdmin } = require('../middlewares/adminMiddleware');
 const router = express.Router();
+const adminSwagger = require('../swagger/adminSwagger');
+
+router.swagger = adminSwagger;
 
 
+//login & register
+router.post('/login', AdminController.loginAdmin);
+router.post('/register', AdminController.createAdmin);
 
-//user managment 
-router.get("/allUsers", authenticateUser, isAdmin, AdminController.getAllUsers);
-router.delete("/delete/:id", authenticateUser, AdminController.deleteUser);
+//user management 
+router.get("/allUsers", authenticateAdmin, isAdmin, AdminController.getAllUsers);
+router.delete("/delete/:id", authenticateAdmin, AdminController.deleteUser);
 
-//guids managment
-router.get("/allguides", authenticateUser, isAdmin, AdminController.getAllGuides);
-router.get('/guide/:id', authenticateUser, AdminController.getGuideById);
-router.put('/approval/:id/status', authenticateUser, isAdmin, AdminController.updateGuideStatus);
-
-
+//guides management
+router.get("/allguides", authenticateAdmin, isAdmin, AdminController.getAllGuides);
+router.get('/guide/:id', authenticateAdmin, AdminController.getGuideById);
+router.put('/approval/:id/status', authenticateAdmin, isAdmin, AdminController.updateGuideStatus);
 
 module.exports = router;
+
+
+
