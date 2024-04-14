@@ -11,7 +11,7 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     age: { type: Number, required: true },
     country: { type: String, required: true },
-    role: { type: String, enum: ['user', 'guide', 'admin'], default: 'user' },
+    role: { type: String, enum: ['user', 'guide'], default: 'user' },
     forgotPasswordToken: { type: String, default: null },
     isConfirmed: { type: Boolean, default: false },
     confirmationToken: { type: String, default: null }

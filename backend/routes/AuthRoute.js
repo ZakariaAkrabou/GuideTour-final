@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const {createUser,emailConfirm,loginUser,forgetPassword,restPassword} = require('../controllers/AuthController')
+const authController = require("../controllers/AuthController")
 
-router.post('/register', createUser);
-router.get('/register/confirm/:token',emailConfirm)
-router.post('/password-forget',forgetPassword)
-router.post('/rest-password/:token',restPassword)
-router.post('/login', loginUser);
+router.post('/register', authController.createUser);
+router.get('/register/confirm/:token',authController.emailConfirm)
+router.post('/password-forget',authController.forgetPassword)
+router.post('/rest-password/:token',authController.restPassword)
+router.post('/login', authController.loginUser);
 
 module.exports = router;

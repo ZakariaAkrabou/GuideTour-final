@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const UserController = require('../controllers/UserController');
 const multerMiddleware = require("../middlewares/MulterConfig");
-const { authenticateUser } = require("../middlewares/authMiddleware");
+const { authenticateUser,isGuide } = require("../middlewares/authMiddleware");
+
+const userSwagger = require('../swagger/userSwagger');
+router.swagger = userSwagger;
 
 
 
@@ -15,6 +18,6 @@ router.put("/switch-profile/:id",authenticateUser,multerMiddleware.fields([
       { name: "certificate", maxCount: 1 },
     ]),UserController.switchProfile
   );
-router.put("/update/:id", authenticateUser, UserController.updateUser);
+router.put("/update/:id", authenticateUser, isGuide, UserController.updateUser);
 
 module.exports = router;
