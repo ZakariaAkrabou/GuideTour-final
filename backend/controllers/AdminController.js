@@ -1,5 +1,57 @@
+const Admin = require("../models/Admin");
 const User = require("../models/User");
 const Guide = require("../models/Guide");
+const bcrypt = require("bcryptjs");
+const JWT = require("jsonwebtoken");
+
+// auth
+
+exports.createAdmin = async (req, res) => {
+
+  try {
+    const {
+        firstName,lastName,email, phone,password,} = req.body;
+
+    const existingAdmin = await Admin.findOne({ email });
+    if (existingAdmin) {
+        return res.status(400).json({ message: "Admin already exists" });
+    }
+    const newAdmin = new Admin({
+        firstName,
+        lastName,
+        email,
+        phone,
+        password, 
+    });
+    await newAdmin.save();
+
+    res.status(201).json({ message: "Admin Registered successfully" });
+} catch (error) {
+    console.error("Registration failed:", error);
+    res.status(500).json({ error: "Internal server error" });
+}
+}
+
+exports.loginAdmin = async (req, res)=>{
+  try {
+    const { email, password } = req.body;
+    const admin = await Admin.findOne({ email });
+    
+    if (!admin) {
+        return res.status(404).json({ error: 'Email not found' });
+    }
+
+    const passCheck = await bcrypt.compare(password, admin.password);
+    if (!passCheck) {
+        return res.status(401).json({ message: 'Authentication failed' }); 
+    }
+    const token = JWT.sign({adminid: admin._id}, 'GAHDYSB', {expiresIn: '1h'})
+    res.status(200).json({ message: 'Logged in',token });
+} catch (error) {
+    res.status(500).json({ error: error.message });
+}
+}
+
 
 // user managment
 exports.getAllUsers = async (req, res) => {
@@ -62,8 +114,13 @@ exports.getAllGuides = async (req, res) => {
 
       allGuideDetails.push(guideProfile);
     }
-
-    res.status(200).json(allGuideDetails);
+    if (allGuideDetails.length === 0) {
+      res.status(404).json("There Is No Guide To Show");
+    } 
+    else{
+      res.status(200).json(allGuideDetails);
+    }
+    
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

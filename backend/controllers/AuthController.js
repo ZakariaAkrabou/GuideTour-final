@@ -38,7 +38,7 @@ exports.createUser = async (req, res) => {
       await newUser.save();
       const link = `http://localhost:3000/api/auth/register/confirm/${token}`;
       await verifyEmail(email, link, newUser.firstName);
-      res.status(201).json({ message: "Registred successfult " });
+      res.status(200).json({ message: "Registred successfuly"});
     } catch (error) {
       res.status(500).json(error);
     }
