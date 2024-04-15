@@ -128,6 +128,15 @@ const swaggerOptions = {
             required: ['user', 'date', 'price'],
           },
       },
+      
+      securitySchemes: {
+        BearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT' 
+        },
+        
+      }
     },
     tags: [
       {

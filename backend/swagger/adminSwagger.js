@@ -45,7 +45,13 @@ const adminSwagger = `
  *           schema:
  *             type: object
  *             properties:
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
  *               email:
+ *                 type: string
+ *               phone:
  *                 type: string
  *               password:
  *                 type: string
@@ -63,6 +69,8 @@ const adminSwagger = `
  *     summary: Get all users
  *     tags: [Admin]
  *     description: Retrieve all users.
+ *     security: 
+ *       - BearerAuth: []
  *     responses:
  *       '200':
  *         description: A successful response with user data
@@ -100,6 +108,8 @@ const adminSwagger = `
  *     summary: Get all guides
  *     tags: [Admin]
  *     description: Retrieve all guides.
+ *     security:
+ *       - BearerAuth: []
  *     responses:
  *       '200':
  *         description: A successful response with guide data
@@ -108,6 +118,7 @@ const adminSwagger = `
  *       '403':
  *         description: Forbidden
  */
+
 
 /**
  * @swagger

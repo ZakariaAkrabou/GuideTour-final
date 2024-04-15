@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDB = require("./configs/database");
+const authRoutes = require("./routes/authRoute");
 const adminRoutes = require("./routes/adminRoute");
 const userRoutes = require("./routes/userRoute");
 const tourRoutes = require("./routes/tourRoute");
@@ -8,6 +9,8 @@ const bookingRoutes = require("./routes/bookingRoute");
 const reviewRoutes = require("./routes/reviewRoute");
 const paymentRoutes = require("./routes/paymentRoute");
 const socketRoutes = require('./routes/socketRoute');
+
+//swagger
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./helpers/swagger');
 require("dotenv").config();
@@ -19,6 +22,7 @@ app.use(express.json());
 
 connectDB();
 
+app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/tours", tourRoutes);

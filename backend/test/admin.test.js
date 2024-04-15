@@ -23,3 +23,4 @@ describe("AdminController - Registration", () => {
     expect(response.body.message).toBe("Registered successfully");
   });
 });
+

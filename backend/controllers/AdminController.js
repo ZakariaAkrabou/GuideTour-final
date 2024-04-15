@@ -114,8 +114,13 @@ exports.getAllGuides = async (req, res) => {
 
       allGuideDetails.push(guideProfile);
     }
-
-    res.status(200).json(allGuideDetails);
+    if (allGuideDetails.length === 0) {
+      res.status(404).json("There Is No Guide To Show");
+    } 
+    else{
+      res.status(200).json(allGuideDetails);
+    }
+    
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
