@@ -1,6 +1,6 @@
 const express = require("express");
 const connectDB = require("./configs/database");
-const authRoutes = require("./routes/authRoute");
+const authRoutes = require("./routes/AuthRoute");
 const adminRoutes = require("./routes/adminRoute");
 const userRoutes = require("./routes/userRoute");
 const tourRoutes = require("./routes/tourRoute");

@@ -1,8 +1,10 @@
+import './App.css'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Dashboard from './component/Dashboard'
 import Layout from './component/shared/Layout'
 import Users from './component/Users';
-import Guides from './component/Guides';
+import Guides from './component/Guides'
+
 
 
 
