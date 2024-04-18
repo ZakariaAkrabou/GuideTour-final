@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+
 
 function AddUser({ closeModal }) {
   const [formData, setFormData] = useState({
@@ -11,7 +13,6 @@ function AddUser({ closeModal }) {
     phone: '',
     age: '',
     country: '',
-    // role: ''
   });
 
   const handleChange = (e) => {
@@ -22,7 +23,7 @@ function AddUser({ closeModal }) {
     e.preventDefault();
     try {
       await axios.post("http://localhost:4000/api/auth/register", formData);
-      closeModal(); // Close the modal after successful submission
+      closeModal();
     } catch (error) {
       console.error('Error creating user:', error);
     }
@@ -55,5 +56,10 @@ function AddUser({ closeModal }) {
 </div>
   );
 }
+
+AddUser.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  // userId: PropTypes.string.isRequired,
+};
 
 export default AddUser;

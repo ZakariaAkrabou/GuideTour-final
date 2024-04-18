@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
 import { MdPersonSearch, MdDeleteForever } from "react-icons/md";
-// import AddUser from '../Modals/AddUser';
-// import UpdateUser from '../Modals/UpdateUser';
 import DeleteUser from '../Modals/DeleteUser';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../features/userSlices';
 
 export default function Users() {
-  // const [modalOpen, setModalOpen] = useState(false);
-  // const [modalUpdate, setModalUpdate] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,16 +20,11 @@ export default function Users() {
   console.log(users);
   useEffect(() => {
     dispatch(fetchUsers());
-  }, [dispatch]);
+  }, [dispatch,modalDelete]);
 
   const filteredUsers = users.filter(user =>
     user.firstName.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  // const handleEdit = (userId) => {
-  //   setSelectedUserId(userId);
-  //   setModalUpdate(true);
-  // };
 
   const handleDeleteModalOpen = (userId) => {
     setSelectedUserId(userId);
@@ -77,10 +68,6 @@ export default function Users() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        {/* <button onClick={() => setModalOpen(true)} className='font-bold text-white rounded-lg bg-[#6499E9] pl-8 pr-8 shadow-blue-500 shadow-md'>
-          Add
-        </button>
-        {modalOpen && <AddUser closeModal={() => setModalOpen(false)} />} */}
       </div>
     </div>
 
