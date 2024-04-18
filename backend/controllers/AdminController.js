@@ -100,6 +100,7 @@ exports.getAllGuides = async (req, res) => {
       }
 
       const guideProfile = {
+        id: guide._id,
         user_id: user._id,
         firstName: user.firstName,
         lastName: user.lastName,
