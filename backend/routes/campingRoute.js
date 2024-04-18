@@ -1,4 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const CampingController=require("../controllers/CampingController");
+const {authenticateAdmin,isAdmin} = require('../middlewares/adminMiddleware')
+const campingSwagger = require('../swagger/campingSwagger');
 
+
+router.swagger = campingSwagger;
+router.post("/add", authenticateAdmin, isAdmin,CampingController.createComping);
+router.get("/show", authenticateAdmin, isAdmin,CampingController.getAllCampings);
+router.put("/update/:campingId",authenticateAdmin, isAdmin,CampingController.updateCamping);
+router.delete("/delete/:id",authenticateAdmin, isAdmin,CampingController.deleteCampingById);
+router.get("/sortCampingsAscending", authenticateAdmin, isAdmin,CampingController.sortCampingsAscending);
+router.get("/sortCampingsDescending", authenticateAdmin, isAdmin,CampingController.sortCampingsDescending);
+router.get('/filter-name', authenticateAdmin, isAdmin,CampingController.filterCampingByName);
 module.exports = router;

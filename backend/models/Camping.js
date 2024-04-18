@@ -1,12 +1,19 @@
 const mongoose = require('mongoose');
 
 const campingSchema = new mongoose.Schema({
-    user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+
+    name: { type: String,required: true, unique:true},
     location: { type: String, required: true },
     date: { type: Date, required: true },
     duration: { type: Date, required: true },
     group_member: { type: Number, required: true },
     isPrivate: { type: Boolean, required: true },
+    price: { type: Number, required: true },
+    description: { type: String, required: true },
+    
 });
 
-module.exports = mongoose.model('Camping', campingSchema);
+
+
+const Camping = mongoose.model('Camping', campingSchema);
+module.exports = Camping;

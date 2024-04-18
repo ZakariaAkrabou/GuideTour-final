@@ -27,7 +27,6 @@ exports.verifyEmail = async(email,link,firstName) =>{
 
 }
 
-//////
 exports.ResetPasswordEmail = async(email,link,firstName) =>{
   let transport = nodemailer.createTransport({
       host: "smtp.gmail.com",
