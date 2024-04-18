@@ -36,7 +36,7 @@ exports.loginAdmin = async (req, res)=>{
   try {
     const { email, password } = req.body;
     const admin = await Admin.findOne({ email });
-    
+
     if (!admin) {
         return res.status(404).json({ error: 'Email not found' });
     }
@@ -100,6 +100,8 @@ exports.getAllGuides = async (req, res) => {
       }
 
       const guideProfile = {
+        id: guide._id,
+
         user_id: user._id,
         firstName: user.firstName,
         lastName: user.lastName,
@@ -115,7 +117,7 @@ exports.getAllGuides = async (req, res) => {
       allGuideDetails.push(guideProfile);
     }
     if (allGuideDetails.length === 0) {
-      res.status(404).json("There Is No Guide To Show");
+      res.status(404).json({message:"There Is No Guide To Show"});
     } 
     else{
       res.status(200).json(allGuideDetails);

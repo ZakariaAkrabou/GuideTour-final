@@ -1,14 +1,11 @@
-import Navbar from './components/navbar/navbar'
-import "./App.css";
+import Layout from './components/layouts/layout';
 
-function App() {
-  
 
+const App = () => {
   return (
-    <>
-      <Navbar></Navbar>
-    </>
-  );
-}
+    <Layout />
+  )
+};
 
-export default App;
+export default App
+

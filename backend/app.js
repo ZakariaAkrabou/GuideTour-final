@@ -9,6 +9,10 @@ const bookingRoutes = require("./routes/bookingRoute");
 const reviewRoutes = require("./routes/reviewRoute");
 const paymentRoutes = require("./routes/paymentRoute");
 const socketRoutes = require('./routes/socketRoute');
+const path = require("path")
+
+const axios = require('axios')
+const cors = require('cors')
 
 //swagger
 const swaggerUi = require('swagger-ui-express');
@@ -19,6 +23,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(cors());
 
 connectDB();
 
@@ -31,6 +36,11 @@ app.use("/api/booking", bookingRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/chat", socketRoutes);
+
+
+// app.use(express.static(path.join(__dirname, "public")));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 // API Documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
