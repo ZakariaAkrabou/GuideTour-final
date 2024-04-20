@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
+import { BiSolidHide, BiSolidShow } from 'react-icons/bi';
 import axios from 'axios';
 import background from '../assets/background2.jpg';
 import backgroundLoging from '../assets/back1.jpg';
@@ -17,7 +18,7 @@ function Login() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError(''); // Clear any previous error when input changes
+    setError('');
   };
 
   const handleTogglePasswordVisibility = () => {
@@ -62,7 +63,7 @@ function Login() {
               type="email"
             />
           </div>
-          <div className="flex flex-col gap-2 w-full">
+          <div className="flex flex-col gap-2 w-full relative">
             <label className="text-xl" htmlFor="password">
               Password
             </label>
@@ -74,10 +75,12 @@ function Login() {
                 className={`border ${error ? 'border-red-500' : 'border-gray-600'} w-full p-2 border border-gray-400 rounded-md placeholder-font-light`}
                 type={showPassword ? 'text' : 'password'}
               />
+              <div className="absolute right-2 flex items-center text-2xl">
+                <button type="button" onClick={handleTogglePasswordVisibility} className=""> 
+                  {showPassword ? <BiSolidShow /> : <BiSolidHide />} 
+                </button>
+              </div>
             </div>
-            <button type="button" onClick={handleTogglePasswordVisibility} className="ml-2 text-gray-600 focus:outline-none">
-              {showPassword ? 'Hide' : 'Show'}
-            </button>
             {error && <span className="text-red-500 text-sm">{error}</span>}
           </div>
           <div className="flex justify-center items-center w-full py-4">
