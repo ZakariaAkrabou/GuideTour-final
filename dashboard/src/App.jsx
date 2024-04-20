@@ -3,7 +3,8 @@ import Dashboard from './component/Dashboard'
 import Layout from './component/shared/Layout'
 import Users from './component/Users';
 import Guides from './component/Guides';
-
+import Register from './component/Register';
+import Login from './component/Login';
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
           <Route path= "users" element={<Users />} />
           <Route path= "guides" element={<Guides />} />
         </Route>
+        <Route path='register' element={<Register/>}/>
+        <Route path='login' element={<Login/>}/>
     </Routes>
   </Router>
   );
