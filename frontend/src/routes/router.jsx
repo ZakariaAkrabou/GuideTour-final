@@ -9,6 +9,7 @@ import Register from "../pages/register";
 const Router = () => {
   return (
     <Routes>
+
       <Route path="/home" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/tour" element={<Tour />} />

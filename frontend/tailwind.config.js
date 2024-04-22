@@ -10,7 +10,9 @@ export default {
     extend: {
       colors: {
         primary: "#6499E9",
-        secondaire:"#181E4B"
+        secondaire:"#181E4B",
+        buttons: "#6499E9", 
+        blue_fance:"#181E4B"
       },
       fonts: {
         import: [
