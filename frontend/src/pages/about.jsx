@@ -120,7 +120,7 @@ const About = () => {
 
                 </div>
                 <div className='w-full  relative'>
-                <video className='h-full w-full object cover ' src={video_sahara} autoPlay loop muted ></video>
+                <video className="h-full w-full object cover" src={video_sahara} autoPlay loop muted ></video>
                
                      {/* <div className='absolute top-0 w-full  flex flex-col justify-center text-whit py-[40px] '> */}
                     {/* <h3 className='absolute  w-full   z-30  text-black py-[30px] text-2xl '>SAHARA</h3> */}
