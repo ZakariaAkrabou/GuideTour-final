@@ -28,8 +28,7 @@ export default {
             weights: ["400", "700"],
           },
         ]
-      }
-    },
-  },
+
+  ],
   plugins: [flowbite.plugin()],
 };
