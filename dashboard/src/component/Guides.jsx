@@ -68,7 +68,7 @@ export default function Guides() {
   };
 
   return (
-    <div className='bg-[#FAF8F8] h-[480px] m-3 shadow-md rounded-md relative'>
+    <div className='bg-[#FAF8F8] h-[480px] m-3 shadow-md rounded-md'>
       <div className='flex justify-between p-2 items-center'>
         <h1 className="text-2xl font-bold text-[#6499E9]">Guides</h1>
         <div className='flex items-center space-x-4'>
@@ -77,7 +77,7 @@ export default function Guides() {
             <input
               className='rounded-lg pl-8 w-[200px] lg:w-[300px]'
               type="text"
-              placeholder='Search by First Name..'
+              placeholder='Search...'
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -87,9 +87,9 @@ export default function Guides() {
       {filteredUsers.length === 0 ? (
         <p className="text-center text-gray-500 mt-4">No Guide Is found.</p>
       ) : (
-        <div className="rounded-[16px] overflow-hidden m-2">
-          <table className="w-full">
-            <thead>
+        <div className="rounded-[16px] overflow-x-auto">
+          <table className="w-full p-2 m-1 ">
+            <thead className=''>
               <tr className='bg-[#FFFFFF] text-left'>
                 <td>
                   <button className={`rounded-full border-black border-2 w-[22.6px] h-[15.7px] ml-2 mr-2`}></button>
@@ -104,7 +104,7 @@ export default function Guides() {
                 <th className="py-1 font-bold text-[16px] text-[#2E5D9F]">Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className=' '>
               {currentItems.map((user, index) => (
                 <tr key={index} className='bg-white border-b border-t'>
                   <td>
