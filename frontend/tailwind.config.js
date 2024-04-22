@@ -1,12 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors:{
         buttons: "#6499E9",
+        blue_fance:"#181E4B"
       }
     },
   },

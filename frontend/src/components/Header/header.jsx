@@ -7,6 +7,7 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center py-4">
         <NavLink to="/home" className="text-xl font-semibold hover:text-gray-300 transition-colors duration-300">Home</NavLink>
         <NavLink to="/about" className="text-xl font-semibold hover:text-gray-300 transition-colors duration-300">About</NavLink>
+      
         <div className="relative">
           <button className="text-xl font-semibold hover:text-gray-300 transition-colors duration-300 focus:outline-none">Services</button>
           <div className="absolute top-full left-0 bg-gray-800 text-white rounded shadow-md hidden">
