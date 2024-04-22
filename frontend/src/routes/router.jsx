@@ -9,10 +9,11 @@ import Register from "../pages/register";
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+
+      <Route path="/home" element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/services/tour" element={<Tour />} />
-      <Route path="/services/camping" element={<Camping />} />
+      <Route path="/tour" element={<Tour />} />
+      <Route path="/camping" element={<Camping />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Routes>

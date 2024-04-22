@@ -1,8 +1,13 @@
+// Home.jsx
+import Hero from '../components/Hero/hero';
+import About from '../components/about/aboutSection';
 
 const Home = () => {
     return (
         <div>
-            <h1></h1>
+            <Hero />
+            <About />
+            
         </div>
     );
 }

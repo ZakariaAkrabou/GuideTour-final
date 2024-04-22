@@ -1,18 +1,15 @@
+// Layout.jsx
 import Header from './../Header/header';
-// import Footer from './../Footer/footer';
 import Routers from '../../routes/router';
-import Hero from './../Hero/hero';
 
-
-const Layout = () => {
+const Layout = ({ children }) => {
     return (
         <>
            <Header />
-           <Hero />
+           <main>
+               {children}
+           </main>
            <Routers /> 
-        
-          
-           
         </>
     );
 }
