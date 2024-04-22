@@ -1,22 +1,63 @@
-import "./header.css"
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { HiMenuAlt1 } from "react-icons/hi";
+import { MdClose } from "react-icons/md";
 
 const Header = () => {
+  const [dropdown, setDropdown] = useState(false);
+
+  const showDropdown = () => {
+    setDropdown(!dropdown); 
+  };
+
   return (
-    <header className="bg-gray-800 text-white">
-      <div className="container mx-auto flex justify-between items-center py-4">
-        <NavLink to="/home" className="text-xl font-semibold hover:text-gray-300 transition-colors duration-300">Home</NavLink>
-        <NavLink to="/about" className="text-xl font-semibold hover:text-gray-300 transition-colors duration-300">About</NavLink>
-        <div className="relative">
-          <button className="text-xl font-semibold hover:text-gray-300 transition-colors duration-300 focus:outline-none">Services</button>
-          <div className="absolute top-full left-0 bg-gray-800 text-white rounded shadow-md hidden">
-            
-            <NavLink to="/services/tour" className="block px-4 py-2 hover:bg-gray-700">Tours</NavLink>
-            <NavLink to="/services/camping" className="block px-4 py-2 hover:bg-gray-700">Camping</NavLink>
+    <nav className="w-full h-24 flex flex-col justify-center items-center sticky top-0 z-50 bg-transparent">
+      <div className="container mx-auto lg:px-3 w-full">
+        <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center">
+          <div className="flex flex-col gap-y-4">
+            <div className="flex items-center gap-x-2">
+              {/* <h2 className="text-primary font-bold text-lg">Travler</h2> */}
+              <img src="/img_ellipse_621.png" className="absolute left-[0.00px] top-[0.00px] m-auto h-[120px] w-[10%] rounded-[103] object-cover" />
+            </div>
           </div>
+          <ul className="flex items-center xl:gap-12 gap-x-4 max-lg:hidden">
+            <a href="#" className="leading-normal no-underline text-black text-lg hover:text-primary">Home</a>
+            <a href="#" className="leading-normal no-underline text-black text-lg hover:text-primary">About</a>
+            <a href="#" className="leading-normal no-underline text-black text-lg hover:text-primary">Tours</a>
+            <a href="#" className="leading-normal no-underline text-black text-lg hover:text-primary">Campings</a>
+
+          </ul>
+
+          <div className="flex gap-4 max-lg:hidden">
+              
+              <button className="bg-primary rounded shadow h-12 px-6 outline-none text-white hover:bg-white hover:text-primary cursor-pointer text-base transition-bg hover:border hover:border-primary">
+                Sign Up
+              </button>
+          </div>
+               {dropdown ? (
+                  <div onClick={showDropdown} className="lg:hidden text-[22px] cursor-pointer text-black">
+                    <MdClose />
+                  </div>
+               ) :(
+                <div onClick={showDropdown} className="lg:hidden text-[22px] cursor-pointer text-black">
+                    <HiMenuAlt1 />
+                    </div>
+               )}
         </div>
+        {dropdown && (
+          <div className="lg:hidden w-full fixed top-24 bg-primary transition-all">
+            <div className="w-full flex flex-col items-baseline gap-4">
+              <ul className="flex flex-col justify-center w-full">
+                <a href="#"className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">Home</a>
+                <a href="#"className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">About</a>
+                <a href="#"className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">Tours</a>
+                <a href="#"className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">Campings</a>
+
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
-    </header>
+    </nav>
   );
 };
 
