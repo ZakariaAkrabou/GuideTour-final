@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [dropdown, setDropdown] = useState(false);
@@ -20,10 +21,10 @@ const Header = () => {
             </div>
           </div>
           <ul className="flex items-center xl:gap-12 gap-x-4 max-lg:hidden">
-            <a href="#" className="leading-normal no-underline text-black text-lg hover:text-primary">Home</a>
-            <a href="#" className="leading-normal no-underline text-black text-lg hover:text-primary">About</a>
-            <a href="#" className="leading-normal no-underline text-black text-lg hover:text-primary">Tours</a>
-            <a href="#" className="leading-normal no-underline text-black text-lg hover:text-primary">Campings</a>
+            <Link to="/home" className="leading-normal no-underline text-black text-lg hover:text-primary">Home</Link>
+            <Link to="/about" className="leading-normal no-underline text-black text-lg hover:text-primary">About</Link>
+            <Link to="/tour" className="leading-normal no-underline text-black text-lg hover:text-primary">Tours</Link>
+            <Link to="/camping" className="leading-normal no-underline text-black text-lg hover:text-primary">Campings</Link>
 
           </ul>
 
