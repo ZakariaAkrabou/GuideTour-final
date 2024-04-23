@@ -1,11 +1,19 @@
-import { useState, useEffect } from 'react';
-import { MdPersonSearch, MdEditSquare, MdDeleteForever } from "react-icons/md";
+import { useState, useEffect, useContext } from 'react';
+import { MdPersonSearch, MdEditSquare, MdDeleteForever, MdAccessTime} from "react-icons/md";
+import { FaRegTimesCircle } from "react-icons/fa";
+import { GrStatusGood } from "react-icons/gr";
+
+
 import UpdateUser from '../Modals/UpdateUser';
 import DeleteUser from '../Modals/DeleteUser';
-import FileModal from '../Modals/FileModal'; // Import the FileModal component
+import FileModal from '../Modals/FileModal';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGuides } from '../features/userSlices';
+import { AuthContext } from '../Auth/AuthContext';
+
+
+
 
 export default function Guides() {
   const [modalUpdate, setModalUpdate] = useState(false);
@@ -20,10 +28,14 @@ export default function Guides() {
 
   const dispatch = useDispatch();
   const guides = useSelector((state) => state.guides)
+  const { token } = useContext(AuthContext);
+
 
   useEffect(() => {
-    dispatch(fetchGuides());
-  }, [dispatch, modalUpdate, modalDelete ]);
+    if (token) {
+      dispatch(fetchGuides(token));
+    }
+  }, [dispatch, token, modalDelete, modalUpdate]);
 
   const handleEdit = (userId) => {
     setSelectedUserId(userId);
@@ -48,7 +60,7 @@ export default function Guides() {
   const filteredUsers = guides.filter(user =>
     user.firstName.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+console.log("ggggg", filteredUsers);
   const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
   const indexOfLastItem = guides ? Math.min(indexOfFirstItem + itemsPerPage, guides.length) : 0;
   const currentItems = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
@@ -68,7 +80,7 @@ export default function Guides() {
   };
 
   return (
-    <div className='bg-[#FAF8F8] h-[480px] m-3 shadow-md rounded-md'>
+    <div className='bg-[#FAF8F8] h-[480px] m-2 mt-1 shadow-md rounded-md relative'>
       <div className='flex justify-between p-2 items-center'>
         <h1 className="text-2xl font-bold text-[#6499E9]">Guides</h1>
         <div className='flex items-center space-x-4'>
@@ -87,8 +99,8 @@ export default function Guides() {
       {filteredUsers.length === 0 ? (
         <p className="text-center text-gray-500 mt-4">No Guide Is found.</p>
       ) : (
-        <div className="rounded-[16px] overflow-x-auto">
-          <table className="w-full p-2 m-1 ">
+        <div className="rounded-[16px]">
+          <table className="w-full p-2 ">
             <thead className=''>
               <tr className='bg-[#FFFFFF] text-left'>
                 <td>
@@ -97,42 +109,42 @@ export default function Guides() {
                 <th className="py-1 font-bold text-[16px] text-[#2E5D9F]">Full Name</th>
                 <th className="py-1 font-bold text-[16px] text-[#2E5D9F]">Bio</th>
                 <th className="py-1 font-bold text-[16px] text-[#2E5D9F]">Specialization</th>
-                <th className="py-1 font-bold text-[16px] text-[#2E5D9F]">Identity</th>
+                <th className="py-1 pl-2 font-bold text-[16px] text-[#2E5D9F]">Identity</th>
                 <th className="py-1 font-bold text-[16px] text-[#2E5D9F]">certificate</th>
                 <th className="py-1 font-bold text-[16px] text-[#2E5D9F]">Profile</th>
-                <th className="py-1 font-bold text-[16px] text-[#2E5D9F]">Status</th>
+                <th className="py-1 text-center font-bold text-[16px] text-[#2E5D9F]">Status</th>
                 <th className="py-1 font-bold text-[16px] text-[#2E5D9F]">Action</th>
               </tr>
             </thead>
             <tbody className=' '>
               {currentItems.map((user, index) => (
-                <tr key={index} className='bg-white border-b border-t'>
+                <tr key={index} className='bg-white border-b border-t text-left'>
                   <td>
                     <button
                       className={`rounded-full border-black border-2 w-[22.6px] h-[15.7px] ml-2 ${selectedUserId === user.user_id ? 'bg-black border-black' : ''}`}
                       onClick={() => setSelectedUserId(selectedUserId === user.user_id ? null : user.user_id)}
                     ></button>
                   </td>
-                  <td className="py-1.5">{user.firstName} {user.lastName}</td>
-                  <td className="py-1.5">{user.bio}</td>
-                  <td className="py-1.5">{user.specialization}</td>
-                  <td className="py-1.5">
+                  <td className="py-1">{user.firstName} {user.lastName}</td>
+                  <td className="py-1">{user.bio}</td>
+                  <td className="py-1">{user.specialization}</td>
+                  <td className="py-1">
                     <button
-                      className=""
+                      className="bg-gray-300  w-[80px] h-10 rounded-full"
                       onClick={() => handleOpenImageModal(user.identity)}
-                    >
-                      <img src={`http://localhost:4000/${user.identity}`} alt="identity" className="h-10 object-cover rounded-full"/>
+                    > CIN
+                      <img src={`http://localhost:4000/${user.identity}`} alt="identity" className="hidden"/>
                     </button>
                   </td>
-                  <td className="py-1.5">
+                  <td className="py-1 ">
                     <button
-                      className=""
+                      className=" bg-gray-300  w-[80px] h-10 rounded-full"
                       onClick={() => handleOpenImageModal(user.certificate)}
-                    >
-                      <img src={`http://localhost:4000/${user.certificate}`} alt="certificate" className="  h-10 object-cover rounded-full" />
+                    >Certificate
+                      <img src={`http://localhost:4000/${user.certificate}`} alt="certificate" className=" hidden bg-gray-400" />
                     </button>
                   </td>
-                  <td className="py-1.5 ">
+                  <td className="py-1 pl-1.5">
                     <button
                       
                       onClick={() => handleOpenImageModal(user.profile_picture)}
@@ -140,8 +152,12 @@ export default function Guides() {
                       <img src={`http://localhost:4000/${user.profile_picture}`} alt="profile" className="w-10 h-10 object-cover rounded-full" />
                     </button>
                   </td>
-                  <td className="py-1.5 relative">
-                    <div className={`flex justify-center items-center ${user.status === 'approved' ? 'bg-green-600 rounded-2xl' : user.status === 'pending' ? 'bg-gray-400 rounded-2xl' : user.status === 'rejected' ? 'bg-red-600 rounded-2xl' : ''}` } style={{ fontSize: '16px', padding: '4px 0px'}}>{user.status}</div>
+                  <td className="py-1 relative">
+                  <div className=" flex justify-center text-center text-2xl">
+                      {user.status === 'approved' && <GrStatusGood className="text-green-400" />}
+                      {user.status === 'pending' && <MdAccessTime className="text-gray-400" />}
+                      {user.status === 'rejected' && <FaRegTimesCircle className="text-red-600" />}
+                  </div>
                   </td>
                   <td className='relative pl-2'>
                     <button onClick={() => handleEdit(user._id)} className='text-lg text-blue-600 pr-2'><MdEditSquare /></button>
