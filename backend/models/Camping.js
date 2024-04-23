@@ -7,7 +7,7 @@ const campingSchema = new mongoose.Schema({
     date: { type: Date, required: true },
     duration: { type: Date, required: true },
     group_member: { type: Number, required: true },
-    isPrivate: { type: Boolean, required: true },
+    isPrivate: { type: String, enum: ['public', 'private']},
     price: { type: Number, required: true },
     description: { type: String, required: true },
     
