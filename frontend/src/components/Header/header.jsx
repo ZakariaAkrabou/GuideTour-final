@@ -11,8 +11,13 @@ const Header = () => {
   };
 
   return (
-    <nav className="backdrop-blur-sm bg-white/30 w-full h-24 flex flex-col justify-center items-center sticky top-0 z-50 ">
-      <div className="relative h-[976px] self-stretch  bg-cover bg-no-repeat pb-[55px] pr-[55px] shadow-xs md:pb-5 md:pr-5">
+
+    <nav className=" w-[1100px] h-20 flex flex-col justify-center items-center top-0 left-[90px] z-50  relative  -mb-24">
+      <div className="container mx-auto lg:px-3 w-full">
+
+//     <nav className="backdrop-blur-sm bg-white/30 w-full h-24 flex flex-col justify-center items-center sticky top-0 z-50 ">
+//       <div className="relative h-[976px] self-stretch  bg-cover bg-no-repeat pb-[55px] pr-[55px] shadow-xs md:pb-5 md:pr-5">
+
         <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center">
           <div className="flex flex-col gap-y-4">
             <div className="flex items-center gap-x-2">
@@ -21,17 +26,18 @@ const Header = () => {
             </div>
           </div>
           <ul className="flex items-center xl:gap-12 gap-x-4 max-lg:hidden">
-            <Link to="/home" className="leading-normal no-underline text-black text-lg hover:text-primary">Home</Link>
-            <Link to="/about" className="leading-normal no-underline text-black text-lg hover:text-primary">About</Link>
-            <Link to="/tour" className="leading-normal no-underline text-black text-lg hover:text-primary">Tours</Link>
-            <Link to="/camping" className="leading-normal no-underline text-black text-lg hover:text-primary">Campings</Link>
+            <Link to="/home" className="leading-normal no-underline text-white text-xl font-bold hover:text-primary">Home</Link>
+            <Link to="/about" className="leading-normal no-underline text-white text-xl font-bold hover:text-primary">About</Link>
+            <Link to="/tour" className="leading-normal no-underline text-white text-xl font-bold hover:text-primary">Tours</Link>
+            <Link to="/camping" className="leading-normal no-underline text-white text-xl font-bold hover:text-primary">Campings</Link>
+            {/* <Link to="/camping" className="leading-normal no-underline text-black text-lg hover:text-primary">Campings</Link> */}
 
           </ul>
 
-          <div className="flex gap-4 max-lg:hidden">
+          <div className="flex  gap-4 max-lg:hidden">
               
-              <button className="bg-primary rounded shadow h-12 px-6 outline-none text-white hover:bg-white hover:text-primary cursor-pointer text-base transition-bg hover:border hover:border-primary">
-                Sign Up
+              <button className="bg-primary rounded-2xl h-12 px-6 text-white font-bold hover:bg-white hover:text-primary  transition-bg  hover:border-primary">
+                Login
               </button>
           </div>
                {dropdown ? (
