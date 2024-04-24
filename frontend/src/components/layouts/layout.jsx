@@ -1,6 +1,7 @@
 // Layout.jsx
 import Header from './../Header/header';
 import Routers from '../../routes/router';
+import Footer from './../Footer/footer';
 
 const Layout = ({ children }) => {
     return (
@@ -10,6 +11,7 @@ const Layout = ({ children }) => {
                {children}
            </main>
            <Routers /> 
+           <Footer />
         </>
     );
 }
