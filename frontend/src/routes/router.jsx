@@ -17,8 +17,10 @@ const Router = () => {
       <Route path="/camping" element={<Camping />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      
     </Routes>
   );
 };
 
 export default Router;
+
