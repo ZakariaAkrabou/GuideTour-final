@@ -41,6 +41,10 @@ export default {
           400: "normal",
           700: "bold",
         },
+        secondaire:"#181E4B",
+        buttons: "#6499E9", 
+        blue_fance:"#181E4B"
+
       },
     },
   },

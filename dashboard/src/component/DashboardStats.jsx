@@ -1,7 +1,7 @@
-import React from 'react'
 import { GiForestCamp } from "react-icons/gi";
 import { TbArrowGuide } from "react-icons/tb";
 import { MdOutlineModeOfTravel } from "react-icons/md";
+import PropTypes from 'prop-types';
 
 
 
@@ -50,4 +50,10 @@ function BoxWrapper({ children }) {
   return <div className='bg-white shadow-md p-4 lg:flex-1 rounded-lg items-center mb-4 lg:mb-0'>{children}</div>;
   // flex
 }
+
+
+BoxWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 

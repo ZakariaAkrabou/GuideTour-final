@@ -1,12 +1,18 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useState, useContext, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom'; 
 import background from "../assets/background2.jpg";
 import backgroundLoging from "../assets/back1.jpg";
 import axios from 'axios';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 import { BiSolidHide, BiSolidShow } from 'react-icons/bi';
+import { AuthContext } from '../Auth/AuthContext';
+
 
 function Register() {
+
+    
+
+
     const navigate = useNavigate();
     const initialFormData = {
         firstName: '',
@@ -19,6 +25,13 @@ function Register() {
     const [formData, setFormData] = useState(initialFormData);
     const [registrationStatus, setRegistrationStatus] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
+    const { token } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (token) {
+          navigate('/');
+        }
+      }, [token, navigate]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -46,7 +59,7 @@ function Register() {
             <div className="absolute inset-0 backdrop-filter backdrop-blur-sm bg-opacity-50"></div>
             <div className="relative flex flex-col bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
                 <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center p-4'>
-                    <span className=" text-4xl font-bold">Welcome back</span>
+                    <span className=" text-4xl font-bold">Welcome</span>
                     <span className=" mb-2 font-light text-gray-400 ">
                         Welcome! Please enter your details
                     </span>
@@ -83,6 +96,10 @@ function Register() {
                             className="w-[300px] bg-black text-white font-bold p-2 rounded-lg mb-4 hover:bg-blue-500 hover:text-white hover:font-bold hover:border">
                             Register
                         </button>
+                        <div className=" flex items-center justify-center">
+                        <span className="mr-2">You have an account ?</span>
+                        <Link to="/login" className="text-blue-500 hover:underline">Sign In</Link>
+                        </div>
                         {registrationStatus === 'success' && (
                             <div className="flex items-center justify-center text-green-600">
                                 <IoCheckmarkDoneCircle className="mr-2" />
