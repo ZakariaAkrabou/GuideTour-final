@@ -21,7 +21,7 @@ const About = () => {
           <p className="text-lg mb-4 text-justify">
             We believe interaction with the local people is what makes a trip memorable. No matter what cultural background, religion, race, or belief, there will always be overlapping interests. By interacting with locals, our perspectives on the world will broaden, a better understanding emerges, and friends will be made.
           </p>
-          <button onClick={()=> alert("Coming soon")}  className="bg-primary rounded-full shadow h-12 px-6 outline-none text-white hover:bg-white hover:text-primary cursor-pointer text-base transition-bg hover:border hover:border-primary">
+          <button className="bg-primary rounded-full shadow h-12 px-6 outline-none text-white hover:bg-white hover:text-primary cursor-pointer text-base transition-bg hover:border hover:border-primary">
             Read More
           </button>
         </div>

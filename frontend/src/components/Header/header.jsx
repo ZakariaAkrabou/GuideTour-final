@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <nav className="backdrop-blur-sm bg-white/30 w-full h-24 flex flex-col justify-center items-center sticky top-0 z-50 ">
-      <div className="container mx-auto lg:px-3 w-full">
+      <div className="relative h-[976px] self-stretch  bg-cover bg-no-repeat pb-[55px] pr-[55px] shadow-xs md:pb-5 md:pr-5">
         <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center">
           <div className="flex flex-col gap-y-4">
             <div className="flex items-center gap-x-2">
@@ -48,10 +48,10 @@ const Header = () => {
           <div className="lg:hidden w-full fixed top-24 bg-primary transition-all">
             <div className="w-full flex flex-col items-baseline gap-4">
               <ul className="flex flex-col justify-center w-full">
-                <a href="#"className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">Home</a>
-                <a href="#"className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">About</a>
-                <a href="#"className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">Tours</a>
-                <a href="#"className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">Campings</a>
+                <Link to="/home" className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">Home</Link>
+                <Link to="/about" className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">About</Link>
+                <Link to="/tour" className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">Tours</Link>
+                <Link to="/camping" className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-primary text-[15px] border-0 border-b border-[#ffffff1a] border-solid">Campings</Link>
 
               </ul>
             </div>
