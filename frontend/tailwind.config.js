@@ -12,7 +12,8 @@ export default {
         primary: "#6499E9",
         secondaire:"#181E4B",
         buttons: "#6499E9", 
-        blue_fance:"#181E4B"
+        blue_fance:"#181E4B",
+        back:"343434"
       },
       fonts: {
         import: [
@@ -28,6 +29,16 @@ export default {
             family: "Volkhov",
             styles: ["italic", "normal"],
             weights: ["400", "700"],
+          },
+          {
+            family: "Volkhov",
+            styles: ["italic", "normal"],
+            weights: ["400", "700"],
+          },
+           {
+            family: "Yesteryear",
+            styles: ["cursive"],
+            weights: ["400"],
           },
         ]
       }

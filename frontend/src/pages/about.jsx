@@ -99,7 +99,7 @@ const About = () => {
                 </div>
 
                 <div className=' grid grid-cols-2 gap-8 '>
-                    <div className="px-36 py-20 ">
+                    <div className="  px-36 py-[200px]">
                         <div className=' max-w-xl grid grid-cols-1 gap-8'>
                             <h3 className=" text-buttons font-bold  uppercase">Promotion</h3>
                             <h1 className=" text-3xl font-['Volkhov'] capitalize text-blue_fance">We Provide You Best Morocco Sightseeing Tours</h1>
@@ -109,18 +109,21 @@ const About = () => {
                             <button className=" transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons py-3 px-6 text-white text-lg rounded-md w-48">View Packages</button>
                         </div>
                     </div>
-                    <div className='py-20  rounded-full border-2 border-gray-300'>
-                        <div className='  w-[600px] h-[600px]  rounded-full border-2 border-gray-300' style={backgroundImageStyle2}>
+                    <div className=' py-10 '>
+<div className='py-20 px-20 rounded-full w-[600px] h-[600px] border-2 border-gray-300 '>
+                        <div className=' w-[500px] h-[500px]  rounded-full ' style={backgroundImageStyle2}>
                             {/* <img className="  rounded-full border-2 border-rose-600 " src={elipse} alt="" /> */}
 
-                            <img className=" w-[700px] h-[700px]  rounded-full    " src={bgstyle} alt="" />
+                            <img className=" w-[500px] h-[500px]  rounded-full   " src={bgstyle} alt="" />
 
                         </div>
                     </div>
+                    </div>
+                    
 
                 </div>
                 <div className='w-full  relative'>
-                <video className="h-full w-full object cover" src={video_sahara} autoPlay loop muted ></video>
+                <video className=" py-2 h-full w-full object cover" src={video_sahara} autoPlay loop muted ></video>
                
                      {/* <div className='absolute top-0 w-full  flex flex-col justify-center text-whit py-[40px] '> */}
                     {/* <h3 className='absolute  w-full   z-30  text-black py-[30px] text-2xl '>SAHARA</h3> */}
@@ -168,7 +171,7 @@ const About = () => {
 
                     <div className="  grid grid-rows-3 gap-8 " >
 
-                    <div className="w-[350px] h-[350px]  ">
+                    <div className=" px-2 w-[350px] h-[350px]  ">
                             <div className=" bg-center h-full w-full" style={bgOudlaw_Tetouan}>
                                 <div className='px-[70px] py-[300px]'>
                                     <div className='  w-[300px] grid grid-cols-2 gap-[100px] text-Poppins text-white  '>
@@ -184,7 +187,7 @@ const About = () => {
 
                             </div>
                         </div>
-                        <div className="w-[350px] h-[350px] ">
+                        <div className=" px-2 w-[350px] h-[350px] ">
                             <div className=" bg-center h-full w-full" style={bgait_Benhaddou}>
                                 <div className='px-[70px] py-[300px]'>
                                     <div className='  w-[300px] grid grid-cols-2 gap-[100px] text-Poppins text-white '>
@@ -200,7 +203,7 @@ const About = () => {
 
                             </div>
                         </div>
-                        <div className="w-[350px] h-[350px] ">
+                        <div className="px-2 w-[350px] h-[350px] ">
                             <div className=" bg-center h-full w-full" style={bgOzoud_waterfalls}>
                                 <div className='px-[70px] py-[300px]'>
                                     <div className='  w-[300px] grid grid-cols-2 gap-[100px] text-Poppins text-white '>
