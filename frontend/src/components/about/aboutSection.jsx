@@ -1,18 +1,15 @@
 const About = () => {
- 
-
   return (
-    <>
-     <div className="container mx-auto px-1 pt-15">
-      <section className="flex items-center justify-center mb-3">
-        <div className="pt-6 mr-6">
+    <div className="container mx-auto px-1 pt-15">
+      <section className="flex flex-col md:flex-row items-center justify-center mb-3">
+        <div className="md:pt-6 md:mr-6 mb-6 md:mb-0">
           <img
             src="/img_rectangle_19367.png"
             alt="Desert"
-            className="h-[500px] rounded-2xl"
+            className="h-auto md:h-[500px] max-w-full rounded-2xl"
           />
         </div>
-        <div className="w-1/2 ml-16">
+        <div className="w-full md:w-1/2">
           <h2 className="text-2xl mb-4 text-primary">Information</h2>
           <h3 className="text-4xl mt-8 font-Volkhov font-bold text-secondaire">
             What is “Journey Tour & Travel“?
@@ -26,10 +23,7 @@ const About = () => {
           </button>
         </div>
       </section>
-     </div>
-    
-    </>
-   
+    </div>
   );
 };
 

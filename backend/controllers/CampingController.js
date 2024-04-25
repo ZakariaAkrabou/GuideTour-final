@@ -55,7 +55,7 @@ module.exports.createComping = async (req, res) => {
 module.exports.getAllCampings = async (req, res) => {
   try {
     const campings = await Camping.find();
-    res.status(200).json({ message: "All Comping", data: campings });
+    res.status(200).json(campings);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -75,6 +75,21 @@ module.exports.updateCamping = async (req, res) => {
     res
       .status(200)
       .json({ message: "camping edited successfuly", data: editcamping });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+module.exports.getCamping = async (req, res) => {
+  try {
+    const camping = req.params.campingId;
+
+    const camp = await Camping.findById(camping)
+    if (!camp) {
+      return res.status(404).send({ error: "Camping not found" });
+    }
+    res
+      .status(200)
+      .json(camp);
   } catch (error) {
     res.status(500).send(error.message);
   }

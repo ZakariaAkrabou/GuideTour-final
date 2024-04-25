@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { IoCheckmarkDoneCircle } from 'react-icons/io5';
+import { useState, useContext, useEffect } from 'react';
+import { useNavigate , Link} from 'react-router-dom';
 import { BiSolidHide, BiSolidShow } from 'react-icons/bi';
 import axios from 'axios';
-import background from '../assets/background2.jpg';
-import backgroundLoging from '../assets/back1.jpg';
+import background from '../assets/background.jpg';
+import backgroundLoging from '../assets/signin.jpg';
+import { AuthContext } from '../Auth/AuthContext';
 
 function Login() {
   const initialFormData = {
@@ -15,6 +16,15 @@ function Login() {
   const [registrationStatus, setRegistrationStatus] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { token } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [token, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,18 +38,21 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form submitted!');
-    setFormData(initialFormData);
-
+    
     try {
       const response = await axios.post('http://localhost:4000/api/admin/login', formData);
       const token = response.data.token;
       console.log('Token:', token);
+
       localStorage.setItem('token', token);
-      setRegistrationStatus('success');
+
+      login(token);
+
+      setFormData(initialFormData);
+      navigate('/');
     } catch (error) {
-      console.error('Error login admin:', error);
-      setRegistrationStatus('error');
       console.error('Error logging in:', error);
+      setRegistrationStatus('error');
       setError('Invalid email or password');
     }
   };
@@ -88,19 +101,26 @@ function Login() {
           </div>
           <div className="py-4">
             <button className="w-[300px] bg-black text-white font-bold p-2 rounded-lg mb-4 hover:bg-blue-500 hover:text-white hover:font-bold hover:border">login</button>
-            {registrationStatus === 'success' && (
+            <div className=" flex items-center justify-center">
+            <span className="mr-2">Don&apos;t have an account?</span>
+            <Link to="/register" className="text-blue-500 hover:underline">Register</Link>
+            </div>
+            
+            {/* {registrationStatus === 'success' && (
               <div className="flex items-center justify-center text-green-600">
                 <IoCheckmarkDoneCircle className="mr-2" />
                 <span>Login successful!</span>
               </div>
-            )}
+            )} */}
             {registrationStatus === 'error' && (
               <div className="flex items-center text-red-600">
-                <span>Error login admin. Please try again.</span>
+                <span>Error logging in. Please try again.</span>
               </div>
             )}
           </div>
+          
         </form>
+
         <div className="relative">
           <img src={backgroundLoging} alt="img" className="w-[400px] h-[500px] hidden rounded-r-2xl md:block object-cover" />
         </div>

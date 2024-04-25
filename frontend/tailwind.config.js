@@ -10,38 +10,42 @@ export default {
     extend: {
       colors: {
         primary: "#6499E9",
+        secondaire: "#181E4B",
+      },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"], 
+        popp: ["Poppins", "sans-serif"], 
+        volk: ["Volkhov", "serif"], 
+      },
+      fontWeight: {
+        inter: {
+          
+          100: "thin",
+          200: "extra-light",
+          300: "light",
+          400: "normal",
+          500: "medium",
+          600: "semi-bold",
+          700: "bold",
+          800: "extra-bold",
+          900: "black",
+        },
+        popp: {
+         
+          200: "extra-light",
+          400: "normal",
+          500: "medium",
+        },
+        volk: {
+         
+          400: "normal",
+          700: "bold",
+        },
         secondaire:"#181E4B",
         buttons: "#6499E9", 
-        blue_fance:"#181E4B",
-        back:"343434"
+        blue_fance:"#181E4B"
+
       },
-      fonts: {
-        import: [
-          {
-            family: "Inter",
-            weights: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-          },
-          {
-            family: "Poppins",
-            weights: ["200", "400", "500"],
-          },
-          {
-            family: "Volkhov",
-            styles: ["italic", "normal"],
-            weights: ["400", "700"],
-          },
-          {
-            family: "Volkhov",
-            styles: ["italic", "normal"],
-            weights: ["400", "700"],
-          },
-           {
-            family: "Yesteryear",
-            styles: ["cursive"],
-            weights: ["400"],
-          },
-        ]
-      }
     },
   },
   plugins: [flowbite.plugin()],
