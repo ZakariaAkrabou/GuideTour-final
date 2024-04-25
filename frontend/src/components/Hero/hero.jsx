@@ -18,7 +18,7 @@ const Hero = () => {
 
         <div className="lg:w-4/5 mx-auto lg:h-screen h-full mt-[-30px]">
    
-          <div className="backdrop-blur-sm bg-blue-500/50  px-5  rounded-[10px] lg:absolute bottom-16 lg:w-4/5 shadow-lg">
+          <div className="backdrop-blur-sm bg-gray-500/50  px-5  rounded-[10px] lg:absolute bottom-16 lg:w-4/5 shadow-lg">
             <div className="lg:flex gap-4 gap-x-2">
               <div className="flex flex-wrap gap-x-16 w-full">
                 <button
@@ -26,11 +26,11 @@ const Hero = () => {
                   className={`rounded-sm flex gap-x-2 items-center focus:outline-none h-14 text-base cursor-pointer bg-transparent whitespace-pre
                   ${
                     active === "Hostelry"
-                      ? "text-black border-b-2 border-solid border-black"
+                      ? "text-white border-b-2 border-solid border-black"
                       : "text-white hover:text-black"
                   }`}
                 >
-                  Hostelry
+                  Find your Destination
                 </button>
               </div>
               <button className="whitespaces-pre flex items-center gap-2 bg-transparent outline-none border-none text-white hover:text-black">
