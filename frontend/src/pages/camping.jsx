@@ -7,7 +7,7 @@ import { MdOutlineLocationOn } from "react-icons/md";
 //Process components
 import ProgressSteps from './steps/BookingSteps';
 import Step1 from './steps/cards';
-import Step2 from './steps/tourPlan';
+import Step2 from './steps/information';
 import Step3 from './steps/location';
 
 const steps = [

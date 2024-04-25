@@ -37,19 +37,19 @@ const Footer = () => {
                             </FlowbiteFooter.LinkGroup>
                         </div>
                     </div>
-                </div>
-                <FlowbiteFooter.Divider />
-                <div className="w-full sm:flex sm:items-center sm:justify-between">
-                    <FlowbiteFooter.Copyright href="#" by="Flowbite™" year={2022} />
-                    <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-                        <FlowbiteFooter.Icon href="#" icon={BsFacebook} />
-                        <FlowbiteFooter.Icon href="#" icon={BsInstagram} />
-                       
+                    </div>
+                    <FlowbiteFooter.Divider />
+                    <div className="w-full sm:flex sm:items-center sm:justify-between">
+                        <FlowbiteFooter.Copyright href="#" by="Flowbite™" year={2022} />
+                        <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+                            <FlowbiteFooter.Icon href="#" icon={BsFacebook} />
+                            <FlowbiteFooter.Icon href="#" icon={BsInstagram} />
+                        
+                        </div>
                     </div>
                 </div>
-            </div>
-        </FlowbiteFooter>
-    );
-}
+            </FlowbiteFooter>
+        );
+    }
 
-export default Footer;
+    export default Footer;
