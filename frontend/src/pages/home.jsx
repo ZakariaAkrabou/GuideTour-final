@@ -1,7 +1,6 @@
 import Hero from "../components/Hero/hero";
 import About from "../components/about/aboutSection";
 
-
 const data1 = [
   {
     circleimage: "/img_ellipse_625.png",
@@ -22,10 +21,20 @@ const data1 = [
       "Let your local host tailor the tour<br />completely to your wishes.",
   },
 ];
+
 const data = [
-  { explorenature: "/img_line_3.svg", explorenature1: "Explore Nature" ,backgroundImg: "/img_group_8.png" },
-  { explorenature: "/img_line_8.svg", explorenature1: "Explore Cities" ,backgroundImg: "/img_group_9.png"},
+  { 
+    explorenature: "/img_line_3.svg", 
+    explorenature1: "Explore Nature" ,
+    backgroundImg: "/img_group_9.png" 
+  },
+  { 
+    explorenature: "/img_line_8.svg", 
+    explorenature1: "Explore Cities" ,
+    backgroundImg: "/img_group_8.png"
+  },
 ];
+
 const Home = () => {
   return (
     <>
@@ -58,14 +67,13 @@ const Home = () => {
           ))}
         </div>
       </div>
-      {/* Packages */}
 
+      {/* Packages */}
       <div className="flex flex-col md:flex-row w-full gap-px bg-white-A700">
         {data.map((d, index) => (
-          <div key={"desktopOne" + index} className={`flex flex-col justify-center items-center w-full bg-[url(${d.backgroundImg})] bg-cover bg-no-repeat md:w-1/2 md:h-auto md:p-5`}>
+          <div key={"desktopOne" + index} className="flex flex-col justify-center items-center w-full bg-cover bg-no-repeat md:w-1/2 md:h-auto md:p-5" style={{ backgroundImage: `url(${d.backgroundImg})` }}>
             <div className="relative h-[88px] self-stretch mb-4">
-              <img src={d.explorenature} alt="explore_nature" className="absolute bottom-[9.44px] right-[0.00px] m-auto h-[15px] w-[46%] md:w-auto"
-              />
+              <img src={d.explorenature} alt="explore_nature" className="absolute bottom-[9.44px] right-[0.00px] m-auto h-[15px] w-[46%] md:w-auto" />
               <div className="absolute bottom-0 left-0 right-0 top-0 flex justify-center items-center">
                 <div className="my-auto flex flex-col items-center">
                   <h1 className="text-xl md:text-3xl uppercase tracking-[1.80px] font-volk font-bold text-white">
@@ -79,20 +87,14 @@ const Home = () => {
             </div>
             <button
               shape="round"
-              className="bg-primary rounded-full shadow h-10 px-6 outline-none text-white hover:bg-white hover:text-primary cursor-pointer text-base transition-bg hover:border hover:border-primary"
+              className="bg-primary rounded-full shadow h-10 px-6 outline-none text-white hover:bg-white hover:text-primary cursor-pointer text-base transition-bg hover:border hover:border-primary mt-4"
             >
               View Packages
             </button>
           </div>
         ))}
       </div>
-      
       {/* end Packages */}
-
-      {/* swipper */}
-
-      
-
     </>
   );
 };
