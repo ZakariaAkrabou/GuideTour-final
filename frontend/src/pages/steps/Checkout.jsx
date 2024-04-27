@@ -5,9 +5,9 @@ import { RiVisaLine, RiMastercardFill } from "react-icons/ri";
 const Checkout = () => {
   return (
     <div className=" py-8">
-      <h2 className="text-3xl underline underline-offset-4 font-semibold mb-4">Checkout</h2>
+      <h2 className="text-3xl text-blue-500 underline underline-offset-4 font-semibold mb-4">Checkout</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 w-[700px] gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:w-[700px] gap-4">
         
         {/* Billing Information */}
         <form className="bg-white p-4 rounded-lg shadow-2xl">
@@ -45,20 +45,21 @@ const Checkout = () => {
           <div className="mb-4 flex justify-between text-center">
             <div className=''>
                 <h1>Expire Date</h1>
-                <input type="text" name="" id="" className=' w-20 border-none h-8 flex mt-1 rounded-md' />
+                <input type="text" name="" id="" className=' w-20 h-8 flex mt-1 rounded-md' />
             </div>
             <div className=''>
                 <h1>CVV</h1>
-                <input type="text" name="" id="" className=' w-20 border-none h-8 flex mt-1 rounded-md' />
+                <input type="text" name="" id="" className=' w-20 h-8 flex mt-1 rounded-md' />
             </div>
           </div>
-          <button
+          {/* <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-700 disabled:bg-gray-200 disabled:cursor-not-allowed"
+            className="w-full py-2 px-4 bg-blue-500 text-white text-lg font-semibold p-2 hover:bg-blue-300 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 duration-100 rounded-full"
             // disabled
           >
-            Place Order
-          </button>
+            Pay Now
+          </button> */}
+
         </form>
       </div>
     </div>

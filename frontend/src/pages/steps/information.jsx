@@ -8,7 +8,7 @@ const Step1 = ({ nextStep, prevStep }) => {
     <div className='relative'>
       <div className='absolute -top-20'>
         <div className='flex justify-center items-center h-full'>
-          <div className='bg-white backdrop-filter backdrop-blur-sm h-20 flex items-center justify-center'>
+          <div className='bg-white h-20 flex items-center justify-center'>
             <button className='font-bold text-black flex items-center p-32'>
               <IoInformationCircleOutline size={26} className='mr-1'/>
               Information
@@ -16,9 +16,9 @@ const Step1 = ({ nextStep, prevStep }) => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-8 p-4">
+      <div className="grid grid-col-2 lg:grid-cols-2 gap-8 p-4 lg:h-[800px] ">
         {/* Cards with Images */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid lg:grid-cols-2 gap-4 h-[650px]">
           <div className='flex flex-col'>
             <div className='flex'>
               <h1 className='pr-6 text-xl font-bold'>Marrakech</h1>
@@ -29,7 +29,7 @@ const Step1 = ({ nextStep, prevStep }) => {
                 <RiStarSFill size={20} className='mr-2 text-yellow-300'/> (2.3k)
               </span>
             </div>
-            <div className='h-28 w-[350px] text-left pt-2'>
+            <div className='h-28 w-[350px] justify-center text-left pt-2'>
               <p>
                 Ex optio sequi et quos praesentium in nostrum labore nam rerum iusto aut magni nesciunt? Quo quidem neque iste expedita est dolor similique ut quasi maxime ut deserunt autem At praesentium voluptatem aut libero nisi. Et eligendi sint ab cumque veritatis aut provident aliquam. Aut aspernatur consequuntur eum quaerat distinctio ut inventore aliquid et quasi alias ut rerum suscipit et nihil deleniti. Ex optio sequi et quos praesentium in nostrum labore nam rerum iusto aut magni nesciunt?
               </p>
@@ -54,7 +54,7 @@ const Step1 = ({ nextStep, prevStep }) => {
         </div>
 
         {/* Plan Your Tour Section */}
-        <div className="flex">
+        <div className="flex justify-center">
           <div className="w-[350px] h-[450px] bg-stone-100 rounded-lg p-3 ">
             <div className="text-3xl text-center text-blue_fance font-Volkhov -mt-4 pt-1.5">
               <h1>Book your camping</h1>
@@ -78,7 +78,7 @@ const Step1 = ({ nextStep, prevStep }) => {
               </button>
             </div>
             <div className='mt-[30px] ml-10'>
-              <img src={background1} alt="" className='h-[300px] rounded-t-full' />
+              <img src={background1} alt="" className='lg:h-[300px] hidden md:block rounded-t-full' />
             </div>
           </div>
         </div>

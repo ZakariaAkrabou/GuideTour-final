@@ -6,7 +6,7 @@ import background1 from '../../assets/camper.jpg';
 export default function cards({nextStep}) {
 
   return (
-    <div className="grid grid-cols-2 gap-8 p-4 relative">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-4 relative">
         
     {/* Cards with Images */}
     <div className="grid grid-cols-2 gap-4" onClick={nextStep}>
@@ -74,8 +74,8 @@ export default function cards({nextStep}) {
     </div>
 
     {/* Plan Your Tour Section */}
-    <div className="flex">
-        <div className="w-[350px] h-[450px] bg-stone-100 rounded-lg p-3 ">
+    <div className="flex justify-center">
+        <div className="w-[350px] lg:h-[450px] bg-stone-100 rounded-lg p-3 ">
             <div className="text-3xl text-center text-blue_fance font-Volkhov -mt-4 pt-1.5">
                 <h1>Book your camping</h1>
             </div>
@@ -97,11 +97,11 @@ export default function cards({nextStep}) {
                 </button>
 
             </div>
-            <div className=' mt-[30px]'>
-            <img src={background1} alt="" className=' h-[320px] w-full rounded-lg shadow-2xl' />
+        <div className='flex justify-center mt-[30px]'>
+            <img src={background1} alt="" className=' lg:h-[320px] lg:w-[300px] rounded-lg shadow-2xl hidden md:block' />
         </div>
-        </div>
-    </div>
+      </div>
+</div>
 
 </div>
   )
