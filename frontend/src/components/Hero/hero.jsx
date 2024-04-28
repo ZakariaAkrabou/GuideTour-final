@@ -7,10 +7,11 @@ const Hero = () => {
 
   return (
     <div className="w-full h-screen relative">
-      <div className="relative rounded-2xl lg:bp-32 lg:h-screen">
-        <img src="/header.jpg" alt="" className="w-full h-full object-cover" />
+      <div className="relative rounded-2xl lg:bp-32 lg:h-screen ">
+      <img src="/header.jpg" alt="" className="w-full h-full object-cover" />
+
         <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-col justify-center items-center text-white h-full lg:w-4/5 mx-auto lg:absolute">
-          <h1 className="text-4xl flex justify-center mb-60 top-0 font-bold text-center lg:w-3/4">
+          <h1 className="text-4xl flex font-volk justify-center mb-60 top-0 font-bold text-center lg:w-3/4">
             Explore the Whole World and Enjoy its Beauty
           </h1>
           
@@ -18,7 +19,7 @@ const Hero = () => {
 
         <div className="lg:w-4/5 mx-auto lg:h-screen h-full mt-[-30px]">
    
-          <div className="backdrop-blur-sm bg-blue-500/50  px-5  rounded-[10px] lg:absolute bottom-16 lg:w-4/5 shadow-lg">
+          <div className="backdrop-blur-sm bg-gray-500/50  px-5  rounded-[10px] lg:absolute bottom-16 lg:w-4/5 shadow-lg">
             <div className="lg:flex gap-4 gap-x-2">
               <div className="flex flex-wrap gap-x-16 w-full">
                 <button
@@ -30,7 +31,7 @@ const Hero = () => {
                       : "text-white hover:text-black"
                   }`}
                 >
-                  Hostelry
+                  Find Your Destination
                 </button>
               </div>
               <button className="whitespaces-pre flex items-center gap-2 bg-transparent outline-none border-none text-white hover:text-black">
