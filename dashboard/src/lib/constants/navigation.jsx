@@ -2,7 +2,7 @@ import {
     RiUserSettingsLine,
     RiMapPinUserLine
 } from "react-icons/ri";
-import { SiYourtraveldottv } from "react-icons/si";
+import { MdModeOfTravel } from "react-icons/md";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { MdOutlinePayment } from "react-icons/md";
 import { LuLayoutDashboard } from "react-icons/lu";
@@ -43,7 +43,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		key: 'Tours',
 		label: 'Tours',
 		path: '/tours',
-        icon: <SiYourtraveldottv />
+        icon: <MdModeOfTravel />
 
 	},
 	{

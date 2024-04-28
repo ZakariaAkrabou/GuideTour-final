@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { DASHBOARD_SIDEBAR_LINKS } from '../../lib/constants/navigation';
 import { Link, useLocation } from 'react-router-dom';
 import { RxDividerVertical } from "react-icons/rx";
