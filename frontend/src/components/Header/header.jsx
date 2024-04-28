@@ -29,7 +29,7 @@ const Header = () => {
   return (
   <nav className={`${
     isScrolled
-      ? "backdrop-blur-sm bg-white/30 text-black"
+      ? "backdrop-blur-md text-black"
       : "bg-transparent text-white "
   } fixed top-0 left-0 w-full h-20 flex justify-between items-center z-50`}
 >
@@ -86,25 +86,25 @@ const Header = () => {
           <ul className="flex flex-col justify-center w-full">
             <Link
               to="/home"
-              className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-black text-[15px] border-0 border-b border-[#ffffff1a] border-solid"
+              className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-black text-[15px]"
             >
               Home
             </Link>
             <Link
               to="/about"
-              className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-black text-[15px] border-0 border-b border-[#ffffff1a] border-solid"
+              className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-black text-[15px] "
             >
               About
             </Link>
             <Link
               to="/tour"
-              className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-black text-[15px] border-0 border-b border-[#ffffff1a] border-solid"
+              className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-black text-[15px] "
             >
               Tours
             </Link>
             <Link
               to="/camping"
-              className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-black text-[15px] border-0 border-b border-[#ffffff1a] border-solid"
+              className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-black text-[15px] "
             >
               Campings
             </Link>
