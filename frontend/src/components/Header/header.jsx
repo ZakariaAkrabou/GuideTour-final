@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Modal from "../Modals/login"; 
 
 const Header = () => {
   const [dropdown, setDropdown] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const showDropdown = () => {
@@ -13,11 +15,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 0);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -27,6 +25,9 @@ const Header = () => {
   }, []);
 
   return (
+
+    <>
+
   <nav className={`${
     isScrolled
       ? "backdrop-blur-md text-black"
@@ -69,7 +70,7 @@ const Header = () => {
       </ul>
 
       <div className="flex gap-4 max-lg:hidden">
-        <button className="bg-primary rounded-2xl h-12 px-6 text-white hover:bg-white hover:text-primary transition-bg hover:border-primary">
+        <button onClick={() => setShowModal(true)} className="bg-primary rounded-2xl h-12 px-6 text-white hover:bg-white hover:text-primary transition-bg hover:border-primary">
           Login
         </button>
       </div>
@@ -106,19 +107,55 @@ const Header = () => {
               to="/camping"
               className="px-6 h-10 flex items-center leading-normal no-underline text-white font-bold text-lg hover:text-black text-[15px] "
             >
-              Campings
-            </Link>
-          </ul>
+              {dropdown ? <MdClose /> : <HiMenuAlt1 />}
+            </div>
+          </div>
+          {dropdown && (
+            <div className="lg:hidden w-full fixed top-20 bg-primary transition-all">
+              <div className="w-full flex flex-col items-baseline gap-4">
+                <ul className="flex flex-col justify-center w-full">
+                  <li>
+                    <Link
+                      to="/home"
+                      className="px-6 h-10 flex items-center leading-normal no-underline text-white font-inter text-lg hover:text-black text-[15px] border-0 border-b border-[#ffffff1a] border-solid"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/about"
+                      className="px-6 h-10 flex items-center leading-normal no-underline text-white font-inter text-lg hover:text-black text-[15px] border-0 border-b border-[#ffffff1a] border-solid"
+                    >
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/tour"
+                      className="px-6 h-10 flex items-center leading-normal no-underline text-white font-inter text-lg hover:text-black text-[15px] border-0 border-b border-[#ffffff1a] border-solid"
+                    >
+                      Tours
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/camping"
+                      className="px-6 h-10 flex items-center leading-normal no-underline text-white font-inter text-lg hover:text-black text-[15px] border-0 border-b border-[#ffffff1a] border-solid"
+                    >
+                      Campings
+                    </Link>
+                  </li>
+                </ul>
+                
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-    )}
-  </div>
-</nav>
-
+      </nav>
+      {showModal && <Modal setShowModal={setShowModal} />} 
+    </>
   );
 };
 
 export default Header;
-
-
-
