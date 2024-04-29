@@ -91,54 +91,46 @@ const About = () => {
     return (
         <>
             <div className="App">
-                <div className=" text-white px-[450px] py-[200px]" style={backgroundImageStyle}>
-                    <div className="max-w-xl">
-                        <h3 className="text-center font-bold mb-8 uppercase">Read</h3>
-                        <h1 className=" text-9xl font-['Yesteryear'] text-center capitalize">Abous us</h1>
+                <div className="  justify-center flex w-full h-screen" style={backgroundImageStyle}>
+                    <div className=" flex items-center">
+                        <h1 className=" text-white text-8xl font-year font-cursive ">Abous us</h1>
                     </div>
                 </div>
 
-                <div className=' grid grid-cols-2 gap-8 '>
-                    <div className="px-36 py-20 ">
-                        <div className=' max-w-xl grid grid-cols-1 gap-8'>
-                            <h3 className=" text-buttons font-bold  uppercase">Promotion</h3>
-                            <h1 className=" text-3xl font-['Volkhov'] capitalize text-blue_fance">We Provide You Best Morocco Sightseeing Tours</h1>
+                <div className=' grid grid-cols-2 p-8'>
+                    <div className=" flex justify-center items-center ">
+                        <div className=' flex flex-col gap-3'>
+                            <h3 className=" text-buttons font-bold text-xl text-blue-500">Promotion</h3>
+                            <h1 className=" text-5xl font-['Volkhov'] font-bold text-blue_fance">We Provide You Best Morocco Sightseeing Tours</h1>
                             <p>Et labore harum non nobis ipsum eum molestias mollitia et corporis praesentium
                                 a laudantium internos. Non quis eius quo eligendi corrupti et fugiat nulla qui soluta recusandae
                                 in maxime quasi aut ducimus illum aut optio quibusdam!</p>
-                            <button className=" transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons py-3 px-6 text-white text-lg rounded-md w-48">View Packages</button>
                         </div>
                     </div>
-                    <div className='py-20  rounded-full border-2 border-gray-300'>
-                        <div className='  w-[600px] h-[600px]  rounded-full border-2 border-gray-300' style={backgroundImageStyle2}>
-                            {/* <img className="  rounded-full border-2 border-rose-600 " src={elipse} alt="" /> */}
+                    <div className='py-10 h-screen  flex-col justify-center rounded-full border-2 border-gray-300'>
+                        <div className='  w-[500px] h-[500px]  rounded-full border-2 border-gray-300' style={backgroundImageStyle2}>
 
-                            <img className=" w-[700px] h-[700px]  rounded-full    " src={bgstyle} alt="" />
+                            <img className=" w-[700px] h-[700px] -mt-20  rounded-full    " src={bgstyle} alt="" />
 
                         </div>
                     </div>
 
                 </div>
-                <div className='w-full  relative'>
-                <video className="h-full w-full object cover" src={video_sahara} autoPlay loop muted ></video>
-               
-                     {/* <div className='absolute top-0 w-full  flex flex-col justify-center text-whit py-[40px] '> */}
-                    {/* <h3 className='absolute  w-full   z-30  text-black py-[30px] text-2xl '>SAHARA</h3> */}
-                    <h3 className=' text-center font-[Yesteryear] absolute top-1/2 w-full  flex flex-col justify-center text-white py-[30px] text-8xl bg-transparent border-transparent shadow-none '>SAHARA</h3>
+                <div className='w-full flex justify-center items-center  '>
+                <video className="h-[400px] w-full object-cover" src={video_sahara} autoPlay loop muted ></video>
+                    <h3 className='  font-[Yesteryear] absolute   text-white text-8xl '>SAHARA</h3>
                      
                 </div>
                      
-            {/* </div>  */}
 
-
-                <div className=' px-20 grid grid-cols-2 gap-[200px]'>
+                <div className='grid grid-cols-2 p-4 justify-center items-center'>
                     <div className=''>
-                        <img className=' ' src={image} alt="" />
+                        <img className=' h-[500px]' src={image} alt="" />
                     </div>
-                    <div className='px-10 py-20'>
-                        <div className=' max-w-sm grid grid-rows-2 gap-4'>
-                            <h3 className=' text-buttons font-bold  uppercase'>Trend</h3>
-                            <h1 className="text-3xl font-['Volkhov'] capitalize text-blue_fance">Our Popular Tour Plans</h1>
+                    <div className=' pr-14'>
+                        <div className=' flex  flex-col w-[550px] gap-3'>
+                            <h3 className=' text-buttons font-bold  uppercase text-blue-500'>Trend</h3>
+                            <h1 className="text-4xl font-bold font-['Volkhov'] capitalize">Our Popular Tour Plans</h1>
                             <p>Et labore harum non nobis ipsum eum molestias mollitia et corporis
                                 praesentium a laudantium. Et labore harum non nobis ipsum eum molestias mollitia et corporis
                                 praesentium a laudantiumh.</p>
@@ -156,19 +148,19 @@ const About = () => {
 
                 </div>
 
-                <div className='px-[500px] py-[100px]'>
-                    <div className="text-center  max-w-xl">
-                        <h3 className="text-buttons font-bold  uppercase">Explore more</h3>
-                        <h1 className=" text-4xl font-['Volkhov'] capitalize text-blue_fance">Our  Camping Packages</h1>
+                <div className=' flex justify-center py-6'>
+                    <div className="text-center  ">
+                        <h3 className=" text-blue-500 font-bold  uppercase">Explore more</h3>
+                        <h1 className=" text-4xl font-bold font-['Volkhov'] capitalize pb-8">Our  Camping Packages</h1>
                     </div>
                 </div>
 
 
-                <div className=" grid grid-cols-4 gap-8 ">
+                <div className=" grid grid-cols-4 gap-8">
 
                     <div className="  grid grid-rows-3 gap-8 " >
 
-                    <div className="w-[350px] h-[350px]  ">
+                    <div className="w-full h-[350px]  ">
                             <div className=" bg-center h-full w-full" style={bgOudlaw_Tetouan}>
                                 <div className='px-[70px] py-[300px]'>
                                     <div className='  w-[300px] grid grid-cols-2 gap-[100px] text-Poppins text-white  '>

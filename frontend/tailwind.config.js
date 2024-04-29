@@ -16,6 +16,7 @@ export default {
         inter: ["Inter", "sans-serif"], 
         popp: ["Poppins", "sans-serif"], 
         volk: ["Volkhov", "serif"], 
+        year: ["Yesteryear", "cursive"]
       },
       fontWeight: {
         inter: {
@@ -40,6 +41,9 @@ export default {
          
           400: "normal",
           700: "bold",
+        },
+        year:{
+          400:"cursive"
         },
         secondaire:"#181E4B",
         buttons: "#6499E9", 
