@@ -1,4 +1,4 @@
-import {Swiper,SwiperSlide, useSwiper} from 'react-swiper'
+
 
 
 const Swipper = () => {
