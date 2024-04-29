@@ -1,131 +1,78 @@
-import  { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { BiSolidShow, BiSolidHide } from "react-icons/bi";
+import { MdAlternateEmail } from "react-icons/md";
+import backgroundRegister from '/login.jpg'; 
 
-const RegisterModal = ({ setShowModal }) => {
+const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
-    phone: "",
-    password: "",
+    password: ""
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [error] = useState("");
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
+  };
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    console.log("Form submitted with data:", formData);
-    
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      password: "",
-    });
-    
+    console.log("Registering with email:", formData.email, "and password:", formData.password);
+    setShowRegisterModal(false);
     setShowModal(false);
   };
 
   return (
     <>
-      
-      <div className="p-4">
-        <h2 className="text-2xl font-bold mb-4">Register</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="firstName" className="block font-medium text-gray-700">
-              First Name
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-            />
-          </div>
-          <div>
-            <label htmlFor="lastName" className="block font-medium text-gray-700">
-              Last Name
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-            />
-          </div>
-          <div>
-            <label htmlFor="phone" className="block font-medium text-gray-700">
-              Phone Number
-            </label>
-            <input
-              type="text"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="block font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-            />
-          </div>
-          <div className="flex justify-center">
-            <button
-              type="submit"
-              className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
-            >
-              Register
-            </button>
-          </div>
-        </form>
+      <div className="fixed inset-0 z-50 overflow-x-hidden overflow-y-auto outline-none focus:outline-none flex justify-center items-center">
+        <div className="relative flex flex-col bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0 ">
+          <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center p-4">
+            <span className="text-2xl font-inter font-semibold">Create an account</span>
+            <div className="flex flex-col gap-2 w-full relative">
+              <label className="text-3x" htmlFor="email">Email</label>
+              <div className="absolute text-gray-500 left-2 flex items-center text-xl">
+                <MdAlternateEmail className="" />
+              </div>
+              <input type="email" name="email" value={formData.email} onChange={handleChange}
+                className={`border ${error ? 'border-red-500' : 'border-gray-600'} w-full p-1 border border-gray-400 rounded-md placeholder-font-light`} />
+            </div>
+            <div className="flex flex-col gap-2 w-full relative">
+              <label className="text-3x" htmlFor="password">
+                Password
+              </label>
+              <div className="flex items-center">
+                <input name="password" value={formData.password} onChange={handleChange} className={`border ${error ? 'border-red-500' : 'border-gray-600'} w-full p-1 border border-gray-400 rounded-md placeholder-font-light`}
+                  type={showPassword ? 'text' : 'password'}
+                />
+                <div className="absolute right-2 flex items-center text-xl">
+                  <button type="button" onClick={handleTogglePasswordVisibility} className="">
+                    {showPassword ? <BiSolidShow /> : <BiSolidHide />}
+                  </button>
+                </div>
+              </div>
+              {error && <span className="text-red-500 text-sm">{error}</span>}
+            </div>
+            <div className="py-4">
+              <button className="w-[300px] bg-primary text-white font-inter p-2 rounded-lg mb-4 hover:bg-black hover:text-white hover:font-inter hover:border-transparent">Register</button>
+              <div className=" flex items-center justify-center">
+                <span className="mr-2">Already have an account?</span>
+                <button className="text-blue-500 hover:underline hover:text-black" onClick={() => setShowRegisterModal(false)}>Login</button>
+              </div>
+            </div>
+          </form>
+            <div className="relative">
+              <img src={backgroundRegister} alt="img" className="w-[300px] h-[450px] hidden rounded-r-2xl md:block object-cover" />
+            </div>
+        </div>
       </div>
-
-     
-      <div className="flex items-center justify-center mt-4">
-        <span className="mr-2">Already have an account?</span>
-        <Link
-          to="/login"
-          className="text-blue-500 hover:underline" onClick={() => setShowModal(false)}>
-          Login
-        </Link>
-      </div>
-
-     
+      <div className="opacity-60 fixed inset-0 z-40 bg-black"></div>
     </>
   );
 };
