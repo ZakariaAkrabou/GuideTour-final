@@ -1,5 +1,7 @@
 import camping from '../assets/camping.jpg';
 
+import CampingSlids from './SlidingImags/CampingSlids'
+
 //Process components
 import ProgressSteps from './steps/BookingSteps';
 import Step1 from './steps/cards';
@@ -41,11 +43,12 @@ const Camping = () => {
     return (
         <div className="">
             <section className="bg-cover bg-center h-[500px] flex items-center justify-center relative">
-                <img src={camping} alt="Desert" className="object-cover w-full h-full" />
+                {/* <img src={camping} alt="Desert" className="object-cover w-full h-full" /> */}
+                <CampingSlids/>
             </section>
 
-            <section className=' flex justify-center'>
-                <div className='bg-white shadow-2xl h-full lg:w-3/5 relative transform bottom-10'>
+            <section className=' pb-10 flex justify-center'>
+                <div className='bg-white shadow-2xl h-full  lg:w-3/5 relative transform'>
                 <ProgressSteps steps={steps} renderStep={renderStep} />
                     </div>
                 
