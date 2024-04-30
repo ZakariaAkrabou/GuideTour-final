@@ -19,7 +19,8 @@ export default {
         inter: ["Inter", "sans-serif"], 
         popp: ["Poppins", "sans-serif"], 
         volk: ["Volkhov", "serif"], 
-        yeste:["Yesteryear", "cursive"]
+        year: ["Yesteryear", "cursive"]
+      
       },
       fontWeight: {
         inter: {
@@ -29,14 +30,14 @@ export default {
           300: "light",
           400: "normal",
           500: "medium",
-          600: "semi-bold",
+          600: "hd",
           700: "bold",
           800: "extra-bold",
           900: "black",
         },
         popp: {
          
-          200: "extra-light",
+          200: "extralight",
           400: "normal",
           500: "medium",
         },
