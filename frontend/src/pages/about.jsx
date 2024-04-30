@@ -2,7 +2,7 @@ import saharaImage from '../assets/sahara-image.png';
 import elipse from '../assets/Ellipse 626.png';
 import bgstyle from '../assets/bg style.png';
 import video_sahara from '../assets/sahara.mp4'
-import image from '../assets/about-us-img-2 1.png';
+import image from '../assets/logoAbout.png';
 import im1 from '../assets/im1.jpg'
 import Oudlaw_Tetouan from '../assets/Oudlaw_Tetouan.jpg'
 import Ozoud_waterfalls from '../assets/Ozoud_waterfalls.jpg'
@@ -93,24 +93,24 @@ const About = () => {
             <div className="App">
                 <div className="  justify-center flex w-full h-screen" style={backgroundImageStyle}>
                     <div className=" flex items-center">
-                        <h1 className=" text-white text-8xl font-year font-cursive ">Abous us</h1>
+                        <h1  className=" text-white text-8xl font-year ">Abous us</h1>
                     </div>
                 </div>
 
-                <div className=' grid grid-cols-2 p-8'>
+                <div className=' grid lg:grid-cols-2 p-4 lg:p-8'>
                     <div className=" flex justify-center items-center ">
-                        <div className=' flex flex-col gap-3'>
+                        <div className=' flex flex-col pb-4 gap-2 lg:gap-3'>
                             <h3 className=" text-buttons font-bold text-xl text-blue-500">Promotion</h3>
-                            <h1 className=" text-5xl font-['Volkhov'] font-bold text-blue_fance">We Provide You Best Morocco Sightseeing Tours</h1>
+                            <h1 className=" text-3xl lg:text-5xl font-['Volkhov'] font-bold text-blue_fance">We Provide You Best Morocco Sightseeing Tours</h1>
                             <p>Et labore harum non nobis ipsum eum molestias mollitia et corporis praesentium
                                 a laudantium internos. Non quis eius quo eligendi corrupti et fugiat nulla qui soluta recusandae
                                 in maxime quasi aut ducimus illum aut optio quibusdam!</p>
                         </div>
                     </div>
-                    <div className='py-10 h-screen  flex-col justify-center rounded-full border-2 border-gray-300'>
-                        <div className='  w-[500px] h-[500px]  rounded-full border-2 border-gray-300' style={backgroundImageStyle2}>
+                    <div className='lg:py-10 py-4 h-screen  flex-col justify-center rounded-full border-2 border-gray-300'>
+                        <div className='  lg:w-[500px] w-[420px] h-[450px] lg:h-full rounded-full border-2 border-gray-300' style={backgroundImageStyle2}>
 
-                            <img className=" w-[700px] h-[700px] -mt-20  rounded-full    " src={bgstyle} alt="" />
+                            <img className=" lg:w-[700px] w-[300px] h-[500px] lg:h-[700px] -mt-20  rounded-full    " src={bgstyle} alt="" />
 
                         </div>
                     </div>
@@ -123,22 +123,20 @@ const About = () => {
                 </div>
                      
 
-                <div className='grid grid-cols-2 p-4 justify-center items-center'>
-                    <div className=''>
-                        <img className=' h-[500px]' src={image} alt="" />
+                <div className='grid lg:grid-cols-2 p-4 justify-center items-center '>
+                    <div className=' flex justify-center pr-6 lg:w-full -mt-20'>
+                        <img className=' lg:w-full h-full lg:rounded-l-[100px] pb-2' src={image} alt="" />
                     </div>
-                    <div className=' pr-14'>
-                        <div className=' flex  flex-col w-[550px] gap-3'>
+                        <div className=' flex  flex-col -mt-10 lg:-mt-0 lg:gap-3'>
                             <h3 className=' text-buttons font-bold  uppercase text-blue-500'>Trend</h3>
-                            <h1 className="text-4xl font-bold font-['Volkhov'] capitalize">Our Popular Tour Plans</h1>
+                            <h1 className="lg:text-4xl text-3xl font-bold font-['Volkhov'] capitalize">Our Popular Tour Plans</h1>
                             <p>Et labore harum non nobis ipsum eum molestias mollitia et corporis
                                 praesentium a laudantium. Et labore harum non nobis ipsum eum molestias mollitia et corporis
                                 praesentium a laudantiumh.</p>
                                 
-                                <div className=' py-10 '>
-                                <div className=''>
-                        <img className='w-[350] h-[350]' src={Group} alt="" />
-                    </div> 
+                                <div className=' py-4 lg:py-8 '>
+                                <div className=' flex justify-center'>
+                        <img className='w-[400px] lg:w-[600px] h-full' src={Group} alt="" />
                                 </div>
 
                             
@@ -148,39 +146,37 @@ const About = () => {
 
                 </div>
 
-                <div className=' flex justify-center py-6'>
+                <div className=' flex justify-center lg:-mt-14'>
                     <div className="text-center  ">
                         <h3 className=" text-blue-500 font-bold  uppercase">Explore more</h3>
-                        <h1 className=" text-4xl font-bold font-['Volkhov'] capitalize pb-8">Our  Camping Packages</h1>
+                        <h1 className=" text-4xl font-bold font-['Volkhov'] capitalize pb-4 lg:pb-8">Our  Camping Packages</h1>
                     </div>
                 </div>
 
 
-                <div className=" grid grid-cols-4 gap-8">
+                <div className=" grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-6 px-2 lg:px-8">
 
-                    <div className="  grid grid-rows-3 gap-8 " >
+                    <div className="  grid gap-2 lg:gap-4" >
 
-                    <div className="w-full h-[350px]  ">
-                            <div className=" bg-center h-full w-full" style={bgOudlaw_Tetouan}>
-                                <div className='px-[70px] py-[300px]'>
-                                    <div className='  w-[300px] grid grid-cols-2 gap-[100px] text-Poppins text-white  '>
-                                        <div className='grid grid-cols-2 gap-8  '>
-                                            <p>Oudlaw </p>
-                                            <p>Tetouan</p>
-                                        </div>
-
-                                        <p>$840</p>
-                                    </div>
+                    <div className="w-full h-[350px] flex">
+                    <div className="bg-center h-full w-full rounded-xl" style={bgOudlaw_Tetouan}>
+                        <div className="flex flex-col justify-end h-full">
+                            <div className="flex justify-between text-Poppins text-white p-4">
+                                <div className="flex gap-2">
+                                    <p>Oudlaw</p>
+                                    <p>Tetouan</p>
                                 </div>
-
-
+                                <p>$840</p>
                             </div>
                         </div>
-                        <div className="w-[350px] h-[350px] ">
-                            <div className=" bg-center h-full w-full" style={bgait_Benhaddou}>
-                                <div className='px-[70px] py-[300px]'>
-                                    <div className='  w-[300px] grid grid-cols-2 gap-[100px] text-Poppins text-white '>
-                                        <div className='grid grid-cols-2 gap-1 '>
+                    </div>
+                        </div>
+
+                        <div className="w-full h-[350px] flex">
+                            <div className=" bg-center h-full w-full rounded-xl" style={bgait_Benhaddou}>
+                                <div className=' flex flex-col justify-end h-full'>
+                                    <div className='flex justify-between p-4 text-Poppins text-white '>
+                                        <div className=' flex gap-2'>
                                             <p>Ait </p>
                                             <p>Benhaddou</p>
                                         </div>
@@ -192,11 +188,11 @@ const About = () => {
 
                             </div>
                         </div>
-                        <div className="w-[350px] h-[350px] ">
-                            <div className=" bg-center h-full w-full" style={bgOzoud_waterfalls}>
-                                <div className='px-[70px] py-[300px]'>
-                                    <div className='  w-[300px] grid grid-cols-2 gap-[100px] text-Poppins text-white '>
-                                        <div className='grid grid-cols-2 gap-8 '>
+                        <div className="w-full h-[350px] flex">
+                            <div className=" bg-center h-full w-full rounded-xl" style={bgOzoud_waterfalls}>
+                                <div className=' flex flex-col justify-end h-full'>
+                                    <div className=' flex justify-between p-4 text-Poppins text-white '>
+                                        <div className=' flex gap-2'>
                                             <p>Ozoud </p>
                                             <p>Waterfalls</p>
                                         </div>
@@ -209,11 +205,11 @@ const About = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-rows-3 gap-8 '>
-                    <div className="w-[350px] h-[350px] ">
-                            <div className=" bg-center h-full w-full" style={bgCa_sahara}>
-                                <div className='px-[70px] py-[300px]  '>
-                                    <div className=' grid grid-cols-2 gap-[150px] text-Poppins text-white '>
+                    <div className='grid grid-rows-3 gap-4'>
+                    <div className="w-full h-[350px] flex">
+                            <div className=" bg-center h-full w-full rounded-xl" style={bgCa_sahara}>
+                                <div className=' flex flex-col justify-end h-full'>
+                                    <div className=' flex justify-between p-4 text-Poppins text-white '>
                                     <p>Merzouga</p>
                                     <p>$840</p>
                                 </div>
@@ -221,11 +217,26 @@ const About = () => {
                             
                             </div>
                         </div>
-                        <div className="w-[350px] h-[350px] ">
-                            <div className=" bg-center h-full w-full" style={bgHercule_Crave}>
-                                <div className='px-[70px] py-[300px]'>
-                                    <div className='  w-[300px] grid grid-cols-2 gap-[100px] text-Poppins text-white '>
-                                        <div className='grid grid-cols-2 gap-8 '>
+                        <div className="w-full h-[350px] flex">
+                            <div className=" bg-center h-full w-full rounded-xl" style={bgHercule_Crave}>
+                                <div className=' flex flex-col justify-end h-full'>
+                                    <div className=' flex justify-between p-4 text-Poppins text-white '>
+                                        <div className=' flex gap-2'>
+                                            <p>Hercule</p>
+                                            <p>Crave</p>
+                                        </div>
+
+                                        <p>$840</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="w-full h-[350px] flex">
+                            <div className=" bg-center h-full w-full rounded-xl" style={bgAzrou}>
+                                <div className=' flex flex-col justify-end h-full'>
+                                    <div className=' flex justify-between p-4 text-Poppins text-white '>
+                                        <div className=' flex gap-2'>
                                             <p>Hercule</p>
                                             <p>Crave</p>
                                         </div>
@@ -236,24 +247,14 @@ const About = () => {
                             </div>
                         </div>
                         
-                        <div className=" w-[350px] h-[350px] ">
-                            <div className=" bg-center h-full w-full" style={bgAzrou}>
-                              <div className='px-[70px] py-[300px]  '>
-                                    <div className=' grid grid-cols-2 gap-[150px] text-Poppins text-white '>
-                                    <p>Azrou</p>
-                                    <p>$840</p>
-                                    </div>
-                             </div>
-                            
-                            </div>
-                        </div>
+                        
                     </div>
-                    <div className='grid grid-rows-2 gap-8 '>
-                    <div className="row-span-2 w-[350px]  ">
-                            <div className=" bg-center h-full w-full" style={bgDakhla_Beach}>
-                                <div className='px-[70px] py-[300px]'>
-                                    <div className=' w-[300px] grid grid-cols-2 gap-[100px] text-Poppins text-white '>
-                                        <div className='grid grid-cols-2 gap-8 '>
+                    <div className='grid grid-rows-2 gap-4 '>
+                    <div className="row-span-2 w-full flex">
+                            <div className=" bg-center lg:h-full w-full rounded-xl" style={bgDakhla_Beach}>
+                                <div className=' flex flex-col justify-end h-full'>
+                                    <div className=' flex justify-between p-4 text-Poppins text-white '>
+                                        <div className=' flex gap-2'>
                                             <p>Dakhla </p>
                                             <p>Beach </p>
                                         </div>
@@ -263,11 +264,12 @@ const About = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-[350px] h-[350px] ">
-                            <div className=" bg-center h-full w-full" style={bgatlas_mountain}>
-                                <div className=' px-[70px] py-[300px]'>
-                                    <div className='  w-[300px] grid grid-cols-2 gap-[100px] text-Poppins text-white '>
-                                        <div className='grid grid-cols-2 gap-8 '>
+
+                        <div className="w-full h-[350px] flex">
+                            <div className=" bg-center h-full w-full rounded-xl" style={bgatlas_mountain}>
+                                <div className=' flex flex-col justify-end h-full'>
+                                    <div className=' flex justify-between p-4 text-Poppins text-white '>
+                                        <div className=' flex gap-2'>
                                             <p>OZoud </p>
                                             <p>Waterfalls</p>
                                         </div>
@@ -278,10 +280,10 @@ const About = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-rows-3 gap-8 '>
-                    <div className=" w-[350px] h-[350px] ">
-                            <div className=" bg-center h-full w-full" style={bgToubkal}>
-                                <div className='px-[70px] py-[300px] grid grid-cols-2 gap-[150px] text-Poppins text-white '>
+                    <div className='grid grid-rows gap-4 '>
+                    <div className=" w-full h-[350px] flex ">
+                            <div className=" flex flex-col justify-end bg-center h-full w-full rounded-xl" style={bgToubkal}>
+                                <div className=' flex justify-between p-4 text-Poppins text-white '>
                                     <p>Toubkal</p>
                                     <p>$840</p>
                                 </div>
@@ -291,22 +293,26 @@ const About = () => {
                         </div>
 
                         
-                        <div className=" w-[350px] h-[350px] ">
-                            <div className=" bg-center h-full w-full" style={bgifran}>
-                                <div className='px-[70px] py-[300px] grid grid-cols-2 gap-[150px] text-Poppins text-white '>
+                        <div className=" w-[full h-[350px] flex ">
+                            <div className=" flex flex-col justify-end bg-center h-full w-full rounded-xl" style={bgifran}>
+                                <div className=' flex justify-between p-4 text-Poppins text-white '>
                                     <p>Ifran</p>
                                     <p>$840</p>
                                 </div>
                             </div>
+
+
                         </div>
 
-                        <div className=" w-[350px] h-[350px] ">
-                            <div className=" bg-center h-full w-full" style={bgagadir}>
-                                <div className='px-[70px] py-[300px] grid grid-cols-2 gap-[150px] text-Poppins text-white '>
+                        <div className=" w-full h-[350px] flex ">
+                            <div className=" flex flex-col justify-end bg-center h-full w-full rounded-xl" style={bgagadir}>
+                                <div className=' flex justify-between p-4 text-Poppins text-white '>
                                     <p>Agadir</p>
                                     <p>$840</p>
                                 </div>
                             </div>
+
+
                         </div>
 
                     </div>
