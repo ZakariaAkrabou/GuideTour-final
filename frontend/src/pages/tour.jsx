@@ -9,6 +9,7 @@ import { MdOutlineWhereToVote } from "react-icons/md";
 import { HiArrowsUpDown } from "react-icons/hi2";
 import { CiBoxList } from "react-icons/ci";
 import { PiStarThin } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 
 const Tour = () => {
@@ -29,8 +30,10 @@ const Tour = () => {
         setInputValue('trtf');
     };
     return (
+
+
         <div className="App">
-            <div className=" text-white px-[450px] py-[200px] " style={bgheadertour}>
+            <div className=" text-white h-screen flex items-center justify-center" style={bgheadertour}>
                 <div className=" max-w-xl">
                     <h3 className=" text-center font-bold mb-8 uppercase">search tour</h3>
                     <h1 className="  text-8xl font-['Yesteryear'] text-center capitalize">travel white us</h1>
@@ -39,20 +42,21 @@ const Tour = () => {
             <div className=" px-[250px] ">
 
 
-                <div className=" shadow-xl w-[1000px] h-[1500px] border-slate-300 relative mt-6">
+                <div className=" shadow-2xl w-[1000px] h-[1500px] border-slate-300 relative mt-6">
 
 
                     {/* cards */}
 
                     <div className=" grid grid-cols-2 gap-1 ">
-                        <div className=" px-[30px] py-[10px] grid grid-cols-2  auto-rows-[400px] w-[600px] gap-4  ">
+                        <div className=" px-[30px] py-[10px] grid grid-cols-2  auto-rows-[450px] w-[480px] gap-4  ">
+                           <Link to="/Landscapes">
                             <div className={` ${boxstyle} transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:rounded-xl`} >
                                 <div className="px-[10px] pt-[10px]">
                                     <img className='hover:rounded-t-3xl pt-2  w-[250px] h-[150px] ' src={telouet} alt="" />
                                 </div>
 
                                 <div className=" px-[10px] h-[200px] ">
-                                    <div className="bg-buttons flex p-2 text-white text-sm h-10 whitespace-nowrap ">
+                                    <div className="bg-primary flex p-2 text-white text-sm h-10 whitespace-nowrap ">
                                         <p className="">12, September 2022</p>
                                         <p className="ml-2">120+ People</p>
                                     </div>
@@ -70,7 +74,8 @@ const Tour = () => {
                                 </div>
 
                             </div>
-
+                            </Link>
+                            <Link to="/Landscapes">
                             <div className={`${boxstyle} transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:rounded-xl`} >
                                 <img src="" alt="" />
                                 <div className="px-[10px] pt-[10px]">
@@ -78,7 +83,7 @@ const Tour = () => {
                                 </div>
 
                                 <div className=" px-[10px] h-[200px] ">
-                                    <div className="bg-buttons flex p-2 text-white text-sm h-10 whitespace-nowrap ">
+                                    <div className="bg-primary flex p-2 text-white text-sm h-10 whitespace-nowrap ">
                                         <p className="">12, September 2022</p>
                                         <p className="ml-2">120+ People</p>
                                     </div>
@@ -95,6 +100,8 @@ const Tour = () => {
                                     </div>
                                 </div>
                             </div>
+                            </Link>
+                            <Link to="/Landscapes">
                             <div className={`${boxstyle} transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:rounded-xl`} >
                                 <img src="" alt="" />
                                 <div className="px-[10px] pt-[10px]">
@@ -102,7 +109,7 @@ const Tour = () => {
                                 </div>
 
                                 <div className=" px-[10px] h-[200px] ">
-                                    <div className="bg-buttons flex p-2 text-white text-sm h-10 whitespace-nowrap ">
+                                    <div className="bg-primary flex p-2 text-white text-sm h-10 whitespace-nowrap ">
                                         <p className="">12, September 2022</p>
                                         <p className="ml-2">120+ People</p>
                                     </div>
@@ -119,7 +126,8 @@ const Tour = () => {
                                     </div>
                                 </div>
                             </div>
-
+                            </Link>
+                            <Link to="/Landscapes">
                             <div className={`${boxstyle}transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:rounded-xl`} >
                                 <img src="" alt="" />
                                 <div className="px-[10px] pt-[10px]">
@@ -127,7 +135,7 @@ const Tour = () => {
                                 </div>
 
                                 <div className=" px-[10px] h-[200px] ">
-                                    <div className="bg-buttons flex p-2 text-white text-sm h-10 whitespace-nowrap ">
+                                    <div className="bg-primary flex p-2 text-white text-sm h-10 whitespace-nowrap ">
                                         <p className="">12, September 2022</p>
                                         <p className="ml-2">120+ People</p>
                                     </div>
@@ -144,6 +152,8 @@ const Tour = () => {
                                     </div>
                                     </div>
                             </div>
+                            </Link>
+                            <Link to="/Landscapes">
                             <div className={`${boxstyle}transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:rounded-xl`} >
                                 <img src="" alt="" />
                                 <div className="px-[10px] pt-[10px]">
@@ -151,7 +161,7 @@ const Tour = () => {
                                 </div>
 
                                 <div className=" px-[10px] h-[200px] ">
-                                    <div className="bg-buttons flex p-2 text-white text-sm h-10 whitespace-nowrap ">
+                                    <div className="bg-primary flex p-2 text-white text-sm h-10 whitespace-nowrap ">
                                         <p className="">12, September 2022</p>
                                         <p className="ml-2">120+ People</p>
                                     </div>
@@ -168,8 +178,9 @@ const Tour = () => {
                                     </div>
                                     </div>
                             </div>
-
+                            </Link>
                         </div >
+                        
 
                         {/* card planTour */}
                         <div className=" px-[90px] py-[40px] w-[500px] h-[1500px] bottom-2  ">
@@ -202,8 +213,8 @@ const Tour = () => {
 
                                     </div>
                                     <div className="px-[50px] py-[50px] w-[300px] flex justify-between gap-10">
-                                        <button className="transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons py-3 px-6 text-white text-lg rounded-md w-48">Filter</button>
-                                        <button className="transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons py-3 px-6 text-white text-lg rounded-md w-48">Next</button>
+                                        <button className="transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-primary py-3 px-6 text-white text-lg rounded-md w-48">Filter</button>
+                                       
 
                                     </div>
                                 </div>
@@ -229,6 +240,7 @@ const Tour = () => {
 
 
             </div>
+            
             /</div>
     );
 }

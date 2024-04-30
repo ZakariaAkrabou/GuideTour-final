@@ -65,7 +65,7 @@ const Step1 = ({ nextStep }) => {
             <input type="text" placeholder='Message' className="w-full h-10 text-center border-none bg-white" />
           </div>
           <div className="text-center">
-            <button className="bg-blue-500 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-1 text-white text-lg rounded-md mt-4">
+            <button className="bg-blue-500 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-1 text-white text-lg rounded-md mt-4" onClick={nextStep}>
               Book Now
             </button>
           </div>

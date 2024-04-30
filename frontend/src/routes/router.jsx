@@ -5,6 +5,8 @@ import Tour from "../pages/tour";
 import Camping from "../pages/camping";
 import Login from "../pages/login";
 import Register from "../pages/register";
+import Landscapes from "../pages/landscapes";
+
 
 const Router = () => {
   return (
@@ -16,7 +18,7 @@ const Router = () => {
       <Route path="/camping" element={<Camping />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      
+      <Route path="/landscapes" element={<Landscapes/>}/>
     </Routes>
   );
 };

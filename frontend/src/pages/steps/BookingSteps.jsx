@@ -10,14 +10,19 @@ const ProgressSteps = ({ steps, renderStep }) => {
   const prevStep = () => {
     setActiveStep(activeStep - 1);
   };
-
+  const prev2Step = () => {
+    setActiveStep(activeStep - 2);
+  };
+  const prev3Step = () => {
+    setActiveStep(activeStep - 3);
+  };
   const totalSteps = steps.length;
   const currentStep = steps[activeStep - 1];
 
   return (
     <div>
       <div>
-        {renderStep(currentStep.step, nextStep, prevStep)}
+        {renderStep(currentStep.step, nextStep, prevStep, prev2Step,prev3Step)}
       </div>
       <div>
       {renderStep()}

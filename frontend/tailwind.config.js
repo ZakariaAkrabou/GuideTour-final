@@ -11,11 +11,15 @@ export default {
       colors: {
         primary: "#6499E9",
         secondaire: "#181E4B",
+        gray:"#7D7D7D",
+        blue:"#EEF9FF"
+      
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"], 
         popp: ["Poppins", "sans-serif"], 
         volk: ["Volkhov", "serif"], 
+        yeste:["Yesteryear", "cursive"]
       },
       fontWeight: {
         inter: {
@@ -40,6 +44,10 @@ export default {
          
           400: "normal",
           700: "bold",
+         
+        },
+        yeste:{
+          400:"normal",
         },
         secondaire:"#181E4B",
         buttons: "#6499E9", 

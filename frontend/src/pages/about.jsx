@@ -94,23 +94,23 @@ const About = () => {
                 <div className=" text-white px-[450px] py-[200px]" style={backgroundImageStyle}>
                     <div className="max-w-xl">
                         <h3 className="text-center font-bold mb-8 uppercase">Read</h3>
-                        <h1 className=" text-9xl font-['Yesteryear'] text-center capitalize">Abous us</h1>
+                        <h1 className=" text-9xl font-yeste text-center capitalize">Abous us</h1>
                     </div>
                 </div>
 
                 <div className=' grid grid-cols-2 gap-8 '>
-                    <div className="  px-36 py-[200px]">
+                    <div className="  px-36 py-[150px]">
                         <div className=' max-w-xl grid grid-cols-1 gap-8'>
-                            <h3 className=" text-buttons font-bold  uppercase">Promotion</h3>
-                            <h1 className=" text-3xl font-['Volkhov'] capitalize text-blue_fance">We Provide You Best Morocco Sightseeing Tours</h1>
-                            <p>Et labore harum non nobis ipsum eum molestias mollitia et corporis praesentium
+                            <h3 className=" text-primary font-bold  uppercase">Promotion</h3>
+                            <h1 className=" text-4xl font-bold capitalize text-secondaire">We Provide You Best Morocco Sightseeing Tours</h1>
+                            <p className='text-lg'>Et labore harum non nobis ipsum eum molestias mollitia et corporis praesentium
                                 a laudantium internos. Non quis eius quo eligendi corrupti et fugiat nulla qui soluta recusandae
                                 in maxime quasi aut ducimus illum aut optio quibusdam!</p>
-                            <button className=" transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons py-3 px-6 text-white text-lg rounded-md w-48">View Packages</button>
+                            <button className=" transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-primary py-3 px-6 text-white text-lg rounded-md w-48">View Packages</button>
                         </div>
                     </div>
                     <div className=' py-10 '>
-<div className='py-20 px-20 rounded-full w-[600px] h-[600px] border-2 border-gray-300 '>
+<div className='py-20 px-20 rounded-full w-[600px] h-[600px] border-double border-4 border-slate-300'>
                         <div className=' w-[500px] h-[500px]  rounded-full ' style={backgroundImageStyle2}>
                             {/* <img className="  rounded-full border-2 border-rose-600 " src={elipse} alt="" /> */}
 
@@ -169,7 +169,7 @@ const About = () => {
 
                 <div className=" grid grid-cols-4 gap-8 ">
 
-                    <div className="  grid grid-rows-3 gap-8 " >
+                    <div className="  grid grid-rows-auto gap-8 " >
 
                     <div className=" px-2 w-[350px] h-[350px]  ">
                             <div className=" bg-center h-full w-full" style={bgOudlaw_Tetouan}>
@@ -323,7 +323,17 @@ const About = () => {
                     </div>
                 </div>
 
+{/* <div className='grid grid-cols-4 auto-rows-[300px] gap-4 my-10'>
+    <div key={i} className={`${i === 3 ?'col-span-2' :''} `} >yuriuc</div>
+    <h1>trdtrd</h1>
+    <h1>trdtrd</h1>
+    <h1>trdtrd</h1>
+    <h1>trdtrd</h1>
+    <h1>trdtrd</h1>
+    <h1>trdtrd</h1>
+    <h1>trdtrd</h1>
 
+</div> */}
 
 
             </div>
