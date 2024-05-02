@@ -41,7 +41,6 @@ export const fetchGuides = createAsyncThunk('users/fetchGuides', async (token) =
 
 export const fetchCampings = createAsyncThunk('users/fetchCampings', async (token) => {
 
-  // Axios request with authorization header
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

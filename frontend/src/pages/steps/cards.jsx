@@ -1,108 +1,183 @@
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { LiaCampgroundSolid } from "react-icons/lia";
+import { FaPeopleGroup } from "react-icons/fa6";
+import { GiPrivate } from "react-icons/gi";
+import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+
 import card from '../../assets/agadir.png';
-import background1 from '../../assets/camper.jpg';
+import campingVideo from '../../assets/campingVideo.mp4';
+import { fetchCampings, fetchCampingsById } from '../Slices/campingSlice';
+
+export default function Cards({ nextStep }) {
+    const dispatch = useDispatch();
+    const campings = useSelector((state) => state.campings);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(6);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [sortByPrice, setSortByPrice] = useState(false);
+    const [searchPrice, setSearchPrice] = useState('');
+    const [searchDate, setSearchDate] = useState('');
+    const [selectedCampingId, setSelectedCampingId] = useState(null);
+
+
+    useEffect(() => {
+        dispatch(fetchCampings());
+    }, [dispatch]);
 
 
 
-export default function cards({nextStep}) {
+    const filteredCampings = campings.filter(camping =>
+        camping.location.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (!searchPrice || camping.price.toString().includes(searchPrice)) &&
+        (!searchDate || camping.date.toString().includes(searchDate))
+    );
 
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-4 relative">
-        
-    {/* Cards with Images */}
-    <div className="grid grid-cols-2 gap-4" onClick={nextStep}>
-        {/* Card 1 */}
-        <div className='bg-white hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl duration-100'>
-            <div className='m-2'>
-                <img src={card} alt="Card" className='h-[160px] w-full hover:rounded-xl' />
-                <div className='text-center relative'>
-                    <h2 className='mt-2 font-bold'>Telouet Kasbah</h2>
-                    <span className='text-xs block'>Qui tempore voluptate qui quia commodi rem praesentium alias et.</span>
+    const sortedCampings = sortByPrice ? [...filteredCampings].sort((a, b) => parseFloat(a.price) - parseFloat(b.price)) : filteredCampings;
+
+    const handleSortByPrice = () => {
+        setSortByPrice(!sortByPrice);
+    };
+
+    const handleItemsPerPageChange = (e) => {
+        setCurrentPage(1);
+        setItemsPerPage(parseInt(e.target.value, 10));
+    };
+
+    const toggleCampingSelection = (campingId) => {
+        setSelectedCampingId(selectedCampingId === campingId ? null : campingId);
+        console.log("ID",campingId);
+        dispatch(fetchCampingsById(campingId));
+    };
+
+    const totalItems = sortedCampings.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    const remainingPages = totalPages - currentPage;
+
+    const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
+    const indexOfLastItem = campings ? Math.min(indexOfFirstItem + itemsPerPage, campings.length) : 0;
+    const campingsCards = sortedCampings.slice(indexOfFirstItem, indexOfLastItem);
+
+    const goToNextPage = () => {
+        if (campingsCards.length === itemsPerPage) {
+            setCurrentPage(currentPage + 1);
+            setLastClicked('next');
+        }
+    };
+
+    const goToPreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            setLastClicked('previous');
+        }
+    };
+
+    return (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 pb-5 p-2 relative">
+            <div className="grid grid-cols-2 gap-2">
+                {/* Cards */}
+                {campingsCards.map((camping, index) => (
+                    <div key={index} className='bg-white hover:-translate-y-1 h-max hover:scale-110 rounded-xl hover:shadow-2xl duration-100'>
+                        <div className='p-0.5'>
+                            <img src={card} alt="Card" className='h-[250px] w-full rounded-xl' />
+                            <div className="text-center relative" onClick={() => toggleCampingSelection(camping._id)}>
+
+                                <div className='absolute top-[-250px] opacity-0 hover:opacity-100 p-2 w-full h-[250px] hover:rounded-xl bg-blue-500/55  hover:backdrop-blur-md duration-700 cursor-pointer' onClick={nextStep}>
+                                <div className="flex justify-between font-bold text-white pb-3">
+                                    <div className=' flex items-center' >
+                                    <LiaCampgroundSolid size={20} className=''/>
+                                    <h1 className=' pl-1'>Camping</h1>
+                                    </div>
+                                    <h2 className="capitalize font-semibold">{camping.name}</h2>
+                                </div>
+
+                                <div className="flex justify-between font-bold text-white pb-3">
+                                    <div className=' flex items-center'>
+                                    <FaPeopleGroup size={20} className=''/>
+                                    <h1 className=' pl-1'>Memebers</h1>
+                                    </div>
+                                    <h2 className="capitalize font-semibold">{camping.group_member}</h2>
+                                </div>
+
+                                <div className="flex justify-between font-bold text-white pb-3">
+                                    <div className=' flex items-center'>
+                                    <GiPrivate size={20} className=''/>
+                                    <h1 className=' pl-1'>Privacy</h1>
+                                    </div>
+                                    <h2 className="capitalize font-semibold">{camping.isPrivate}</h2>
+                                </div>
+
+                                <div className="flex justify-between font-bold text-white pb-3">
+                                    <div className=' flex items-center'>
+                                    <RiMoneyDollarCircleLine size={20} className=''/>
+                                    <h1 className=' pl-1'>Price</h1>
+                                    </div>
+                                    <h2 className="capitalize font-semibold">{camping.price}</h2>
+                                </div>
+
+                                <div className="flex justify-between font-bold text-white pb-3">
+                                    <div className=' flex items-center'>
+                                    <HiOutlineLocationMarker size={20} className=''/>
+                                    <h1 className=' pl-1'>Location</h1>
+                                    </div>
+                                    <h2 className="capitalize font-semibold">{camping.location}</h2>
+                                </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+                <div className="absolute -bottom-5 flex left-[100px]  lg:left-20 gap-10">
+                    {filteredCampings.length > itemsPerPage && (
+                        <>
+                            <button onClick={goToPreviousPage} disabled={currentPage === 1}>
+                                <IoIosArrowBack className=' text-blue-500' size={25} />
+                            </button>
+                            <div className='px-2 flex gap-4'>
+                                <div className='bg-blue-300 px-[9px] rounded-full'>{currentPage}</div>
+                                {totalPages}
+                            </div>
+                            <button onClick={goToNextPage} disabled={indexOfLastItem === filteredCampings.length}>
+                                <IoIosArrowForward className=' text-blue-500' size={25} />
+                            </button>
+                        </>
+                    )}
+                </div>
+            </div>
+            {/* Plan Your Tour Section */}
+            <div className="flex flex-col items-center lg:place-items-stretch ">
+                <div className="lg:w-full w-[350px] bg-stone-100 rounded-lg p-8 ">
+                    <div className="text-3xl font-bold text-center text-blue_fance font-Volkhov pb-4">
+                        <h1>Book your camping</h1>
+                    </div>
+                    <p className="text-center pb-6">
+                        Ex optio sequi et quos praesentium in nostrum labore nam rerum iusto aut magni nesciunt? Quo quidem neque iste expedita est dolo.
+                    </p>
+                    <div className="grid grid-cols-1 gap-5 pb-4">
+                        <input onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm} type="text" placeholder='Search Camping' className="w-full rounded-2xl h-10 text-center border-none bg-white" />
+                        <input onChange={(e) => setSearchDate(e.target.value)} value={searchDate} type="text" placeholder='Date' className="w-full h-10 text-center rounded-2xl border-none bg-white" />
+                        <h2 className="uppercase font-bold -mb-3">Filter by price</h2>
+                        <div className="relative  items-center flex">
+                            <input onChange={(e) => setSearchPrice(e.target.value)} value={searchPrice} type="text" placeholder='Enter price range (10-300 $)' className="w-full h-10 rounded-2xl text-center border-none bg-white pr-12" />
+                            <button onClick={handleSortByPrice} className="absolute h-full w-12 left-0 bg-blue-400 text-white rounded-l-md">
+                                Sort {sortByPrice ? '↓' : ''}
+                            </button>
+                        </div>
+                        <h4 className="text-neutral-600 capitalize">ex: price 12dh-3600dh</h4>
+                    </div>
+                    <div className="text-center">
+                        <button className=" bg-blue-500 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-2  text-white text-lg rounded-md mt-2">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+                <div className='pt-6 flex justify-center items-center pb-1'>
+                    <video className="h-full lg:w-full w-[350px] object-cover rounded-lg shadow-2xl " src={campingVideo} autoPlay loop muted ></video>
                 </div>
             </div>
         </div>
-
-        {/* Card 2 */}
-        <div className='bg-white hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl duration-100'>
-            <div className='m-2'>
-                <img src={card} alt="Card" className='h-[160px] w-full hover:rounded-xl' />
-                <div className='text-center relative'>
-                    <h2 className='mt-2 font-bold'>Telouet Kasbah</h2>
-                    <span className='text-xs block'>Qui tempore voluptate qui quia commodi rem praesentium alias et.</span>
-                </div>
-            </div>
-        </div>
-
-        {/* Card 3 */}
-        <div className='bg-white hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl duration-100'>
-            <div className='m-2'>
-                <img src={card} alt="Card" className='h-[160px] w-full hover:rounded-xl' />
-                <div className='text-center relative'>
-                    <h2 className='mt-2 font-bold'>Telouet Kasbah</h2>
-                    <span className='text-xs block'>Qui tempore voluptate qui quia commodi rem praesentium alias et.</span>
-                </div>
-            </div>
-        </div>
-
-        {/* Card 4 */}
-        <div className='bg-white hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl duration-100'>
-            <div className='m-2'>
-                <img src={card} alt="Card" className='h-[160px] w-full hover:rounded-xl' />
-                <div className='text-center relative'>
-                    <h2 className='mt-2 font-bold'>Telouet Kasbah</h2>
-                    <span className='text-xs block'>Qui tempore voluptate qui quia commodi rem praesentium alias et.</span>
-                </div>
-            </div>
-        </div>
-        <div className='bg-white hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl duration-100'>
-            <div className='m-2'>
-                <img src={card} alt="Card" className='h-[160px] w-full hover:rounded-xl' />
-                <div className='text-center relative'>
-                    <h2 className='mt-2 font-bold'>Telouet Kasbah</h2>
-                    <span className='text-xs block'>Qui tempore voluptate qui quia commodi rem praesentium alias et.</span>
-                </div>
-            </div>
-        </div>
-        <div className='bg-white hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl duration-100'>
-            <div className='m-2'>
-                <img src={card} alt="Card" className='h-[160px] w-full hover:rounded-xl' />
-                <div className='text-center relative'>
-                    <h2 className='mt-2 font-bold'>Telouet Kasbah</h2>
-                    <span className='text-xs block'>Qui tempore voluptate qui quia commodi rem praesentium alias et.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {/* Plan Your Tour Section */}
-    <div className="flex justify-center">
-        <div className="w-[350px] lg:h-[450px] bg-stone-100 rounded-lg p-3 ">
-            <div className="text-3xl text-center text-blue_fance font-Volkhov -mt-4 pt-1.5">
-                <h1>Book your camping</h1>
-            </div>
-            <p className="text-center pb-1.5">
-                Ex optio sequi et quos praesentium in nostrum labore nam rerum iusto aut magni nesciunt? Quo quidem neque iste expedita est dolo.
-            </p>
-            <div className="grid grid-cols-1 gap-3">
-                <input type="text" placeholder='Search Camping' className="w-full h-10 text-center border-none bg-white" />
-                <input type="text" placeholder='Where To?' className="w-full h-10 text-center border-none bg-white" />
-                <input type="text" placeholder='Date' className="w-full hh-10 text-center border-none bg-white" />
-                <h2 className="uppercase font-bold -mb-3">Filter by price</h2>
-                <input type="text" placeholder='' className="w-full h-10 text-center border-none bg-white" />
-                <h4 className="text-neutral-600 capitalize">price : 12dh-3600dh</h4>
-            </div>
-            <div className="text-center">
-                <button className=" bg-blue-500 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-1  text-white text-lg rounded-md mt-2" onClick={nextStep}>
-                    Book Now
-
-                </button>
-
-            </div>
-        <div className='flex justify-center mt-[30px]'>
-            <img src={background1} alt="" className=' lg:h-[320px] lg:w-[300px] rounded-lg shadow-2xl hidden md:block' />
-        </div>
-      </div>
-</div>
-
-</div>
-  )
+    );
 }
