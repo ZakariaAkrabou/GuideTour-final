@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+
 import card from '../../assets/agadir.png';
 import background1 from '../../assets/camper.jpg';
 import travel from '../../assets/travel.png'
@@ -6,6 +6,10 @@ import telouet from '../../assets/telouet.png'
 import map from '../../assets/map.png'
 
 import { useState } from 'react';
+
+
+
+
 
 
 
@@ -20,11 +24,25 @@ import { BsCalendar2Date } from "react-icons/bs";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { AiOutlineMessage } from "react-icons/ai";
 import { GrStatusGood } from "react-icons/gr";
+import PayementTour from '../../components/Modals/payementTour';
+
+
+
 
 const Step4 = ({ nextStep, prevStep,prev2Step,prev3Step }) => {
 
+    const [isOpen, setIsOpen] = useState(false);
+
+const handleButtonClik =()=>{
+    setIsOpen(false);
+}
+    
+  
+   
   return (
     <>
+
+    
     <div className=" h-20 -top-20 absolute w-full bg-white/40 backdrop-filter backdrop-blur-sm text-1xl  font-Poppins flex  text-center  ">
     <button className=" w-1/4 bg-white/60   flex  items-center justify-center capitalize text-green-500 font-bold " onClick={prev3Step}>
                         <GrStatusGood  size={25} className="mr-2 text-lg  text-green-500 "  />
@@ -49,7 +67,7 @@ const Step4 = ({ nextStep, prevStep,prev2Step,prev3Step }) => {
             <p className='pb-6'>Qui tempore voluptate qui quia commodi rem praesentium alias et voluptates officia sed molestiae sint et voluptas quos. Qui harum repudiandae galisum dolorem Hic deleniti officiis est sapiente explicabo non eaque corporis aut voluptatum iusto At facere enim id voluptas reprehenderit. Ut voluptas laudantium</p>
             <img src={map} alt="" className='pb-6'/>
             <p className='pb-6'> Sit quasi soluta non temporibus voluptas non necessitatibus tempore sit deleniti praesentium aut velit nostrum ut itaque atque ad expedita veniam. Hic deleniti officiis est sapiente explicabo non eaque corporis aut voluptatum iusto At facere enim id voluptas reprehenderit. Ut voluptas laudantium et molestias voluptatem ex doloremque omnis est ipsum nihil. Quo facere eveniet 33 sint rerum . </p>
-            <p className='pb-6'>internos impedit sed dignissimos quia. Et rerum deleniti et voluptates saepe qui labore quisquam non accusantium temporibus. Quo velit numquam hic excepturi sequi sed dicta doloribus! In quos possimus quo quibusdam aliquid est culpa porro sed molestiae libero At blanditiis minima a reiciendis fugiat.</p>
+           
             </div>
         
     <div className=" px-[30px] py-[25px] w-[500px] h-[1500px] bottom-2  ">
@@ -94,9 +112,11 @@ const Step4 = ({ nextStep, prevStep,prev2Step,prev3Step }) => {
                     <  AiOutlineMessage size={20} className="absolute left-20 top-1/2 transform -translate-y-1/2 text-slate-500" />
                 </div>
                 
-                <div className="px-[50px]  w-[300px] grid grid-col-2 gap-4 items-center ">
-                <button className="transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-primary py-3 px-6 text-white text-lg rounded-md w-48 "  onClick={nextStep}>Check Availability</button>
-                <button className="transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-primary py-3 px-6 text-white text-lg rounded-md w-48 "  onClick={nextStep}>Next</button>
+                <div className="px-[50px] py-[50px] w-[300px] grid grid-col-2 gap-4 items-center ">
+                <button className="transition ease-in-out delay-10 hover:-translate-y-1 
+                hover:scale-110 hover:bg-indigo-300 duration-100 bg-primary py-3 px-6 text-white text-lg rounded-md w-48 "  onClick={()=>{setIsOpen(true);
+                }}>Book Now</button>
+                  {isOpen && ( <PayementTour onCancel={handleButtonClik} onClose={handleButtonClik} />) }
 
             </div>
                 
@@ -104,12 +124,13 @@ const Step4 = ({ nextStep, prevStep,prev2Step,prev3Step }) => {
 
            
         </div>
-        <img className='py-[20px] px-[0px]  ' src={travel} alt="" />
+    
     </div>
    
     </div>
 
 </div>
+
 </>
   );
 };

@@ -56,6 +56,10 @@ export default {
 
       },
     },
+    borderRaduis:
+    {
+      extralarge:'12rem'
+    }
   },
   plugins: [flowbite.plugin()],
 };

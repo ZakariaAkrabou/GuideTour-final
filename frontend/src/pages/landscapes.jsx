@@ -63,17 +63,17 @@ const Landscapes = () => {
       <div className="App">
         <div className="relative">
 
-          <div className="text-white px-[450px] py-[200px] w-full h-full" style={bgheadertour}>
+          <div className="text-white h-screen flex items-center justify-center" style={bgheadertour}>
 
             <div className=" max-w-xl">
               <h3 className=" text-center font-bold mb-8 uppercase">Explore</h3>
               <h1 className="  text-8xl font-yeste text-center capitalize">Landscapes</h1>
             </div>
           </div>
-          <div className=" px-[300px] flex justify-center  ">
+          <div className="  flex justify-center  ">
 
 
-            <div className=" shadow-2xl w-[900px] h-[1500px]  bg-white relative mt-6  -top-[50px] ">
+            <div className=" shadow-2xl w-[900px] h-[1000px]  bg-white relative mt-6  -top-[50px] ">
 
               <ProgressSteps steps={steps} renderStep={renderStep} />
 

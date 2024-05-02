@@ -39,10 +39,10 @@ const Tour = () => {
                     <h1 className="  text-8xl font-['Yesteryear'] text-center capitalize">travel white us</h1>
                 </div>
             </div>
-            <div className=" px-[250px] ">
+            <div className=" flex justify-center ">
 
 
-                <div className=" shadow-2xl w-[1000px] h-[1500px] border-slate-300 relative mt-6">
+                <div className=" shadow-2xl w-[900px] h-[1500px] border-slate-300 relative mt-6 top-[-50px] bg-white">
 
 
                     {/* cards */}
@@ -183,9 +183,9 @@ const Tour = () => {
                         
 
                         {/* card planTour */}
-                        <div className=" px-[90px] py-[40px] w-[500px] h-[1500px] bottom-2  ">
+                        <div className=" px-[30px] py-[30px] w-[500px] h-[1500px] bottom-2  ">
                             <div className="grid grid-rows-2 gap-8  ">
-                                <div className=" px-[30px] py-[20px] w-[380px] h-[700px] bg-stone-100   ">
+                                <div className=" px-[30px] py-[20px] w-[380px] h-[700px] bg-stone-100 rounded-lg  ">
                                     <div className="  text-3xl text-center text-blue_fance font-Volkhov "><h1>Plan your tour</h1>
 
                                     </div><p className="text-center">Ex optio sequi et quos praesentium in nostrum labore nam rerum iusto aut magni nesciunt? Quo quidem neque iste expedita est dolo.</p>

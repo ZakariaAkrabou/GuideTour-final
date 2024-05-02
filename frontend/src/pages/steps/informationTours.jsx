@@ -13,6 +13,27 @@ import { BsCalendar2Date } from "react-icons/bs";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { AiOutlineMessage } from "react-icons/ai";
 import { RiStarSFill } from "react-icons/ri";
+import riad from '../../assets/riad.jpg'
+import door from '../../assets/door.jpg'
+import door2 from '../../assets/door2.jpg'
+import spice from '../../assets/spice.jpg'
+import souk1 from '../../assets/souk1.jpg'
+import souk2 from '../../assets/souk2.jpg'
+import souk3 from '../../assets/souk3.jpg'
+import souk4 from '../../assets/souk4.jpg'
+import souk5 from '../../assets/souk5.jpg'
+import souk6 from '../../assets/souk6.jpg'
+import riad3 from '../../assets/riad3.jpg'
+import spice1 from '../../assets/spice1.jpg'
+import spice4 from '../../assets/spice4.jpg'
+import spice5 from '../../assets/spice5.jpg'
+import spice6 from '../../assets/spice6.jpg'
+import souk7 from '../../assets/souk7.jpg'
+import souk8 from '../../assets/souk8.jpg'
+import souk9 from '../../assets/souk9.jpg'
+
+import riad4 from '../../assets/riad4.jpg'
+
 
 const Step1 = ({ nextStep }) => {
     const boxstyle = ' transition ease-in-out delay-150 hover:rounded hover:shadow-xl ';
@@ -83,52 +104,20 @@ const Step1 = ({ nextStep }) => {
                             <div id="price">Data for Price</div>
                         </div>
                     </div>
-                    <div className=" px-[30px] py-[25px] w-[500px] h-[1500px] bottom-2  ">
-                        <div className="grid grid-rows-2 gap-8  ">
-                            <div className=" px-[30px] py-[20px] w-[380px] h-[950px] bg-stone-100   rounded  ">
-                                <div className="  text-3xl text-center text-secondaire font-Volkhov ">
-                                    <h1>Book This Tour</h1>
-                                </div>
-                                <p className="text-center">Ex optio sequi et quos praesentium in nostrum labore nam rerum iusto aut magni nesciunt? Quo quidem neque iste expedita est dolo.</p>
-                                <div className="  px-[10px] grid grid-col-1 gap-5 " >
-                                    <div className="  grid grid-rows-8 gap-1" ></div>
-                                    <div className="relative">
-                                        <input type="text" placeholder='Name' className="w-[300px] h-[60px] text-center border-none  bg-white  " />
-                                        <CgProfile  size={20} className="absolute left-20 top-1/2 transform -translate-y-1/2 text-slate-500" />
-                                    </div>
-                                    <div className="relative">
-                                        <input type="text" placeholder='Email' className="w-[300px] h-[60px] text-center border-none  bg-white  " />
-                                        <MdOutlineMail size={20} className="absolute left-20 top-1/2 transform -translate-y-1/2 text-slate-500" />
-                                    </div>
-                                    <div className="relative ">
-                                        <input type="text" placeholder='Confirm Email' className=" pl-20 w-[300px] h-[60px] text-center border-none  bg-white  " />
-                                        <MdOutlineMail size={20} className="absolute  left-20 top-1/2 transform -translate-y-1/2 text-slate-500" />
-                                    </div>
-                                    <div className="relative">
-                                        <input type="text" placeholder=' Phone' className="w-[300px] h-[60px] text-center border-none  bg-white  " />
-                                        <BsTelephone size={20} className="absolute left-20 top-1/2 transform -translate-y-1/2 text-slate-500" />
-                                    </div>
-                                    <div className="relative">
-                                        <input type="text" placeholder=' dd-mm-yy' className="w-[300px] h-[60px] text-center border-none  bg-white  " />
-                                        < BsCalendar2Date size={20} className="absolute left-20 top-1/2 transform -translate-y-1/2 text-slate-500" />
-                                    </div>
-                                    <div className="relative">
-                                        <input type="text" placeholder=' Number of ticket' className=" pl-20 w-[300px] h-[60px] text-center border-none  bg-white  " />
-                                        < IoPricetagsOutline size={20} className="absolute left-20 top-1/2 transform -translate-y-1/2 text-slate-500" />
-                                    </div>
-                                    <div className="relative">
-                                        <input type="text" placeholder=' Message' className="w-[300px] h-[60px] text-center border-none  bg-white  " />
-                                        <  AiOutlineMessage size={20} className="absolute left-20 top-1/2 transform -translate-y-1/2 text-slate-500" />
-                                    </div>
-                                    <div className="px-[50px]  w-[300px] grid grid-col-2 gap-4 items-center ">
-                                        <button className="transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-primary py-3 px-6 text-white text-lg rounded-md w-48 "  onClick={nextStep}>Check Availability</button>
-                                        <button className="transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-primary py-3 px-6 text-white text-lg rounded-md w-48 "  onClick={nextStep}>Next</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <img className='py-[20px] px-[0px]  ' src={travel} alt="" />
-                        </div>
+                    <div className="   px-[90px] py-[60px] w-[500px] h-[1500px] bottom-2 ">
+
+                    <div className="  relative  ">
+
+                        <img src={souk2} alt="" className='  w-[300px] h-[500px]   rounded-full ouverllow-hidden drop-shadow-2xl ' />
+
+
+
+
+
+                        <img className=' absolute top-[400px] w-[170px] h-[250px]   rounded-full ouverllow-hidden drop-shadow-2xl ' src={spice6} alt="" />
                     </div>
+
+                </div>
                 </div>
             </div>
         </>
