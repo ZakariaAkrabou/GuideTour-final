@@ -37,7 +37,7 @@ const Step2 = ({ nextStep, prevStep }) => {
       {/* Payment Section */}
       <div className="grid grid-cols-2 gap-4">
         <div className=' flex flex-col absolute'>
-          <Pay/>
+          <Pay />
         </div>
       </div>
 
@@ -56,17 +56,17 @@ const Step2 = ({ nextStep, prevStep }) => {
               <h3 className="lg:text-lg text-[#021F86]">With Maria</h3>
               <div className=" justify-between p-2 lg:px-10 ">
                 <div className=' flex justify-between pt-8 pb-2'>
-                <h2 className="flex items-center"><CiCalendarDate size={20} className="mr-1" />1 Mai</h2>
-                <h2 className="flex items-center"><FaPeopleGroup size={20} className="mr-2" />Members</h2>
+                  <h2 className="flex items-center"><CiCalendarDate size={20} className="mr-1" />1 Mai</h2>
+                  <h2 className="flex items-center"><FaPeopleGroup size={20} className="mr-2" />Members</h2>
                 </div>
                 <div className="bg-white/90 rounded-xl h-48 text-left p-2">
                   <h1 className="text-lg font-semibold">Payment details</h1>
-                  <hr/>
+                  <hr />
                   <div className="flex justify-between pb-20 pt-6">
                     <h1 className="font-semibold">Booking</h1>
                     <h2>1500Dh</h2>
                   </div>
-                  <hr/>
+                  <hr />
                   <div className="flex justify-between">
                     <h1 className="font-semibold">Total</h1>
                     <h1 className=' font-semibold'>1500 Dh</h1>
@@ -74,7 +74,7 @@ const Step2 = ({ nextStep, prevStep }) => {
                 </div>
               </div>
               <div className="lg:p-8">
-                
+
                 <div className="lg:mt-6">
                   <button className="bg-blue-500 text-white text-lg font-semibold lg:px-24  p-2 hover:bg-blue-300 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 duration-100 rounded-full">Pay Now</button>
                 </div>
