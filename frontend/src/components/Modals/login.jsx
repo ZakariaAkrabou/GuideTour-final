@@ -136,7 +136,7 @@ const LoginModal = ({ setShowModal }) => {
             <img src={backgroundLoging} alt="img" className="w-[300px] h-[450px] hidden rounded-r-2xl md:block object-cover"/>
           </div>
         </div>
-      </div>
+         </div>
       <div className="opacity-60 fixed inset-0 z-40 bg-black"></div>
     </>
   );
