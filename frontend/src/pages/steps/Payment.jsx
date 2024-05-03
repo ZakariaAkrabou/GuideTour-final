@@ -1,7 +1,7 @@
 import background1 from '../../assets/campingPlan.png';
 import background2 from '../../assets/camping1.jpg';
 import profile from '../../assets/Toubkal.jpg';
-import { IoInformationCircleOutline } from "react-icons/io5";
+import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
 import { MdOutlinePayment } from "react-icons/md";
 import { CiCalendarDate } from "react-icons/ci";
 import { FaPeopleGroup } from "react-icons/fa6";
@@ -11,28 +11,17 @@ import Pay from './Checkout'
 const Step2 = ({ nextStep, prevStep }) => {
   return (
     <div className="grid grid-cols-2 gap-8 p-2 lg:p-6 relative">
-      <div className="absolute">
-        <div className="absolute -top-20 left-1/4">
-          <div className="flex justify-center items-center">
-            <div className="bg-white/30 backdrop-filter backdrop-blur-sm h-20 flex items-center justify-center">
-              <button className="font-bold text-white flex items-center p-32" onClick={prevStep}>
-                <IoInformationCircleOutline size={26} className="mr-1" />
-                Information
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="absolute -top-20 lg:left-[376px]">
-          <div className="flex justify-center items-center h-full">
-            <div className="bg-white backdrop-filter backdrop-blur-sm h-20 flex items-center text-nowrap justify-center">
-              <button className="font-bold text-black flex items-center p-[178.8px] lg:p-[139px] ">
-                <MdOutlinePayment size={26} className="mr-3" />
-                Payment
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div className=" h-20 -top-20 absolute bg-white/10 w-full  backdrop-filter backdrop-blur-sm text-1xl  font-Poppins flex  text-center  ">
+                    <button className=" w-2/4 text-white text-xl font-bold flex  items-center justify-center capitalize " onClick={prevStep} >
+                        <IoCheckmarkDoneCircleSharp  size={30} className="mr-2 text-lg text-green-500 " />
+                        Information
+                    </button>
+                    <button className=" w-2/4 bg-white text-xl capitalize flex text-black font-bold items-center justify-center    ">
+                        <MdOutlinePayment size={30} className=" mr-2  " />
+                        Payment
+                    </button>
+                </div>
+        
 
       {/* Payment Section */}
       <div className="grid grid-cols-2 gap-4">

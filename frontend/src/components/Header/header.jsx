@@ -3,6 +3,8 @@ import { HiMenuAlt1 } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Modal from "../Modals/login";
+import UserProfile from "../UserProfile/UserProfile";
+import { IoPerson } from "react-icons/io5";
 
 const Header = () => {
   const [dropdown, setDropdown] = useState(false);
@@ -26,6 +28,7 @@ const Header = () => {
 
   return (
     <>
+  
       <nav
         className={`${
           isScrolled
@@ -34,6 +37,7 @@ const Header = () => {
         } fixed top-0 left-0 w-full h-20 flex justify-between items-center z-50`}
       >
         <div className="container mx-auto lg:px-3">
+         
           <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center">
             <img
               src={isScrolled ? "/blacklogo.png" : "/img_ellipse_621.png"}
@@ -74,8 +78,10 @@ const Header = () => {
                   Campings
                 </Link>
               </li>
-            </ul>
-
+                <div className=" right-[150px] absolute flex">
+                <button><IoPerson size={25}/></button>
+                </div>
+              </ul>
             <div className="flex gap-4 max-lg:hidden">
               <button
                 onClick={() => setShowModal(true)}
@@ -91,6 +97,7 @@ const Header = () => {
               {dropdown ? <MdClose size={30} /> : <HiMenuAlt1 size={30} />}
             </div>
           </div>
+         
           {dropdown && (
             <div className="lg:hidden w-full p-4 fixed top-20 backdrop-filter backdrop-blur-md transition-all">
               <div className="w-full flex flex-col items-baseline gap-4">

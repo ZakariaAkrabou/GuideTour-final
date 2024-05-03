@@ -42,7 +42,7 @@ function CampingSlids() {
         className='w-full h-full bg-center bg-cover duration-500'
       ></div>
 
-      <div className='flex top-4 justify-center -mt-[100px]'>
+      <div className='flex top-4 justify-center -mt-[140px]'>
         {slides.map((slide, slideIndex) => (
           <div
             key={slideIndex}

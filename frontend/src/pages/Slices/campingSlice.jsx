@@ -15,7 +15,6 @@ export const fetchCampings = createAsyncThunk('users/fetchCampings', async ()  =
 })
 
 export const fetchCampingsById = createAsyncThunk('users/fetchCampingsById',async (campingId) => {
-
       const response = await axios.get(`http://localhost:4000/api/camping/get/${campingId}`);
       return response.data;
     }
@@ -45,7 +44,6 @@ const campingSlice = createSlice({
         builder.addCase(fetchCampingsById.fulfilled, (state, action) => {
             state.loading = false;
             state.campingID = action.payload; 
-            console.log("selectedCamping", state.campingID);
             state.error = '';
           });
     }

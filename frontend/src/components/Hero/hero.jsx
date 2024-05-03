@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { RxDividerVertical } from "react-icons/rx";
 import heroImg from '../../assets/hero1.jpg';
+import UserProfile from "../UserProfile/UserProfile";
+
 
 const Hero = () => {
   const [showInput, setShowInput] = useState(false);
@@ -78,9 +80,12 @@ const Hero = () => {
             <h1 className="text-white font-bold text-3xl lg:text-5xl">
               {` No matter where you're going, we'll take you there`}
             </h1>
-          </div>   
+          </div>  
         </div>
       </div>
+          <div className=" z-50 fixed top-1 left-1/4">
+            <UserProfile/>
+          </div> 
     </div>
   );
 };

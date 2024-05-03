@@ -48,7 +48,6 @@ export default function Cards({ nextStep }) {
 
     const toggleCampingSelection = (campingId) => {
         setSelectedCampingId(selectedCampingId === campingId ? null : campingId);
-        console.log("ID",campingId);
         dispatch(fetchCampingsById(campingId));
     };
 

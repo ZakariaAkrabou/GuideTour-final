@@ -1,6 +1,8 @@
 import card from '../../assets/agadir.png';
 import background1 from '../../assets/campingPng.png';
 import { IoInformationCircleOutline } from "react-icons/io5";
+import { MdOutlinePayment } from "react-icons/md";
+
 import { RiStarSFill } from "react-icons/ri";
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,22 +18,20 @@ const Step1 = ({ nextStep, prevStep}) => {
   const SelectedCampingId = useSelector((state) => state.campingID);
   console.log("testID", SelectedCampingId);
 
-  useEffect(() => {
-    dispatch(fetchCampingsById());
-}, [dispatch]);
+ 
 
   return (
     <div className='relative'>
-      <div className='absolute -top-20'>
-        <div className='flex justify-center items-center h-full'>
-          <div className='bg-white h-20 flex items-center justify-center'>
-            <button className='font-bold text-black flex items-center p-32'>
-              <IoInformationCircleOutline size={26} className='mr-1'/>
-              Information
-            </button>
-          </div>
-        </div>
-      </div>
+ <div className=" h-20 -top-20 absolute w-full bg-white/10 backdrop-filter backdrop-blur-sm text-1xl  font-Poppins flex  text-center  ">
+                    <button className=" w-2/4 bg-white text-xl font-bold  flex  items-center justify-center capitalize " >
+                        <IoInformationCircleOutline  size={30} className="mr-2 text-lg  " />
+                        Information
+                    </button>
+                    <button className=" w-2/4  capitalize flex text-white text-xl font-bold items-center justify-center">
+                        <MdOutlinePayment size={30} className=" mr-2  " />
+                        Payment
+                    </button>
+                </div>
       <div className="grid grid-col-2 lg:grid-cols-2 gap-8 p-4 lg:h-[800px] ">
         <div className="grid lg:grid-cols-2 gap-4 h-[650px]">
           <div className='flex flex-col'>
