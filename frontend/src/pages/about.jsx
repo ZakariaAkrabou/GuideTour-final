@@ -87,7 +87,7 @@ const About = () => {
         backgroundSize: 'cover',
 
     };
-  
+
     return (
         <>
             <div className="App">
@@ -139,12 +139,12 @@ const About = () => {
                         <img className='w-[400px] lg:w-[600px] h-full' src={Group} alt="" />
                                 </div>
 
-                            
-                        </div>
 
                     </div>
 
                 </div>
+
+            </div>
 
                 <div className=' flex justify-center lg:-mt-14'>
                     <div className="text-center  ">
@@ -181,9 +181,9 @@ const About = () => {
                                             <p>Benhaddou</p>
                                         </div>
 
-                                        <p>$840</p>
-                                    </div>
+                                    <p>$840</p>
                                 </div>
+                            </div>
 
 
                             </div>
@@ -197,9 +197,9 @@ const About = () => {
                                             <p>Waterfalls</p>
                                         </div>
 
-                                        <p>$840</p>
-                                    </div>
+                                    <p>$840</p>
                                 </div>
+                            </div>
 
 
                             </div>
@@ -290,7 +290,7 @@ const About = () => {
                             </div>
 
 
-                        </div>
+                    </div>
 
                         
                         <div className=" w-[full h-[350px] flex ">
@@ -315,7 +315,9 @@ const About = () => {
 
                         </div>
 
+
                     </div>
+
                 </div>
 
 

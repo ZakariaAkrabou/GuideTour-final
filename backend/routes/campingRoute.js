@@ -3,11 +3,14 @@ const router = express.Router();
 const CampingController=require("../controllers/CampingController");
 const {authenticateAdmin,isAdmin} = require('../middlewares/adminMiddleware')
 const campingSwagger = require('../swagger/campingSwagger');
+const {uploadCamping} = require ('../middlewares/campingMulter');
 
 
 router.swagger = campingSwagger;
-router.post("/add", authenticateAdmin, isAdmin,CampingController.createComping);
-router.get("/show", /*authenticateAdmin, isAdmin,*/CampingController.getAllCampings);
+
+
+router.post("/add", authenticateAdmin, isAdmin,uploadCamping.single("image") ,CampingController.createComping);
+router.get("/show", authenticateAdmin, isAdmin,CampingController.getAllCampings);
 router.put("/update/:campingId",authenticateAdmin, isAdmin,CampingController.updateCamping);
 router.get("/get/:campingId",/*authenticateAdmin, isAdmin,*/CampingController.getCamping);
 router.delete("/delete/:id",authenticateAdmin, isAdmin,CampingController.deleteCampingById);
