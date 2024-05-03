@@ -4,7 +4,7 @@ import { BiSolidShow, BiSolidHide } from "react-icons/bi";
 const ResetPassword = ({ setShowModal }) => {
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
+  const [error] = useState("");
 
   const handleChange = (e) => {
     setEmail(e.target.value);

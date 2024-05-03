@@ -1,7 +1,14 @@
+import  { useEffect } from 'react';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 const About = () => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
+
   return (
     <div className="container mx-auto px-1 pt-15">
-      <section className="flex flex-col md:flex-row items-center justify-center mb-3 relative">
+      <section className="flex flex-col md:flex-row items-center justify-center mb-3 relative"  data-aos="fade-up">
         <div className="md:pt-6 md:mr-6 mb-6 md:mb-0">
           <img
             src="/img_rectangle_19367.png"
