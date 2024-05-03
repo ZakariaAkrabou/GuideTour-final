@@ -23,8 +23,8 @@ export default function Guides() {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [lastClicked, setLastClicked] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null); // State to store selected file URL
-  const [fileModalOpen, setFileModalOpen] = useState(false); // State to control file modal visibility
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [fileModalOpen, setFileModalOpen] = useState(false); 
 
   const dispatch = useDispatch();
   const guides = useSelector((state) => state.guides)

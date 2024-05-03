@@ -6,7 +6,7 @@ import Modal from "../Modals/login";
 import UserProfile from "../UserProfile/UserProfile";
 import { IoPerson } from "react-icons/io5";
 
-const Header = () => {
+const Header = ({ handleProfile }) => {
   const [dropdown, setDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,9 +32,9 @@ const Header = () => {
       <nav
         className={`${
           isScrolled
-            ? "backdrop-blur-md text-black "
+            ? "backdrop-blur-md text-black"
             : "bg-transparent text-white " 
-        } fixed top-0 left-0 w-full h-20 flex justify-between items-center z-50`}
+        } fixed top-0 left-0 w-full h-20 flex justify-between items-center z-40`}
       >
         <div className="container mx-auto lg:px-3">
          
@@ -49,7 +49,7 @@ const Header = () => {
               <li>
                 <Link
                   to="/home"
-                  className="leading-normal no-underline text-xl font-popp  font-medium hover:text-black"
+                  className="leading-normal no-underline text-xl  font-medium hover:text-black"
                 >
                   Home
                 </Link>
@@ -79,7 +79,7 @@ const Header = () => {
                 </Link>
               </li>
                 <div className=" right-[150px] absolute flex">
-                <button><IoPerson size={25}/></button>
+                <button onClick={handleProfile}><IoPerson size={25}/></button>
                 </div>
               </ul>
             <div className="flex gap-4 max-lg:hidden">

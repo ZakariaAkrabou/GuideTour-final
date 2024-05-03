@@ -10,7 +10,6 @@ import { FaAddressCard, FaInfo } from "react-icons/fa";
 
 function UserProfile() {
   return (
-    <div className=' w-52 h-full bg-white/40 '>
 
     <div className=' p-2 h-[550px] flex justify-start items-center w-[700px] bg-white shadow-xl rounded-2xl'>
     <div className=' justify-center  items-center grid grid-cols-2'>
@@ -83,11 +82,12 @@ function UserProfile() {
                </div>
                 
                 <button className=' w-36 p-2 rounded-full bg-gray-200'>Save</button>
+                
             </div>
             </div> 
         </div>
     </div>
-    </div>
+    // </div>
   )
 }
 
