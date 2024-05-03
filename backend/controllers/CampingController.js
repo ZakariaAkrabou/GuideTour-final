@@ -83,7 +83,6 @@ module.exports.updateCamping = async (req, res) => {
 module.exports.getCamping = async (req, res) => {
   try {
     const camping = req.params.campingId;
-
     const camp = await Camping.findById(camping)
     if (!camp) {
       return res.status(404).send({ error: "Camping not found" });

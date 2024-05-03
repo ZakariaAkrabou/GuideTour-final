@@ -7,10 +7,12 @@ const {uploadCamping} = require ('../middlewares/campingMulter');
 
 
 router.swagger = campingSwagger;
+
+
 router.post("/add", authenticateAdmin, isAdmin,uploadCamping.single("image") ,CampingController.createComping);
 router.get("/show", authenticateAdmin, isAdmin,CampingController.getAllCampings);
 router.put("/update/:campingId",authenticateAdmin, isAdmin,CampingController.updateCamping);
-router.get("/get/:campingId",authenticateAdmin, isAdmin,CampingController.getCamping);
+router.get("/get/:campingId",/*authenticateAdmin, isAdmin,*/CampingController.getCamping);
 router.delete("/delete/:id",authenticateAdmin, isAdmin,CampingController.deleteCampingById);
 router.get("/sortCampingsAscending", authenticateAdmin, isAdmin,CampingController.sortCampingsAscending);
 router.get("/sortCampingsDescending", authenticateAdmin, isAdmin,CampingController.sortCampingsDescending);

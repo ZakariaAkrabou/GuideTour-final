@@ -8,7 +8,7 @@ import Tours from './component/Tours'
 import Register from './component/Register';
 import Login from './component/Login';
 import { AuthProvider } from './Auth/AuthContext';
-import PrivateRoute from './Auth/PrivateRouting'; // Import PrivateRoute component
+import PrivateRoute from './Auth/PrivateRouting';
 
 function App() {
   return (
