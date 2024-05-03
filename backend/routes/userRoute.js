@@ -10,7 +10,7 @@ router.swagger = userSwagger;
 
 
 
-router.get("/user-profile",  UserController.getUserProfile);
+router.get("/user-profile",authenticateUser,  UserController.getUserProfile);
 
 router.put("/switch-profile/:id",authenticateUser,multerMiddleware.fields([
       { name: "profile_picture", maxCount: 1 },

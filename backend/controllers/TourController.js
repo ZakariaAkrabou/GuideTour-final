@@ -4,17 +4,22 @@ const Tour = require('../models/tour');
 
 exports.createTour = async (req, res) => {
     try {
-        
-        if (!req.user) {
-            return res.status(401).send({ error: 'You must be logged in to create a tour' });
-        }
-
       
-        if (req.user.role !== 'guide') {
-            return res.status(403).send({ error: 'You must be a guide to create a tour' });
+        if (!req.file) {
+            return res.status(400).send({ error: 'Tour image is required' });
         }
+        const guide_id = req.user._id;
+        const imagepath = req.file.path;
 
-        const tour = new Tour(req.body);
+         const tour = new Tour({
+            title: req.body.title,
+            guide_id: guide_id,
+            description: req.body.description,
+            image: imagepath, 
+            category: req.body.category,
+            duration: req.body.duration,
+            price: req.body.price
+        });
         await tour.save();
 
         res.status(200).send({ message: "Tour created successfully", data: tour });
@@ -32,7 +37,7 @@ exports.getAllTours = async (req, res) => {
 
         const tours = await Tour.find({ guide_id: req.user._id });
         console.log("tours", tours);
-        console.log("id", req.user._id); // Corrected to log req.user._id
+        console.log("id", req.user._id); 
 
         if (tours.length === 0) {
             return res.status(404).json("No tours found.");
@@ -68,24 +73,24 @@ exports.updateTour = async (req, res) => {
     }
 
     try {
-      
-        if (req.user.role !== 'guide') {
-            return res.status(403).json({ error: 'You must be a guide to update a tour' });
-        }
-
         const tour = await Tour.findById(req.params.id);
         if (!tour) {
             return res.status(404).json({ error: 'Tour not found' });
         }
 
+        if (req.file) {
+            tour.image = req.file.path;
+        }
+
         updates.forEach(update => tour[update] = req.body[update]);
         await tour.save();
 
-        res.status(200).json({message:"Update successful!", data: tour});
+        res.status(200).json({ message: "Update successful!", data: tour });
     } catch (error) {
         res.status(400).json(error);
     }
 };
+
 
 
 exports.deleteTour = async (req, res) => {

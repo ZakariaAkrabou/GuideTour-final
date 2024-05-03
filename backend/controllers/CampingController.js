@@ -1,40 +1,34 @@
+const fs =  require("fs");
 const Camping = require("../models/Camping");
 
 module.exports.createComping = async (req, res) => {
   const {
     name,
     location,
-    date,
-    duration,
+    start_date,
+    end_date,
     group_member,
     isPrivate,
     price,
     description,
   } = req.body;
-
   try {
-    const existingCamping = await Camping.findOne({
-      name,
-      location,
-      date,
-      duration,
-      group_member,
-      isPrivate,
-      price,
-      description,
-    });
+   
+    if (!req.file) {
+      return res.status(400).send({ error: 'Tour image is required' });
+  }
+    const existingCamping = await Camping.findOne({ name });
     if (existingCamping) {
-      return res
-        .status(400)
-        .json({
-          message: "A camping event with the same information already exists.",
-        });
+      return res.status(400).json({ error: 'A camping event already exists' });
     }
+    const imagePath = req.file.path;
+
     const newCamping = new Camping({
       name,
       location,
-      date,
-      duration,
+      start_date,
+      end_date,
+      image: imagePath, 
       group_member,
       isPrivate,
       price,
@@ -44,11 +38,12 @@ module.exports.createComping = async (req, res) => {
     await newCamping.save();
 
     res.status(200).json({
-      message: "Camping event added successfully",
+      message: 'Camping event added successfully',
       data: newCamping.toObject({ getters: true, versionKey: false }),
     });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -63,18 +58,24 @@ module.exports.getAllCampings = async (req, res) => {
 
 module.exports.updateCamping = async (req, res) => {
   try {
-    const camping = req.params.campingId;
+    const campingId = req.params.campingId;
     const updates = req.body;
-
-    const editcamping = await Camping.findByIdAndUpdate(camping, updates, {
-      new: true,
-    });
-    if (!editcamping) {
+    const updatedImage = req.file; 
+    let camping = await Camping.findById(campingId);
+    if (!camping) {
       return res.status(404).send({ error: "Camping not found" });
     }
-    res
-      .status(200)
-      .json({ message: "camping edited successfuly", data: editcamping });
+    camping.set(updates);
+    if (updatedImage) {
+      if (camping.image) {
+        fs.unlinkSync(camping.image); 
+      }
+     
+      camping.image = updatedImage.path;
+    }
+    const updatedCamping = await camping.save();
+
+    res.status(200).json({ message: "Camping edited successfully", data: updatedCamping });
   } catch (error) {
     res.status(500).send(error.message);
   }
