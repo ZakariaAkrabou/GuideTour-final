@@ -88,12 +88,13 @@ const Hero = () => {
           </div>  
         </div>
         {modalProfile && (
-          <div className="bg-white/ backdrop-filter backdrop-blur-sm h-full fixed top-0 w-full z-50 flex justify-center items-center" onClick={handleProfileClose}>
+          <div className="bg-white/ backdrop-filter backdrop-blur-sm h-full fixed top-0 w-full z-50 flex justify-center items-center">
             <UserProfile closeModal={() => setModalProfile(false)} />
           </div>
         )}
       </div>
-      <Header handleProfile={handleProfile} />    </div>
+      <Header handleProfile={handleProfile} />    
+      </div>
   );
 };
 
