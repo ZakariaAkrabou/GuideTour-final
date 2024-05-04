@@ -92,7 +92,7 @@ const Header = ({handleProfile, handleProfileClose}) => {
                   <IoPerson size={25} />
                 </button>
                 {profileDrop && (
-                  <DropDown handleProfile={handleProfile} handleProfileClose={handleProfileClose} closeModal={handleProfileDropClose} />
+                  <DropDown handleProfile={handleProfile} closeModal={handleProfileDropClose} />
                 )}
               </div>
               </ul>
