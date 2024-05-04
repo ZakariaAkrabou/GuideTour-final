@@ -3,17 +3,26 @@ import { HiMenuAlt1 } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Modal from "../Modals/login";
-import UserProfile from "../UserProfile/UserProfile";
 import { IoPerson } from "react-icons/io5";
+import DropDown from "../DropDown/DropDown";
 
-const Header = () => {
+const Header = ({handleProfile, handleProfileClose}) => {
   const [dropdown, setDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [profileDrop, setProfileDrop] = useState(false);
+
 
   const showDropdown = () => {
     setDropdown(!dropdown);
   };
+
+  const handleProfileDrop = () => {
+    setProfileDrop(prevProfileDrop => !prevProfileDrop);
+  };
+  const handleProfileDropClose = () => {
+    setProfileDrop(false)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,11 +41,11 @@ const Header = () => {
       <nav
         className={`${
           isScrolled
-            ? "backdrop-blur-md text-black "
+            ? "backdrop-blur-md text-black"
             : "bg-transparent text-white " 
-        } fixed top-0 left-0 w-full h-20 flex justify-between items-center z-50`}
+        } fixed top-0 left-0 w-full h-20 flex justify-between items-center z-40`}
       >
-        <div className="container mx-auto lg:px-3">
+        <div className="container mx-auto lg:px-3" >
          
           <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center">
             <img
@@ -49,7 +58,7 @@ const Header = () => {
               <li>
                 <Link
                   to="/home"
-                  className="leading-normal no-underline text-xl font-popp  font-medium hover:text-black"
+                  className="leading-normal no-underline text-xl  font-medium hover:text-black"
                 >
                   Home
                 </Link>
@@ -78,9 +87,14 @@ const Header = () => {
                   Campings
                 </Link>
               </li>
-                <div className=" right-[150px] absolute flex">
-                <button><IoPerson size={25}/></button>
-                </div>
+              <div className=" right-[150px] absolute flex">
+                <button onClick={handleProfileDrop}>
+                  <IoPerson size={25} />
+                </button>
+                {profileDrop && (
+                  <DropDown handleProfile={handleProfile} closeModal={handleProfileDropClose} />
+                )}
+              </div>
               </ul>
             <div className="flex gap-4 max-lg:hidden">
               <button
@@ -139,6 +153,7 @@ const Header = () => {
             </div>
           )}
         </div>
+        
       </nav>
       {showModal && <Modal setShowModal={setShowModal} />}
     </>
