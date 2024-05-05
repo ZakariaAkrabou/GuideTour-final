@@ -12,11 +12,11 @@ import { FiFlag } from "react-icons/fi";
 import imgheader from'../assets/landscapes.jpeg'
 
 
-import ProgressSteps from './steps/BookingSteps';
-import Step1 from './steps/informationTours';
-import Step2 from './steps/guides';
-import Step3 from './steps/planTours';
-import Step4 from './steps/locationTours';
+import ProgressSteps from '.././components/steps/BookingSteps';
+import Step1 from '.././components/steps/informationTours';
+import Step2 from '.././components/steps/guides';
+import Step3 from '.././components/steps/planTours';
+import Step4 from '.././components/steps/locationTours';
 
 const steps = [
   {

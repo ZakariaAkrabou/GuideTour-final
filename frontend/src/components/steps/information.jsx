@@ -6,7 +6,7 @@ import { MdOutlinePayment } from "react-icons/md";
 import { RiStarSFill } from "react-icons/ri";
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCampingsById } from '../Slices/campingSlice';
+import { fetchCampingsById } from '../../features/Slices/campingSlice';
 import { useEffect } from 'react';
 
 
@@ -54,8 +54,10 @@ const Step1 = ({ nextStep, prevStep}) => {
                 <div id="name">{SelectedCampingId.name}</div>
                 <label htmlFor="location" className="text-blue-500 font-semibold text-lg">Location</label>
                 <div id="location">{SelectedCampingId.location}</div>
-                <label htmlFor="description" className="text-blue-500 font-semibold text-lg">Date</label>
-                <div id="description">{SelectedCampingId.date}</div>
+                <label htmlFor="description" className="text-blue-500 font-semibold text-lg">Start Date</label>
+                <div id="description">{SelectedCampingId.start_date}</div>
+                <label htmlFor="description" className="text-blue-500 font-semibold text-lg">End Date</label>
+                <div id="description">{SelectedCampingId.end_date}</div>
                 <label htmlFor="duration" className="text-blue-500 font-semibold text-lg">Duration</label>
                 <div id="duration">{SelectedCampingId.duration}</div>
                 <label htmlFor="group-members" className="text-blue-500 font-semibold text-lg">Group Members</label>
