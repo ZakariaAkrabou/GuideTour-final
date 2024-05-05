@@ -102,7 +102,7 @@ export default function Cards({ nextStep }) {
                     <div className='p-0.5 relative'>
                             <div className="text-center relative" onClick={() => toggleCampingSelection(camping._id)}>
 
-                                <div className='absolute -left-0.5 top-[-252px] opacity-0 hover:opacity-100 p-2 w-[201px] h-[254px] hover:rounded-xl bg-blue-500/55  hover:backdrop-blur-md duration-700 cursor-pointer' onClick={nextStep}>
+                                <div className='absolute -left-0.5 top-[-252px] opacity-0 hover:opacity-100 p-2 w-[201px] h-[254px] hover:rounded-xl bg-primary/55  hover:backdrop-blur-md duration-700 cursor-pointer' onClick={nextStep}>
                                
 
                                 
@@ -140,14 +140,14 @@ export default function Cards({ nextStep }) {
                     {filteredCampings.length > itemsPerPage && (
                         <>
                             <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-                                <IoIosArrowBack className=' text-blue-500' size={25} />
+                                <IoIosArrowBack className=' text-primary' size={25} />
                             </button>
                             <div className='px-2 flex gap-4'>
-                                <div className='bg-blue-300 px-[9px] rounded-full'>{currentPage}</div>
+                                <div className='bg-primary px-[9px] rounded-full'>{currentPage}</div>
                                 {totalPages}
                             </div>
                             <button onClick={goToNextPage} disabled={indexOfLastItem === filteredCampings.length}>
-                                <IoIosArrowForward className=' text-blue-500' size={25} />
+                                <IoIosArrowForward className=' text-primary' size={25} />
                             </button>
                         </>
                     )}
@@ -168,14 +168,14 @@ export default function Cards({ nextStep }) {
                         <h2 className="uppercase font-bold -mb-3">Filter by price</h2>
                         <div className="relative  items-center flex">
                             <input onChange={(e) => setSearchPrice(e.target.value)} value={searchPrice} type="text" placeholder='Enter price range (10-300 $)' className="w-full h-10 rounded-2xl text-center border-none bg-white pr-12" />
-                            <button onClick={handleSortByPrice} className="absolute h-full w-12 left-0 bg-blue-400 text-white rounded-l-md">
+                            <button onClick={handleSortByPrice} className="absolute h-full w-12 left-0 bg-primary text-white rounded-l-md">
                                 Sort {sortByPrice ? '↓' : ''}
                             </button>
                         </div>
                         <h4 className="text-neutral-600 capitalize">ex: price 12dh-3600dh</h4>
                     </div>
                     <div className="text-center">
-                        <button className=" bg-blue-500 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-2  text-white text-lg rounded-md mt-2">
+                        <button className=" bg-primary transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-2  text-white text-lg rounded-md mt-2">
                             Book Now
                         </button>
                     </div>

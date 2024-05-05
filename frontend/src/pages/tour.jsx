@@ -35,22 +35,21 @@ const Tour = () => {
         <div className="App">
             <div className=" text-white h-screen flex items-center justify-center" style={bgheadertour}>
                 <div className=" max-w-xl">
-                    <h3 className=" text-center font-bold mb-8 uppercase">search tour</h3>
-                    <h1 className="  text-8xl font-['Yesteryear'] text-center capitalize">travel white us</h1>
+                    <h1 className="  text-9xl text-nowrap  font-year text-center capitalize">travel white us</h1>
                 </div>
             </div>
             <div className=" flex justify-center ">
 
 
-                <div className=" shadow-2xl w-[900px] h-full relative mt-6 top-[-50px] bg-gray">
+                <div className=" shadow-2xl w-[900px] relative mt-6 top-[-50px] bg-white">
 
 
                     {/* cards */}
 
                     <div className=" p-4 grid grid-cols-2 gap-28 ">
-                        <div className=" grid grid-cols-2 h-80 w-[480px] gap-4  ">
+                        <div className=" grid grid-cols-2 w-[480px] gap-4   ">
                            <Link to="/Landscapes" style={{ display: 'block' }}>
-                            <div className={` ${boxstyle} transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl`}>
+                            <div className={` ${boxstyle} transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl shadow-2xl`}>
                                 <div className="p-2">
                                     <img className="hover:rounded-t-3xl w-[250px] h-[150px]" src={telouet} alt="" />
                                     <div className="bg-primary flex justify-center items-center text-white text-sm h-10 whitespace-nowrap">
@@ -198,7 +197,7 @@ const Tour = () => {
                         
 
                         {/* card planTour */}
-                        <div className=" w-[500px]  bottom-2  ">
+                        <div className=" w-[500px]  bottom-2">
                             <div className=" ">
                                 <div className=" p-4 w-[380px] h-full bg-stone-100 rounded-lg  flex flex-col justify-center items-center">
                                     <div className="  text-3xl font-semibold pb-2 text-blue_fance font-Volkhov "><h1>Plan your tour</h1>
@@ -233,7 +232,10 @@ const Tour = () => {
 
                                     </div>
                                 </div>
+                                <div className=" pt-3 w-[370px]">
+
                                 <img className=' ' src={travel} alt="" />
+                                </div>
                             </div>
 
 
@@ -256,7 +258,7 @@ const Tour = () => {
 
             </div>
             
-            /</div>
+            </div>
     );
 }
 
