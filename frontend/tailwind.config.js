@@ -47,7 +47,7 @@ export default {
           700: "bold",
          
         },
-        yeste:{
+        size:{
           400:"normal",
         },
         secondaire:"#181E4B",

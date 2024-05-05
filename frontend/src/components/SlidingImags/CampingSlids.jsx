@@ -18,7 +18,7 @@ function CampingSlids() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [autoplay, setAutoplay] = useState(true); // State for autoplay toggle
+  const [autoplay, setAutoplay] = useState(true);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -26,7 +26,7 @@ function CampingSlids() {
         const nextIndex = (currentIndex + 1) % slides.length;
         setCurrentIndex(nextIndex);
       }
-    }, 5000);
+    }, 2000);
 
     return () => clearTimeout(timeoutId);
   }, [currentIndex, slides.length, autoplay]); 

@@ -1,10 +1,10 @@
-import CampingSlids from './SlidingImags/CampingSlids'
+import CampingSlids from '../components/SlidingImags/CampingSlids'
 
 //Process components
-import ProgressSteps from './steps/BookingSteps';
-import Step1 from './steps/cards';
-import Step2 from './steps/information';
-import Step3 from './steps/Payment';
+import ProgressSteps from '../components/steps/BookingSteps';
+import Step1 from '../components/steps/cards';
+import Step2 from '../components/steps/information';
+import Step3 from '../components/steps/Payment';
 
 const steps = [
     {

@@ -93,7 +93,7 @@ const About = () => {
             <div className="App">
                 <div className="  justify-center flex w-full h-60 lg:h-screen" style={backgroundImageStyle}>
                     <div className=" flex items-center">
-                        <h1  className=" text-white lg:text-8xl text-5xl font-year ">Abous us</h1>
+                        <h1  className=" text-white lg:text-9xl text-5xl font-year ">Abous us</h1>
                     </div>
                 </div>
 
@@ -118,7 +118,7 @@ const About = () => {
                 </div>
                 <div className='w-full flex justify-center items-center  '>
                 <video className="h-[400px] w-full object-cover" src={video_sahara} autoPlay loop muted ></video>
-                    <h3 className='  font-[Yesteryear] absolute   text-white text-8xl '>SAHARA</h3>
+                    <h3 className='  font-[Yesteryear] absolute  text-white text-9xl '>Sahara</h3>
                      
                 </div>
                      
