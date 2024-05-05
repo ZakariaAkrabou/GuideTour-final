@@ -27,13 +27,7 @@ const authSlice = createSlice({
 
 export const { loginSuccess, logout, setError } = authSlice.actions;
 
-// We only want to add the `auth` data when we are making a request to our API server
-export const addAuthToRequest = (request) => async (dispatch, getState) => {
-    try {
-        const token = localStorage.getItem('token') || '';
-        return await request(token)(dispatch, getState);
-    } catch (err) {
-        console.log(`addAuthToRequest Error: ${err}`);
-        throw err;
-    }
-};
+export default authSlice.reducer
+
+export const selectCurrentUser = (state) => state.auth.user;
+export const selectCurrentToken = (state) => state.auth.token;

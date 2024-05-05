@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { BiSolidShow, BiSolidHide } from "react-icons/bi";
 import backgroundRegister from "/register.avif";
 
+
 const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
   const [formData, setFormData] = useState({
     email: "",

@@ -76,7 +76,7 @@ const Hero = () => {
             </div>
             <button 
               onClick={closeClick}
-              className="text-lg bg-blue-400 py-2 px-3 lg:px-8 lg:h-12 rounded-2xl text-white  hover:bg-white hover:text-primary transition-bg hover:border-primary"
+              className="text-lg bg-blue-400 py-2 px-3 lg:px-8 lg:h-12 rounded-2xl text-white bg-primary  hover:bg-white hover:text-primary transition-bg hover:border-primary"
             >
               Submit
             </button>  

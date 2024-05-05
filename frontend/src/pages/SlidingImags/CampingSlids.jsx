@@ -18,7 +18,7 @@ function CampingSlids() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [autoplay, setAutoplay] = useState(true); // State for autoplay toggle
+  const [autoplay, setAutoplay] = useState(true);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
