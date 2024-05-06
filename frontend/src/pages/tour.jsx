@@ -36,7 +36,7 @@ const Tour = () => {
             <div className=" text-white h-screen flex items-center justify-center" style={bgheadertour}>
                 <div className=" max-w-xl">
                     <h3 className=" text-center font-bold mb-8 uppercase">search tour</h3>
-                    <h1 className="  text-8xl font-['Yesteryear'] text-center capitalize">travel white us</h1>
+                    <h1 className="  text-8xl font-['Yesteryear'] text-center capitalize">travel with us</h1>
                 </div>
             </div>
             <div className=" flex justify-center ">

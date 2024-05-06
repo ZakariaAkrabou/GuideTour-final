@@ -107,7 +107,7 @@ const Step2 = ({ nextStep, prevStep }) => {
                                     <img
                                         src={img}
                                         alt=""
-                                        className="w-full max-w-[200px] h-[200px] rounded-lg"
+                                        className="w-full max-w-[200px] h-[250px] rounded-lg"
                                     />
                                     {/* overlay section */}
                                     <div className="absolute left-0 top-[-100%] opacity-0 group-hover:opacity-100 group-hover:top-[0] p-4 w-full h-full bg-black/60 group-hover:backdrop-blur-sm duration-500">
@@ -119,7 +119,7 @@ const Step2 = ({ nextStep, prevStep }) => {
                                                 <Fade cascade damping={0.05} className=''>
                                                     {desc}
                                                 </Fade>
-                                                <div className='py-4'>
+                                                <div className='py-10'>
                                                     <button className="border border-white  w-[80px] h-[40px] text-center rounded-lg bg-white/40 hover:bg-white/20 duration-300" onClick={nextStep}>
                                                         <h1 className='text-center'> selected</h1>
                                                     </button>
