@@ -6,7 +6,8 @@ import Modal from "../Modals/login";
 import { IoPerson } from "react-icons/io5";
 import DropDown from "../DropDown/DropDown";
 
-const Header = ({ handleProfile }) => {
+
+const Header = ({handleProfile, handleGuide}) => {
   const [dropdown, setDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,6 +41,7 @@ const Header = ({ handleProfile }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
 
   return (
     <>
@@ -91,6 +93,7 @@ const Header = ({ handleProfile }) => {
                   Campings
                 </Link>
               </li>
+
               {isLoggedIn && ( 
                 <div className=" right-[150px] absolute flex">
                   <button onClick={handleProfileDrop}>
@@ -105,6 +108,17 @@ const Header = ({ handleProfile }) => {
                 </div>
               )}
             </ul>
+
+              <div className=" right-[150px] absolute flex">
+                <button onClick={handleProfileDrop}>
+                  <IoPerson size={25} />
+                </button>
+                {profileDrop && (
+                  <DropDown handleGuide={handleGuide} handleProfile={handleProfile} closeModal={handleProfileDropClose} />
+                )}
+              </div>
+              </ul>
+
             <div className="flex gap-4 max-lg:hidden">
               {!isLoggedIn && ( // Render Login button only if user is not logged in
                 <button

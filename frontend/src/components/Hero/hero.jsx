@@ -3,6 +3,8 @@ import { RxDividerVertical } from "react-icons/rx";
 import heroImg from '../../assets/hero1.jpg';
 import UserProfile from "../UserProfile/UserProfile";
 import Header from "../Header/header";
+import BecomeGuide from "../BecomeGuide/BecomeGuide";
+import Camping from "../../pages/camping";
 
 
 const Hero = () => {
@@ -10,6 +12,7 @@ const Hero = () => {
   const [destination, setDestination] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [modalProfile, setModalProfile] = useState(false);
+  const [modalGuide, setModalGuide] = useState(false);
 
   const handleClick = () => {
     setShowInput(true);
@@ -23,12 +26,7 @@ const Hero = () => {
     setDestination(e.target.value);
   };
 
-  const handleProfileClose = () => {
-    setModalProfile(false);
-  };
-  const handleProfile = () => {
-    setModalProfile(true);
-  };
+
 
   const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
@@ -87,13 +85,7 @@ const Hero = () => {
             </h1>
           </div>  
         </div>
-        {modalProfile && (
-          <div className="bg-white/ backdrop-filter backdrop-blur-sm h-full fixed top-0 w-full z-50 flex justify-center items-center">
-            <UserProfile handleProfileClose={handleProfileClose} closeModal={() => setModalProfile(false)} />
-          </div>
-        )}
       </div>
-      <Header handleProfile={handleProfile} />    
       </div>
   );
 };

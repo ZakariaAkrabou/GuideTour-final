@@ -93,7 +93,7 @@ const About = () => {
             <div className="App">
                 <div className="  justify-center flex w-full h-60 lg:h-screen" style={backgroundImageStyle}>
                     <div className=" flex items-center">
-                        <h1  className=" text-white lg:text-9xl text-5xl font-year ">Abous us</h1>
+                        <h1  className=" text-white lg:text-9xl text-5xl font-year ">About us</h1>
                     </div>
                 </div>
 
