@@ -8,8 +8,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaAddressCard, FaInfo } from "react-icons/fa";
 
 
-function UserProfile({handleProfileClose,handleProfile, handleGuide}) {
-  console.log("USERPROFILE in DropDown:", handleGuide);
+function UserProfile({handleProfileClose, handleGuide}) {
 
   return (
 
