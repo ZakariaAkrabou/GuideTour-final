@@ -26,20 +26,7 @@ const Hero = () => {
     setDestination(e.target.value);
   };
 
-  const handleProfileClose = () => {
-    setModalProfile(false);
-  };
-  const handleProfile = () => {
-    setModalProfile(true);
-  };
 
-  const handleGuide = () => {
-    setModalGuide(true);
-  };
-
-  const handleGuideClose = () => {
-    setModalGuide(false);
-  };
 
   const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
@@ -98,19 +85,7 @@ const Hero = () => {
             </h1>
           </div>  
         </div>
-        {modalProfile && (
-          <div className="bg-white/ backdrop-filter backdrop-blur-sm h-full fixed top-0 w-full z-50 flex justify-center items-center">
-            <UserProfile handleProfileClose={handleProfileClose} handleGuide={handleGuide} closeModal={() => setModalProfile(false)} />
-          </div>
-        )}
-        {modalGuide && (
-        <div className="backdrop-filter backdrop-blur-sm 
-        h-full fixed top-0 w-full z-50 flex justify-center items-center bottom-0 ">
-        <BecomeGuide handleGuideClose={handleGuideClose} />
-        </div>
-        )}
       </div>
-      <Header handleGuide={handleGuide} handleProfile={handleProfile} /> 
       </div>
   );
 };

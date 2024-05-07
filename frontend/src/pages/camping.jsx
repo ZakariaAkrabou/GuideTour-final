@@ -20,7 +20,7 @@ const steps = [
 
 
 
-const Camping = ({handleProfile}) => {
+const Camping = () => {
 
   
 
