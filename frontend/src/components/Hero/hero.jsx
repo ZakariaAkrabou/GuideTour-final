@@ -3,6 +3,8 @@ import { RxDividerVertical } from "react-icons/rx";
 import heroImg from '../../assets/hero1.jpg';
 import UserProfile from "../UserProfile/UserProfile";
 import Header from "../Header/header";
+import BecomeGuide from "../BecomeGuide/BecomeGuide";
+import Camping from "../../pages/camping";
 
 
 const Hero = () => {
@@ -10,6 +12,7 @@ const Hero = () => {
   const [destination, setDestination] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [modalProfile, setModalProfile] = useState(false);
+  const [modalGuide, setModalGuide] = useState(false);
 
   const handleClick = () => {
     setShowInput(true);
@@ -28,6 +31,14 @@ const Hero = () => {
   };
   const handleProfile = () => {
     setModalProfile(true);
+  };
+
+  const handleGuide = () => {
+    setModalGuide(true);
+  };
+
+  const handleGuideClose = () => {
+    setModalGuide(false);
   };
 
   const handleSelectChange = (e) => {
@@ -89,11 +100,17 @@ const Hero = () => {
         </div>
         {modalProfile && (
           <div className="bg-white/ backdrop-filter backdrop-blur-sm h-full fixed top-0 w-full z-50 flex justify-center items-center">
-            <UserProfile handleProfileClose={handleProfileClose} closeModal={() => setModalProfile(false)} />
+            <UserProfile handleProfileClose={handleProfileClose} handleGuide={handleGuide} closeModal={() => setModalProfile(false)} />
           </div>
         )}
+        {modalGuide && (
+        <div className="backdrop-filter backdrop-blur-sm 
+        h-full fixed top-0 w-full z-50 flex justify-center items-center bottom-0 ">
+        <BecomeGuide handleGuideClose={handleGuideClose} />
+        </div>
+        )}
       </div>
-      <Header handleProfile={handleProfile} />    
+      <Header handleGuide={handleGuide} handleProfile={handleProfile} /> 
       </div>
   );
 };

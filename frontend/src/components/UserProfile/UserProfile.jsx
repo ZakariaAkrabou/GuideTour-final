@@ -8,14 +8,16 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaAddressCard, FaInfo } from "react-icons/fa";
 
 
-function UserProfile({handleProfileClose}) {
+function UserProfile({handleProfileClose,handleProfile, handleGuide}) {
+  console.log("USERPROFILE in DropDown:", handleGuide);
+
   return (
 
-    <div className=' p-2 h-[550px] flex justify-start items-center w-[700px] bg-white shadow-xl rounded-2xl' >
-        <div className=' absolute top-0 right-[280px] text-black/20 m-4'>
+    <div className=' p-2 h-[550px] flex justify-start items-center w-[700px] bg-white shadow-xl rounded-2xl relative' >
+        <div className=' absolute top-0 right-0 m-3'>
 
         <button onClick={handleProfileClose}>
-            <IoCloseSharp className='' size={25}/>
+            <IoCloseSharp className=' text-gray/50' size={30}/>
         </button>
         </div>
     <div className=' justify-center  items-center grid grid-cols-2'>
@@ -42,8 +44,8 @@ function UserProfile({handleProfileClose}) {
             </div>
           </div>
           <div className='flex items-center justify-center mt-4'>
-  <div className='relative'>
-    <button className='bg-gray-300 font-semibold px-6 py-2 rounded-full flex items-center'>
+  <div className='relative' onClick={handleGuide}>
+    <button className='bg-gray/50 text-white font-semibold px-6 py-2 rounded-full flex items-center'onClick={handleProfileClose}>
       <IoPerson size={20} className='mr-2' />
       Become a guide
     </button>
