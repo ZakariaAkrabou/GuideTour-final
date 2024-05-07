@@ -7,7 +7,6 @@ const loginApi = async (formData) => {
     const response = await axios.post("http://localhost:4000/api/auth/login", formData);
     const token = response.data.token;
     localStorage.setItem("token", token);
-    console.log("token is stored",token);
     return { success: true };
   } catch (error) {
     console.error("Error logging in:", error);
