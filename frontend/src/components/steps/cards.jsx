@@ -9,7 +9,7 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 
 import card from '../../assets/agadir.png';
 import campingVideo from '../../assets/campingVideo.mp4';
-import { fetchCampings, fetchCampingsById } from '../Slices/campingSlice';
+import { fetchCampings, fetchCampingsById } from '../../features/Slices/campingSlice';
 
 export default function Cards({ nextStep }) {
     const dispatch = useDispatch();
@@ -31,8 +31,8 @@ export default function Cards({ nextStep }) {
 
     const filteredCampings = campings.filter(camping =>
         camping.location.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (!searchPrice || camping.price.toString().includes(searchPrice)) &&
-        (!searchDate || camping.date.toString().includes(searchDate))
+        (!searchPrice || (camping.price && camping.price.toString() === searchPrice)) &&
+        (!searchDate || (camping.start_date && new Date(camping.start_date).toISOString().split('T')[0] === searchDate))
     );
 
     const sortedCampings = sortByPrice ? [...filteredCampings].sort((a, b) => parseFloat(a.price) - parseFloat(b.price)) : filteredCampings;
@@ -78,13 +78,11 @@ export default function Cards({ nextStep }) {
             <div className="grid grid-cols-2 gap-2">
                 {/* Cards */}
                 {campingsCards.map((camping, index) => (
-                    <div key={index} className='bg-white hover:-translate-y-1 h-max hover:scale-110 rounded-xl hover:shadow-2xl duration-100'>
-                        <div className='p-0.5'>
-                            <img src={card} alt="Card" className='h-[250px] w-full rounded-xl' />
-                            <div className="text-center relative" onClick={() => toggleCampingSelection(camping._id)}>
-
-                                <div className='absolute top-[-250px] opacity-0 hover:opacity-100 p-2 w-full h-[250px] hover:rounded-xl bg-blue-500/55  hover:backdrop-blur-md duration-700 cursor-pointer' onClick={nextStep}>
-                                <div className="flex justify-between font-bold text-white pb-3">
+                    <div key={index} className='relative bg-white hover:-translate-y-1 h-max hover:scale-110 rounded-xl hover:shadow-2xl duration-100'>
+                    <img src={card} alt="Card" className='h-[250px] w-full rounded-xl' />
+                    <div className='absolute bottom-0 z-0 left-0 p-1 w-full bg-primary rounded-b-2xl'>
+                        <div className=' flex flex-col'>
+                        <div className="flex justify-between font-bold text-white pb-">
                                     <div className=' flex items-center' >
                                     <LiaCampgroundSolid size={20} className=''/>
                                     <h1 className=' pl-1'>Camping</h1>
@@ -92,13 +90,22 @@ export default function Cards({ nextStep }) {
                                     <h2 className="capitalize font-semibold">{camping.name}</h2>
                                 </div>
 
-                                <div className="flex justify-between font-bold text-white pb-3">
+                                <div className="flex justify-between font-bold text-white pb-">
                                     <div className=' flex items-center'>
                                     <FaPeopleGroup size={20} className=''/>
                                     <h1 className=' pl-1'>Memebers</h1>
                                     </div>
                                     <h2 className="capitalize font-semibold">{camping.group_member}</h2>
                                 </div>
+                        </div>
+                    </div>
+                    <div className='p-0.5 relative'>
+                            <div className="text-center relative" onClick={() => toggleCampingSelection(camping._id)}>
+
+                                <div className='absolute -left-0.5 top-[-252px] opacity-0 hover:opacity-100 p-2 w-[201px] h-[254px] hover:rounded-xl bg-primary/55  hover:backdrop-blur-md duration-700 cursor-pointer' onClick={nextStep}>
+                               
+
+                                
 
                                 <div className="flex justify-between font-bold text-white pb-3">
                                     <div className=' flex items-center'>
@@ -133,14 +140,14 @@ export default function Cards({ nextStep }) {
                     {filteredCampings.length > itemsPerPage && (
                         <>
                             <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-                                <IoIosArrowBack className=' text-blue-500' size={25} />
+                                <IoIosArrowBack className=' text-primary' size={25} />
                             </button>
                             <div className='px-2 flex gap-4'>
-                                <div className='bg-blue-300 px-[9px] rounded-full'>{currentPage}</div>
+                                <div className='bg-primary px-[9px] rounded-full'>{currentPage}</div>
                                 {totalPages}
                             </div>
                             <button onClick={goToNextPage} disabled={indexOfLastItem === filteredCampings.length}>
-                                <IoIosArrowForward className=' text-blue-500' size={25} />
+                                <IoIosArrowForward className=' text-primary' size={25} />
                             </button>
                         </>
                     )}
@@ -161,14 +168,14 @@ export default function Cards({ nextStep }) {
                         <h2 className="uppercase font-bold -mb-3">Filter by price</h2>
                         <div className="relative  items-center flex">
                             <input onChange={(e) => setSearchPrice(e.target.value)} value={searchPrice} type="text" placeholder='Enter price range (10-300 $)' className="w-full h-10 rounded-2xl text-center border-none bg-white pr-12" />
-                            <button onClick={handleSortByPrice} className="absolute h-full w-12 left-0 bg-blue-400 text-white rounded-l-md">
+                            <button onClick={handleSortByPrice} className="absolute h-full w-12 left-0 bg-primary text-white rounded-l-md">
                                 Sort {sortByPrice ? '↓' : ''}
                             </button>
                         </div>
                         <h4 className="text-neutral-600 capitalize">ex: price 12dh-3600dh</h4>
                     </div>
                     <div className="text-center">
-                        <button className=" bg-blue-500 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-2  text-white text-lg rounded-md mt-2">
+                        <button className=" bg-primary transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-2  text-white text-lg rounded-md mt-2">
                             Book Now
                         </button>
                     </div>

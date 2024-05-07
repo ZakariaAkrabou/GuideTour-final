@@ -6,28 +6,34 @@ import Modal from "../Modals/login";
 import { IoPerson } from "react-icons/io5";
 import DropDown from "../DropDown/DropDown";
 
-const Header = ({handleProfile, handleProfileClose}) => {
+const Header = ({ handleProfile }) => {
   const [dropdown, setDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [profileDrop, setProfileDrop] = useState(false);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track user login status
 
   const showDropdown = () => {
     setDropdown(!dropdown);
   };
 
   const handleProfileDrop = () => {
-    setProfileDrop(prevProfileDrop => !prevProfileDrop);
+    setProfileDrop((prevProfileDrop) => !prevProfileDrop);
   };
   const handleProfileDropClose = () => {
-    setProfileDrop(false)
-  }
+    setProfileDrop(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
+
+ 
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
 
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -37,16 +43,14 @@ const Header = ({handleProfile, handleProfileClose}) => {
 
   return (
     <>
-  
       <nav
         className={`${
           isScrolled
             ? "backdrop-blur-md text-black"
-            : "bg-transparent text-white " 
+            : "bg-transparent text-white "
         } fixed top-0 left-0 w-full h-20 flex justify-between items-center z-40`}
       >
-        <div className="container mx-auto lg:px-3" >
-         
+        <div className="container mx-auto lg:px-3">
           <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center">
             <img
               src={isScrolled ? "/blacklogo.png" : "/img_ellipse_621.png"}
@@ -87,22 +91,29 @@ const Header = ({handleProfile, handleProfileClose}) => {
                   Campings
                 </Link>
               </li>
-              <div className=" right-[150px] absolute flex">
-                <button onClick={handleProfileDrop}>
-                  <IoPerson size={25} />
-                </button>
-                {profileDrop && (
-                  <DropDown handleProfile={handleProfile} closeModal={handleProfileDropClose} />
-                )}
-              </div>
-              </ul>
+              {isLoggedIn && ( 
+                <div className=" right-[150px] absolute flex">
+                  <button onClick={handleProfileDrop}>
+                    <IoPerson size={25} />
+                  </button>
+                  {profileDrop && (
+                    <DropDown
+                      handleProfile={handleProfile}
+                      closeModal={handleProfileDropClose}
+                    />
+                  )}
+                </div>
+              )}
+            </ul>
             <div className="flex gap-4 max-lg:hidden">
-              <button
-                onClick={() => setShowModal(true)}
-                className="bg-primary rounded-2xl h-12 px-6 text-white hover:bg-white hover:text-primary transition-bg hover:border-primary"
-              >
-                Login
-              </button>
+              {!isLoggedIn && ( // Render Login button only if user is not logged in
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="bg-primary rounded-2xl h-12 px-6 text-white hover:bg-white hover:text-primary transition-bg hover:border-primary"
+                >
+                  Login
+                </button>
+              )}
             </div>
             <div
               onClick={showDropdown}
@@ -111,7 +122,7 @@ const Header = ({handleProfile, handleProfileClose}) => {
               {dropdown ? <MdClose size={30} /> : <HiMenuAlt1 size={30} />}
             </div>
           </div>
-         
+
           {dropdown && (
             <div className="lg:hidden w-full p-4 fixed top-20 backdrop-filter backdrop-blur-md transition-all">
               <div className="w-full flex flex-col items-baseline gap-4">
@@ -153,7 +164,6 @@ const Header = ({handleProfile, handleProfileClose}) => {
             </div>
           )}
         </div>
-        
       </nav>
       {showModal && <Modal setShowModal={setShowModal} />}
     </>

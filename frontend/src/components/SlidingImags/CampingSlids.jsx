@@ -26,7 +26,7 @@ function CampingSlids() {
         const nextIndex = (currentIndex + 1) % slides.length;
         setCurrentIndex(nextIndex);
       }
-    }, 5000);
+    }, 2000);
 
     return () => clearTimeout(timeoutId);
   }, [currentIndex, slides.length, autoplay]); 

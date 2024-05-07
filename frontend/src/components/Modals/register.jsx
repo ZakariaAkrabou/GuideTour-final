@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { BiSolidShow, BiSolidHide } from "react-icons/bi";
 import backgroundRegister from "/register.avif";
-
+import { useNavigate } from 'react-router-dom'; 
+import { IoCheckmarkDoneCircle } from 'react-icons/io5';
+import registerUser from '../../api/registerApi';
 
 const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
-  const [formData, setFormData] = useState({
+
+  const navigate = useNavigate();
+  const initialFormData = {
     email: "",
     password: "",
     firstName: "",
@@ -13,9 +17,11 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
     age: "",
     phone: "",
     country: "",
-  });
+  };
   const [showPassword, setShowPassword] = useState(false);
-  const [error] = useState("");
+  const [error] = useState(""); 
+  const [formData, setFormData] = useState(initialFormData);
+  const [registrationStatus, setRegistrationStatus] = useState(null);
   const modalRef = useRef(null);
 
   const handleChange = (e) => {
@@ -29,12 +35,18 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Registering with data:", formData);
-    setShowRegisterModal(false);
-    setShowModal(false);
+    setFormData(initialFormData);
+    const result = await registerUser(formData);
+    if (result.success) {
+      setRegistrationStatus('success');
+      navigate('/home');
+    } else {
+      setRegistrationStatus('error');
+    }
   };
+  
 
   const handleClickOutside = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -43,27 +55,24 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
   };
 
   useEffect(() => {
-   
     document.addEventListener("mousedown", handleClickOutside);
-
-   
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  },);
+  }, []);
 
   return (
     <>
       <div className="fixed inset-0 z-50 overflow-x-hidden overflow-y-auto outline-none focus:outline-none flex justify-center items-center">
         <div className="relative flex flex-col bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0 " ref={modalRef}>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit} 
             className="flex flex-col justify-center items-center p-4"
           >
             <span className="text-2xl font-inter font-semibold text-primary">
               Create Your New Account
             </span>
-    <br></br>
+            <br />
             <div className="flex gap-2 w-full">
               <div className="flex flex-col w-1/2">
                 <label className="text-3x" htmlFor="firstName">
@@ -74,7 +83,7 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  className=" w-full p-1 border border-gray-400 rounded-md placeholder-font-light"
+                  className="w-full p-1 border border-gray-400 rounded-md placeholder-font-light"
                 />
               </div>
               <div className="flex flex-col w-1/2">
@@ -86,7 +95,7 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className=" w-full p-1 border border-gray-400 rounded-md placeholder-font-light"
+                  className="w-full p-1 border border-gray-400 rounded-md placeholder-font-light"
                 />
               </div>
             </div>
@@ -95,7 +104,6 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
               <label className="text-3x" htmlFor="email">
                 Email
               </label>
-
               <input
                 type="email"
                 name="email"
@@ -107,6 +115,7 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
               />
             </div>
 
+            {/* Additional input fields */}
             <div className="flex gap-2 w-full">
               <div className="flex flex-col w-1/2">
                 <label className="text-3x" htmlFor="address">
@@ -117,7 +126,7 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
-                  className=" w-full p-1 border border-gray-400 rounded-md placeholder-font-light"
+                  className="w-full p-1 border border-gray-400 rounded-md placeholder-font-light"
                 />
               </div>
               <div className="flex flex-col w-1/2">
@@ -129,7 +138,7 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
                   name="age"
                   value={formData.age}
                   onChange={handleChange}
-                  className=" w-full p-1 border border-gray-400 rounded-md placeholder-font-light"
+                  className="w-full p-1 border border-gray-400 rounded-md placeholder-font-light"
                 />
               </div>
             </div>
@@ -143,7 +152,8 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className=" w-full p-1 border border-gray-400 rounded-md placeholder-font-light"/>
+                  className="w-full p-1 border border-gray-400 rounded-md placeholder-font-light"
+                />
               </div>
               <div className="flex flex-col w-1/2">
                 <label className="text-3x" htmlFor="country">
@@ -154,10 +164,11 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  className=" w-full p-1 border border-gray-400 rounded-md placeholder-font-light"
+                  className="w-full p-1 border border-gray-400 rounded-md placeholder-font-light"
                 />
               </div>
             </div>
+
             <div className="flex flex-col gap-2 w-full relative">
               <label className="text-3x" htmlFor="password">
                 Password
@@ -188,7 +199,18 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
               <button className="w-[300px] bg-primary text-white font-inter p-2 rounded-lg mb-4 hover:bg-black hover:text-white hover:font-inter hover:border-transparent">
                 Register
               </button>
-              <div className=" flex items-center justify-center">
+              {registrationStatus === 'success' && (
+                            <div className="flex items-center justify-center text-green-600">
+                                <IoCheckmarkDoneCircle className="mr-2" />
+                                <span>Registration successful!</span>
+                            </div>
+                        )}
+                        {registrationStatus === 'error' && (
+                            <div className="flex items-center text-red-600">
+                                <span>Error while registering user. Please try again.</span>
+                            </div>
+                        )}
+              <div className="flex items-center justify-center">
                 <span className="mr-2">Already have an account?</span>
                 <button
                   className="text-blue-500 hover:underline hover:text-black"
