@@ -1,11 +1,10 @@
-import React from 'react'
 import background2 from '../../assets/camping1.jpg'
-
 import { IoPerson, IoCloseSharp } from "react-icons/io5";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaAddressCard, FaInfo } from "react-icons/fa";
+
 
 
 function UserProfile({handleProfileClose, handleGuide}) {
@@ -59,17 +58,17 @@ function UserProfile({handleProfileClose, handleGuide}) {
             </div>
             <div className='gap-4 flex flex-col items-center'>
                <div className='w-full flex'>
-                <input type="text" placeholder='Firstname' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" placeholder='Firstname'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < IoPerson size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Lastname' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" placeholder='Lastname'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < IoPerson size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Email' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" placeholder='Email'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < MdAlternateEmail size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
@@ -84,7 +83,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Phone' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" placeholder='Phone'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < BsFillTelephoneFill size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
