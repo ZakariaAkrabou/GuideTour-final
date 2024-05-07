@@ -1,15 +1,18 @@
-import React from 'react'
 import background2 from '../../assets/camping1.jpg'
-
 import { IoPerson, IoCloseSharp } from "react-icons/io5";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaAddressCard, FaInfo } from "react-icons/fa";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchUser, selectUser } from '../../features/Slices/userSlices/UserSlice';
 
 
+
+
+==
 function UserProfile({handleProfileClose,handleProfile, handleGuide}) {
-  console.log("USERPROFILE in DropDown:", handleGuide);
 
   return (
 
@@ -60,32 +63,32 @@ function UserProfile({handleProfileClose,handleProfile, handleGuide}) {
             </div>
             <div className='gap-4 flex flex-col items-center'>
                <div className='w-full flex'>
-                <input type="text" placeholder='Firstname' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" placeholder='Firstname' value={user.firstname} className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < IoPerson size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Lastname' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" placeholder='Lastname' value={user.lastname} className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < IoPerson size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Email' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" placeholder='Email' value={user.email} className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < MdAlternateEmail size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Password' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" placeholder='Password' value={user.password} className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < RiLockPasswordFill size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Address' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" placeholder='Address' value={user.address} className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < FaAddressCard size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Phone' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" placeholder='Phone' value={user.phone} className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < BsFillTelephoneFill size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
