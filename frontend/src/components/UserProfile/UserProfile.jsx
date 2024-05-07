@@ -9,12 +9,13 @@ import { FaAddressCard, FaInfo } from "react-icons/fa";
 
 function UserProfile({handleProfileClose, handleGuide}) {
 
+  
   return (
 
     <div className=' p-2 h-[550px] flex justify-start items-center w-[700px] bg-white shadow-xl rounded-2xl relative' >
         <div className=' absolute top-0 right-0 m-3'>
 
-        <button onClick={handleProfileClose}>
+        <button onClick={handleProfileClose}> 
             <IoCloseSharp className=' text-gray/50' size={30}/>
         </button>
         </div>
@@ -43,7 +44,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
           </div>
           <div className='flex items-center justify-center mt-4'>
   <div className='relative' onClick={handleGuide}>
-    <button className='bg-gray/50 text-white font-semibold px-6 py-2 rounded-full flex items-center'onClick={handleProfileClose}>
+    <button className='bg-primary hover:bg-black hover:text-white transition-bg hover:border-primary text-white font-semibold px-6 py-2 rounded-full flex items-center'onClick={handleProfileClose}>
       <IoPerson size={20} className='mr-2' />
       Become a guide
     </button>
@@ -87,7 +88,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
                 < BsFillTelephoneFill size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
-                <button className=' w-36 p-2 font-semibold rounded-full bg-gray-200'>Save</button>
+                <button className=' text-white w-36 p-2 font-semibold rounded-full bg-gray-200 bg-primary hover:bg-black hover:text-white transition-bg hover:border-primary'>Save</button>
                 
             </div>
             </div> 

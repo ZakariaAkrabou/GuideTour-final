@@ -1,19 +1,12 @@
+// userApi.js
 import axios from 'axios';
+import { setUserData } from '../features/Slices/userSlices/UserSlice';
 
-export const fetchUserProfile = axios.create({
-  baseURL: 'http://localhost:4000/api/users/user-profile',
-});
-
-fetchUserProfile.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
+export const fetchUserData = () => async (dispatch) => {
+  try {
+    const response = await axios.get('http://localhost:4000/api/users/user-profile');
+    dispatch(setUserData(response.data));
+  } catch (error) {
+    console.error('Error fetching user data:', error);
   }
-);
-
+};

@@ -1,7 +1,6 @@
-import React from 'react'
 import { IoMdSettings, IoMdLogOut } from "react-icons/io";
 
-function DropDown({handleProfile, handleGuide}) {
+function DropDown({handleProfile}) {
   console.log("handleProfile in DropDown:", handleProfile);
   return (
     <div className=' flex flex-col  absolute rounded-lg bg-white opacity-70 w-36 top-10 -left-[11px] h-20 justify-center p-3'>
