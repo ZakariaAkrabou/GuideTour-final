@@ -37,13 +37,6 @@ const Header = ({ handleProfile }) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const handleLogout = () => {
-  //     localStorage.removeItem("token");
-  //     setIsLoggedIn(false);
-  //   };
-  // })
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
