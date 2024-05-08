@@ -4,10 +4,21 @@ import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaAddressCard, FaInfo } from "react-icons/fa";
+import { fetchProfile } from '../../features/Slices/userProfileSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 
 
 
 function UserProfile({handleProfileClose, handleGuide}) {
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(fetchProfile());
+  }, [dispatch]);
+  
+  const profile = useSelector((state) => state.profile);
+  // console.log("pro",profile);
 
   return (
 
@@ -33,9 +44,9 @@ function UserProfile({handleProfileClose, handleGuide}) {
               <div className=" ">
                 <div className=' flex flex-col items-start gap-1'>
                     <h1 className=' font-bold'>Country</h1>
-                    <input type="text" disabled className=' w-full rounded-2xl h-12 bg-transparent border-2 border-black' />
+                    <input type="text" value={profile.country} disabled className=' w-full rounded-2xl h-12 font-semibold bg-transparent border-2 border-black' />
                     <h1 className=' font-bold'>Role</h1>
-                    <input type="text" disabled className=' w-full rounded-2xl h-12 bg-transparent border-2 border-black' />
+                    <input type="text" value={profile.role} disabled className=' w-full rounded-2xl h-12 font-semibold bg-transparent border-2 border-black' />
                 </div>
               </div>
      
@@ -58,17 +69,17 @@ function UserProfile({handleProfileClose, handleGuide}) {
             </div>
             <div className='gap-4 flex flex-col items-center'>
                <div className='w-full flex'>
-                <input type="text" placeholder='Firstname'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" value={profile.firstName} placeholder='Firstname'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < IoPerson size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Lastname'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" value={profile.lastName} placeholder='Lastname'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < IoPerson size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Email'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" value={profile.email} placeholder='Email'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < MdAlternateEmail size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
@@ -78,12 +89,12 @@ function UserProfile({handleProfileClose, handleGuide}) {
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Address' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" value={profile.address} placeholder='Address' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < FaAddressCard size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
                <div className='w-full flex'>
-                <input type="text" placeholder='Phone'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
+                <input type="text" value={profile.country} placeholder='Phone'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
                 < BsFillTelephoneFill size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
