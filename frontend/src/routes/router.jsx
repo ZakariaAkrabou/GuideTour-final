@@ -6,10 +6,12 @@ import Camping from "../pages/camping";
 // import Login from "../pages/login";
 import Register from "../pages/register";
 import Landscapes from "../pages/landscapes";
+import { AuthProvider } from "../contexts/AuthContext";
 
 
 const Router = () => {
   return (
+  <AuthProvider>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
@@ -20,6 +22,7 @@ const Router = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/landscapes" element={<Landscapes/>}/>
     </Routes>
+  </AuthProvider>
   );
 };
 

@@ -1,12 +1,15 @@
-// userApi.js
 import axios from 'axios';
-import { setUserData } from '../features/Slices/userSlices/UserSlice';
 
-export const fetchUserData = () => async (dispatch) => {
-  try {
-    const response = await axios.get('http://localhost:4000/api/users/user-profile');
-    dispatch(setUserData(response.data));
-  } catch (error) {
-    console.error('Error fetching user data:', error);
-  }
+const BASE_URL = 'http://localhost:4000/api/users/user-profile';
+
+const profileApi = {
+  getUserProfile: async (token) => {
+    return axios.get(`${BASE_URL}/user/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(response => response.data);
+  },
 };
+
+export default profileApi;

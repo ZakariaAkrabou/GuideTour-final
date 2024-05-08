@@ -12,6 +12,7 @@ const Header = ({ handleProfile }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [profileDrop, setProfileDrop] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
 
   const showDropdown = () => {
     setDropdown(!dropdown);
@@ -29,17 +30,30 @@ const Header = ({ handleProfile }) => {
       setIsScrolled(window.scrollY > 0);
     };
 
- 
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // useEffect(() => {
+  //   const handleLogout = () => {
+  //     localStorage.removeItem("token");
+  //     setIsLoggedIn(false);
+  //   };
+  // })
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  });
+  
+
 
   return (
     <>
@@ -92,7 +106,7 @@ const Header = ({ handleProfile }) => {
                 </Link>
               </li>
               {isLoggedIn && ( 
-                <div className=" right-[150px] absolute flex">
+                <div className=" right-[80px] absolute flex" >
                   <button onClick={handleProfileDrop}>
                     <IoPerson size={25} />
                   </button>

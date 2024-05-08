@@ -13,13 +13,12 @@ const initialState = {
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async (token) => {
 
-  // Axios request with authorization header
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  console.log(token);
+  console.log("Token",token);
 
   const response = await axios.get('http://localhost:4000/api/admin/allUsers', config);
   return response.data;

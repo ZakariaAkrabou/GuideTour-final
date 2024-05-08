@@ -1,10 +1,10 @@
 import { createContext, useState } from 'react';
-import PropTypes from 'prop-types';
 
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
+  console.log("TTTTT",token);
 
   const login = (newToken) => {
     setToken(newToken);
@@ -23,8 +23,5 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-AuthProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export { AuthContext, AuthProvider };
