@@ -2,6 +2,7 @@
   import Hero from "../components/Hero/hero";
   import About from "../components/about/aboutSection";
   import Component from "../components/review/testmonial"
+  import SwipperHome from '../components/swipper/swipper'; 
   import Aos from 'aos';
   import 'aos/dist/aos.css';
 
@@ -92,7 +93,7 @@
           ))}
         </div>
         {/* end Packages */}
-      
+        <SwipperHome />
       <Component />
       </>
     );
