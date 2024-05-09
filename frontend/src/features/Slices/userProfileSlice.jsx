@@ -44,6 +44,27 @@ console.log("id",userID);
   }
 });
 
+export const switchProfile = createAsyncThunk('users/switchProfile', async (formData, thunkAPI) => {
+  const token = localStorage.getItem('token') || null;
+  const userID = thunkAPI.getState().profile._id;
+console.log("id",userID);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await axios.put(`http://localhost:4000/api/users/switch-profile/${userID}`, formData, config);
+    console.log("data",response);
+
+    return response.data;
+  } catch (error) {
+    console.error('Error switchProfile user:', error);
+    throw error;
+  }
+});
+
 
 const UserProfileSlice = createSlice({
   name: 'users',
