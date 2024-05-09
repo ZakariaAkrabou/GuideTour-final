@@ -23,25 +23,26 @@ export const fetchProfile = createAsyncThunk('users/fetchProfile', async ()  => 
   return response.data
 })
 
-// export const updateProfile = createAsyncThunk('users/updateProfile', async (formData) => {
-//   const token = localStorage.getItem('token') || null;
+export const updateProfile = createAsyncThunk('users/updateProfile', async (formData, thunkAPI) => {
+  const token = localStorage.getItem('token') || null;
+  const userID = thunkAPI.getState().profile._id;
+console.log("id",userID);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-//   const config = {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   };
+  try {
+    const response = await axios.put(`http://localhost:4000/api/users/update/${userID}`, formData, config);
+    console.log("data",response);
 
-//   try {
-//     const response = await axios.put('http://localhost:4000/api/users/update/', formData, config);
-//     console.log("data",response);
-
-//     return response.data;
-//   } catch (error) {
-//     console.error('Error updating user:', error);
-//     throw error;
-//   }
-// });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+});
 
 
 const UserProfileSlice = createSlice({

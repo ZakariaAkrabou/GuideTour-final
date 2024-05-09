@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './campingSlice';
+import campingSlice from './campingSlice';
 import userProfile from './userProfileSlice'
 
 const store = configureStore({
-  reducer: rootReducer,
+  // reducer: campingSlice,
   reducer: userProfile,
 });
 
