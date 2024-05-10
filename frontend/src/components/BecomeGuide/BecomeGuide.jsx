@@ -7,6 +7,7 @@ import { switchProfile } from '../../features/Slices/userProfileSlice';
 import { useDispatch } from 'react-redux';
 
 function BecomeGuide({ handleGuideClose }) {
+  const [isSwitched, setIsSwitched] = useState(false);
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -31,6 +32,7 @@ function BecomeGuide({ handleGuideClose }) {
 
     try {
       dispatch(switchProfile(data));
+      setIsSwitched(true);
     } catch (error) {
       console.error('Error submitting form:', error);
     }

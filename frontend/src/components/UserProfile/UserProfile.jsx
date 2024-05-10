@@ -4,6 +4,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaAddressCard, FaInfo } from "react-icons/fa";
+import { AiOutlineDashboard } from "react-icons/ai";
 import { fetchProfile, updateProfile } from '../../features/Slices/userProfileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
@@ -21,12 +22,12 @@ function UserProfile({handleProfileClose, handleGuide}) {
 
   useEffect(() => {
     setFormData({
-      firstName: profile.firstName,
-      lastName: profile.lastName,
-      email: profile.email,
+      firstName: profile.firstName || profile.data?.user?.firstName ,
+      lastName: profile.lastName || profile.data?.user?.lastName,
+      email: profile.email || profile.data?.user?.email,
       password: '',
-      address: profile.address,
-      phone: profile.phone,
+      address: profile.address || profile.data?.user?.address,
+      phone: profile.phone || profile.data?.user?.phone
     });
   }, [profile]);
 
@@ -72,24 +73,30 @@ function UserProfile({handleProfileClose, handleGuide}) {
               <div className=" ">
                 <div className=' flex flex-col items-start gap-1'>
                     <h1 className=' font-bold'>Country</h1>
-                    <input type="text" value={profile.country} disabled className=' w-full rounded-2xl h-12 font-semibold bg-transparent border-2 border-black' />
+                    <input type="text" value={profile.country || profile.data?.user?.country} disabled className=' w-full rounded-2xl h-12 font-semibold bg-transparent border-2 border-black' />
                     <h1 className=' font-bold'>Role</h1>
-                    <input type="text" value={profile.role} disabled className=' w-full rounded-2xl h-12 font-semibold bg-transparent border-2 border-black' />
+                    <input type="text" value={profile.role || profile.data?.user?.role} disabled className=' w-full rounded-2xl h-12 font-semibold bg-transparent border-2 border-black' />
                 </div>
               </div>
      
             </div>
           </div>
           <div className='flex items-center justify-center mt-4'>
-  <div className='relative' onClick={handleGuide}>
-    <button className='bg-gray/50 text-white font-semibold px-6 py-2 rounded-full flex items-center'onClick={handleProfileClose}>
-      <IoPerson size={20} className='mr-2' />
-      Become a guide
-    </button>
-  </div>
-</div>
-        </div>
+        <div className='relative' onClick={handleGuide}>
 
+          {profile.role === 'user' ? (
+            <button className='bg-gray/50 text-white font-semibold px-6 py-2 rounded-full flex items-center'onClick={handleProfileClose}>
+            <IoPerson size={20} className='mr-2' />
+            Become a guide
+          </button>) : (
+          <button className='bg-primary text-white font-semibold px-6 py-2 rounded-full flex items-center'>
+            <AiOutlineDashboard size={20} className='mr-2' />
+            Dashboard
+          </button>
+        )}
+        </div>
+      </div>
+        </div>
         <div className=''>
           <form onSubmit={handleSubmit}>
             <div className='flex items-center pb-3 gap-1'>

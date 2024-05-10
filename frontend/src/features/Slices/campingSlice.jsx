@@ -7,7 +7,7 @@ const initialState = {
     error: '',
 }
 
-export const fetchCampings = createAsyncThunk('users/fetchCampings', async ()  => {
+export const fetchCampings = createAsyncThunk('campings/fetchCampings', async ()  => {
     const token = localStorage.getItem('token') || null;
 
     const config = {
@@ -37,7 +37,7 @@ export const fetchCampingsById = createAsyncThunk('users/fetchCampingsById',asyn
   )
 
 const campingSlice = createSlice({
-    name: 'users',
+    name: 'campings',
     initialState,
     extraReducers: (builder) => {
         builder.addCase(fetchCampings.pending, (state) => {

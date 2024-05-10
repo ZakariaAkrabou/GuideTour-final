@@ -31,6 +31,7 @@ exports.getUserProfile = async function(req, res) {
           role: user.role,
         },
         guide: {
+          id: guideInfo.id,
           bio: guideInfo.bio,
           specialization: guideInfo.specialization,
           profile_picture: guideInfo.profile_picture,
