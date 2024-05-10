@@ -29,7 +29,7 @@ exports.createTour = async (req, res) => {
 };
 
 
-exports.getAllTours = async (req, res) => {
+exports.getGuideTours = async (req, res) => {
     try {
         if (req.user.role !== 'guide') {
             return res.status(403).json({ error: 'You must be a guide to retrieve tours' });
@@ -48,6 +48,20 @@ exports.getAllTours = async (req, res) => {
         res.status(500).json(error);
     }
 };
+
+exports.getAllTours = async(req,res) =>{
+    try {
+        const tours = await Tour.find()
+        if (tours.length === 0) {
+            return res.status(404).json("No tours found.");
+        }
+        
+        console.log("All Tours", tours);
+        return res.status(201).json(tours)
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
 
 
 

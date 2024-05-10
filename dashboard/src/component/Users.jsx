@@ -24,7 +24,6 @@ export default function Users() {
     }
   }, [dispatch, token, modalDelete]);
 
-  // Filter users based on search term
   const filteredUsers = users.filter(user =>
     user.firstName.toLowerCase().includes(searchTerm.toLowerCase())
   );

@@ -8,14 +8,30 @@ const initialState = {
 }
 
 export const fetchCampings = createAsyncThunk('users/fetchCampings', async ()  => {
+    const token = localStorage.getItem('token') || null;
 
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      console.log(token);
 
-    const response = await axios.get('http://localhost:4000/api/camping/show')
+    const response = await axios.get('http://localhost:4000/api/camping/show',config)
     return response.data;
 })
 
 export const fetchCampingsById = createAsyncThunk('users/fetchCampingsById',async (campingId) => {
-      const response = await axios.get(`http://localhost:4000/api/camping/get/${campingId}`);
+
+    const token = localStorage.getItem('token') || null;
+
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const response = await axios.get(`http://localhost:4000/api/camping/get/${campingId}`,config);
       return response.data;
     }
   )

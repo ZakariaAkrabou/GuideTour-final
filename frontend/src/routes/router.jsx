@@ -6,14 +6,15 @@ import Camping from "../pages/camping";
 // import Login from "../pages/login";
 import Register from "../pages/register";
 import Landscapes from "../pages/landscapes";
+import { AuthProvider } from "../contexts/AuthContext";
 import Dashboard from "../pages/dashboard";
 import DashboardGuides from "../components/dashboardGuides/dashboardGuides";
 import Tours from "../components/dashboardGuides/Tours";
 
 
-
 const Router = () => {
   return (
+  <AuthProvider>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
@@ -34,6 +35,7 @@ const Router = () => {
 
 
     </Routes>
+  </AuthProvider>
   );
 };
 
