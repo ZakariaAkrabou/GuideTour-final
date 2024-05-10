@@ -64,11 +64,13 @@ function UserProfile({handleProfileClose, handleGuide}) {
 
             <img src={background2} alt="" className="w-full h-20 lg:h-[150px] rounded-t-2xl" />
 
-            <div className="relative flex justify-center -top-12">
-            {profile.data?.guide && (
-    <img src={`http://localhost:4000/${profile.data.guide.profile_picture}`} alt="" className="rounded-full h-24 w-24" />
-  )}            </div>
-
+          <div className="relative flex justify-center -top-12">
+            {profile.data?.guide ? (
+                <img src={`http://localhost:4000/${profile.data.guide.profile_picture}`} alt="" className="rounded-full h-24 w-24" />
+              ) : (
+                <img src={background2} alt="" className="rounded-full h-24 w-24" />
+              )} 
+          </div>
             <div className='relative -top-12'>
               <h1 className="lg:text-xl font-semibold">{profile.firstName || profile.data?.user?.firstName}</h1>
               <div className=" ">
