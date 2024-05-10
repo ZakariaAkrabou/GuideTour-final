@@ -3,7 +3,7 @@ import rootReducer from './campingSlice';
 import userProfile from './userProfileSlice'
 
 const store = configureStore({
-  reducer: rootReducer,
+  // reducer: rootReducer,
   reducer: userProfile,
 });
 

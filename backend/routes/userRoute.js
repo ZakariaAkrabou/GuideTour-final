@@ -18,6 +18,6 @@ router.put("/switch-profile/:id",authenticateUser,multerMiddleware.fields([
       { name: "certificate", maxCount: 1 },
     ]),UserController.switchProfile
   );
-router.put("/update/:id", authenticateUser, isGuide, UserController.updateUser);
+router.put("/update/:id", authenticateUser,/* isGuide,*/ UserController.updateUser);
 
 module.exports = router;

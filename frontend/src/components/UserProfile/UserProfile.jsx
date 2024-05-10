@@ -4,9 +4,9 @@ import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaAddressCard, FaInfo } from "react-icons/fa";
-import { fetchProfile } from '../../features/Slices/userProfileSlice';
+import { fetchProfile, updateProfile } from '../../features/Slices/userProfileSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 
@@ -18,7 +18,35 @@ function UserProfile({handleProfileClose, handleGuide}) {
   }, [dispatch]);
   
   const profile = useSelector((state) => state.profile);
-  // console.log("pro",profile);
+
+  useEffect(() => {
+    setFormData({
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      email: profile.email,
+      password: '',
+      address: profile.address,
+      phone: profile.phone,
+    });
+  }, [profile]);
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    address: '',
+    phone: '',
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateProfile(formData));
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   return (
 
@@ -63,45 +91,40 @@ function UserProfile({handleProfileClose, handleGuide}) {
         </div>
 
         <div className=''>
-            <div className=' flex items-center pb-3 gap-1'>
-            <FaInfo className=' text-blue-500' size={30}/>
-            <h1 className=' font-semibold text-3xl pb- text-nowrap text-blue-400'>Personal Informations</h1>
+          <form onSubmit={handleSubmit}>
+            <div className='flex items-center pb-3 gap-1'>
+              <FaInfo className='text-blue-500' size={30} />
+              <h1 className='font-semibold text-3xl pb- text-nowrap text-blue-400'>Personal Informations</h1>
             </div>
             <div className='gap-4 flex flex-col items-center'>
-               <div className='w-full flex'>
-                <input type="text" value={profile.firstName} placeholder='Firstname'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
-                < IoPerson size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
-               </div>
-                
-               <div className='w-full flex'>
-                <input type="text" value={profile.lastName} placeholder='Lastname'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
-                < IoPerson size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
-               </div>
-                
-               <div className='w-full flex'>
-                <input type="text" value={profile.email} placeholder='Email'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
-                < MdAlternateEmail size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
-               </div>
-                
-               <div className='w-full flex'>
-                <input type="text" placeholder='Password' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
-                < RiLockPasswordFill size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
-               </div>
-                
-               <div className='w-full flex'>
-                <input type="text" value={profile.address} placeholder='Address' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
-                < FaAddressCard size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
-               </div>
-                
-               <div className='w-full flex'>
-                <input type="text" value={profile.country} placeholder='Phone'  className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg'/>
-                < BsFillTelephoneFill size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
-               </div>
-                
-                <button className=' w-36 p-2 font-semibold rounded-full bg-gray-200'>Save</button>
-                
+              <div className='w-full flex'>
+                <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder='Firstname' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg' />
+                <IoPerson size={20} className='absolute translate-y-3 ml-2 text-gray-400' />
+              </div>
+              <div className='w-full flex'>
+                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder='Lastname' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg' />
+                <IoPerson size={20} className='absolute translate-y-3 ml-2 text-gray-400' />
+              </div>
+              <div className='w-full flex'>
+                <input type="text" name="email" value={formData.email} onChange={handleChange} placeholder='Email' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg' />
+                <MdAlternateEmail size={20} className='absolute translate-y-3 ml-2 text-gray-400' />
+              </div>
+              <div className='w-full flex'>
+                <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder='Password' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg' />
+                <RiLockPasswordFill size={20} className='absolute translate-y-3 ml-2 text-gray-400' />
+              </div>
+              <div className='w-full flex'>
+                <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder='Address' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg' />
+                <FaAddressCard size={20} className='absolute translate-y-3 ml-2 text-gray-400' />
+              </div>
+              <div className='w-full flex'>
+                <input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder='Phone' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg' />
+                <BsFillTelephoneFill size={20} className='absolute translate-y-3 ml-2 text-gray-400' />
+              </div>
+              <button type='submit' className='w-36 p-2 text-white font-semibold rounded-full bg-primary'>Save</button>
             </div>
-            </div> 
+          </form>
+        </div>
         </div>
     </div>
   )
