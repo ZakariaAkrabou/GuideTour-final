@@ -6,6 +6,10 @@ import Camping from "../pages/camping";
 // import Login from "../pages/login";
 import Register from "../pages/register";
 import Landscapes from "../pages/landscapes";
+import Dashboard from "../pages/dashboard";
+import DashboardGuides from "../components/dashboardGuides/dashboardGuides";
+import Tours from "../components/dashboardGuides/Tours";
+
 
 
 const Router = () => {
@@ -19,6 +23,16 @@ const Router = () => {
       {/* <Route path="/login" element={<Login />} /> */}
       <Route path="/register" element={<Register />} />
       <Route path="/landscapes" element={<Landscapes/>}/>
+      <Route path="/dashboard" element={<Dashboard/>}>
+
+         <Route path="Tours" element={<Tours/>}/>
+         <Route path="dashboardGuides" element={<DashboardGuides/>}/>
+      </Route>
+      
+      
+   
+
+
     </Routes>
   );
 };

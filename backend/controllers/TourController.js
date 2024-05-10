@@ -1,5 +1,5 @@
 // controllers/tourController.js
-const Tour = require('../models/tour');
+const Tour = require('../models/Tour');
 // const Guide = require('../models/guide');
 
 exports.createTour = async (req, res) => {

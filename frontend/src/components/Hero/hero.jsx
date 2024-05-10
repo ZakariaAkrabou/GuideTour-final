@@ -2,12 +2,14 @@ import { useState } from "react";
 import { RxDividerVertical } from "react-icons/rx";
 import heroImg from '../../assets/hero1.jpg';
 import UserProfile from "../UserProfile/UserProfile";
+import Header from "../Header/header";
 
 
 const Hero = () => {
   const [showInput, setShowInput] = useState(false);
   const [destination, setDestination] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
+  const [modalProfile, setModalProfile] = useState(false);
 
   const handleClick = () => {
     setShowInput(true);
@@ -21,17 +23,20 @@ const Hero = () => {
     setDestination(e.target.value);
   };
 
-  // const handleSubmit = () => {
-  //   console.log("Destination:", destination);
-  // };
+  const handleProfileClose = () => {
+    setModalProfile(false);
+  };
+  const handleProfile = () => {
+    setModalProfile(true);
+  };
 
   const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
   };
 
   return (
-    <div className="w-full h-screen relative">
-      <div className="relative rounded-2xl lg:bp-32 lg:h-screen">
+    <div className="w-full h-screen relative" >
+      <div className="relative justify-center rounded-2xl lg:bp-32 lg:h-screen">
         <img src={heroImg} alt="" className="w-full h-full object-cover" />
         <div className="lg:w-4/5 lg:pl-20 p-2 lg:h-screen h-full lg:mt-[-150px] mt-[-120px]">
           <div className="bg-white/40 backdrop-filter backdrop-blur-md rounded-md lg:h-20 lg:w-[700px] flex items-center justify-between p-4 ">
@@ -82,11 +87,14 @@ const Hero = () => {
             </h1>
           </div>  
         </div>
+        {modalProfile && (
+          <div className="bg-white/ backdrop-filter backdrop-blur-sm h-full fixed top-0 w-full z-50 flex justify-center items-center">
+            <UserProfile handleProfileClose={handleProfileClose} closeModal={() => setModalProfile(false)} />
+          </div>
+        )}
       </div>
-          <div className=" z-50 fixed top-1 left-1/4">
-            <UserProfile/>
-          </div> 
-    </div>
+      <Header handleProfile={handleProfile} />    
+      </div>
   );
 };
 

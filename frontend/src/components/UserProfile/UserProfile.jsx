@@ -1,18 +1,23 @@
 import React from 'react'
 import background2 from '../../assets/camping1.jpg'
 
-import { IoPerson } from "react-icons/io5";
+import { IoPerson, IoCloseSharp } from "react-icons/io5";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaAddressCard, FaInfo } from "react-icons/fa";
 
 
-function UserProfile() {
+function UserProfile({handleProfileClose}) {
   return (
-    <div className=' w-52 h-full bg-white/40 '>
 
-    <div className=' p-2 h-[550px] flex justify-start items-center w-[700px] bg-white shadow-xl rounded-2xl'>
+    <div className=' p-2 h-[550px] flex justify-start items-center w-[700px] bg-white shadow-xl rounded-2xl' >
+        <div className=' absolute top-0 right-[280px] text-black/20 m-4'>
+
+        <button onClick={handleProfileClose}>
+            <IoCloseSharp className='' size={25}/>
+        </button>
+        </div>
     <div className=' justify-center  items-center grid grid-cols-2'>
         <div className="lg:w-[300px] h-[530px] bg-[#e5edfa] rounded-2xl p-2">
           <div className="lg:grid lg:grid-cols-1 gap-2 text-center">
@@ -82,11 +87,11 @@ function UserProfile() {
                 < BsFillTelephoneFill size={20} className='absolute translate-y-3 ml-2 text-gray-400'/>
                </div>
                 
-                <button className=' w-36 p-2 rounded-full bg-gray-200'>Save</button>
+                <button className=' w-36 p-2 font-semibold rounded-full bg-gray-200'>Save</button>
+                
             </div>
             </div> 
         </div>
-    </div>
     </div>
   )
 }
