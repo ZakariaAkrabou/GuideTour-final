@@ -16,7 +16,7 @@ function Dashboard() {
     <div className=' overflow-hidden px-[300px] absolute top-[250px] '>
 
 <Outlet/>
-
+{/* <Outlet/> */}
 
     </div>
     </>

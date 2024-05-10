@@ -53,6 +53,7 @@ export default function Sidebar() {
     alt="Profile"
     className={` rounded-full ml-4 lg:ml-0 ${open ? 'w-[72px]  h-[72px] lg:h-[92px] lg:w-[92px]' : ''}`}
     // lg:w-full lg:h-full
+     // lg:w-full lg:h-full
   />
   </div>
 </div>

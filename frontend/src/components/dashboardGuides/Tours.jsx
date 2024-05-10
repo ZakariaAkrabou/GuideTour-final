@@ -16,6 +16,7 @@ function Tours() {
 
     // const showTours =tours.map(tour=>)
       // const showTours =tours.map(tour=>)
+        // const showTours =tours.map(tour=>)
     return (
         <div className='w-[1000px] h-screen bg-gray-300 shadow-xl'>
             <div className='flex items-center gap-[400px]'>
