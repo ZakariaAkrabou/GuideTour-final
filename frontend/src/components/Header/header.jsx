@@ -107,6 +107,7 @@ const Header = ({ handleProfile }) => {
                     <DropDown
                       handleProfile={handleProfile}
                       closeModal={handleProfileDropClose}
+                      handleProfileDropClose={handleProfileDropClose}
                     />
                   )}
                 </div>

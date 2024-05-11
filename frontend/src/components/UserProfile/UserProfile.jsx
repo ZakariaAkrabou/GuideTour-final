@@ -5,6 +5,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaAddressCard, FaInfo } from "react-icons/fa";
 import { AiOutlineDashboard } from "react-icons/ai";
+import { BiCheckCircle, BiSave } from "react-icons/bi";
 import { fetchProfile, updateProfile } from '../../features/Slices/userProfileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
@@ -12,6 +13,8 @@ import React, { useEffect, useState } from 'react';
 
 
 function UserProfile({handleProfileClose, handleGuide}) {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const dispatch = useDispatch();
   
   useEffect(() => {
@@ -42,11 +45,17 @@ function UserProfile({handleProfileClose, handleGuide}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateProfile(formData));
-  };
+    setIsSubmitted(true);
+    const updatedFormData = { ...formData };
+    if (updatedFormData.password.trim() === '') {
+      delete updatedFormData.password; // Remove the password field if it's empty
+    }
+  
+    dispatch(updateProfile(updatedFormData));  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setIsSubmitted(false);
   };
 
   return (
@@ -85,14 +94,24 @@ function UserProfile({handleProfileClose, handleGuide}) {
             </div>
           </div>
           <div className='flex items-center justify-center mt-4'>
-        <div className='relative' onClick={handleGuide}>
+        <div className='relative' onClick={handleProfileClose}>
 
-          {profile.role === 'user' ? (
-            <button className='bg-gray/50 text-white font-semibold px-6 py-2 rounded-full flex items-center'onClick={handleProfileClose}>
+        {profile.role === 'user' ? (
+          <button onClick={handleGuide} className='bg-gray/50 text-white font-semibold px-6 py-2 rounded-full flex items-center' >
             <IoPerson size={20} className='mr-2' />
             Become a guide
-          </button>) : (
-          <button className='bg-primary text-white font-semibold px-6 py-2 rounded-full flex items-center'>
+          </button>
+        ) : (profile.data?.guide?.status === 'pending') ? (
+          <h1 className='bg-gray text-white font-semibold px-6 py-2 rounded-full flex items-center'>
+            Waitting for approvement
+          </h1>
+          ) : (profile.data?.guide?.status === 'rejected') ? (
+            <button onClick={handleGuide} className='bg-gray/50 text-white font-semibold px-6 py-2 rounded-full flex items-center' >
+            <IoPerson size={20} className='mr-2' />
+            Become a guide
+          </button>
+          ) : (
+            <button  className='bg-primary text-white font-semibold px-6 py-2 rounded-full flex items-center'>
             <AiOutlineDashboard size={20} className='mr-2' />
             Dashboard
           </button>
@@ -131,7 +150,25 @@ function UserProfile({handleProfileClose, handleGuide}) {
                 <input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder='Phone' className='w-full border-[1.5px] pl-8 border-gray-400 rounded-lg' />
                 <BsFillTelephoneFill size={20} className='absolute translate-y-3 ml-2 text-gray-400' />
               </div>
-              <button type='submit' className='w-36 p-2 text-white font-semibold rounded-full bg-primary'>Save</button>
+              {isSubmitted ? (
+              <button 
+              disabled
+              type='submit' 
+              className='w-36 gap-2 p-2 flex justify-center items-center text-white font-semibold rounded-full bg-green-500'
+              >
+              <BiCheckCircle size={20}/>
+              Saved
+            </button>
+              ) : (
+                <button 
+                // disabled
+                type='submit' 
+                className='w-36 gap-2 p-2 flex justify-center items-center text-white font-semibold rounded-full hover:bg-white hover:text-primary hover:border bg-primary'
+                >
+                <BiSave size={20}/>
+                Save
+              </button>
+              )}
             </div>
           </form>
         </div>
