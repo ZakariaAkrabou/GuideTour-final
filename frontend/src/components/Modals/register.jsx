@@ -195,15 +195,17 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
               </div>
               {error && <span className="text-red-500 text-sm">{error}</span>}
             </div>
-            <div className="py-4">
+            <div className="py-4 relative">
               <button className="w-[300px] bg-primary text-white font-inter p-2 rounded-lg mb-4 hover:bg-black hover:text-white hover:font-inter hover:border-transparent">
                 Register
               </button>
               {registrationStatus === 'success' && (
+                            <div className="absolute -mt-4 w-full h-full flex items-center justify-center">
                             <div className="flex items-center justify-center text-green-600">
-                                <IoCheckmarkDoneCircle className="mr-2" />
-                                <span>Registration successful!</span>
+                              <IoCheckmarkDoneCircle className="mr-2" />
+                              <span>Registration successful!</span>
                             </div>
+                          </div>
                         )}
                         {registrationStatus === 'error' && (
                             <div className="flex items-center text-red-600">

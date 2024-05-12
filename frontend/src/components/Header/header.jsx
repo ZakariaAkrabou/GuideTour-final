@@ -37,13 +37,6 @@ const Header = ({ handleProfile }) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const handleLogout = () => {
-  //     localStorage.removeItem("token");
-  //     setIsLoggedIn(false);
-  //   };
-  // })
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -71,7 +64,20 @@ const Header = ({ handleProfile }) => {
               className="h-28 rounded-[103] object-cover -ml-8"
               alt="Logo"
             />
-
+              {isLoggedIn && ( 
+                <div className=" right-20 lg:right-20 absolute flex" >
+                  <button onClick={handleProfileDrop}>
+                    <IoPerson size={25} />
+                  </button>
+                  {profileDrop && (
+                    <DropDown
+                      handleProfile={handleProfile}
+                      closeModal={handleProfileDropClose}
+                      handleProfileDropClose={handleProfileDropClose}
+                    />
+                  )}
+                </div>
+              )}
             <ul className="flex items-center xl:gap-12 gap-x-4 max-lg:hidden">
               <li>
                 <Link
@@ -105,7 +111,7 @@ const Header = ({ handleProfile }) => {
                   Campings
                 </Link>
               </li>
-              {isLoggedIn && ( 
+              {/* {isLoggedIn && ( 
                 <div className=" right-[80px] absolute flex" >
                   <button onClick={handleProfileDrop}>
                     <IoPerson size={25} />
@@ -114,13 +120,14 @@ const Header = ({ handleProfile }) => {
                     <DropDown
                       handleProfile={handleProfile}
                       closeModal={handleProfileDropClose}
+                      handleProfileDropClose={handleProfileDropClose}
                     />
                   )}
                 </div>
-              )}
+              )} */}
             </ul>
             <div className="flex gap-4 max-lg:hidden">
-              {!isLoggedIn && ( // Render Login button only if user is not logged in
+              {!isLoggedIn && (
                 <button
                   onClick={() => setShowModal(true)}
                   className="bg-primary rounded-2xl h-12 px-6 text-white hover:bg-white hover:text-primary transition-bg hover:border-primary"
@@ -173,6 +180,7 @@ const Header = ({ handleProfile }) => {
                       Campings
                     </Link>
                   </li>
+                
                 </ul>
               </div>
             </div>

@@ -7,7 +7,7 @@ import Camping from "../pages/camping";
 import Register from "../pages/register";
 import Landscapes from "../pages/landscapes";
 import { AuthProvider } from "../contexts/AuthContext";
-
+import dashboard from '../pages/dashboard'
 
 const Router = () => {
   return (
@@ -18,6 +18,8 @@ const Router = () => {
       <Route path="/about" element={<About />} />
       <Route path="/tour" element={<Tour />} />
       <Route path="/camping" element={<Camping />} />
+      <Route path="/dashboard" element={<dashboard />} />
+
       {/* <Route path="/login" element={<Login />} /> */}
       <Route path="/register" element={<Register />} />
       <Route path="/landscapes" element={<Landscapes/>}/>

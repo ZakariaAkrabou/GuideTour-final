@@ -21,6 +21,7 @@ exports.getUserProfile = async function(req, res) {
 
       const userProfile = {
         user: {
+          id: user.id,
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
@@ -31,6 +32,7 @@ exports.getUserProfile = async function(req, res) {
           role: user.role,
         },
         guide: {
+          id: guideInfo.id,
           bio: guideInfo.bio,
           specialization: guideInfo.specialization,
           profile_picture: guideInfo.profile_picture,
