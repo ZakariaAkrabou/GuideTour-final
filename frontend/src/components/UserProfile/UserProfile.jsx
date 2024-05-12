@@ -60,7 +60,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
 
   return (
 
-    <div className=' p-1 lg:p-2 w-[400px] lg:h-[550px] flex justify-start items-center lg:w-[700px] bg-white shadow-xl rounded-2xl relative' >
+    <div className=' p-1 lg:p-2 h-[510px]  w-[450px] lg:h-[550px] flex justify-start items-center lg:w-[700px] bg-white shadow-xl rounded-2xl relative' >
         <div className=' absolute top-0 right-0 m-1 lg:m-3'>
 
         <button onClick={handleProfileClose}>
@@ -68,7 +68,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
         </button>
         </div>
     <div className=' justify-center gap-2 lg:gap-0  items-center grid grid-cols-2'>
-        <div className="lg:w-[300px] h-[500px] lg:h-[530px] bg-[#e5edfa] rounded-2xl p-2">
+        <div className="lg:w-[300px] h-[480px] lg:h-[530px] bg-[#e5edfa] rounded-2xl p-2">
           <div className="lg:grid lg:grid-cols-1 gap-2 text-center">
 
             <img src={background2} alt="" className="w-full h-26 lg:h-[150px] rounded-t-2xl" />
@@ -83,17 +83,21 @@ function UserProfile({handleProfileClose, handleGuide}) {
             <div className='relative bottom-6 lg:-top-12'>
               <h1 className="lg:text-xl font-semibold">Hello, {profile.firstName || profile.data?.user?.firstName}</h1>
               <div className=" relative -bottom-10 lg:-bottom-6">
-                <div className=' flex flex-col items-start lg:gap-1'>
+                <div className=' flex flex-col  gap-4 lg:gap-1'>
+                  <div className=' items-start flex flex-col'>
                     <h1 className=' font-bold'>Country</h1>
                     <input type="text" value={profile.country || profile.data?.user?.country} disabled className=' w-full rounded-2xl  font-semibold bg-transparent border-2 border-black' />
+                  </div>
+                  <div className=' items-start flex flex-col'>
                     <h1 className=' font-bold'>Role</h1>
                     <input type="text" value={profile.role || profile.data?.user?.role} disabled className=' w-full rounded-2xl font-semibold bg-transparent border-2 border-black' />
+                  </div>
                 </div>
               </div>
      
             </div>
           </div>
-          <div className='flex items-center justify-center mt-20 lg:mt-4'>
+          <div className='flex items-center justify-center mt-10 lg:mt-4'>
         <div className='relative' onClick={handleProfileClose}>
 
         {profile.role === 'user' ? (
@@ -122,10 +126,10 @@ function UserProfile({handleProfileClose, handleGuide}) {
         <div className=''>
           <form onSubmit={handleSubmit}>
             <div className='flex items-center pb-4 lg:pb-3 '>
-              <FaInfo className='text-blue-500 lg:text-3xl text-1xl' />
-              <h1 className='font-semibold flex lg:text-3xl text-nowrap text-blue-400'>Personal Informations</h1>
+              <FaInfo className='text-primary lg:text-3xl text-1xl' />
+              <h1 className='font-semibold flex lg:text-3xl text- text-primary'>Personal Informations</h1>
             </div>
-            <div className='lg:gap-4 relative gap-5 flex flex-col items-center'>
+            <div className=' relative gap-4 flex flex-col items-center'>
               <div className='w-full flex'>
                 <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder='Firstname' className='w-full border-[1.5px] pl-8  border-gray-400 rounded-lg' />
                 <IoPerson size={20} className='absolute  translate-y-3  ml-2 text-gray-400' />
@@ -163,7 +167,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
                 <button 
                 // disabled
                 type='submit' 
-                className='w-36 lg:-mb-0 -mb-10 gap-2 p-2 flex justify-center items-center text-white font-semibold rounded-full hover:bg-white hover:text-primary hover:border bg-primary'
+                className='w-36 lg:-mb-0 -mb-10 gap-2 p-2 flex justify-center items-center text-white font-semibold rounded-full hover:bg-white hover:text-primary border bg-primary'
                 >
                 <BiSave size={20}/>
                 Save
