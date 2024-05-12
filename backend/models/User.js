@@ -42,6 +42,23 @@ userSchema.pre('save', function(next) {
   
   })
 
+  // Hashing password before update
+userSchema.pre('findOneAndUpdate', async function(next) {
+  const update = this.getUpdate();
+  if (update.password) {
+      try {
+          const hashedPassword = await bcrypt.hash(update.password, 10);
+          update.password = hashedPassword;
+          next();
+      } catch (error) {
+          next(error);
+      }
+  } else {
+      next();
+  }
+});
+
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

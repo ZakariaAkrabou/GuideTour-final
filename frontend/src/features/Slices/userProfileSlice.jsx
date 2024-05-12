@@ -25,7 +25,7 @@ export const fetchProfile = createAsyncThunk('users/fetchProfile', async ()  => 
 
 export const updateProfile = createAsyncThunk('users/updateProfile', async (formData, thunkAPI) => {
   const token = localStorage.getItem('token') || null;
-  const userID = thunkAPI.getState().profile._id;
+  let userID = thunkAPI.getState().profile.data?.user?.id || thunkAPI.getState().profile._id;
 console.log("id",userID);
   const config = {
     headers: {
