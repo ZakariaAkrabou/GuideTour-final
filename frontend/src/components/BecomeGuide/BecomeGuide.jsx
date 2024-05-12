@@ -54,14 +54,14 @@ function BecomeGuide({ handleGuideClose }) {
 
   return (
     <div className='relative'>
-      <div className='p-2 h-[550px] flex justify-start items-center w-[700px] bg-white shadow-xl rounded-2xl'>
+      <div className='p-2 lg:h-[550px] flex justify-start items-center lg:w-[700px] w-[400px] bg-white shadow-xl rounded-2xl'>
         <div className='absolute z-50 top-0 right-0 m-3'>
           <button onClick={handleGuideClose}>
             <IoCloseSharp className=' text-white/80' size={25}/>
           </button>
         </div>
-        <div className='justify-center items-center grid grid-cols-2'>
-          <div className="lg:w-[300px] h-[530px] flex flex-col bg-[#e5edfa] rounded-2xl p-2">
+        <div className='justify-center items-center grid lg:grid-cols-2'>
+          <div className="lg:w-[300px] lg:h-[530px] flex flex-col px-6 bg-[#e5edfa] rounded-2xl p-2">
             <div className="lg:grid lg:grid-cols-1 gap-2 text-center">
               <div className="relative flex justify-center">
                 <img src={background2} alt="" className="rounded-full h-24 w-24" />
@@ -117,7 +117,7 @@ function BecomeGuide({ handleGuideClose }) {
                   />
                 </div>
               </div>
-              <div className=' flex justify-center'>
+              <div className=' flex justify-center lg:p-0 pt-1.5'>
                 {isSubmitted ? (
                   <button 
                   disabled
@@ -142,7 +142,7 @@ function BecomeGuide({ handleGuideClose }) {
             </div>
           </div>
         </div>
-          <div className=' relative h-full w-full'>
+          <div className=' relative h-full w-full hidden lg:block'>
             <img src={guide} className=' absolute inset-0 h-full w-full object-cover rounded-2xl ' alt="" />
             <div className=' text-white absolute h-full flex flex-col gap-y- bg-black/40 backdrop-blur-sm rounded-2xl p-1.5'>
               <h1 className=' font-semibold text-2xl text-nowrap'>Welcome to Our Website!</h1>
