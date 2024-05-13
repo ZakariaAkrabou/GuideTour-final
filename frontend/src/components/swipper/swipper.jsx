@@ -74,12 +74,12 @@ const SwipperHome = () => {
   return (
     <div>
       <Slider {...settings}>
-        {tours.map((tour) => (
-          <div key={tour.id} className="border rounded-lg mx-2">
+        {tours.map((tour, index) => (
+          <div key={index} className="border rounded-lg mx-2">
             <img
               width={400}
               height={300}
-              src={tour.image}
+              src={`http://localhost:4000/${tour.image}`}
               alt={tour.title}
               className="w-full h-[300px] object-cover rounded-t-lg"
             />
@@ -100,5 +100,3 @@ const SwipperHome = () => {
 };
 
 export default SwipperHome;
-
-
