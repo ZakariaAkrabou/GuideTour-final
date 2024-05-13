@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { LiaCampgroundSolid } from "react-icons/lia";
 import { FaPeopleGroup } from "react-icons/fa6";
-import { GiPrivate } from "react-icons/gi";
-import { RiMoneyDollarCircleLine } from "react-icons/ri";
-import { HiOutlineLocationMarker } from "react-icons/hi";
+// import { GiPrivate } from "react-icons/gi";
+// import { RiMoneyDollarCircleLine } from "react-icons/ri";
+// import { HiOutlineLocationMarker } from "react-icons/hi";
 
 import card from '../../assets/agadir.png';
 import campingVideo from '../../assets/campingVideo.mp4';
