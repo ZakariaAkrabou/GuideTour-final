@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-// import { DASHBOARD_SIDEBAR_LINKS } from '../../lib/constants/navigation';
+import { DASHBOARD_SIDEBAR_LINKS ,DASHBOARD_SIDEBAR_button_LINKS} from './navigation'
 import { Link, useLocation } from 'react-router-dom';
 import { RxDividerVertical } from "react-icons/rx";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import Photo1 from "../../assets/guide2.jpg";
 import { MdModeOfTravel } from "react-icons/md";
+import classNames from 'classnames'
+import { HiOutlineArrowRightStartOnRectangle } from "react-icons/hi2";
 
 
-
-
-
+const linkClass='flex items-center gap-2 px-3 m-2 py-2 hover:w-[204px] hover:bg-white py-2 hover:rounded-l-3xl hover:duration-300 rounded-sm text-base';
 
 const dashbordLinkClass='bg-[#2E5D9F] text-white rounded-xl flex items-center px-2 py-2 w-36 rounded-sm text-base';
 const defaultLinkClass = 'flex items-center px-3 m-2 py-2 hover:w-[204px] hover:bg-white py-2 hover:rounded-l-3xl hover:duration-300 rounded-sm text-base';
@@ -66,60 +66,46 @@ export default function Sidebar() {
       Manager
      </h2>
         <span className=' p-2 ml-2'>Analytics</span>
-         <div className=' px-2 py-[20px]'>
-     
-      <Link to='/dashboard/dashboardGuides'> <p className='hover:bg-white rounded w-[200px] h-[40px] '>Dashboard</p>
-   </Link>
-      
+       
+        <div className=''>
+      <Link to="/dashboard/dashboardGuides">
+<button> dashboard</button>
+      </Link>
       </div>
-      <div className='ml-2'>
-       <Link to='/dashboard/Tours'>
-        <div className='flex items-center gap-3'>
-           
-       <MdModeOfTravel size={20} />
-        <p>Tours</p>
-            </div></Link>
-       
-     </div>
-     
-       
-     
+      <div>
+
+      <Link to="/dashboard/Tours">
+ <button>Tours</button>
+      </Link>
+      </div>
+      
+       <div className='relative top-[230px]'>
+
+
+<div  className={ classNames ('text-red-500 cursor-pointer' , linkClass)} >
+                <span><HiOutlineArrowRightStartOnRectangle /></span>
+              Logout
+            </div>
+       </div>
+ 
       </div>
     </div>
   );
 }
 
-function SidebarLink({ item, open }) {
-    const { pathname } = useLocation();
-    const linkClass = item.key === 'Dashboard' && open ? dashbordLinkClass : defaultLinkClass;
+// function SidebarLink({ item, open }) {
+//     const { pathname } = useLocation()
+//     // const linkClass = item.key === 'Dashboard' && open ? dashbordLinkClass : defaultLinkClass;
 
-    if (open) {
-        // Render label items with their paths when open is true
-        return (
-            <Link
-                to={item.path}
-                className={`${linkClass} ${item.key !== 'Dashboard' && pathname === item.path ? 'bg-white w-[204px] rounded-l-3xl' : ''}`}
-            >
-                {item.key === 'Dashboard' && (
-                    <>
-                        <span className={`text-2xl pr-2 ${!open ? 'hidden' : ''}`}>{item.icon}</span>
-                        <span>{item.label}</span>
-                        <RxDividerVertical className="size-8 text-gray-400" />
-                    </>
-                )}
-                {item.key !== 'Dashboard' && item.label}
-            </Link>
-        );
-    } else {
-        // Render only the icons with their paths when open is false
-        return (
-            <div className={sidebarMini}>
-                <Link to={item.path} 
-                className={`text-2xl relative right-[7px] bottom-28 hover:bg-white px-1 py-[6px] hover:w-[55px] hover:rounded-l-3xl hover:duration-200 ${pathname === item.path ? 'bg-white w-[55px] rounded-l-3xl' : '' }`}>
-                    {item.icon}
-                </Link>
-            </div>
-        );
-    }
-}
+//     // if (open) {
+//         // Render label items with their paths when open is true
+//         return (
+           
+//             <Link to={item.path} >
+//                 <span>{item.icon}</span>
+//                 {item.label}
+//             </Link>
+     
+//         );
+//     }
 

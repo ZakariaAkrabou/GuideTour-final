@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+
+import { BrowserRouter  , Routes, Route } from "react-router-dom";
 import Home from "../pages/home";
 import About from "../pages/about";
 import Tour from "../pages/tour";
@@ -10,11 +11,14 @@ import { AuthProvider } from "../contexts/AuthContext";
 import Dashboard from "../pages/dashboard";
 import DashboardGuides from "../components/dashboardGuides/dashboardGuides";
 import Tours from "../components/dashboardGuides/Tours";
+import CreateTour from "../components/dashboardGuides/createTour"
+import UpdateTour from "../components/dashboardGuides/updateTour"
 
 
 const Router = () => {
   return (
-  <AuthProvider>
+   <AuthProvider>
+ 
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
@@ -24,17 +28,23 @@ const Router = () => {
       {/* <Route path="/login" element={<Login />} /> */}
       <Route path="/register" element={<Register />} />
       <Route path="/landscapes" element={<Landscapes/>}/>
-      <Route path="/dashboard" element={<Dashboard/>}>
+     
+    
+          <Route path="/dashboard" element={<Dashboard/>}>
 
+       
+         {/* <Route index element={<Tours/>}/> */}
+         <Route index path="dashboardGuides" element={<DashboardGuides/>}/>
          <Route path="Tours" element={<Tours/>}/>
-         <Route path="dashboardGuides" element={<DashboardGuides/>}/>
+         <Route path="CreateTour" element={<CreateTour/>}/>
+         <Route path="UpdateTour" element={<UpdateTour/>}/>
+       
       </Route>
+    
+    
       
-      
-   
-
-
     </Routes>
+  
   </AuthProvider>
   );
 };
