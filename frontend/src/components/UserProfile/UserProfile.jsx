@@ -21,7 +21,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
     dispatch(fetchProfile());
   }, [dispatch]);
   
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.users.profile);
 
   useEffect(() => {
     setFormData({
@@ -48,7 +48,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
     setIsSubmitted(true);
     const updatedFormData = { ...formData };
     if (updatedFormData.password.trim() === '') {
-      delete updatedFormData.password; // Remove the password field if it's empty
+      delete updatedFormData.password;
     }
   
     dispatch(updateProfile(updatedFormData));  };
