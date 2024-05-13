@@ -16,7 +16,7 @@ import axios from 'axios';
 const Step1 = ({ nextStep, prevStep}) => {
 
   const dispatch = useDispatch();
-  const SelectedCampingId = useSelector((state) => state.campingID);
+  const SelectedCampingId = useSelector((state) => state.campings.campingID);
   console.log("testID", SelectedCampingId);
 
   const [formData, setFormData] = useState({
