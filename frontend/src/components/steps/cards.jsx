@@ -100,37 +100,6 @@ export default function Cards({ nextStep, handleProfile }) {
                     </div>
                     <div className='p-0.5 relative'>
                             <div className="text-center relative" >
-
-                                {/* <div className='absolute -left-0.5 top-[-252px] opacity-0 hover:opacity-100 p-2 w-[201px] h-[254px] hover:rounded-xl bg-primary/55  hover:backdrop-blur-md duration-700 cursor-pointer' onClick={nextStep}>
-                               
-
-                                
-
-                                <div className="flex justify-between font-bold text-white pb-3">
-                                    <div className=' flex items-center'>
-                                    <GiPrivate size={20} className=''/>
-                                    <h1 className=' pl-1'>Privacy</h1>
-                                    </div>
-                                    <h2 className="capitalize font-semibold">{camping.isPrivate}</h2>
-                                </div>
-
-                                <div className="flex justify-between font-bold text-white pb-3">
-                                    <div className=' flex items-center'>
-                                    <RiMoneyDollarCircleLine size={20} className=''/>
-                                    <h1 className=' pl-1'>Price</h1>
-                                    </div>
-                                    <h2 className="capitalize font-semibold">{camping.price}</h2>
-                                </div>
-
-                                <div className="flex justify-between font-bold text-white pb-3">
-                                    <div className=' flex items-center'>
-                                    <HiOutlineLocationMarker size={20} className=''/>
-                                    <h1 className=' pl-1'>Location</h1>
-                                    </div>
-                                    <h2 className="capitalize font-semibold">{camping.location}</h2>
-                                </div>
-
-                                </div> */}
                             </div>
                         </div>
                     </div>
