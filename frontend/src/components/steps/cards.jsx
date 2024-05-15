@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { LiaCampgroundSolid } from "react-icons/lia";
 import { FaPeopleGroup } from "react-icons/fa6";
+import { GiPrivate } from "react-icons/gi";
+
 
 
 
@@ -10,7 +12,7 @@ import card from '../../assets/agadir.png';
 import campingVideo from '../../assets/campingVideo.mp4';
 import { fetchCampings, fetchCampingsById } from '../../features/Slices/campingSlice';
 
-export default function Cards({ nextStep, handleProfile }) {
+export default function Cards({ nextStep }) {
     const dispatch = useDispatch();
     const campings = useSelector((state) => state.campings.campings);
     const [currentPage, setCurrentPage] = useState(1);
@@ -77,8 +79,8 @@ export default function Cards({ nextStep, handleProfile }) {
             <div className="grid grid-cols-2 gap-2">
                 {/* Cards */}
                 {campingsCards.map((camping, index) => (
-                    <div key={index} className='relative bg-white hover:-translate-y-1 h-max hover:scale-110 rounded-xl hover:shadow-2xl duration-100' onClick={nextStep} >
-                    <img src={card} alt="Card" className='h-[250px] w-full rounded-xl'onClick={() => toggleCampingSelection(camping._id)} />
+                    <div key={index} className='relative bg-white hover:-translate-y-1 h-max hover:scale-110 rounded-xl hover:shadow-2xl duration-100'>
+                    <img src={card} alt="Card" className='h-[250px] w-full rounded-xl' />
                     <div className='absolute bottom-0 z-0 left-0 p-1 w-full bg-primary rounded-b-2xl'>
                         <div className=' flex flex-col'>
                         <div className="flex justify-between font-bold text-white pb-">
@@ -99,38 +101,9 @@ export default function Cards({ nextStep, handleProfile }) {
                         </div>
                     </div>
                     <div className='p-0.5 relative'>
-                            <div className="text-center relative" >
-
-                                {/* <div className='absolute -left-0.5 top-[-252px] opacity-0 hover:opacity-100 p-2 w-[201px] h-[254px] hover:rounded-xl bg-primary/55  hover:backdrop-blur-md duration-700 cursor-pointer' onClick={nextStep}>
-                               
+                            <div className="text-center relative" onClick={() => toggleCampingSelection(camping._id)}>
 
                                 
-
-                                <div className="flex justify-between font-bold text-white pb-3">
-                                    <div className=' flex items-center'>
-                                    <GiPrivate size={20} className=''/>
-                                    <h1 className=' pl-1'>Privacy</h1>
-                                    </div>
-                                    <h2 className="capitalize font-semibold">{camping.isPrivate}</h2>
-                                </div>
-
-                                <div className="flex justify-between font-bold text-white pb-3">
-                                    <div className=' flex items-center'>
-                                    <RiMoneyDollarCircleLine size={20} className=''/>
-                                    <h1 className=' pl-1'>Price</h1>
-                                    </div>
-                                    <h2 className="capitalize font-semibold">{camping.price}</h2>
-                                </div>
-
-                                <div className="flex justify-between font-bold text-white pb-3">
-                                    <div className=' flex items-center'>
-                                    <HiOutlineLocationMarker size={20} className=''/>
-                                    <h1 className=' pl-1'>Location</h1>
-                                    </div>
-                                    <h2 className="capitalize font-semibold">{camping.location}</h2>
-                                </div>
-
-                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -163,7 +136,7 @@ export default function Cards({ nextStep, handleProfile }) {
                     </p>
                     <div className="grid grid-cols-1 gap-5 pb-4">
                         <input onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm} type="text" placeholder='Search Camping' className="w-full rounded-2xl h-10 text-center border-none bg-white" />
-                        {/* <input onChange={(e) => setSearchDate(e.target.value)} value={searchDate} type="text" placeholder='Date' className="w-full h-10 text-center rounded-2xl border-none bg-white" /> */}
+                        <input onChange={(e) => setSearchDate(e.target.value)} value={searchDate} type="text" placeholder='Date' className="w-full h-10 text-center rounded-2xl border-none bg-white" />
                         <h2 className="uppercase font-bold -mb-3">Filter by price</h2>
                         <div className="relative  items-center flex">
                             <input onChange={(e) => setSearchPrice(e.target.value)} value={searchPrice} type="text" placeholder='Enter price range (10-300 $)' className="w-full h-10 rounded-2xl text-center border-none bg-white pr-12" />
@@ -173,11 +146,11 @@ export default function Cards({ nextStep, handleProfile }) {
                         </div>
                         <h4 className="text-neutral-600 capitalize">ex: price 12dh-3600dh</h4>
                     </div>
-                    {/* <div className="text-center">
+                    <div className="text-center">
                         <button className=" bg-primary transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-2  text-white text-lg rounded-md mt-2">
                             Book Now
                         </button>
-                    </div> */}
+                    </div>
                 </div>
                 <div className='pt-6 flex justify-center items-center pb-1'>
                     <video className="h-full lg:w-full w-[350px] object-cover rounded-lg shadow-2xl " src={campingVideo} autoPlay loop muted ></video>
