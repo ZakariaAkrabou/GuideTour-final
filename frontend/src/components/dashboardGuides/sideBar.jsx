@@ -68,19 +68,15 @@ export default function Sidebar() {
         <span className=' p-2 ml-2'>Analytics</span>
        
         <div className=''>
-      <Link to="/dashboard/dashboardGuides">
-<button> dashboard</button>
-      </Link>
-      </div>
-      <div>
-
-      <Link to="/dashboard/Tours">
- <button>Tours</button>
-      </Link>
+        {DASHBOARD_SIDEBAR_LINKS.map((item) => (
+          <SidebarLink key={item.key} item={item} />
+        ))}
       </div>
       
        <div className='relative top-[230px]'>
-
+{DASHBOARD_SIDEBAR_button_LINKS.map((item) => (
+          <SidebarLink key={item.key} item={item} />
+        ))}
 
 <div  className={ classNames ('text-red-500 cursor-pointer' , linkClass)} >
                 <span><HiOutlineArrowRightStartOnRectangle /></span>
@@ -93,19 +89,16 @@ export default function Sidebar() {
   );
 }
 
-// function SidebarLink({ item, open }) {
-//     const { pathname } = useLocation()
-//     // const linkClass = item.key === 'Dashboard' && open ? dashbordLinkClass : defaultLinkClass;
+function SidebarLink({ item  }) {
+  
 
-//     // if (open) {
-//         // Render label items with their paths when open is true
-//         return (
+        return (
            
-//             <Link to={item.path} >
-//                 <span>{item.icon}</span>
-//                 {item.label}
-//             </Link>
+            <Link to={item.path} className={ classNames (' cursor-pointer' , linkClass)}>
+                <span>{item.icon}</span>
+                {item.label}
+            </Link>
      
-//         );
-//     }
+        );
+    }
 

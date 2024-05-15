@@ -3,17 +3,24 @@ import Sidebar from '../components/dashboardGuides/sideBar'
 import TopBar from '../components/dashboardGuides/topBar'
 import {Outlet} from 'react-router-dom'
 
-function dashboard() {
+function Dashboard() {
   return (
     <>
-<div> <Sidebar/></div>
+   <div>
+    <div className=' '>
+      <div className='relative top-20 '><Sidebar/></div>
+    <div className='relative left-[40px] -top-[700px]'><TopBar/></div>
     
-    <div><TopBar/></div> 
-    <div>{Outlet}</div>
+     
+    </div>
+    <div className='relative left-[300px] -top-[650px] h-[100px]'>{<Outlet/>}</div>
+   </div>
+ 
+   
     
     </>
    
   )
 }
 
-export default dashboard
+export default Dashboard

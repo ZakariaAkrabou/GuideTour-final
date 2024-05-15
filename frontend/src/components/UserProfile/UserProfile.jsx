@@ -50,8 +50,8 @@ function UserProfile({handleProfileClose, handleGuide}) {
     if (updatedFormData.password.trim() === '') {
       delete updatedFormData.password;
     }
-  
-    dispatch(updateProfile(updatedFormData));  };
+    dispatch(updateProfile(updatedFormData));  
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
