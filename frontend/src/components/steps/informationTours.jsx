@@ -1,47 +1,32 @@
-import { useState } from 'react';
-import travel from '../../assets/travel.png';
-import telouet from '../../assets/telouet.png';
-import { CiEdit } from "react-icons/ci";
+
 import { MdOutlineWhereToVote } from "react-icons/md";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { FiFlag } from "react-icons/fi";
 import { TbCalendarEvent } from "react-icons/tb";
-import { CgProfile } from "react-icons/cg";
-import { MdOutlineMail } from "react-icons/md";
-import { BsTelephone } from "react-icons/bs";
-import { BsCalendar2Date } from "react-icons/bs";
-import { IoPricetagsOutline } from "react-icons/io5";
-import { AiOutlineMessage } from "react-icons/ai";
 import { RiStarSFill } from "react-icons/ri";
-import riad from '../../assets/riad.jpg'
-import door from '../../assets/door.jpg'
-import door2 from '../../assets/door2.jpg'
-import spice from '../../assets/spice.jpg'
-import souk1 from '../../assets/souk1.jpg'
 import souk2 from '../../assets/souk2.jpg'
-import souk3 from '../../assets/souk3.jpg'
-import souk4 from '../../assets/souk4.jpg'
-import souk5 from '../../assets/souk5.jpg'
-import souk6 from '../../assets/souk6.jpg'
-import riad3 from '../../assets/riad3.jpg'
-import spice1 from '../../assets/spice1.jpg'
-import spice4 from '../../assets/spice4.jpg'
-import spice5 from '../../assets/spice5.jpg'
 import spice6 from '../../assets/spice6.jpg'
-import souk7 from '../../assets/souk7.jpg'
-import souk8 from '../../assets/souk8.jpg'
-import souk9 from '../../assets/souk9.jpg'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCardToursById } from '../../features/Slices/tourSlice';
+import { useState,useEffect } from 'react';
 
-import riad4 from '../../assets/riad4.jpg'
+
+
 
 
 const Step1 = ({ nextStep }) => {
-    const boxstyle = ' transition ease-in-out delay-150 hover:rounded hover:shadow-xl ';
-    const [inputValue, setInputValue] = useState('');
 
-    const handleClick = () => {
-        setInputValue('trtf');
-    };
+
+    const dispatch = useDispatch();
+    const tour = useSelector((state) => state.tours.cartTourBuId);
+    console.log("cartTourBuId",tour);
+
+    useEffect(() => {
+        dispatch(fetchCardToursById());
+    }, [dispatch]);
+
+
+
 
     return (
         <>
@@ -67,7 +52,7 @@ const Step1 = ({ nextStep }) => {
                 <div className=" grid grid-cols-2 gap-1 ">
                     <div className='px-8 py-[25px] '>
                         <div className='flex gap-8 '>
-                            <h3 className='text-3xl text-secondaire font-bold capitalize'>marrakech</h3>
+                            <h3 className='text-3xl text-secondaire font-bold capitalize'>{tour.title}</h3>
                             <h1 className='py-1 text-2xl text-primary capitalize '>1,000 $ </h1>
                             <h1 className='mr-2 py-2 text-1xl text-gray text-popp capitalize'>/per couple</h1>
                         </div>
