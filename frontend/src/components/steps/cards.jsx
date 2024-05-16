@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { LiaCampgroundSolid } from "react-icons/lia";
@@ -6,11 +6,10 @@ import { FaPeopleGroup } from "react-icons/fa6";
 
 
 
-import card from '../../assets/agadir.png';
 import campingVideo from '../../assets/campingVideo.mp4';
 import { fetchCampings, fetchCampingsById } from '../../features/Slices/campingSlice';
 
-export default function Cards({ nextStep, handleProfile }) {
+export default function Cards({ nextStep }) {
     const dispatch = useDispatch();
     const campings = useSelector((state) => state.campings.campings);
     const [currentPage, setCurrentPage] = useState(1);

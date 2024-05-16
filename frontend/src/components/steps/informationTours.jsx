@@ -90,17 +90,17 @@ const Step1 = ({ nextStep }) => {
                             ut inventore aliquid et quasi alias ut rerum suscipit et nihil deleniti.
                         </p>
                         <div className='grid grid-cols-2 gap-4 text-left pt-4'>
-                            <label htmlFor="name" className="text-blue-500 font-semibold text-lg">Destination</label>
+                            <label htmlFor="name" className="text-primary font-semibold text-lg">Destination</label>
                             <div id="name">: Zurich, Switzerland</div>
-                            <label htmlFor="location" className="text-blue-500 font-semibold text-lg">Location:</label>
+                            <label htmlFor="location" className="text-primary font-semibold text-lg">Location:</label>
                             <div id="location">Data for Location</div>
-                            <label htmlFor="duration" className="text-blue-500 font-semibold text-lg">Duration:</label>
+                            <label htmlFor="duration" className="text-primary font-semibold text-lg">Duration:</label>
                             <div id="duration">Data for Duration</div>
-                            <label htmlFor="group-members" className="text-blue-500 font-semibold text-lg">Group Members:</label>
+                            <label htmlFor="group-members" className="text-primary font-semibold text-lg">Group Members:</label>
                             <div id="group-members">Group Members</div>
-                            <label htmlFor="category" className="text-blue-500 font-semibold text-lg">Category:</label>
+                            <label htmlFor="category" className="text-primary font-semibold text-lg">Category:</label>
                             <div id="category">Category</div>
-                            <label htmlFor="price" className="text-blue-500 font-semibold text-lg">Price:</label>
+                            <label htmlFor="price" className="text-primary font-semibold text-lg">Price:</label>
                             <div id="price">Data for Price</div>
                         </div>
                     </div>
