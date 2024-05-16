@@ -78,7 +78,7 @@ export default function Cards({ nextStep, handleProfile }) {
                 {/* Cards */}
                 {campingsCards.map((camping, index) => (
                     <div key={index} className='relative bg-white hover:-translate-y-1 h-max hover:scale-110 rounded-xl hover:shadow-2xl duration-100' onClick={nextStep} >
-                    <img src={card} alt="Card" className='h-[250px] w-full rounded-xl'onClick={() => toggleCampingSelection(camping._id)} />
+                    <img src={camping.image} alt="Card" className='h-[250px] w-full rounded-xl'onClick={() => toggleCampingSelection(camping._id)} />
                     <div className='absolute bottom-0 z-0 left-0 p-1 w-full bg-primary rounded-b-2xl'>
                         <div className=' flex flex-col'>
                         <div className="flex justify-between font-bold text-white pb-">

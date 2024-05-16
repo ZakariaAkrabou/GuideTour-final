@@ -12,15 +12,15 @@ const Layout = ({ children }) => {
 
   const [modalProfile, setModalProfile] = useState(false);
   const [modalGuide, setModalGuide] = useState(false);
-  const [modalOrder, setModalOrder] = useState(false);
+  // const [modalOrder, setModalOrder] = useState(false);
 
   const handleProfileClose = () => {
     setModalProfile(false);
   };
 
-  const handleOrder = () => {
-    setModalOrder(true);
-  };
+  // const handleOrder = () => {
+  //   setModalOrder(true);
+  // };
 
   const handleProfile = () => {
     setModalProfile(true);
@@ -36,10 +36,10 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header handleProfile={handleProfile} handleOrder={handleOrder} />
+      <Header handleProfile={handleProfile}  />
       {modalProfile && (
         <div className="bg-white/ backdrop-filter backdrop-blur-sm h-full fixed top-0 w-full z-50 flex justify-center items-center">
-          <UserProfile handleProfileClose={handleProfileClose} handleGuide={handleGuide} handleOrder={handleOrder}/>
+          <UserProfile handleProfileClose={handleProfileClose} handleGuide={handleGuide}/>
         </div>
       )}
        {modalGuide && (
@@ -49,14 +49,14 @@ const Layout = ({ children }) => {
         </div>
         )}
 
-       {modalOrder && (
+       {/* {modalOrder && (
         <div className="backdrop-filter backdrop-blur-sm 
         h-full fixed top-0 w-full z-50 flex justify-center items-center bottom-0 ">
         <Orders  />
         </div>
-        )}
+        )} */}
       <main>{children}</main>
-      <Routers handleProfile={handleProfile} handleGuide={handleGuide} handleOrder={handleOrder}/>
+      <Routers handleProfile={handleProfile} handleGuide={handleGuide}/>
       <Footer />
     </>
   );

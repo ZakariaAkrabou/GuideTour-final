@@ -3,7 +3,7 @@ import { IoMdSettings, IoMdLogOut } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProfile} from '../../features/Slices/userProfileSlice';
-
+import { Link } from "react-router-dom";
 
 
 function DropDown({handleProfile,handleOrder, handleGuide,handleProfileDropClose}) {
@@ -38,7 +38,9 @@ function DropDown({handleProfile,handleOrder, handleGuide,handleProfileDropClose
             { profile.role === 'user' ? (
             <div onClick={handleOrder} className=' flex items-center'>
             <IoCartOutline size={20} className='text-black mr-2' />
+            <Link to="/orders">
             <button onClick={handleProfileDropClose} className=' text-black text-md font-semibold'>Orders</button>
+            </Link>
             </div>
             ) : (
               ''
