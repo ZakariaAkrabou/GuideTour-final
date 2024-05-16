@@ -69,7 +69,7 @@ exports.getTourById = async (req, res) => {
         if (!tour) {
             return res.status(404).json({ error: 'Tour not found' });
         }
-        res.status(200).json({message:"tour added successfuly", data: tour});
+        res.status(200).json(tour);
     } catch (error) {
         res.status(500).json(error);
     }

@@ -4,53 +4,54 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchToursById, fetchUpdateTour } from '../../features/Slices/guideSlice';
 
 function UpdateTour() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(fetchToursById()); // Correct action to fetch tour data by ID
+  }, [dispatch]);
+  
   const tour = useSelector((state) => state.guides.getTour);
-console.log("the tour",tour);
+  console.log("Fetched tour data:", tour); // Check if tour data is fetched correctly
+
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     category: '',
     duration: '',
     price: '',
-    image: ''
+    image: null
   });
-
-  useEffect(() => {
-    dispatch(fetchToursById());
-  }, [dispatch]);
 
   useEffect(() => {
     if (tour) {
       setFormData({
         title: tour.title || '',
         description: tour.description || '',
-        category: tour.category || '',
+        category: tour.category || '', // Assuming 'category' instead of 'email'
         duration: tour.duration || '',
         price: tour.price || '',
-        image: ''
+        image: null // Assuming image is being uploaded and not coming from tour data
       });
+      console.log("Form data updated:", formData); // Check if form data is updated correctly
     }
   }, [tour]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [name]: value });
+    setIsSubmitted(false);
   };
 
   const handleFileChange = (e) => {
-    setFormData({
-      ...formData,
-      image: e.target.files[0]
-    });
+    setFormData({ ...formData, image: e.target.files[0] });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchUpdateTour(formData));
+    setIsSubmitted(true);
+    dispatch(fetchUpdateTour(formData)); // Dispatch the correct form data
   };
 
   if (!tour) {

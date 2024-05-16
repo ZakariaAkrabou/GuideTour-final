@@ -66,14 +66,18 @@ export const fetchUpdateTour = createAsyncThunk('tours/fetchUpdateTour',async ()
           Authorization: `Bearer ${token}`,
         },
       };
-
-      const response = await axios.get(`http://localhost:4000/api/tours/updateTour/${id}`,formData,config);
+      try{
+          const response = await axios.put(`http://localhost:4000/api/tours/updateTour/${id}`,formData,config);
       console.log("fetchUpdateTour", id);
       console.log("fetchUpdateTour",response);
       return response.data;
+      }
 
-    }
-  )
+ catch (error) {
+    console.error('Error updating tour:', error);
+    throw error;
+  }
+});
 
 const guideSlice = createSlice({
     name: 'tours',
