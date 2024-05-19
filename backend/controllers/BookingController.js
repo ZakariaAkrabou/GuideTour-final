@@ -1,4 +1,4 @@
-const Tour = require("../models/tour");
+const Tour = require("../models/Tour");
 const Camping = require("../models/Camping");
 const Booking = require("../models/Booking");
 const Stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
