@@ -8,7 +8,7 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { BiCheckCircle, BiSave } from "react-icons/bi";
 import { fetchProfile, updateProfile } from '../../features/Slices/userProfileSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect, useState } from 'react';
+import{ useEffect, useState } from 'react';
 
 
 
