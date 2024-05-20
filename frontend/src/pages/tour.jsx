@@ -34,6 +34,12 @@ const Tour = () => {
         dispatch(fetchCardToursById(tourId)); 
     }    
 
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleButtonClik =()=>{
+        setIsOpen(false);
+    }
+
     return (
 
 
