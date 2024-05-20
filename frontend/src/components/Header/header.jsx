@@ -6,7 +6,7 @@ import Modal from "../Modals/login";
 import { IoPerson } from "react-icons/io5";
 import DropDown from "../DropDown/DropDown";
 
-const Header = ({ handleProfile, handleOrder }) => {
+const Header = ({ handleProfile }) => {
   const [dropdown, setDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -72,7 +72,6 @@ const Header = ({ handleProfile, handleOrder }) => {
                   {profileDrop && (
                     <DropDown
                       handleProfile={handleProfile}
-                      handleOrder={handleOrder}
                       closeModal={handleProfileDropClose}
                       handleProfileDropClose={handleProfileDropClose}
                     />

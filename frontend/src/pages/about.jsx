@@ -1,7 +1,3 @@
-import  { useEffect } from 'react';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
-
 import saharaImage from '../assets/sahara-image.png';
 import elipse from '../assets/Ellipse 626.png';
 import bgstyle from '../assets/bg style.png';
@@ -24,10 +20,6 @@ import Group from '../assets/Group.png'
 
 
 const About = () => {
-
-    useEffect(() => {
-        Aos.init({ duration: 1000 });
-    }, []);
 
     const backgroundImageStyle = {
         backgroundImage: `url(${saharaImage})`,
@@ -105,8 +97,8 @@ const About = () => {
                     </div>
                 </div>
 
-                <div className=' grid lg:grid-cols-2 p-4 lg:p-8' >
-                    <div className=" flex justify-center items-center " >
+                <div className=' grid lg:grid-cols-2 p-4 lg:p-8'>
+                    <div className=" flex justify-center items-center ">
                         <div className=' flex flex-col pb-4 gap-2 lg:gap-3'>
                             <h3 className=" text-buttons font-bold text-xl text-blue-500">Promotion</h3>
                             <h1 className=" text-3xl lg:text-5xl font-['Volkhov'] font-bold text-blue_fance">We Provide You Best Morocco Sightseeing Tours</h1>
@@ -132,7 +124,7 @@ const About = () => {
                      
 
                 <div className='grid lg:grid-cols-2 p-4 justify-center items-center '>
-                    <div className=' flex justify-center pr-6 lg:w-full -mt-20' data-aos="zoom-in">
+                    <div className=' flex justify-center pr-6 lg:w-full -mt-20'>
                         <img className=' lg:w-full h-full lg:rounded-l-[100px] pb-2' src={image} alt="" />
                     </div>
                         <div className=' flex  flex-col -mt-10 lg:-mt-0 lg:gap-3'>
@@ -142,7 +134,7 @@ const About = () => {
                                 praesentium a laudantium. Et labore harum non nobis ipsum eum molestias mollitia et corporis
                                 praesentium a laudantiumh.</p>
                                 
-                                <div className=' py-4 lg:py-8 'data-aos="zoom-in-up">
+                                <div className=' py-4 lg:py-8 '>
                                 <div className=' flex justify-center'>
                         <img className='w-[400px] lg:w-[600px] h-full' src={Group} alt="" />
                                 </div>
@@ -166,7 +158,7 @@ const About = () => {
 
                     <div className="  grid gap-2 lg:gap-4" >
 
-                    <div className="w-full h-[350px] flex"data-aos="zoom-in">
+                    <div className="w-full h-[350px] flex">
                     <div className="bg-center h-full w-full rounded-xl" style={bgOudlaw_Tetouan}>
                         <div className="flex flex-col justify-end h-full">
                             <div className="flex justify-between text-Poppins text-white p-4">
