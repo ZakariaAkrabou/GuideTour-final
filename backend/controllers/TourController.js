@@ -1,6 +1,7 @@
 // controllers/tourController.js
-const Tour = require('../models/Tour');
-// const Guide = require('../models/guide');
+const Tour = require('../models/tour');
+const cloudinary = require('../configs/cloudinary');
+const Guide = require('../models/guide');
 
 exports.createTour = async (req, res) => {
     try {
@@ -8,14 +9,15 @@ exports.createTour = async (req, res) => {
         if (!req.file) {
             return res.status(400).send({ error: 'Tour image is required' });
         }
-        const guide_id = req.user._id;
-        const imagepath = req.file.path;
 
+         const guide_id = req.user._id;
+        
+         const resultImg = await cloudinary.uploader.upload(req.file.path, { folder: 'uploads' });
          const tour = new Tour({
             title: req.body.title,
             guide_id: guide_id,
             description: req.body.description,
-            image: imagepath, 
+            image: resultImg.secure_url, 
             category: req.body.category,
             duration: req.body.duration,
             price: req.body.price
@@ -24,6 +26,7 @@ exports.createTour = async (req, res) => {
 
         res.status(200).send({ message: "Tour created successfully", data: tour });
     } catch (error) {
+        console.log('error while creating tour :', error);
         res.status(400).send(error);
     }
 };
@@ -89,20 +92,34 @@ exports.updateTour = async (req, res) => {
         if (!tour) {
             return res.status(404).json({ error: 'Tour not found' });
         }
-
-        if (req.file) {
-            tour.image = req.file.path;
+      
+        
+        if (req.file && tour.image) {
+            await cloudinary.uploader.destroy(getPublicId(tour.image));
         }
 
+        
+        if (req.file) {
+            const resultImg = await cloudinary.uploader.upload(req.file.path, { folder: 'uploads' });
+            tour.image = resultImg.secure_url;
+        }
+
+      
         updates.forEach(update => tour[update] = req.body[update]);
         await tour.save();
 
         res.status(200).json({ message: "Update successful!", data: tour });
     } catch (error) {
+        console.error('Error updating tour:', error);
         res.status(400).json(error);
     }
 };
 
+function getPublicId(url) {
+    const startIndex = url.lastIndexOf("/") + 1;
+    const endIndex = url.lastIndexOf(".");
+    return url.substring(startIndex, endIndex);
+}
 
 
 exports.deleteTour = async (req, res) => {
@@ -123,3 +140,32 @@ exports.deleteTour = async (req, res) => {
     }
 };
 
+exports.relatedGuide = async (req, res) => {
+   
+    try {
+        const tourName = req.params.tourName;
+    
+      
+        const tours = await Tour.find({ title: tourName });
+    
+        if (!tours || tours.length === 0) {
+          return res.status(404).json({ message: 'No tour found with this name' });
+        }
+    
+       
+        const guideIds = tours.map(tour => tour.guide_id);
+    
+       
+        const guides = await Guide.find({ _id: { $in: guideIds } });
+    
+        if (!guides || guides.length === 0) {
+          return res.status(404).json({ message: 'No guides found for this tour' });
+        }
+    
+        res.status(200).json({ guides });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+      }
+       
+}
