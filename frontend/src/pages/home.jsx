@@ -93,6 +93,23 @@
           ))}
         </div>
         {/* end Packages */}
+        <>
+        <br />
+<h1 className="w-full text-lg font-bold tracking-widest text-red-400 uppercase max-md:max-w-full text-center">
+  Promotion
+</h1>
+<br />
+<p className="w-full text-base leading-7 text-black max-md:mt-10 max-md:max-w-full text-center">
+  Et labore harum non nobis ipsum eum molestias mollitia et corporis
+  praesentium a laudantium internos. Non quis eius quo eligendi corrupti et
+  fugiat nulla qui soluta recusandae in maxime quasi aut ducimus illum aut
+  optio quibusdam!
+</p>
+<br />
+
+   
+  
+        </>
         <SwipperHome />
       <Component />
       </>
