@@ -72,24 +72,27 @@ const SwipperHome = () => {
   };
 
   return (
-    <div>
+    <div className="px-4"> {/* Add padding to the container */}
       <Slider {...settings}>
         {tours.map((tour, index) => (
-          <div key={index} className="border rounded-lg mx-2">
-            <img
-              width={400}
-              height={300}
-              src={`http://localhost:4000/${tour.image}`}
-              alt={tour.title}
-              className="w-full h-[300px] object-cover rounded-t-lg"
-            />
-            <div className="flex flex-col gap-2 px-2 py-4">
-              <div className="text-lg">{tour.title}</div>
-              <div className="flex flex-row justify-between items-center font-semibold">
-                <p>{tour.price}</p>
-                <button className="bg-primary duration-200 p-1 text-sm rounded-full text-white  hover:bg-white hover:border-primary hover:text-primary">
-                  Book now
-                </button>
+          <div key={index} className="px-2 relative"> {/* Add padding to each slide */}
+            <div className="rounded-lg overflow-hidden relative backdrop-blur"> {/* Apply blurry border */}
+              <img
+                width={400}
+                height={300}
+                src={tour.image}
+                alt={tour.title}
+                className="w-full h-[300px] object-cover rounded-t-lg"
+              />
+              <div className="absolute inset-0 rounded-lg border border-transparent"></div> {/* Add border */}
+              <div className="absolute bottom-4 right-4 bg-white bg-opacity-50 p-2 rounded-lg text-center"> {/* Add book now button */}
+                <button className="text-primary font-semibold">Book now</button>
+              </div>
+              <div className="flex flex-col gap-2 px-4 py-4"> {/* Add padding to inner content */}
+                <div className="text-lg">{tour.title}</div>
+                <div className="flex flex-row justify-between items-center font-semibold">
+                  <p>{tour.price}</p>
+                </div>
               </div>
             </div>
           </div>
