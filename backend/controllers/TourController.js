@@ -1,5 +1,5 @@
 // controllers/tourController.js
-const Tour = require('../models/tour');
+const Tour = require('../models/Tour');
 const cloudinary = require('../configs/cloudinary');
 const Guide = require('../models/guide');
 
@@ -141,31 +141,33 @@ exports.deleteTour = async (req, res) => {
 };
 
 exports.relatedGuide = async (req, res) => {
-   
+    
     try {
-        const tourName = req.params.tourName;
+        const { tourName } = req.params; 
     
-      
-        const tours = await Tour.find({ title: tourName });
+        if (!tourName) {
+          return res.status(400).json({ message: 'Tour name is required' });
+        }
+        
+       
+        const tour = await Tour.findOne({ title: tourName }).populate('guide_id');
     
-        if (!tours || tours.length === 0) {
-          return res.status(404).json({ message: 'No tour found with this name' });
+        if (!tour) {
+          return res.status(404).json({ message: 'Tour not found' });
         }
     
-       
-        const guideIds = tours.map(tour => tour.guide_id);
-    
-       
-        const guides = await Guide.find({ _id: { $in: guideIds } });
-    
-        if (!guides || guides.length === 0) {
+        const guides = tour.guide_id; 
+        
+        console.log('Tour:', tour);
+        console.log('guide_id:', tour.guide_id);
+        if (guides.length === 0) {
           return res.status(404).json({ message: 'No guides found for this tour' });
         }
     
-        res.status(200).json({ guides });
+        res.status(200).json(guides); 
       } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Server Error' });
+        console.error('Error fetching related guides:', error);
+        res.status(500).json({ message: 'Internal server error' });
       }
        
 }
