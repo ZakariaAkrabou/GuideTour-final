@@ -3,7 +3,6 @@ import Header from "./../Header/header";
 import Routers from "../../routes/router";
 import Footer from "./../Footer/footer";
 import UserProfile from "../UserProfile/UserProfile";
-import Orders from "../Orders/Orders";
 import React, { useState } from "react";
 import BecomeGuide from "../BecomeGuide/BecomeGuide";
 
@@ -12,15 +11,10 @@ const Layout = ({ children }) => {
 
   const [modalProfile, setModalProfile] = useState(false);
   const [modalGuide, setModalGuide] = useState(false);
-  // const [modalOrder, setModalOrder] = useState(false);
 
   const handleProfileClose = () => {
     setModalProfile(false);
   };
-
-  // const handleOrder = () => {
-  //   setModalOrder(true);
-  // };
 
   const handleProfile = () => {
     setModalProfile(true);
@@ -48,13 +42,6 @@ const Layout = ({ children }) => {
         <BecomeGuide handleGuideClose={handleGuideClose} />
         </div>
         )}
-
-       {/* {modalOrder && (
-        <div className="backdrop-filter backdrop-blur-sm 
-        h-full fixed top-0 w-full z-50 flex justify-center items-center bottom-0 ">
-        <Orders  />
-        </div>
-        )} */}
       <main>{children}</main>
       <Routers handleProfile={handleProfile} handleGuide={handleGuide}/>
       <Footer />
