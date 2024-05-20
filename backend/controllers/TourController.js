@@ -58,9 +58,7 @@ exports.getAllTours = async(req,res) =>{
         if (tours.length === 0) {
             return res.status(404).json("No tours found.");
         }
-        
-        console.log("All Tours", tours);
-        return res.status(201).json(tours)
+            return res.status(201).json(tours)
     } catch (error) {
         res.status(500).json(error);
     }
@@ -74,7 +72,7 @@ exports.getTourById = async (req, res) => {
         if (!tour) {
             return res.status(404).json({ error: 'Tour not found' });
         }
-        res.status(200).json({message:"tour added successfuly", data: tour});
+        res.status(200).json(tour);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -136,7 +134,7 @@ exports.deleteTour = async (req, res) => {
             return res.status(404).json({ error: 'Tour not found' });
         }
         
-        res.send(200).json({message:"tour deleted successfuly",data:tour});
+        res.status(200).json({message:"tour deleted successfuly",data:tour});
     } catch (error) {
         res.status(500).json(error);
     }
