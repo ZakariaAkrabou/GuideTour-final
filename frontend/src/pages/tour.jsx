@@ -33,6 +33,12 @@ const Tour = () => {
         dispatch(fetchCardToursById(tourId));
     }
 
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleButtonClik =()=>{
+        setIsOpen(false);
+    }
+
     return (
         <div className="App">
             <div className="text-white h-screen flex items-center justify-center" style={bgheadertour}>

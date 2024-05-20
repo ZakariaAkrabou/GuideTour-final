@@ -13,7 +13,7 @@ function Dashboard() {
     
      
     </div>
-    <div className='relative left-[300px] -top-[650px] h-[100px]'>{<Outlet/>}</div>
+    <div className='relative left-[300px] -top-[650px] h-[100px] w-scren'>{<Outlet/>}</div>
    </div>
  
    

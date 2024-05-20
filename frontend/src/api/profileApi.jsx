@@ -1,19 +1,15 @@
 import axios from 'axios';
 
-export const fetchUserProfile = axios.create({
-  baseURL: 'http://localhost:4000/api/users/user-profile',
-});
+const BASE_URL = 'http://localhost:4000/api/users/user-profile';
 
-fetchUserProfile.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
+const profileApi = {
+  getUserProfile: async (token) => {
+    return axios.get(`${BASE_URL}/user/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(response => response.data);
   },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+};
 
+export default profileApi;
