@@ -12,8 +12,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
-
-
 function UserProfile({handleProfileClose, handleGuide}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -117,6 +115,14 @@ function UserProfile({handleProfileClose, handleGuide}) {
             Become a guide
           </button>
           ) : (
+
+            <Link to="/orders">
+            <button  className='bg-primary text-white font-semibold p-1.5 lg:px-6 lg:py-2 rounded-full flex items-center'>
+            <AiOutlineDashboard size={20} className='mr-2' />
+            Dashboard
+          </button>
+            </Link>
+
            <Link to={"/dashboard/Tours"}>
                <button  className='bg-primary text-white font-semibold p-1.5 lg:px-6 lg:py-2 rounded-full flex items-center'>
             <AiOutlineDashboard size={20} className='mr-2' />

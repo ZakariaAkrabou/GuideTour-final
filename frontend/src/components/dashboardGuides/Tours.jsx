@@ -6,26 +6,25 @@ import { IoCreate } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
-import ConfirmDeleteModal from '../Modals/confirm-Dlete';
+import ConfirmDeleteModal from '../Modals/confirm-Delete';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Tours() {
   const dispatch = useDispatch();
   const tours = useSelector((state) => state.guides.guideTours);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] = useState(false);
   const [tourIdToDelete, setTourIdToDelete] = useState(null);
   const [current, setCurrent] = useState(1);
-  const items = 4;
+  const itemsPerPage = 4;
 
   useEffect(() => {
     dispatch(fetchTours());
   }, [dispatch]);
 
-  const NbPage = Math.ceil(tours.length / items);
-  const startIndex = (current - 1) * items;
-  const endIndex = startIndex + items;
+  const NbPage = Math.ceil(tours.length / itemsPerPage);
+  const startIndex = (current - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
   const DataPerPage = tours.slice(startIndex, endIndex);
 
   const handlePagination = (event, page) => {
@@ -53,6 +52,7 @@ function Tours() {
       setIsConfirmDeleteModalOpen(false);
     } catch (error) {
       console.error('Error deleting tour:', error);
+      toast.error('Failed to delete tour');
     }
   };
 
