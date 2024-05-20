@@ -27,7 +27,7 @@ export default function DashboardGuides() {
 }
 
 function BoxWrapper({ children }) {
-  return <div className='bg-white shadow-md p-4 lg:flex-1 rounded-lg items-center mb-4 lg:mb-0'>{children}</div>;
+  return <div className='bg-white shadow-md p-4 lg:flex-1 rounded-lg items-center mb-4 lg:mb-0  w-[800px]'>{children}</div>;
   // flex
   // flex
 }
