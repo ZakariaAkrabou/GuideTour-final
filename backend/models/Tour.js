@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const tourSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  guide_id: {
+  guide_ids: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Guide",
     required: true,
-  },
+  }],
   description: { type: String, required: true },
   image: { type: String, required: true },
   category: { type: String, required: true },

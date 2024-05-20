@@ -141,33 +141,32 @@ exports.deleteTour = async (req, res) => {
 };
 
 exports.relatedGuide = async (req, res) => {
-    
     try {
-        const { tourName } = req.params; 
+        const { tourName } = req.params;
     
         if (!tourName) {
           return res.status(400).json({ message: 'Tour name is required' });
         }
-        
-       
-        const tour = await Tour.findOne({ title: tourName }).populate('guide_id');
+    
+    
+        const tour = await Tour.findOne({ title: tourName }).populate('guide_ids');
     
         if (!tour) {
           return res.status(404).json({ message: 'Tour not found' });
         }
     
-        const guides = tour.guide_id; 
-        
+        const guides = tour.guide_ids;
+    
         console.log('Tour:', tour);
-        console.log('guide_id:', tour.guide_id);
-        if (guides.length === 0) {
+        console.log('guide_ids:', tour.guide_ids);
+    
+        if (!guides || guides.length === 0) {
           return res.status(404).json({ message: 'No guides found for this tour' });
         }
     
-        res.status(200).json(guides); 
+        res.status(200).json(guides);
       } catch (error) {
         console.error('Error fetching related guides:', error);
         res.status(500).json({ message: 'Internal server error' });
       }
-       
-}
+  };
