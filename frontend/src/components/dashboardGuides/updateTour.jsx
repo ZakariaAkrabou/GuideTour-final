@@ -47,7 +47,9 @@ function UpdateTour() {
         price: tour.price || '',
         image: null // Assuming image is being uploaded and not coming from tour data
       });
-      
+      if (tour.image) {
+        setImagePreview(`${tour.image}`); // Set the image preview URL
+      }
     }
     console.log("Form data updated:", {
       title: tour.title || '',
@@ -177,7 +179,7 @@ function UpdateTour() {
                 <img 
                   src={imagePreview} 
                   alt="Preview" 
-                  className='w-50 h-48 rounded object-cover' 
+                  className='w-96 h-52 rounded object-cover' 
                 />
               </div>
             )}
