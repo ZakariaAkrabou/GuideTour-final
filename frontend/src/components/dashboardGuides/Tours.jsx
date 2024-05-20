@@ -25,7 +25,6 @@ function Tours() {
     const handlid=(id)=>{
         console.log(id);
         dispatch(fetchToursById(id));
-        dispatch(fetchUpdateTour(id));
     }
     
     const handldelete=async(id)=>{

@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchToursById, fetchUpdateTour } from '../../features/Slices/guideSlice';
 
-function UpdateTour() {
+function UpdateTour(id) {
+
   const dispatch = useDispatch();
+  
   const tour = useSelector((state) => state.guides.getTour);
 console.log(tour);
   
@@ -74,7 +76,7 @@ const handleSubmit = async (e) => {
         <p>Title</p>
         <input
           name='title'
-          value={tour.title}
+          value={formData.title}
           type="text"
           onChange={handleChange}
           className=" w-full text-center border-none bg-white"

@@ -65,12 +65,14 @@ export const fetchToursById = createAsyncThunk('tours/fetchToursById',async (id)
           Authorization: `Bearer ${token}`,
         },
       };
-  
-      const response = await axios.put(`http://localhost:4000/api/tours/updateTour/${id}`, data, config);
-      console.log("formData Tour", data);
+
+      const response = await axios.put(`http://localhost:4000/api/tours/updateTour/${id}`,data,config);
+      console.log("fetchUpdateTour", id);
+      console.log("fetchUpdateTour",response);
       return response.data;
+
     }
-  );
+  )
 
 const guideSlice = createSlice({
     name: 'tours',
