@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 
 
 
+
 function UserProfile({handleProfileClose, handleGuide}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
