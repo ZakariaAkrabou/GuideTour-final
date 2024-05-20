@@ -1,7 +1,8 @@
-import React from 'react'
 import { IoMdSettings, IoMdLogOut } from "react-icons/io";
 
-function DropDown({handleProfile, handleGuide,handleProfileDropClose}) {
+
+function DropDown({handleProfile,handleProfileDropClose}) {
+
   const logout = () => {
 
     localStorage.removeItem('token'); 

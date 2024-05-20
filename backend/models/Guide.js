@@ -12,6 +12,7 @@ const guideSchema = new Schema({
     rating: { type: Number }
 });
 
-const Guide = mongoose.model('Guide', guideSchema);
+const Guide = mongoose.models.Guide || mongoose.model('Guide', guideSchema);
+
 
 module.exports = Guide;

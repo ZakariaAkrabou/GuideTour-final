@@ -186,6 +186,7 @@ const Header = ({ handleProfile }) => {
             </div>
           )}
         </div>
+        
       </nav>
       {showModal && <Modal setShowModal={setShowModal} />}
     </>

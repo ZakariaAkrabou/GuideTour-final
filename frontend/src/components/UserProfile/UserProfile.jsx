@@ -8,7 +8,7 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { BiCheckCircle, BiSave } from "react-icons/bi";
 import { fetchProfile, updateProfile } from '../../features/Slices/userProfileSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect, useState } from 'react';
+import{ useEffect, useState } from 'react';
 
 
 
@@ -21,7 +21,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
     dispatch(fetchProfile());
   }, [dispatch]);
   
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.users.profile);
 
   useEffect(() => {
     setFormData({
@@ -48,10 +48,10 @@ function UserProfile({handleProfileClose, handleGuide}) {
     setIsSubmitted(true);
     const updatedFormData = { ...formData };
     if (updatedFormData.password.trim() === '') {
-      delete updatedFormData.password; // Remove the password field if it's empty
+      delete updatedFormData.password;
     }
-  
-    dispatch(updateProfile(updatedFormData));  };
+    dispatch(updateProfile(updatedFormData));  
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

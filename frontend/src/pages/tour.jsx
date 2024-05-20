@@ -1,7 +1,7 @@
 import Header from "../assets/header-tour.jpeg";
 import travel from '../assets/travel.png'
 import telouet from '../assets/telouet.png'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { TbCalendarEvent } from "react-icons/tb";
 import { IoSearch } from "react-icons/io5";
 
@@ -10,25 +10,30 @@ import { HiArrowsUpDown } from "react-icons/hi2";
 import { CiBoxList } from "react-icons/ci";
 import { PiStarThin } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCardTours,fetchCardToursById } from '../features/Slices/tourSlice';
 
 
 const Tour = () => {
+
+    const dispatch = useDispatch();
+    const tours = useSelector((state) => state.tours.cartTour);
+    console.log("cardtours",tours);
+
+    useEffect(() => {
+        dispatch(fetchCardTours());
+    }, [dispatch]);
 
     const bgheadertour = {
         backgroundImage: `url(${Header})`,
         backgroundSize: 'cover',
 
     };
-    const boxstyle = ' transition ease-in-out delay-150 hover:rounded hover:shadow-xl ';
-    // const boxstyle='rounded-[16px] shadow-xl border-current';
 
+    const handelTourId = (tourId) => {
+        dispatch(fetchCardToursById(tourId)); 
+    }    
 
-    //input,button 
-    const [inputValue, setInputValue] = useState('');
-
-    const handleClick = () => {
-        setInputValue('trtf');
-    };
     return (
 
 
@@ -49,20 +54,22 @@ const Tour = () => {
                     <div className=" p-4 grid grid-cols-2 gap-28 ">
                         <div className=" grid grid-cols-2 w-[480px] gap-4   ">
                            <Link to="/Landscapes" style={{ display: 'block' }}>
-                            <div className={` ${boxstyle} transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl shadow-2xl`}>
+                            {tours.map((tour,index) => (
+
+                            <div  key={index} onClick={() => handelTourId(tour._id)} className={`  transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl shadow-2xl`}>
                                 <div className="p-2">
-                                    <img className="hover:rounded-t-3xl w-[250px] h-[150px]" src={telouet} alt="" />
+                                    <img className="hover:rounded-t-3xl w-[250px] h-[150px]" src={tour.image} alt="" />
                                     <div className="bg-primary flex justify-center items-center text-white text-sm h-10 whitespace-nowrap">
-                                        <p>12, September 2022</p>
-                                        <p className="ml-2">120+ People</p>
+                                        <p>{tour.duration}</p>
+                                        {/* <p className="ml-2">120+ People</p> */}
                                     </div>
                                 </div>
 
                                 <div className="-mt-3 p-2 flex flex-col justify-start">
-                                    <h3 className="text-blue_fance font-Volkhov text-3xl font-semibold">Telouet Kasbah</h3>
-                                    <p>Qui tempore voluptate qui quia commodi rem praesentium alias et.</p>
+                                    <h3 className="text-blue_fance font-Volkhov text-3xl font-semibold">{tour.title}</h3>
+                                    <p>{tour.description}</p>
                                     <div className="text-1xl text-back flex gap-4">
-                                        <p>1,100 DH</p>
+                                        <p>{tour.price} DH</p> 
                                         <div className="flex gap-2">
                                             <PiStarThin size={20} />
                                             <p>5.0</p> 
@@ -70,127 +77,9 @@ const Tour = () => {
                                     </div>
                                 </div>
                             </div>
+                            ))}
                             </Link>
                             
-                           <Link to="/Landscapes" style={{ display: 'block' }}>
-                            <div className={` ${boxstyle} transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl`}>
-                                <div className="p-2">
-                                    <img className="hover:rounded-t-3xl w-[250px] h-[150px]" src={telouet} alt="" />
-                                    <div className="bg-primary flex justify-center items-center text-white text-sm h-10 whitespace-nowrap">
-                                        <p>12, September 2022</p>
-                                        <p className="ml-2">120+ People</p>
-                                    </div>
-                                </div>
-
-                                <div className="-mt-3 p-2 flex flex-col justify-start">
-                                    <h3 className="text-blue_fance font-Volkhov text-3xl font-semibold">Telouet Kasbah</h3>
-                                    <p>Qui tempore voluptate qui quia commodi rem praesentium alias et.</p>
-                                    <div className="text-1xl text-back flex gap-4">
-                                        <p>1,100 DH</p>
-                                        <div className="flex gap-2">
-                                            <PiStarThin size={20} />
-                                            <p>5.0</p> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </Link>
-                            
-                           <Link to="/Landscapes">
-                            <div className={` ${boxstyle} transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl`}>
-                                <div className="p-2">
-                                    <img className="hover:rounded-t-3xl w-[250px] h-[150px]" src={telouet} alt="" />
-                                    <div className="bg-primary flex justify-center items-center text-white text-sm h-10 whitespace-nowrap">
-                                        <p>12, September 2022</p>
-                                        <p className="ml-2">120+ People</p>
-                                    </div>
-                                </div>
-
-                                <div className="-mt-3 p-2 flex flex-col justify-start">
-                                    <h3 className="text-blue_fance font-Volkhov text-3xl font-semibold">Telouet Kasbah</h3>
-                                    <p>Qui tempore voluptate qui quia commodi rem praesentium alias et.</p>
-                                    <div className="text-1xl text-back flex gap-4">
-                                        <p>1,100 DH</p>
-                                        <div className="flex gap-2">
-                                            <PiStarThin size={20} />
-                                            <p>5.0</p> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </Link>
-                            
-                           <Link to="/Landscapes">
-                            <div className={` ${boxstyle} transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl`}>
-                                <div className="p-2">
-                                    <img className="hover:rounded-t-3xl w-[250px] h-[150px]" src={telouet} alt="" />
-                                    <div className="bg-primary flex justify-center items-center text-white text-sm h-10 whitespace-nowrap">
-                                        <p>12, September 2022</p>
-                                        <p className="ml-2">120+ People</p>
-                                    </div>
-                                </div>
-
-                                <div className="-mt-3 p-2 flex flex-col justify-start">
-                                    <h3 className="text-blue_fance font-Volkhov text-3xl font-semibold">Telouet Kasbah</h3>
-                                    <p>Qui tempore voluptate qui quia commodi rem praesentium alias et.</p>
-                                    <div className="text-1xl text-back flex gap-4">
-                                        <p>1,100 DH</p>
-                                        <div className="flex gap-2">
-                                            <PiStarThin size={20} />
-                                            <p>5.0</p> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </Link>
-                            
-                           <Link to="/Landscapes">
-                            <div className={` ${boxstyle} transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl`}>
-                                <div className="p-2">
-                                    <img className="hover:rounded-t-3xl w-[250px] h-[150px]" src={telouet} alt="" />
-                                    <div className="bg-primary flex justify-center items-center text-white text-sm h-10 whitespace-nowrap">
-                                        <p>12, September 2022</p>
-                                        <p className="ml-2">120+ People</p>
-                                    </div>
-                                </div>
-
-                                <div className="-mt-3 p-2 flex flex-col justify-start">
-                                    <h3 className="text-blue_fance font-Volkhov text-3xl font-semibold">Telouet Kasbah</h3>
-                                    <p>Qui tempore voluptate qui quia commodi rem praesentium alias et.</p>
-                                    <div className="text-1xl text-back flex gap-4">
-                                        <p>1,100 DH</p>
-                                        <div className="flex gap-2">
-                                            <PiStarThin size={20} />
-                                            <p>5.0</p> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </Link>
-                            
-                           <Link to="/Landscapes">
-                            <div className={` ${boxstyle} transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl`}>
-                                <div className="p-2">
-                                    <img className="hover:rounded-t-3xl w-[250px] h-[150px]" src={telouet} alt="" />
-                                    <div className="bg-primary flex justify-center items-center text-white text-sm h-10 whitespace-nowrap">
-                                        <p>12, September 2022</p>
-                                        <p className="ml-2">120+ People</p>
-                                    </div>
-                                </div>
-
-                                <div className="-mt-3 p-2 flex flex-col justify-start">
-                                    <h3 className="text-blue_fance font-Volkhov text-3xl font-semibold">Telouet Kasbah</h3>
-                                    <p>Qui tempore voluptate qui quia commodi rem praesentium alias et.</p>
-                                    <div className="text-1xl text-back flex gap-4">
-                                        <p>1,100 DH</p>
-                                        <div className="flex gap-2">
-                                            <PiStarThin size={20} />
-                                            <p>5.0</p> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </Link>
                             
 
                         </div >
