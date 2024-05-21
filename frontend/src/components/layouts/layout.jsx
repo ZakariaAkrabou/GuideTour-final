@@ -43,6 +43,7 @@ const Layout = ({ children }) => {
         </div>
         )}
       <main>{children}</main>
+      
       <Routers handleProfile={handleProfile} handleGuide={handleGuide}/>
       <Footer />
     </>

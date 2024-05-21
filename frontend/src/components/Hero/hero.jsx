@@ -57,10 +57,10 @@ const Hero = () => {
             )}
             <div className="flex">
               <select value={selectedOption}  onChange={handleSelectChange} className="text-lg bg-transparent border-none text-black font-bold whitespace-nowrap">
-                <option className="text-black" value="">Travel Type</option>
-                <option className="text-black" value="option1">Option 1</option>
-                <option className="text-black" value="option2">Option 2</option>
-                <option className="text-black" value="option3">Option 3</option>
+                <option className="text-black " value="">Travel Type</option>
+                <option className="text-black" value="option1">Tour</option>
+                <option className="text-black" value="option2">Camping</option>
+                
               </select>
               <RxDividerVertical size={45} className="hidden md:block text-gray-200"/>
             </div>
