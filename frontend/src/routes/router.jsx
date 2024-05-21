@@ -15,6 +15,7 @@ import DashboardGuides from "../components/dashboardGuides/dashboardGuides";
 import Tours from "../components/dashboardGuides/Tours";
 import CreateTour from "../components/dashboardGuides/createTour"
 import UpdateTour from "../components/dashboardGuides/updateTour"
+import EmailConfirmation from "../pages/emailConfermation";
 
 
 const Router = () => {
@@ -28,6 +29,7 @@ const Router = () => {
       <Route path="/tour" element={<Tour />} />
       <Route path="/camping" element={<Camping />} />
       <Route path="/orders" element={<Orders/>} />
+      <Route path="/email-confirmation" element={<EmailConfirmation />} />
 
       {/* <Route path="/dashboard" element={<Layout/>}>
         <Route index element={<Dashboard/>} />

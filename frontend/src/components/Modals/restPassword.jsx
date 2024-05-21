@@ -1,35 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BiSolidShow, BiSolidHide } from "react-icons/bi";
-import { useDispatch, useSelector } from 'react-redux';
-import { forgetPassword } from "../../features/Slices/authPasswordSlice";
+import { useDispatch } from 'react-redux';
+import { restPassword } from "../../features/Slices/authPasswordSlice";
+import { Link, useParams } from "react-router-dom";
 
-const ForgetPassword = ({ setShowModal }) => {
-  const [email, setEmail] = useState("");
+
+const ResetPassword = ({ setShowModal }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [error] = useState("");
-
+  const [error, setError] = useState("");
+  const [formData, setFormData] = useState({
+    password: "",
+  });
   const dispatch = useDispatch();
-  
+  const { token } = useParams();
 
-  // useEffect(() => {
-  //   dispatch(fetchProfile());
-  // }, [dispatch]);
-  
-  // const profile = useSelector((state) => state.users.profile);
+  useEffect(() => {
+    console.log("Reset token:", token);
+  }, [token]);
 
   const handleChange = (e) => {
-    setEmail(e.target.value);
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    console.log("Resetting password for email:", email);
-    dispatch(forgetPassword({email}));
+    console.log("Resetting password:", formData);
+    console.log("tok:", token);
+    dispatch(restPassword({ formData, token }));
     setShowModal(false);
   };
 
@@ -40,22 +45,11 @@ const ForgetPassword = ({ setShowModal }) => {
           <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center p-4">
             <span className="text-2xl font-inter font-semibold">Reset Password</span>
             <div className="flex flex-col gap-2 w-full relative">
-              <label className="text-3x" htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={handleChange}
-                className={`border ${error ? "border-red-500" : "border-gray-600"
-                  } w-full p-1 border border-gray-400 rounded-md placeholder-font-light`}
-              />
-            </div>
-            {/* <div className="flex flex-col gap-2 w-full relative">
               <label className="text-3x" htmlFor="password">New Password</label>
               <div className="flex items-center">
                 <input
                   name="password"
-                  value={showPassword}
+                  value={formData.password}
                   onChange={handleChange}
                   className={`border ${error ? "border-red-500" : "border-gray-600"
                     } w-full p-1 border border-gray-400 rounded-md placeholder-font-light`}
@@ -71,13 +65,16 @@ const ForgetPassword = ({ setShowModal }) => {
                   </button>
                 </div>
               </div>
-            </div> */}
+            </div>
             <div className="py-4">
+                <Link
+                to={'/home'}>
               <button
                 className="w-[300px] bg-primary text-white font-inter p-2 rounded-lg mb-4 hover:bg-black hover:text-white hover:font-inter hover:border-transparent"
               >
-                Enter your Email
+                Reset Password
               </button>
+                </Link>
               <div className=" flex items-center justify-center">
                 <button
                   className="text-blue-500 hover:underline hover:text-black"
@@ -95,4 +92,4 @@ const ForgetPassword = ({ setShowModal }) => {
   );
 };
 
-export default ForgetPassword;
+export default ResetPassword;

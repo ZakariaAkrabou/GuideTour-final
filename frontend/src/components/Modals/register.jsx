@@ -203,7 +203,7 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
                             <div className="absolute -mt-4 w-full h-full flex items-center justify-center">
                             <div className="flex items-center justify-center text-green-600">
                               <IoCheckmarkDoneCircle className="mr-2" />
-                              <span>Registration successful!</span>
+                              <span>Please check your Mailbox!</span>
                             </div>
                           </div>
                         )}
