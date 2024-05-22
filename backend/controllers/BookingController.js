@@ -35,7 +35,6 @@ exports.CheckoutSession = async (req, res) => {
     console.log("Booking Details:", bookingDetails);
 
     if (!bookingDetails) {
-      
       return res.status(400).json({ error: "Failed to retrieve booking details" });
     }
 
@@ -49,19 +48,17 @@ exports.CheckoutSession = async (req, res) => {
           price_data: {
             currency: "usd",
             product_data: {
-              name:
-                bookingType === "tour"? bookingDetails.title : bookingDetails.location,
-              description:
-                bookingType === "tour" ? bookingDetails.description : null,
+              name: bookingType === "tour" ? bookingDetails.title : bookingDetails.location,
+              description: bookingType === "tour" ? bookingDetails.description : null,
             },
-            unit_amount: booking.price * 100,
+            unit_amount: booking.price * 100, // Convert price to cents
           },
           quantity: 1,
         },
       ],
-     
     });
-    // console.log("Session:", session);
+
+    console.log("Session:", session);
 
     res.status(200).json({ sessionId: session.id, bookingType });
   } catch (err) {
@@ -91,21 +88,18 @@ exports.bookService = async (req, res) => {
 
     if (serviceType === "tour") {
       bookingData.tour = serviceId;
-
       bookingData.camping = undefined;
     } else if (serviceType === "camping") {
       bookingData.camping = serviceId;
-
       bookingData.tour = undefined;
     }
 
     const newBooking = new Booking(bookingData);
 
     await newBooking.save();
-    // console.log("New booking saved:", newBooking);
+    console.log("New booking saved:", newBooking);
 
-    //   res.redirect(`/checkout/${newBooking._id}`);
-    res.status(200).json({ message: "your booking is done wait for checkout" });
+    res.status(200).json({ message: "Your booking is done. Wait for checkout.", bookingId: newBooking._id });
   } catch (err) {
     console.error("Error booking service:", err);
     res.status(500).json({ error: "Failed to book service" });

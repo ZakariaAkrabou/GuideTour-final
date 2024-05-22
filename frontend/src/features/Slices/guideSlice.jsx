@@ -55,24 +55,28 @@ export const fetchToursById = createAsyncThunk('tours/fetchToursById',async (id)
 
     }
   )
-  export const fetchUpdateTour = createAsyncThunk('tours/fetchUpdateTour',async ({ data, id }) => {
-      console.log("updateid", id);
-  
-      const token = localStorage.getItem('token') || null;
-  
-      const config = {
+export const fetchUpdateTour = createAsyncThunk('tours/fetchUpdateTour',async ({data, id}) => {
+    console.log("Hdhbdhc",id);
+
+    const token = localStorage.getItem('token') || null;
+
+    const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
-
-      const response = await axios.put(`http://localhost:4000/api/tours/updateTour/${id}`,data,config);
+      try{
+          const response = await axios.put(`http://localhost:4000/api/tours/updateTour/${id}`,data,config);
       console.log("fetchUpdateTour", id);
       console.log("fetchUpdateTour",response);
       return response.data;
+      }
 
-    }
-  )
+ catch (error) {
+    console.error('Error updating tour:', error);
+    throw error;
+  }
+});
 
 const guideSlice = createSlice({
     name: 'tours',
@@ -104,6 +108,23 @@ const guideSlice = createSlice({
             state.error = '';
             
           });
+          builder.addCase(fetchUpdateTour.pending, (state) => {
+            state.loading = true;
+        });
+
+        builder.addCase(fetchUpdateTour.fulfilled, (state, action) => {
+            state.loading = false;
+            // Update the specific tour in state
+            state.getTour = action.payload; 
+            console.log("Updated tour:", state.getTour);
+            state.error = '';
+        });
+
+        builder.addCase(fetchUpdateTour.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        });
     }
 })
+
 export default guideSlice.reducer;
