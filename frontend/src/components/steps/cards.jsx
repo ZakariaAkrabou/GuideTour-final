@@ -79,7 +79,7 @@ export default function Cards({ nextStep }) {
             <div className="grid grid-cols-2 gap-2">
                 {/* Cards */}
                 {campingsCards.map((camping, index) => (
-                    <div key={index} className='relative bg-white hover:-translate-y-1 h-max hover:scale-110 rounded-xl hover:shadow-2xl duration-100'>
+                    <div onClick={nextStep} key={index} className='relative bg-white hover:-translate-y-1 h-max hover:scale-110 rounded-xl hover:shadow-2xl duration-100'>
                     <img src={card} alt="Card" className='h-[250px] w-full rounded-xl' />
                     <div className='absolute bottom-0 z-0 left-0 p-1 w-full bg-primary rounded-b-2xl'>
                         <div className=' flex flex-col'>

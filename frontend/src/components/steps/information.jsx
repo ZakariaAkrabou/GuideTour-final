@@ -30,24 +30,7 @@ const Step1 = ({ nextStep, prevStep}) => {
     // description: '',
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const token = localStorage.getItem('token') || null;
 
-    const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
-      await axios.post('http://localhost:4000/api/booking/book', formData,config);
-      // Dispatch the Booking action creator if the post request succeeds
-      dispatch(Booking());
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
  
 
@@ -122,7 +105,7 @@ const Step1 = ({ nextStep, prevStep}) => {
               <button className="bg-gray-400 p-1 text-white text-xl rounded-md mt-4" onClick={prevStep}>
                 Back
               </button>
-              <button className="bg-primary transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-1 text-white text-lg rounded-md mt-4 mr-28" onClick={handleSubmit} >
+              <button className="bg-primary transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-1 text-white text-lg rounded-md mt-4 mr-28"  >
                 Book Now
               </button>
             </div>

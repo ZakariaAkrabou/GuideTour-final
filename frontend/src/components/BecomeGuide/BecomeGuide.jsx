@@ -6,11 +6,11 @@ import { PiUserSwitchLight } from "react-icons/pi";
 import { BiCheckCircle } from "react-icons/bi";
 import { MdWork } from "react-icons/md";
 import { FaAddressCard } from "react-icons/fa";
-import { switchProfile } from '../../features/Slices/userProfileSlice';
 import { useDispatch } from 'react-redux';
+import { switchProfile } from '../../features/Slices/userProfileSlice';
 
 function BecomeGuide({ handleGuideClose }) {
-  const [isSwitched, setIsSwitched] = useState(false);
+  // const [isSwitched, setIsSwitched] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const dispatch = useDispatch();
@@ -35,21 +35,20 @@ function BecomeGuide({ handleGuideClose }) {
     if (identity) data.append('identity', identity);
     if (certificate) data.append('certificate', certificate);
     if (profile_picture) data.append('profile_picture', profile_picture);
+    
+    dispatch(switchProfile(data));
+      // setIsSwitched(true);
 
-    try {
-      dispatch(switchProfile(data));
-      setIsSwitched(true);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    }
   };
 
   const handleFileChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+
   };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
   };
 
   return (
@@ -120,7 +119,7 @@ function BecomeGuide({ handleGuideClose }) {
               <div className=' flex justify-center lg:p-0 pt-1.5'>
                 {isSubmitted ? (
                   <button 
-                  disabled
+                  // disabled
                 className='w-32 gap-2 p-1.5 flex justify-center items-center text-white font-semibold rounded-full bg-green-500'
                 >
                 <BiCheckCircle size={20}/>
