@@ -119,7 +119,7 @@ function CreateTour() {
           </div>
         </div>
         <div className='flex gap-20 relative top-8 left-[200px]'>
-          <Link to="/dashboard/Tours">
+          <Link to="/dashboard/dashboardGuides">
             <button className='bg-primary rounded w-[150px] h-[40px] text-white'>Dashboard</button>
           </Link>
           <button onClick={handleSubmit} className='bg-primary rounded w-[150px] h-[40px] text-white'>Create</button>

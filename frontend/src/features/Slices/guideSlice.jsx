@@ -5,6 +5,7 @@ const initialState = {
     loading: false,
     guideTours: [],
     getTour: [],
+    tourCount: 0,
     error: '',
 }
 
@@ -19,7 +20,7 @@ export const fetchTours = createAsyncThunk('tours/fetchTours', async ()  => {
       };
       console.log(token);
 
-    const response = await axios.get('http://localhost:4000/api/tours/allTours',config)
+    const response = await axios.get('http://localhost:4000/api/tours/allGuideTours',config)
     return response.data;
 })
 
@@ -90,6 +91,8 @@ const guideSlice = createSlice({
         builder.addCase(fetchTours.fulfilled, (state, action) => {
             state.loading = false;
             state.guideTours = action.payload;
+            state.tourCount = action.payload.length;
+            console.log("countTour", state.tourCount);
             console.log("guideTours", state.guideTours);
             state.error = '';
         });

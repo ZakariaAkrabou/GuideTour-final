@@ -62,8 +62,8 @@ export default function Sidebar() {
       </div>
 
       <div className="flex flex-col">
-        {loading && <div>Loading...</div>}
-        {error && <div>{"login before"}</div>}
+        {loading && <div className='text-white px-[70px]'>Loading...</div>}
+        {error && <div className='text-white'>{"login before"}</div>}
         {guideInfo && (
           <>
             <div className={`text-center font-bold text-[24px] leading-[1] text-[#FFFFFF] ${!open && "hidden"}`}>
@@ -87,7 +87,7 @@ export default function Sidebar() {
           <div  className={classNames('text-red-500 cursor-pointer', linkClass)}>
             <span><HiOutlineArrowRightOnRectangle /></span>
             <Link to={"/home"}>
-            {open && <span>Home</span>}
+            {open && <span>Logout</span>}
             </Link>
             
 
