@@ -23,19 +23,20 @@ export const fetchProfile = createAsyncThunk('users/fetchProfile', async ()  => 
   return response.data
 })
 
-export const updateProfile = createAsyncThunk('users/updateProfile', async (formData, thunkAPI) => {
+export const updateProfile = createAsyncThunk('users/updateProfile', async (updatedFormData, thunkAPI) => {
   const token = localStorage.getItem('token') || null;
-  let userID = thunkAPI.getState().profile.data?.user?.id || thunkAPI.getState().profile._id;
+  let userID = thunkAPI.getState().users.profile.data?.user?.id || thunkAPI.getState().users.profile._id;
 console.log("id",userID);
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
+      
     },
   };
 
   try {
-    const response = await axios.put(`http://localhost:4000/api/users/update/${userID}`, formData, config);
-    console.log("data",response);
+    const response = await axios.put(`http://localhost:4000/api/users/update/${userID}`, updatedFormData, config);
+    console.log("put",response);
 
     return response.data;
   } catch (error) {
@@ -44,10 +45,10 @@ console.log("id",userID);
   }
 });
 
-export const switchProfile = createAsyncThunk('users/switchProfile', async (formData, thunkAPI) => {
+export const switchProfile = createAsyncThunk('users/switchProfile', async (data, thunkAPI) => {
   const token = localStorage.getItem('token') || null;
-  const userID = thunkAPI.getState().profile._id;
-console.log("id",userID);
+  const userID = thunkAPI.getState().users.profile._id;
+console.log("data switch",data);
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -55,8 +56,8 @@ console.log("id",userID);
   };
 
   try {
-    const response = await axios.put(`http://localhost:4000/api/users/switch-profile/${userID}`, formData, config);
-    console.log("data",response);
+    const response = await axios.put(`http://localhost:4000/api/users/switch-profile/${userID}`, data, config);
+    console.log("switch",response);
 
     return response.data;
   } catch (error) {
@@ -85,7 +86,7 @@ const UserProfileSlice = createSlice({
           state.profile = [];
           state.error = action.error.message;
       });
-
+        
       
   }
 })

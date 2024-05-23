@@ -71,11 +71,11 @@ const Layout = ({ children }) => {
       <div className="fixed z-50 bottom-8 right-6">
         {!isChatVisible && (
           <button onClick={handleChatToggle}>
-            <BsChatTextFill className="text-primary animate-bounce" size={50} />
+            <BsChatTextFill className="text-primary hover:animate-bounce" size={50} />
           </button>
         )}
         {isChatVisible && (
-          <div ref={chatRef}>
+          <div className="fixed z-50 bottom-3 right-6" ref={chatRef}>
             <Chat handleChatClose={handleChatClose} />
           </div>
         )}

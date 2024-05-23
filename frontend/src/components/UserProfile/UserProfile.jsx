@@ -10,6 +10,7 @@ import { fetchProfile, updateProfile } from '../../features/Slices/userProfileSl
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+// import { updateProfile } from '../../features/Slices/guideSlice';
 
 
 
@@ -46,6 +47,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
   });
 
   const handleSubmit = (e) => {
+    // const id = profile._id
     e.preventDefault();
     setIsSubmitted(true);
     const updatedFormData = { ...formData };
