@@ -1,10 +1,19 @@
   import  { useEffect } from 'react';
   import Hero from "../components/Hero/hero";
+  
   import About from "../components/about/aboutSection";
   import Component from "../components/review/testmonial"
   import SwipperHome from '../components/swipper/swipper'; 
+
   import Aos from 'aos';
   import 'aos/dist/aos.css';
+  import HomePic from "../../src/assets/HomePic.png";
+
+
+
+
+
+
 
   const data1 = [
     {
@@ -106,12 +115,28 @@
   optio quibusdam!
 </p>
 <br />
+<br />
 
    
   
         </>
         <SwipperHome />
+        <br />
+        <br />
+        {/* <div>
+        <img src={HomePic} alt="Home Pic" /> 
+      </div> */}
+         <div className="relative w-full">
+      <img src={HomePic} alt="HomePic" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <p className="text-white text-2xl font-bold">Let’s make your amazing
+  Destination for foodies
+</p>
+      </div>
+    </div>
+
       <Component />
+     
       </>
     );
   };
