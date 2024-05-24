@@ -8,7 +8,7 @@ const ForgetPassword = ({ setShowModal, setShowForgetPassword }) => {
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isEmailSent, setIsEmailSent] = useState(false);
-  const [error] = useState("");
+  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
   
@@ -23,6 +23,10 @@ const ForgetPassword = ({ setShowModal, setShowForgetPassword }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!email) {
+      setError("Please enter email");
+      return;    
+    }
     
     console.log("Resetting password for email:", email);
     dispatch(forgetPassword({email}));
@@ -56,16 +60,17 @@ const ForgetPassword = ({ setShowModal, setShowForgetPassword }) => {
 
             <div className="p-4">
               <button
-                className="w-full bg-primary border-2 text-white font-inter p-2 rounded-lg mb-4 hover:bg-white hover:text-primary "
+                className="w-full bg-primary border text-white font-inter p-2 rounded-lg mb-2 hover:bg-white hover:text-primary "
               >
                 Send
               </button>
 
+                {error && <div className="text-red-500 flex justify-center">{error}</div>}
               <div className=" flex items-center justify-center">
                 <button
                   className="text-blue-500 hover:underline hover:text-black"
                   onClick={() => setShowModal(false)}
-                >
+                  >
                   Cancel
                 </button>
               </div>

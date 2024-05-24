@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { restPassword } from "../../features/Slices/authPasswordSlice";
 import { useNavigate, useParams } from "react-router-dom";
 
-const ResetPassword = ({ setShowModal }) => {
+const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState("");
@@ -30,22 +30,35 @@ const ResetPassword = ({ setShowModal }) => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
+  const handleCancel = () => {
+    navigate('/home'); 
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+console.log("ggg");
+console.log("Resetting password:", formData);
+
+    if (!formData.password || !formData.confirmPassword) {
+      setError("Please enter password in both fields");
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match");
       return;
     }
     console.log("Resetting password:", formData.password);
     console.log("Token:", token);
-    dispatch(restPassword({ password: formData.password, token }));
+    dispatch(restPassword({formData, token }));
+    console.log(formData);
     navigate('/home');
   };
 
   return (
     <>
       <div className="fixed inset-0 z-50 overflow-x-hidden overflow-y-auto outline-none focus:outline-none flex justify-center items-center">
-        <div className="relative flex flex-col w-[400px] bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
+        <div className="relative flex flex-col w-[350px] bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
           <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-1 p-4 w-full">
             <span className="text-2xl font-inter font-semibold">Reset Password</span>
             <div className="flex flex-col w-full relative">
@@ -99,7 +112,7 @@ const ResetPassword = ({ setShowModal }) => {
                 <button
                   type="button"
                   className="text-blue-500 hover:underline hover:text-black"
-                  onClick={() => setShowModal(false)}
+                  onClick={handleCancel}
                 >
                   Cancel
                 </button>

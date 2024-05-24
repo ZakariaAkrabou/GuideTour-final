@@ -123,7 +123,7 @@ const LoginModal = ({ setShowModal }) => {
               </div>
               <div className="py-">
                 <button
-                  className="w-[300px] bg-primary text-white font-inter p-2 rounded-lg mb-4 hover:bg-black hover:text-white hover:font-inter hover:border-transparent"
+                  className="w-[300px] bg-primary text-white font-inter p-2 rounded-lg mb-4 hover:bg-white hover:text-primary border hover:font-inter "
                 >
                   Login
                 </button>

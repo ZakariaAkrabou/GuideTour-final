@@ -12,7 +12,7 @@ const EmailSentNotification = ({ setShowModal }) => {
         We have sent a linkto ret your password.
         </p>
       <div className=' w-full'>
-      <button onClick={() => setShowModal(false)} className=' text-white font-semibold bg-primary border-2 hover:bg-white hover:text-primary w-full rounded-full p-2'>
+      <button onClick={() => setShowModal(false)} className=' text-white font-semibold bg-primary border hover:bg-white hover:text-primary w-full rounded-full p-2'>
         Got it
       </button>
       </div>
