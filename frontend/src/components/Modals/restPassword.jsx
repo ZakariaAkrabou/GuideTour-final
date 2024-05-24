@@ -45,11 +45,11 @@ const ResetPassword = ({ setShowModal }) => {
   return (
     <>
       <div className="fixed inset-0 z-50 overflow-x-hidden overflow-y-auto outline-none focus:outline-none flex justify-center items-center">
-        <div className="relative flex flex-col bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
-          <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-1 p-4">
+        <div className="relative flex flex-col w-[400px] bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
+          <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-1 p-4 w-full">
             <span className="text-2xl font-inter font-semibold">Reset Password</span>
             <div className="flex flex-col w-full relative">
-              <label className="text-lg font-semibold" htmlFor="password">New Password</label>
+              <label className="text-base font-medium" htmlFor="password">New Password</label>
               <div className="relative w-full flex items-center">
                 <RiLockPasswordLine size={20} className=" ml-1 absolute" />
                 <input
@@ -69,7 +69,7 @@ const ResetPassword = ({ setShowModal }) => {
               </div>
             </div>
             <div className="flex flex-col w-full relative mt-4">
-              <label className="text-lg font-semibold" htmlFor="confirmPassword">Confirm Password</label>
+              <label className="text-base font-medium" htmlFor="confirmPassword">Confirm Password</label>
               <div className="relative w-full flex items-center">
                 <RiLockPasswordLine size={20} className=" absolute ml-1" />
                 <input

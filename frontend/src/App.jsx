@@ -13,7 +13,7 @@ const App = () => {
         {/* Route for email confirmation */}
         <Route path="/email-confirmation" element={<EmailConfirmation />} />
         <Route path="/chat" element={<Chat />} />
-        <Route path="/rest-password/:token" element={<ResetPassword/>} />
+        <Route path="/rest-password/:token" element={<ResetPassword  />} />
         
         {/* All other routes wrapped with Layout */}
         <Route path="*" element={<Layout />} />

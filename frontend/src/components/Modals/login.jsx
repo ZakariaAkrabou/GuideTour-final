@@ -64,7 +64,7 @@ const LoginModal = ({ setShowModal }) => {
       <div className="fixed inset-0 z-50 overflow-x-hidden overflow-y-auto outline-none focus:outline-none flex justify-center items-center">
         <div ref={modalRef} className="relative flex flex-col bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
           {!showRegisterModal && !showForgetPassword ? (
-            <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center p-4">
+            <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-3 p-4">
               <span className="text-2xl font-inter font-semibold text-primary">Welcome back</span>
               <span className="mb-2 font-light text-gray-400 text-sm">Welcome back! Please enter your details</span>
               <div className="flex flex-col gap-2 w-full relative">
@@ -112,7 +112,7 @@ const LoginModal = ({ setShowModal }) => {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-center items-center py-4 font-inter hover:text-primary">
+              <div className="flex justify-center items-center py- font-inter hover:text-primary">
                 <button
                   type="button"
                   onClick={() => setShowForgetPassword(true)}
@@ -121,7 +121,7 @@ const LoginModal = ({ setShowModal }) => {
                   Forgot password?
                 </button>
               </div>
-              <div className="py-4">
+              <div className="py-">
                 <button
                   className="w-[300px] bg-primary text-white font-inter p-2 rounded-lg mb-4 hover:bg-black hover:text-white hover:font-inter hover:border-transparent"
                 >
