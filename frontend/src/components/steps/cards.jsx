@@ -49,6 +49,7 @@ export default function Cards({ nextStep }) {
 
     const toggleCampingSelection = (campingId) => {
         setSelectedCampingId(selectedCampingId === campingId ? null : campingId);
+        console.log("campingId",campingId);
         dispatch(fetchCampingsById(campingId));
     };
 
@@ -80,7 +81,7 @@ export default function Cards({ nextStep }) {
                 {/* Cards */}
                 {campingsCards.map((camping, index) => (
                     <div onClick={nextStep} key={index} className='relative bg-white hover:-translate-y-1 h-max hover:scale-110 rounded-xl hover:shadow-2xl duration-100'>
-                    <img src={card} alt="Card" className='h-[250px] w-full rounded-xl' />
+                    <img onClick={() => toggleCampingSelection(camping._id)} src={card} alt="Card" className='h-[250px] w-full rounded-xl' />
                     <div className='absolute bottom-0 z-0 left-0 p-1 w-full bg-primary rounded-b-2xl'>
                         <div className=' flex flex-col'>
                         <div className="flex justify-between font-bold text-white pb-">
@@ -101,7 +102,7 @@ export default function Cards({ nextStep }) {
                         </div>
                     </div>
                     <div className='p-0.5 relative'>
-                            <div className="text-center relative" onClick={() => toggleCampingSelection(camping._id)}>
+                            <div className="text-center relative" >
 
                                 
                             </div>
