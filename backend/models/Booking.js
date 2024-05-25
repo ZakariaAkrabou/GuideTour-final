@@ -31,6 +31,9 @@ const bookingSchema = new mongoose.Schema(
     isPaid: {
       type: Boolean,
     },
+    paymentIntentId: { 
+      type: String
+    }
   },
   {
     timestamps: true,
