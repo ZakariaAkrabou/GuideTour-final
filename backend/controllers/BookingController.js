@@ -51,7 +51,7 @@ exports.CheckoutSession = async (req, res) => {
               name: bookingType === "tour" ? bookingDetails.title : bookingDetails.location,
               description: bookingType === "tour" ? bookingDetails.description : null,
             },
-            unit_amount: booking.price * 100, // Convert price to cents
+            unit_amount: booking.price * 100,
           },
           quantity: 1,
         },
@@ -103,5 +103,43 @@ exports.bookService = async (req, res) => {
   } catch (err) {
     console.error("Error booking service:", err);
     res.status(500).json({ error: "Failed to book service" });
+  }
+};
+
+const createPaymentIntent = async (amount, description) => {
+  try {
+    const paymentIntent = await Stripe.paymentIntents.create({
+      amount: amount * 100, 
+      currency: "usd",
+      description: description,
+      automatic_payment_methods: {
+        enabled: true,
+      },
+    });
+
+    return paymentIntent;
+  } catch (error) {
+    console.error("Error creating payment intent:", error);
+    throw error;
+  }
+};
+exports.createBooking = async (req, res) => {
+  try {
+    const booking = new Booking(req.body);
+
+    const paymentIntent = await createPaymentIntent(req.body.price, "Tour/Camping Booking");
+    booking.paymentIntentId = paymentIntent.id;
+
+    const paymentMethod = req.body.payment_method;
+
+    await Stripe.paymentIntents.confirm(paymentIntent.id, {
+      payment_method: paymentMethod,
+    });
+
+    await booking.save();
+    res.status(201).json({ message: "Booking created successfully", booking });
+  } catch (error) {
+    console.error("Error creating booking:", error);
+    res.status(500).json({ error: "Error creating booking" });
   }
 };

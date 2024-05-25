@@ -8,5 +8,7 @@ router.swagger = bookingSwagger;
 
 router.post("/book", authenticateUser, BookingController.bookService);
 router.get("/checkout/:id", authenticateUser,BookingController.CheckoutSession);
+router.get("/pay", authenticateUser,BookingController.createBooking);
+
 
 module.exports = router;
