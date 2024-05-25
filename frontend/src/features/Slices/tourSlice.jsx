@@ -6,6 +6,7 @@ const initialState = {
     loading: false,
     cartTour:[],
     cartTourBuId:[],
+    guideIds:[],
     error: '',
 }
 
@@ -39,6 +40,20 @@ export const fetchCardToursById = createAsyncThunk('tours/fetchCardToursById', a
     console.log("data",response);
     return response.data;
 })
+
+export const fetchGuidesByIds = createAsyncThunk('tours/fetchGuidesByIds', async (guideIds)  => {
+    const token = localStorage.getItem('token') || null;
+console.log("guideIds",guideIds);
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+    const response = await axios.post(`http://localhost:4000/api/users/guides-by-ids`,{guideIds})
+    console.log("response",response);
+    return response.data;
+})
 export const tourSlice= createSlice({
 
     name: 'tours',
@@ -60,6 +75,24 @@ export const tourSlice= createSlice({
         builder.addCase(fetchCardTours.rejected, (state, action) => {
             state.loading = false;
             state.cartTour = [];
+            state.error = action.error.message;
+        });
+
+        builder.addCase(fetchGuidesByIds.pending, (state) => {
+            state.loading = true;
+        });
+
+
+        builder.addCase(fetchGuidesByIds.fulfilled, (state, action) => {
+            state.loading = false;
+            state.guideIds = action.payload;
+            console.log("guideIds", state.guideIds);
+            state.error = '';
+        });
+    
+        builder.addCase(fetchGuidesByIds.rejected, (state, action) => {
+            state.loading = false;
+            state.guideIds = [];
             state.error = action.error.message;
         });
 

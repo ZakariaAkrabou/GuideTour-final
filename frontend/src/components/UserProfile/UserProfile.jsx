@@ -20,12 +20,12 @@ function UserProfile({handleProfileClose, handleGuide}) {
 
   const dispatch = useDispatch();
   
+  const profile = useSelector((state) => state.users.profile);
+  
   useEffect(() => {
     dispatch(fetchProfile());
   }, [dispatch]);
   
-  const profile = useSelector((state) => state.users.profile);
-
   useEffect(() => {
     setFormData({
       firstName: profile.firstName || profile.data?.user?.firstName ,
@@ -54,7 +54,10 @@ function UserProfile({handleProfileClose, handleGuide}) {
     if (updatedFormData.password.trim() === '') {
       delete updatedFormData.password;
     }
-    dispatch(updateProfile(updatedFormData));  
+    dispatch(updateProfile(updatedFormData))
+      .then(() => {
+      dispatch(fetchProfile());
+    });  
   };
 
   const handleChange = (e) => {
