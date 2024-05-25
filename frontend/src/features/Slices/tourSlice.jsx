@@ -54,6 +54,7 @@ console.log("guideIds",guideIds);
     console.log("response",response);
     return response.data;
 })
+
 export const tourSlice= createSlice({
 
     name: 'tours',

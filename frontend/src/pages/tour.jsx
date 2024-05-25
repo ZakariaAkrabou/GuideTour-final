@@ -21,7 +21,7 @@ console.log("guides",guides);
     useEffect(() => {
         if (tours.length > 0) {
             const guideIds = tours.map(tour => tour.guide_id);
-            console.log("idss",guideIds);
+            console.log("diptch id",guideIds);
             dispatch(fetchGuidesByIds(guideIds));
         }
     }, [tours, dispatch]);
@@ -97,7 +97,7 @@ console.log("guides",guides);
                                                     <div className="flex text-white">
                                                         <div className='flex gap-2 items-center'>
                                                             <BsPersonVcard className=" ml-1" size={20} />
-                                                        <h2 className="capitalize text-xl font-medium">{tour.guide}</h2>
+                                                        <h2 className="capitalize text-xl font-medium">{guides[index]?.firstName}</h2>
                                                         </div>
                                                     </div>
                                                     </div>
