@@ -53,6 +53,40 @@ exports.getUserProfile = async function(req, res) {
   }
 };
 
+exports.getGuidesByIds = async function(req, res) {
+  try {
+    const guideIds = req.body.guideIds
+    console.log("g",guideIds);
+
+    if (!Array.isArray(guideIds) || guideIds.length === 0) {
+      return res.status(400).json({ error: "Invalid guide IDs" });
+    }
+
+    const guides = await Guide.find({ _id: { $in: guideIds } }).populate({
+      path: 'user_id',
+      model: 'User',
+      select: 'firstName lastName email phone', 
+  });
+    // console.log("guides",guides);
+
+    if (!guides || guides.length === 0) {
+      return res.status(404).json({ error: "Guides not found" });
+    }
+
+    const guideData = guides.map(guide => {
+      return {
+        firstName: guide.user_id.firstName,
+      };
+    });
+
+    return res.status(200).json(guideData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
 exports.switchProfile = async function(req, res) {
   try {
     const { id } = req.params;

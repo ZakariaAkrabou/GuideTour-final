@@ -31,13 +31,7 @@ const Router = () => {
       <Route path="/orders" element={<Orders/>} />
       <Route path="/email-confirmation" element={<EmailConfirmation />} />
 
-      {/* <Route path="/dashboard" element={<Layout/>}>
-        <Route index element={<Dashboard/>} />
-        <Route path="/dashboard/tours" element={<Users />} />
-        <Route path="/dashboard/orders" element={<Orders/>} />
-        </Route>
-        Users route outside the Layout component */}
-      {/* <Route path="/login" element={<Login />} /> */}
+     
       <Route path="/register" element={<Register />} />
       <Route path="/landscapes" element={<Landscapes/>}/>
      

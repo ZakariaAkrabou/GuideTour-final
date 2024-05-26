@@ -7,7 +7,7 @@ import { MdOutlineWhereToVote, MdModeOfTravel } from "react-icons/md";
 import { BsPersonVcard } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCardTours, fetchCardToursById } from '../features/Slices/tourSlice';
+import { fetchCardTours, fetchCardToursById, fetchGuidesByIds } from '../features/Slices/tourSlice';
 
 const Tour = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -15,6 +15,14 @@ const Tour = () => {
 
     const dispatch = useDispatch();
     const tours = useSelector((state) => state.tours.cartTour);
+    const guides = useSelector((state) => state.tours.guideIds);
+
+    useEffect(() => {
+        if (tours.length > 0) {
+            const guideIds = tours.map(tour => tour.guide_id);
+            dispatch(fetchGuidesByIds(guideIds));
+        }
+    }, [tours, dispatch]);
 
     useEffect(() => {
         dispatch(fetchCardTours());
@@ -62,44 +70,43 @@ const Tour = () => {
             <div className="flex justify-center">
                 <div className="shadow-2xl lg:w-4/6 relative mt-6 top-[-50px] bg-white p-2">
                     <div className="grid grid-cols-2 lg:gap-32">
-                        <div className=" grid lg:grid-cols-2 gap-x-28 gap-5 z-30">
+                        <div className="grid lg:grid-cols-2 gap-x-28 gap-5 z-30">
                             {currentTours.map((tour, index) => (
                                 <Link to="/Landscapes" key={index} style={{ display: 'block' }}>
-                                    <div onClick={() => handleTourId(tour._id)} key={index} className='relative bg-white p-1.5 h-max w-56 hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
-                                        <img src={tour.image} alt="Card" className='h-[200px] w-full rounded-t-xl' />
-                                        <div className='z-0 p-1 rounded-b-lg w-full bg-primary'>
-                                            <div className='flex flex-col'>
-                                                <div className="flex justify-between font-bold text-white">
-                                                    <div className='flex items-center'>
-                                                        <MdModeOfTravel size={20} />
-                                                        <h1 className='pl-1'>Tour</h1>
-                                                    </div>
-                                                    <h2 className="capitalize font-semibold">{tour.title}</h2>
+                                    <div onClick={() => handleTourId(tour._id)} className='relative bg-white p-1.5 h-max w-56 hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
+                                        <div className='relative'>
+                                            <img src={tour.image} alt="Card" className='h-[260px] w-full rounded-2xl object-cover' />
+                                            <div className="absolute bottom-0 w-full h-[100px] bg-gradient-to-t via-black/50 from-black/60 to-transparent rounded-b-[15px]"></div>
+                                            <div className="flex absolute top-2 right-1 gap-1 text-white px-0.5 bg-black rounded-full">
+                                                <div className='flex items-center'>
+                                                    <IoPricetagOutline size={15} />
                                                 </div>
-                                                <div className="flex justify-between font-bold text-white">
-                                                    <div className='flex items-center'>
-                                                        <BsPersonVcard size={20} />
-                                                        <h1 className='pl-1'>Guide</h1>
+                                                <h2 className="">{tour.price} $</h2>
+                                            </div>
+                                            <div className='absolute bottom-0 z-10 p-1 right-0 w-full  rounded-b-2xl'>
+                                                <div className='flex flex-col'>
+                                                    <div className="flex text-white">
+                                                        <div className='flex gap-2 items-center'>
+                                                            <MdModeOfTravel size={20} />
+                                                        <h2 className="capitalize text-xl font-medium">{tour.title}</h2>
+                                                        </div>
                                                     </div>
-                                                    <h2 className="capitalize font-semibold">{tour.name}</h2>
-                                                </div>
-
-                                                <div className="flex justify-between font-bold text-white">
-                                                    <div className='flex items-center'>
-                                                        <IoPricetagOutline size={20} />
-                                                        <h1 className='pl-1'>Price</h1>
+                                                    <div className="flex justify-between text-white">
+                                                    <div className="flex text-white">
+                                                        <div className='flex gap-2 items-center'>
+                                                            <BsPersonVcard className=" ml-1" size={20} />
+                                                        <h2 className="capitalize text-xl font-medium">{guides[index]?.firstName}</h2>
+                                                        </div>
                                                     </div>
-                                                    <h2 className="capitalize font-semibold">{tour.price}</h2>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className='p-0.5 relative'>
-                                            <div className="text-center relative"></div>
                                         </div>
                                     </div>
                                 </Link>
                             ))}
                         </div>
+
                         {/* Plan Tour Card */}
                         <div className="w-full h-max bg-stone-100 rounded-lg p-4">
                             <div className="text-3xl font-semibold pb-2 text-blue_fance font-Volkhov">

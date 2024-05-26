@@ -1,67 +1,27 @@
-// import { useState } from 'react';
-import card from '../../assets/agadir.png';
-import background1 from '../../assets/camper.jpg';
-import travel from '../../assets/travel.png'
-import telouet from '../../assets/telouet.png'
-import guide from '../../assets/imgguide.png'
-import guide2 from '../../assets/guide2.jpg'
-import Photo1 from "../../assets/guide2.jpg";
-import Photo2 from "../../assets/guide2.jpg";
-import Photo3 from "../../assets/guide2.jpg";
-import Photo4 from "../../assets/guide2.jpg";
-import { Slide, Fade } from "react-awesome-reveal";
-import riad from '../../assets/riad.jpg'
-import door from '../../assets/door.jpg'
-import door2 from '../../assets/door2.jpg'
-import riad2 from '../../assets/riad2.jpg'
-import riad3 from '../../assets/riad3.jpg'
-import riad4 from '../../assets/riad4.jpg'
-
-
-import { useState } from 'react';
-
-import { MdOutlineWhereToVote, MdOutlineMail } from "react-icons/md";
-import { HiOutlineInformationCircle } from "react-icons/hi";
+import { MdOutlineWhereToVote } from "react-icons/md";
 import { FiFlag } from "react-icons/fi";
 import { TbCalendarEvent } from "react-icons/tb";
-import { CgProfile } from "react-icons/cg";
-import { BsTelephone, BsCalendar2Date } from "react-icons/bs";
-import { IoPricetagsOutline } from "react-icons/io5";
-import { AiOutlineMessage } from "react-icons/ai";
-import { RiStarSFill } from "react-icons/ri";
 import { GrStatusGood } from "react-icons/gr";
+import { BsFileEarmarkPerson } from "react-icons/bs";
+import { MdAlternateEmail,MdOutlinePhoneAndroid } from "react-icons/md";
+import { RiStarSFill } from "react-icons/ri";
+
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchGuideProfile } from '../../features/Slices/tourSlice';
+import { useState, useEffect } from 'react';
 
 
 
-
-const CardsData = [
-    {
-        id: 1,
-        img: Photo1,
-        title: "Maria Ahmed",
-        desc: "The Professional Guide ",
-    },
-    {
-        id: 2,
-        img: Photo2,
-        title: "maha",
-        desc: "Each character will appear one by one",
-    },
-    {
-        id: 3,
-        img: Photo3,
-        title: "Sunrise",
-        desc: "Each character will appear one by one",
-    },
-    {
-        id: 4,
-        img: Photo4,
-        title: "Sunrise",
-        desc: "Each character will appear one by one",
-    },
-];
 const Step2 = ({ nextStep, prevStep }) => {
 
+    const dispatch = useDispatch();
+    const guideprofile = useSelector((state) => state.tours.guideProfile);
+    // console.log("guideprofile",guideprofile);
+
+    
+    useEffect(() => {
+        dispatch(fetchGuideProfile());
+      }, [dispatch]);
 
     return (
         <>
@@ -74,7 +34,7 @@ const Step2 = ({ nextStep, prevStep }) => {
                     <FiFlag size={20} className="mr-2 " />
                     guide
                 </button>
-                <button className=" w-1/4 flex  items-center justify-center capitalize hover:bg-white/60">
+                <button onClick={nextStep} className=" w-1/4 flex  items-center justify-center capitalize hover:bg-white/60">
                     <TbCalendarEvent size={20} className=' mr-2 ' />
                     tour plan
                 </button>
@@ -83,74 +43,83 @@ const Step2 = ({ nextStep, prevStep }) => {
                     location
                 </button>
             </div>
-            <div className=" grid grid-cols-2 gap-1 ">
-
-
-
-
-                <div className="container  relative left-4 top-12 ">
-                    <div className='text-center  ' >
-                        <h1 className="text-primary  font-bold font-volk text-3xl mb-14 mt-5 sm:mt-0">
-                            Meet the local guides for this tour
-                        </h1>
-                    </div>
-
-                    {/* cards section */}
-                    <div className=" absolute left-6 top-[70px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 place-items-center gap-6  ">
-
-                        {CardsData.map(({ id, img, title, desc }) => {
-                            return (
-                                <div
-                                    key={id}
-                                    className="text-white shadow-md rounded-lg overflow-hidden relative group "
-                                >
-                                    <img
-                                        src={img}
-                                        alt=""
-                                        className="w-full max-w-[200px] h-[250px] rounded-lg"
-                                    />
-                                    {/* overlay section */}
-                                    <div className="absolute left-0 top-[-100%] opacity-0 group-hover:opacity-100 group-hover:top-[0] p-4 w-full h-full bg-black/60 group-hover:backdrop-blur-sm duration-500">
-                                        <div className="space-y-2">
-                                            <Slide cascade>
-                                                <h1 className=" font-bold text-gray">Hello ,Im</h1>
-                                                <h1 className="text-2xl font-bold  ">{title}</h1>
-
-                                                <Fade cascade damping={0.05} className=''>
-                                                    {desc}
-                                                </Fade>
-                                                <div className='py-10'>
-                                                    <button className="border border-white  w-[80px] h-[40px] text-center rounded-lg bg-white/40 hover:bg-white/20 duration-300" onClick={nextStep}>
-                                                        <h1 className='text-center'> selected</h1>
-                                                    </button>
-                                                </div>
-                                            </Slide>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
+            
+            <div className="grid grid-cols-3 w-full gap-8 p-4">
+                {/* Main Profile Card */}
+                <div className="col-span-1 bg-white p-6 rounded-lg shadow-lg">
+                    <div className="flex flex-col items-center">
+                        <img
+                            className="w-24 h-24 rounded-full mb-4"
+                            src={guideprofile.profile_picture}
+                        />
+                        <h2 className="text-xl font-bold mb-4">{guideprofile.firstName} </h2>
+                                            <div className="flex flex-col gap-2 mb-4">
+                            <div className="flex items-center gap-2">
+                                <MdAlternateEmail size={18} />
+                                <h1 className="font-medium truncate max-w-full" style={{ maxWidth: '180px' }}>
+                                {guideprofile.email}
+                                </h1>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <MdOutlinePhoneAndroid size={18} />
+                                <h1 className="font-medium truncate max-w-full" style={{ maxWidth: '150px' }}>
+                                {guideprofile.phone}
+                                </h1>
+                            </div>
+                            </div>
                     </div>
                 </div>
 
-
-                <div className="   px-[90px] py-[60px] w-[500px] h-[1500px] bottom-2 ">
-
-                    <div className="  relative  ">
-
-                        <img src={riad4} alt="" className='  w-[300px] h-[500px]   rounded-full ouverllow-hidden drop-shadow-2xl ' />
-
-
-
-
-
-                        <img className=' absolute top-[400px] w-[170px] h-[250px]   rounded-full ouverllow-hidden drop-shadow-2xl ' src={door2} alt="" />
+                {/* Contact Information Card */}
+                <div className="col-span-2 w-full relative bg-white p-6 rounded-lg shadow-lg">
+                    <h3 className="text-lg font-semibold mb-4">Guide Information</h3>
+                    <div className=' flex'>
+                        <div className=' p-1 absolute items-center flex'>
+                            <BsFileEarmarkPerson size={20} className=' text-primary opacity-70 absolute'/>
+                            <h1 className=' p-2 pl-6 opacity-70 text-primary font-semibold pb-1'>Bio</h1>
+                        </div>
+                        <textarea disabled value={guideprofile.bio} className=' w-full pl-16 border-[1.5px] border-primary rounded-xl min-h-16 max-h-[130px]'></textarea>
+                    </div>
+                    <div className='absolute bottom-2 flex items-center gap-2'>
+                        {/* <ImProfile className=" opacity-50" size={25}/> */}
+                        {/* <h1 className='font-semibold'>Specialization</h1> */}
+                        <div className=' flex items-center justify-center'>
+                            <h1 className=" bg-primary/10 p-2 rounded-full border-[1.5px] border-primary flex"> I'm specialist at<h1 className="  pl-1 font-semibold">{guideprofile.specialization}</h1></h1>
+                        </div>
+                    </div>
                     </div>
 
-                </div>
-
+                
             </div>
 
+            {/* Social Media Links */}
+            <div className="grid grid-cols-1 gap-3 p-4">
+                <div className=" flex items-center gap-4">
+                <h1 className=" text-xl font-semibold">Reviews</h1>
+                <div className=" flex">
+                    <RiStarSFill className=" text-yellow-300" size={22}/>
+                    <RiStarSFill className=" text-yellow-300" size={22}/>
+                    <RiStarSFill className=" text-yellow-300" size={22}/>
+                    <RiStarSFill className=" text-yellow-300" size={22}/>
+                    <RiStarSFill className=" text-yellow-300" size={22}/>
+                </div>
+                </div>
+                <div className="grid grid-cols-4 gap-2">
+                <div className=" bg-primary/20 p-6 rounded-lg shadow-lg">
+                    <p className="text-gray-600">Howa</p>
+                </div>
+                <div className="col-span- bg-primary/20 p-6 rounded-lg shadow-lg">
+                    <p className="text-gray-600">Ana</p>
+                </div>
+                <div className="col-span- bg-primary/20 p-6 rounded-lg shadow-lg">
+                    <p className="text-gray-600">Ntoma</p>
+                </div>
+                <div className="col-span- bg-primary/20 p-6 rounded-lg shadow-lg">
+                    <p className="text-gray-600">We</p>
+                </div>
+                </div>
+                
+            </div>
 
 
 

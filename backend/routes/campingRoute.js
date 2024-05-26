@@ -11,7 +11,7 @@ router.swagger = campingSwagger;
 
 
 router.post("/add", authenticateAdmin, isAdmin,uploadCamping.single("image") ,CampingController.createComping);
-router.get("/show",/* authenticateAdmin, isAdmin,*/authenticateUser, CampingController.getAllCampings);
+router.get("/show",/* authenticateAdmin, isAdmin,authenticateUser,*/ CampingController.getAllCampings);
 router.put("/update/:campingId",authenticateAdmin, isAdmin,CampingController.updateCamping);
 router.get("/get/:campingId",/*authenticateAdmin, isAdmin,*/authenticateUser,CampingController.getCamping);
 router.delete("/delete/:id",authenticateAdmin, isAdmin,CampingController.deleteCampingById);

@@ -196,7 +196,7 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
               {error && <span className="text-red-500 text-sm">{error}</span>}
             </div>
             <div className="py-4 relative">
-              <button className="w-[300px] bg-primary text-white font-inter p-2 rounded-lg mb-4 hover:bg-black hover:text-white hover:font-inter hover:border-transparent">
+              <button className="w-[300px] bg-primary text-white font-inter p-2 rounded-lg mb-4 hover:bg-white hover:text-primary hover:font-inter border">
                 Register
               </button>
               {registrationStatus === 'success' && (
