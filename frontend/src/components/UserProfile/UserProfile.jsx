@@ -82,7 +82,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
 
           <div className="relative flex justify-center -top-10 lg:-top-12">
             {profile.data?.guide ? (
-                <img src={`http://localhost:4000/${profile.data.guide.profile_picture}`} alt="" className="rounded-full h-16 w-16 lg:h-24 lg:w-24" />
+                <img src={profile.data.guide.profile_picture} alt="" className="rounded-full h-16 w-16 lg:h-24 lg:w-24" />
               ) : (
                 <img src={background2} alt="" className="rounded-full h-20 w-20 lg:h-24 lg:w-24" />
               )} 

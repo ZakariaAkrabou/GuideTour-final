@@ -17,11 +17,9 @@ const Tour = () => {
     const tours = useSelector((state) => state.tours.cartTour);
     const guides = useSelector((state) => state.tours.guideIds);
 
-console.log("guides",guides);
     useEffect(() => {
         if (tours.length > 0) {
             const guideIds = tours.map(tour => tour.guide_id);
-            console.log("diptch id",guideIds);
             dispatch(fetchGuidesByIds(guideIds));
         }
     }, [tours, dispatch]);
