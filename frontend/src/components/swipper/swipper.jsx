@@ -86,7 +86,10 @@ const SwipperHome = () => {
               />
               <div className="absolute inset-0 rounded-lg border border-transparent"></div> {/* Add border */}
               <div className="absolute bottom-4 right-4 bg-white bg-opacity-50 p-2 rounded-lg text-center"> {/* Add book now button */}
-                <button className="text-primary font-semibold">Book now</button>
+                {/* <button className="text-primary font-semibold">Book now</button> */}
+                 <a href="/Landscapes" className="text-primary font-semibold">
+                  Book now
+                </a>
               </div>
               <div className="flex flex-col gap-2 px-4 py-4"> {/* Add padding to inner content */}
                 <div className="text-lg">{tour.title}</div>

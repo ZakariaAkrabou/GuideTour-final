@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import blackLogo from "../../assets/blacklogo.png";
+import FooterImage from "../../assets/Footer img.png";
 
 function Footer() {
   const [email, setEmail] = useState("");
@@ -35,8 +36,12 @@ function Footer() {
   return (
     <>
       <hr />
+      <div className="ml-px w-full max-md:max-w-full bg-transparent"
+        style={{ backgroundImage: `url(${FooterImage})`, backgroundSize: 'cover', backgroundPosition: 'bottom right',  }} >
+        
 
-      <div className="ml-px w-full max-md:max-w-full bg-orange-100">
+
+      <div className="ml-px w-full max-md:max-w-full bg-transparent">
         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
           <div className="w-1/2 max-md:ml-0 max-md:w-full flex justify-center items-end mt-4">
             <img
@@ -122,7 +127,8 @@ function Footer() {
             </div>
           </div>
         </div>
-      </div>
+        </div>
+        </div>
     </>
   );
 }
