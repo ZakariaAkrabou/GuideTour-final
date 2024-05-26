@@ -89,7 +89,8 @@ const Step1 = ({ nextStep }) => {
                             <div id="price">Data for Price</div>
                         </div>
                     </div>
-                    <div className="   px-[90px] py-[60px] w-[500px] h-[1500px] bottom-2 ">
+                    {/* modified */}
+                    <div className="   px-[90px] py-[60px] w-[500px] h-[1000px] bottom-2 ">
 
                     <div className="  relative  ">
 

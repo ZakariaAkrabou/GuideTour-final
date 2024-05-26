@@ -37,7 +37,8 @@ function Footer() {
     <>
       <hr />
       <div className="ml-px w-full max-md:max-w-full bg-transparent"
-        style={{ backgroundImage: `url(${FooterImage})`, backgroundSize: 'cover', backgroundPosition: 'bottom right',  }} >
+        style={{ backgroundImage: `url(${FooterImage})`, backgroundSize: 'cover', backgroundPosition: 'bottom right',
+             backgroundAttachment: 'fixed', }} >
         
 
 
