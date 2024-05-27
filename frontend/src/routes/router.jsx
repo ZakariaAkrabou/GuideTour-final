@@ -32,12 +32,12 @@ const Router = () => {
       <Route path="/landscapes" element={<Landscapes/>}/>
      
     
-          <Route path="/dashboard" element={<Dashboard/>}>
+          <Route path="/" element={<Dashboard/>}>
 
        
          {/* <Route index element={<Tours/>}/> */}
-         <Route index path="dashboardGuides" element={<DashboardGuides/>}/>
-         <Route path="Tours" element={<Tours/>}/>
+         <Route index path="dashboard" element={<DashboardGuides/>}/>
+         <Route path="dashboard/tours" element={<Tours/>}/>
          <Route path="CreateTour" element={<CreateTour/>}/>
          <Route path="UpdateTour" element={<UpdateTour/>}/>
        

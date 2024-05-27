@@ -1,7 +1,7 @@
 // controllers/tourController.js
 const Tour = require('../models/Tour');
 const cloudinary = require('../configs/cloudinary');
-const Guide = require('../models/guide');
+const Guide = require('../models/Guide');
 
 exports.createTour = async (req, res) => {
     try {

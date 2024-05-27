@@ -35,7 +35,7 @@ export const createTours = createAsyncThunk('tours/createTours', async (formData
       console.log(token);
 
     const response = await axios.post('http://localhost:4000/api/tours/create',formData,config)
-    console.log("jjjj",response);
+    console.log("tourcreated",response);
     return response.data;
 })
 

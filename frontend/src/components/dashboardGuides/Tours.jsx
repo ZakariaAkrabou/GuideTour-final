@@ -65,12 +65,12 @@ function Tours() {
   };
 
   return (
-    <div className='w-[1000px] h-screen bg-gray-300 shadow-xl overflow-x-auto'>
+    <div className='w-[1000px] h-[650px] bg-white shadow-xl overflow-x-auto rounded-xl'>
       <ToastContainer />
       <div className='flex items-center justify-between px-10 py-4'>
-        <p className='text-primary text-3xl'>Tours</p>
-        <Link to="/dashboard/CreateTour">
-          <button className='bg-primary w-[100px] h-[40px] rounded text-white font-bold'>Add New</button>
+        <p className='text-primary font-bold text-3xl'>Tours</p>
+        <Link to="/CreateTour">
+          <button className='bg-primary rounded-lg w-[150px] h-[40px]  border 2 border-primary text-white hover:bg-white hover:text-primary hover:border-primary'>Add New</button>
         </Link>
       </div>
 
@@ -109,7 +109,7 @@ function Tours() {
                 </td>
                 <td className='p-3 text-sm text-gray-700'>
                   <div className='flex items-center'>
-                    <Link to={`/dashboard/UpdateTour`}>
+                    <Link to={`/UpdateTour`}>
                       <IoCreate onClick={() => dispatch(fetchToursById(tour._id))} size={30} className='text-primary' />
                     </Link>
                     <button onClick={() => handleDeleteClick(tour._id)}>

@@ -23,7 +23,9 @@ function UserProfile({handleProfileClose, handleGuide}) {
     dispatch(fetchProfile());
   }, [dispatch]);
   
-  const profile = useSelector((state) => state.users.profile);
+  const {loading,
+    profile,
+    error} = useSelector((state) => state.users);
 
   useEffect(() => {
     setFormData({
@@ -52,7 +54,8 @@ function UserProfile({handleProfileClose, handleGuide}) {
     if (updatedFormData.password.trim() === '') {
       delete updatedFormData.password;
     }
-    dispatch(updateProfile(updatedFormData));  
+    dispatch(updateProfile(updatedFormData));
+    console.log("nnn",error);  
   };
 
   const handleChange = (e) => {
@@ -117,7 +120,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
             Become a guide
           </button>
           ) : (
-           <Link to={"/dashboard/Tours"}>
+           <Link to={"/Tours"}>
                <button  className='bg-primary text-white font-semibold p-1.5 lg:px-6 lg:py-2 rounded-full flex items-center'>
             <AiOutlineDashboard size={20} className='mr-2' />
             Dashboard

@@ -12,7 +12,8 @@ export default {
         primary: "#6499E9",
         secondaire: "#181E4B",
         gray:"#7D7D7D",
-        blue:"#EEF9FF"
+        blue:"#EEF9FF",
+        customBlue: 'rgba(53, 162, 235, 0.5)',
       
       },
       fontFamily: {
