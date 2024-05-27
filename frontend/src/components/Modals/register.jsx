@@ -195,12 +195,12 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
               </div>
               {error && <span className="text-red-500 text-sm">{error}</span>}
             </div>
-            <div className="py-4 relative">
+            <div className="py-4  relative">
               <button className="w-[300px] bg-primary text-white font-inter p-2 rounded-lg mb-4 hover:bg-white hover:text-primary hover:font-inter border">
                 Register
               </button>
               {registrationStatus === 'success' && (
-                            <div className="absolute -mt-4 w-full h-full flex items-center justify-center">
+                            <div className="absolute mt-5 w-full flex items-center justify-center">
                             <div className="flex items-center justify-center text-green-600">
                               <IoCheckmarkDoneCircle className="mr-2" />
                               <span>Please check your Mailbox!</span>
@@ -212,10 +212,10 @@ const RegisterModal = ({ setShowModal, setShowRegisterModal }) => {
                                 <span>Error while registering user. Please try again.</span>
                             </div>
                         )}
-              <div className="flex items-center justify-center">
+              <div className="flex -mt-2 items-center justify-center">
                 <span className="mr-2">Already have an account?</span>
                 <button
-                  className="text-blue-500 hover:underline hover:text-black"
+                  className="text-primary hover:underline hover:text-black"
                   onClick={() => setShowRegisterModal(false)}
                 >
                   Login
