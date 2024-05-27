@@ -8,11 +8,14 @@ import Camping from "../pages/camping";
 import Register from "../pages/register";
 import Landscapes from "../pages/landscapes";
 import { AuthProvider } from "../contexts/AuthContext";
+import Orders from "../components/Orders/Orders";
+
 import Dashboard from "../pages/dashboard";
 import DashboardGuides from "../components/dashboardGuides/dashboardGuides";
 import Tours from "../components/dashboardGuides/Tours";
 import CreateTour from "../components/dashboardGuides/createTour"
 import UpdateTour from "../components/dashboardGuides/updateTour"
+import EmailConfirmation from "../pages/emailConfermation";
 
 
 const Router = () => {
@@ -25,9 +28,10 @@ const Router = () => {
       <Route path="/about" element={<About />} />
       <Route path="/tour" element={<Tour />} />
       <Route path="/camping" element={<Camping />} />
-      <Route path="/dashboard" element={<dashboard />} />
+      <Route path="/orders" element={<Orders/>} />
+      <Route path="/email-confirmation" element={<EmailConfirmation />} />
 
-      {/* <Route path="/login" element={<Login />} /> */}
+     
       <Route path="/register" element={<Register />} />
       <Route path="/landscapes" element={<Landscapes/>}/>
      

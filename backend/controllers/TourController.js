@@ -1,21 +1,26 @@
 // controllers/tourController.js
 const Tour = require('../models/Tour');
 const cloudinary = require('../configs/cloudinary');
-const Guide = require('../models/guide');
+const Guide = require('../models/Guide');
+const mongoose = require('mongoose');
 
 exports.createTour = async (req, res) => {
     try {
-      
         if (!req.file) {
             return res.status(400).send({ error: 'Tour image is required' });
         }
 
-         const guide_id = req.user._id;
-        
-         const resultImg = await cloudinary.uploader.upload(req.file.path, { folder: 'uploads' });
-         const tour = new Tour({
+        const guide = await Guide.findOne({ user_id: req.user._id });
+
+        if (!guide) {
+            return res.status(404).json({ error: 'Guide not found' });
+        }
+
+        const resultImg = await cloudinary.uploader.upload(req.file.path, { folder: 'uploads' });
+
+        const tour = new Tour({
             title: req.body.title,
-            guide_id: guide_id,
+            guide_id: guide._id,
             description: req.body.description,
             image: resultImg.secure_url, 
             category: req.body.category,
@@ -63,8 +68,6 @@ exports.getAllTours = async(req,res) =>{
         res.status(500).json(error);
     }
 }
-
-
 
 exports.getTourById = async (req, res) => {
     try {
@@ -140,34 +143,45 @@ exports.deleteTour = async (req, res) => {
     }
 };
 
-exports.relatedGuide = async (req, res) => {
-    
+exports.getGuideByTourId = async (req, res) => {
     try {
-        const { tourName } = req.params; 
-    
-        if (!tourName) {
-          return res.status(400).json({ message: 'Tour name is required' });
-        }
-        
-       
-        const tour = await Tour.findOne({ title: tourName }).populate('guide_id');
-    
+        const tour = await Tour.findById(req.params.id);
         if (!tour) {
-          return res.status(404).json({ message: 'Tour not found' });
+            return res.status(404).json({ error: 'Tour not found' });
         }
-    
-        const guides = tour.guide_id; 
-        
-        console.log('Tour:', tour);
-        console.log('guide_id:', tour.guide_id);
-        if (guides.length === 0) {
-          return res.status(404).json({ message: 'No guides found for this tour' });
+
+        console.log('Tour found:', tour);  
+
+        if (!tour.guide_id || !mongoose.Types.ObjectId.isValid(tour.guide_id)) {
+            return res.status(400).json({ error: 'Invalid guide_id in the tour' });
         }
-    
-        res.status(200).json(guides); 
-      } catch (error) {
-        console.error('Error fetching related guides:', error);
-        res.status(500).json({ message: 'Internal server error' });
-      }
-       
-}
+
+        const guide = await Guide.findById(tour.guide_id)
+                               .populate({
+                                    path: 'user_id',
+                                    model: 'User',
+                                    select: 'firstName lastName email phone', 
+                                });
+
+        if (!guide) {
+            return res.status(404).json({ error: 'Guide not found' });
+        }
+
+        const guideData = {
+            firstName: guide.user_id.firstName,
+            lastName: guide.user_id.lastName,
+            email: guide.user_id.email,
+            phone: guide.user_id.phone,
+            specialization: guide.specialization, 
+            bio: guide.bio,
+            profile_picture: guide.profile_picture,
+            rating: guide.rating
+        };
+
+        res.status(200).json(guideData);
+    } catch (error) {
+        console.error('Error fetching guide:', error); 
+        res.status(500).json(error);
+    }
+};
+

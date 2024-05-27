@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Guide = require("../models/Guide");
+const cloudinary = require('../configs/cloudinary');
 
 exports.getUserProfile = async function(req, res) {
   try {
@@ -52,6 +53,40 @@ exports.getUserProfile = async function(req, res) {
   }
 };
 
+exports.getGuidesByIds = async function(req, res) {
+  try {
+    const guideIds = req.body.guideIds
+    console.log("g",guideIds);
+
+    if (!Array.isArray(guideIds) || guideIds.length === 0) {
+      return res.status(400).json({ error: "Invalid guide IDs" });
+    }
+
+    const guides = await Guide.find({ _id: { $in: guideIds } }).populate({
+      path: 'user_id',
+      model: 'User',
+      select: 'firstName lastName email phone', 
+  });
+    // console.log("guides",guides);
+
+    if (!guides || guides.length === 0) {
+      return res.status(404).json({ error: "Guides not found" });
+    }
+
+    const guideData = guides.map(guide => {
+      return {
+        firstName: guide.user_id.firstName,
+      };
+    });
+
+    return res.status(200).json(guideData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
 exports.switchProfile = async function(req, res) {
   try {
     const { id } = req.params;
@@ -69,27 +104,36 @@ exports.switchProfile = async function(req, res) {
 
     const guideData = req.body;
 
+ 
     if (!guideData.bio || !guideData.specialization) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    if (!req.files || !req.files["profile_picture"] || !req.files["identity"] || !req.files["certificate"]) {
+    
+    const { profile_picture, identity, certificate } = req.files || {};
+    if (!profile_picture || !identity || !certificate) {
       return res.status(400).json({ error: "Missing required files" });
     }
 
-    guideData.profile_picture = req.files["profile_picture"][0].path;
-    guideData.identity = req.files["identity"][0].path;
-    guideData.certificate = req.files["certificate"][0].path;
+   
+    const uploadPromises = [
+      cloudinary.uploader.upload(profile_picture[0].path, { folder: 'uploads/profile_picture' }),
+      cloudinary.uploader.upload(identity[0].path, { folder: 'uploads/identity' }),
+      cloudinary.uploader.upload(certificate[0].path, { folder: 'uploads/certificate' })
+    ];
+    const [profilePictureResult, identityResult, certificateResult] = await Promise.all(uploadPromises);
 
+   
     await User.findByIdAndUpdate(id, { role: "guide" });
+
 
     const newGuide = new Guide({
       user_id: id,
       bio: guideData.bio,
       specialization: guideData.specialization,
-      profile_picture: guideData.profile_picture,
-      identity: guideData.identity,
-      certificate: guideData.certificate,
+      profile_picture: profilePictureResult.secure_url,
+      identity: identityResult.secure_url,
+      certificate: certificateResult.secure_url,
     });
 
     const savedGuide = await newGuide.save();
@@ -103,6 +147,7 @@ exports.switchProfile = async function(req, res) {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 
 exports.updateUser = async (req, res) => {
   const userId = req.params.id;

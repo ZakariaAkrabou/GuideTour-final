@@ -1,107 +1,89 @@
+const Booking = require("../models/Booking");
 const Tour = require("../models/Tour");
 const Camping = require("../models/Camping");
-const Booking = require("../models/Booking");
-const Stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const User = require("../models/User");
+const Stripe = require("stripe");
+require("dotenv").config();
 
-exports.CheckoutSession = async (req, res) => {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+exports.getCheckoutSession = async (req, res) => {
   try {
-    const bookingId = req.params.id;
-    console.log("Booking ID:", bookingId);
+    const { userId, tourId, campingId, amount } = req.body;
 
-    const booking = await Booking.findById(bookingId)
-      .populate("tour")
-      .populate("camping");
-    console.log("Booking:", booking);
+    let bookingData = { user: userId, amount, paymentStatus: 'approved' };
+    let productDetails = {};
 
-    if (!booking) {
-      return res.status(404).json({ error: "Booking not found" });
+    if (tourId) {
+      const tour = await Tour.findById(tourId);
+      if (!tour) return res.status(404).json({ message: "Tour not found" });
+
+      bookingData.tour = tourId;
+      productDetails = {
+        name: tour.title,
+        description: tour.description,
+        price: tour.price,
+      };
     }
 
-    let bookingType;
-    let bookingDetails;
+    if (campingId) {
+      const camping = await Camping.findById(campingId);
+      if (!camping) return res.status(404).json({ message: "Camping not found" });
 
-    if (booking.tour) {
-      bookingType = "tour";
-      bookingDetails = await Tour.findById(booking.tour);
-    } else if (booking.camping) {
-      bookingType = "camping";
-      bookingDetails = await Camping.findById(booking.camping);
-    } else {
-      return res
-        .status(400)
-        .json({ error: "Invalid booking type or missing data" });
-    }
-    console.log("Booking Type:", bookingType);
-    console.log("Booking Details:", bookingDetails);
-
-    if (!bookingDetails) {
-      return res.status(400).json({ error: "Failed to retrieve booking details" });
+      bookingData.camping = campingId;
+      productDetails = {
+        name: camping.name,
+        description: camping.description,
+        price: camping.price,
+      };
     }
 
-    const session = await Stripe.checkout.sessions.create({
+    const booking = new Booking(bookingData);
+    await booking.save();
+
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: `${process.env.CLIENT_SITE_URL}/checkout-success`,
-      cancel_url: `${req.protocol}://${req.get("host")}/bookings/${bookingId}/cancel`,
+      success_url: "http://127.0.0.1/success.html",
+      cancel_url: "http://127.0.0.1/cancel.html",
+      customer_email: user.email,
+      client_reference_id: booking._id.toString(),
       line_items: [
         {
           price_data: {
             currency: "usd",
             product_data: {
-              name: bookingType === "tour" ? bookingDetails.title : bookingDetails.location,
-              description: bookingType === "tour" ? bookingDetails.description : null,
+              name: productDetails.name,
+              description: productDetails.description,
             },
-            unit_amount: booking.price * 100, // Convert price to cents
+            unit_amount: productDetails.price * 100,
           },
           quantity: 1,
         },
       ],
+      payment_intent_data: {
+        description: "Booking a Travel Service",
+      },
     });
 
-    console.log("Session:", session);
+    booking.paymentStatus = 'pending';
+    await booking.save();
 
-    res.status(200).json({ sessionId: session.id, bookingType });
-  } catch (err) {
-    console.error("Error creating checkout session:", err);
-    res.status(500).json({ error: "Failed to create checkout session" });
+    res.status(200).json({ url: session.url, message: 'Checkout session created successfully' });
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
+    res.status(500).json({ message: 'Error creating checkout session' });
   }
 };
 
-exports.bookService = async (req, res) => {
-  try {
-    const { serviceType, serviceId, date, price } = req.body;
-    console.log("Received request:", req.body);
-
-    const user = req.user;
-
-    if (serviceType !== "tour" && serviceType !== "camping") {
-      return res.status(400).json({ error: "Invalid service type" });
-    }
-
-    let bookingData = {
-      user: user._id,
-      date,
-      price,
-      status: "pending",
-      isPaid: false,
-    };
-
-    if (serviceType === "tour") {
-      bookingData.tour = serviceId;
-      bookingData.camping = undefined;
-    } else if (serviceType === "camping") {
-      bookingData.camping = serviceId;
-      bookingData.tour = undefined;
-    }
-
-    const newBooking = new Booking(bookingData);
-
-    await newBooking.save();
-    console.log("New booking saved:", newBooking);
-
-    res.status(200).json({ message: "Your booking is done. Wait for checkout.", bookingId: newBooking._id });
-  } catch (err) {
-    console.error("Error booking service:", err);
-    res.status(500).json({ error: "Failed to book service" });
-  }
+exports.paymentSuccess = (req, res) => {
+  res.status(200).json({ message: 'Payment succeeded' });
 };
+
+exports.paymentFailed = (req, res) => {
+  res.status(500).json({ message: 'Payment failed' });
+};
+  

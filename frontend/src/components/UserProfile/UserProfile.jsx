@@ -8,7 +8,10 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { BiCheckCircle, BiSave } from "react-icons/bi";
 import { fetchProfile, updateProfile } from '../../features/Slices/userProfileSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import{ useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+// import { updateProfile } from '../../features/Slices/guideSlice';
+
 
 
 
@@ -17,12 +20,12 @@ function UserProfile({handleProfileClose, handleGuide}) {
 
   const dispatch = useDispatch();
   
+  const profile = useSelector((state) => state.users.profile);
+  
   useEffect(() => {
     dispatch(fetchProfile());
   }, [dispatch]);
   
-  const profile = useSelector((state) => state.users.profile);
-
   useEffect(() => {
     setFormData({
       firstName: profile.firstName || profile.data?.user?.firstName ,
@@ -44,13 +47,17 @@ function UserProfile({handleProfileClose, handleGuide}) {
   });
 
   const handleSubmit = (e) => {
+    // const id = profile._id
     e.preventDefault();
     setIsSubmitted(true);
     const updatedFormData = { ...formData };
     if (updatedFormData.password.trim() === '') {
       delete updatedFormData.password;
     }
-    dispatch(updateProfile(updatedFormData));  
+    dispatch(updateProfile(updatedFormData))
+      .then(() => {
+      dispatch(fetchProfile());
+    });  
   };
 
   const handleChange = (e) => {
@@ -75,7 +82,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
 
           <div className="relative flex justify-center -top-10 lg:-top-12">
             {profile.data?.guide ? (
-                <img src={`http://localhost:4000/${profile.data.guide.profile_picture}`} alt="" className="rounded-full h-16 w-16 lg:h-24 lg:w-24" />
+                <img src={profile.data.guide.profile_picture} alt="" className="rounded-full h-16 w-16 lg:h-24 lg:w-24" />
               ) : (
                 <img src={background2} alt="" className="rounded-full h-20 w-20 lg:h-24 lg:w-24" />
               )} 
@@ -115,10 +122,13 @@ function UserProfile({handleProfileClose, handleGuide}) {
             Become a guide
           </button>
           ) : (
-            <button  className='bg-primary text-white font-semibold p-1.5 lg:px-6 lg:py-2 rounded-full flex items-center'>
+           <Link to={"/dashboard/Tours"}>
+               <button  className='bg-primary text-white font-semibold p-1.5 lg:px-6 lg:py-2 rounded-full flex items-center'>
             <AiOutlineDashboard size={20} className='mr-2' />
             Dashboard
           </button>
+           </Link>
+         
         )}
         </div>
       </div>
