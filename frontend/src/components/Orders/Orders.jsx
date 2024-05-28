@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BsThreeDots } from "react-icons/bs";
 import { IoSearch } from "react-icons/io5";
+import ReviewModal from '../Modals/reviewDetails';
+import Review from '../Modals/review';
 
 export default function Orders() {
+
+const [closeModal, setCloseModal] = useState(false)
+const [reviewModal, setreviewModal] = useState(false)
+
+const handleReview = () => {
+  setreviewModal(true)
+}
+const handleReviewClose = () => {
+  setreviewModal(false)
+}
+
+const handleModal = () =>{
+  setCloseModal(prevState => !prevState)
+}
+
   return (
     <div className="bg-[#f0f8ff] min-h-screen flex flex-col p-2">
       <header className="bg-primary rounded-md h-20 flex items-center pl-8 mt-24">
@@ -10,7 +27,7 @@ export default function Orders() {
         <div className="flex items-center gap-4 absolute right-4">
           <IoSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray" />
           <input 
-            className="pl-10 pr-4 py-2 rounded-md border-none bg-[#a6d8f5] text-white"
+            className="pl-10 pr-4 py-2 rounded-md border-none bg-[#c4e0f0] text-white"
             placeholder="Search orders..."
             type="text" 
           />
@@ -38,17 +55,26 @@ export default function Orders() {
                   <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">Paid</span>
                 </td>
                 <td className="py-4">
-                  <div className="flex justify-center">
+                  <div onClick={handleModal} className="flex justify-center">
                     <button>
                     <BsThreeDots size={25}/>
                     </button>
                   </div>
+                  {closeModal &&
+                  <div className=' absolute bottom-56 right-44'>
+                  <ReviewModal  handleReview={handleReview}/>
+                  </div>
+                  }
                 </td>
               </tr>
             </tbody>
           </table>
+            { reviewModal && 
+             <Review handleReviewClose={handleReviewClose}/>
+            }
         </div>
       </main>
+      
     </div>
   );
 }
