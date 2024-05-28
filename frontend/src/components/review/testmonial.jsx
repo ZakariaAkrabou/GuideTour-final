@@ -22,12 +22,8 @@ export default function Component() {
             />
           </div>
           <div className="text-center">
-          <span className="w-full text-lg font-bold tracking-widest text-red-400 uppercase max-md:max-w-full text-center">
-      trendy
-    </span>
-    <div className="mt-4 w-full text-5xl leading-[71px] text-indigo-950">
-      Our Trending Tour Packages
-    </div>
+            <span className="text-xs font-semibold uppercase text-[#bd1e59]">Promotion</span>
+            <h2 className="text-4xl font-bold mt-1 mb-4">See What Our Clients Say About Us</h2>
             <div className="relative mx-auto w-full max-w-xl px-8 py-4 bg-white rounded-lg shadow">
               <blockquote className="text-center">
                 <p className="text-lg italic text-gray-600">
