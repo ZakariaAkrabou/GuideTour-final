@@ -1,4 +1,4 @@
-import { Routes, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './component/Dashboard'
 import Layout from './component/shared/Layout'
 import Users from './component/Users';
@@ -13,7 +13,7 @@ import PrivateRoute from './Auth/PrivateRouting';
 function App() {
   return (
     <AuthProvider>
-     
+     <Router>
         <Routes>  {/* Use Routes as a parent component for all Routes */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
@@ -35,7 +35,7 @@ function App() {
             {/* Add more protected routes here */}
           </Route>
         </Routes>
-      
+        </Router>
     </AuthProvider>
   );
 }
