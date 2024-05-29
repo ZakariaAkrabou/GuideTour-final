@@ -26,7 +26,6 @@ exports.getCheckoutSession = async (req, res) => {
       };
     }
 
-    console.log("tour",productDetails);
 
     if (campingId) {
       const camping = await Camping.findById(campingId);
@@ -39,6 +38,9 @@ exports.getCheckoutSession = async (req, res) => {
         price: camping.price,
       };
     }
+
+    // console.log("tour",bookingData);
+
 
     const booking = new Booking(bookingData);
     await booking.save();
