@@ -44,7 +44,7 @@ export const fetchCardToursById = createAsyncThunk('tours/fetchCardToursById', a
 
 export const fetchGuidesByIds = createAsyncThunk('tours/fetchGuidesByIds', async (guideIds)  => {
     const token = localStorage.getItem('token') || null;
-    // console.log("guideIds",guideIds);
+    console.log("guideIds",guideIds);
     const config = {
         headers: {
           Authorization: `Bearer ${token}`,
