@@ -11,7 +11,7 @@ exports.getCheckoutSession = async (req, res) => {
   try {
     const { userId, tourId, campingId, amount } = req.body;
 
-    let bookingData = { user: userId, amount, paymentStatus: 'approved' };
+    let bookingData = { user: userId, amount, paymentStatus: 'pending' };
     let productDetails = {};
 
     if (tourId) {
@@ -54,7 +54,7 @@ exports.getCheckoutSession = async (req, res) => {
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency: "mad",
             product_data: {
               name: productDetails.name,
               description: productDetails.description,
@@ -65,7 +65,7 @@ exports.getCheckoutSession = async (req, res) => {
         },
       ],
       payment_intent_data: {
-        description: "Booking a Travel Service",
+        description: "Payment for booking",
       },
     });
 
@@ -80,10 +80,10 @@ exports.getCheckoutSession = async (req, res) => {
 };
 
 exports.paymentSuccess = (req, res) => {
+
   res.status(200).json({ message: 'Payment succeeded' });
 };
 
 exports.paymentFailed = (req, res) => {
   res.status(500).json({ message: 'Payment failed' });
 };
-  
