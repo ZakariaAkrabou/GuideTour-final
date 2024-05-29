@@ -67,27 +67,22 @@ exports.getGuidesByIds = async function(req, res) {
     const guides = await Guide.find({ _id: { $in: uniqueGuideIds } }).populate({
       path: 'user_id',
       model: 'User',
-      select: 'firstName lastName email phone',
+      select: 'firstName',
     });
 
     if (!guides || guides.length === 0) {
       return res.status(404).json({ error: "Guides not found" });
     }
 
-    // Create a map of guides by their IDs
     const guideMap = new Map();
     guides.forEach(guide => {
       guideMap.set(guide._id.toString(), guide);
     });
 
-    // Reconstruct the array using the original guide IDs
     const guideData = guideIds.map(id => {
       const guide = guideMap.get(id);
       return guide ? {
         firstName: guide.user_id.firstName,
-        lastName: guide.user_id.lastName,  // Added lastName to the response
-        email: guide.user_id.email,       // Added email to the response
-        phone: guide.user_id.phone        // Added phone to the response
       } : null;
     });
 

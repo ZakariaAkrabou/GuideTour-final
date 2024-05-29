@@ -4,7 +4,7 @@ import { GrStatusGood } from "react-icons/gr";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProfile, Booking } from '../../features/Slices/bookingSlice';
 import { fetchGuideProfile } from '../../features/Slices/tourSlice';
-
+import img from '../../assets/hero2.jpg'
 
 const Step3 = ({ nextStep, prevStep, prev2Step }) => {
   const dispatch = useDispatch();
@@ -82,14 +82,14 @@ const Step3 = ({ nextStep, prevStep, prev2Step }) => {
         <div className="bg-white shadow-2xl rounded-2xl p-2 w-full h-screen flex items-center justify-center">
           <div className="lg:w-full">
             <div className="lg:grid lg:grid-cols-1 gap-2 text-center">
-              <img alt="" className="w-full bg-black h-20 lg:h-[150px] rounded-t-2xl" />
+              <img src={img} alt="" className="w-full bg-black h-20 lg:h-[150px] rounded-t-2xl" />
               <div className="relative flex justify-center -top-12">
                 <img src={guideprofile.profile_picture} alt="" className="rounded-full h-24 w-24" />
               </div>
               <div className="relative -top-12">
                 <h1 className="lg:text-xl font-semibold">Tour: {tour.title}</h1>
                 <h3 className="lg:text-2xl font-year text-[#021F86] capitalize">With {guideprofile.firstName} </h3>
-                <div className="justify-between p-2 lg:px-10">
+                <div className="justify-between p-2 lg:px-8">
                   <div className="bg-gray/10 rounded-xl h- text-left p-2">
                     <h1 className="text-lg font-semibold">Payment details</h1>
                     <hr />
