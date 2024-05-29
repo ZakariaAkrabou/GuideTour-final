@@ -1,18 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { RxDividerVertical } from "react-icons/rx";
 import heroImg from '../../assets/hero1.jpg';
-import UserProfile from "../UserProfile/UserProfile";
-import Header from "../Header/header";
-import BecomeGuide from "../BecomeGuide/BecomeGuide";
-import Camping from "../../pages/camping";
-
 
 const Hero = () => {
   const [showInput, setShowInput] = useState(false);
   const [destination, setDestination] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
-  const [modalProfile, setModalProfile] = useState(false);
-  const [modalGuide, setModalGuide] = useState(false);
+  const [duration, setDuration] = useState(""); // State for duration
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setShowInput(true);
@@ -26,67 +22,94 @@ const Hero = () => {
     setDestination(e.target.value);
   };
 
-
-
   const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
   };
 
+  const handleDurationChange = (e) => { // Function to handle duration input change
+    setDuration(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    let path = "";
+    if (selectedOption === "option1") {
+      path = "/tour";
+    } else if (selectedOption === "option2") {
+      path = "/camping";
+    }
+    if (path) {
+      navigate(`${path}?destination=${destination}&duration=${duration}`); // Include duration in navigation
+    }
+  };
+
   return (
-    <div className="w-full h-screen relative" >
+    <div className="w-full h-screen relative">
       <div className="relative justify-center rounded-2xl lg:bp-32 lg:h-screen">
         <img src={heroImg} alt="" className="w-full h-full object-cover" />
         <div className="lg:w-4/5 lg:pl-20 p-2 lg:h-screen h-full lg:mt-[-150px] mt-[-120px]">
-          <div className="bg-white/40 backdrop-filter backdrop-blur-md rounded-md lg:h-20 lg:w-[700px] flex items-center justify-between p-4 ">
+          <div className="bg-white/40 backdrop-filter backdrop-blur-md rounded-md lg:h-20 lg:w-[730px] flex items-center justify-between p-4">
+            <div>
+
+            
             {showInput ? (
               <input
                 type="text"
-                placeholder="Where?"
-                className="bg-transparent border-2 border-white text-xl text-white rounded-2xl px-2 lg:w-[150px] w-[100px] placeholder:text-gray-100"
+                placeholder="Destination"
+                className="bg-transparent text-xl text-black rounded-2xl px-2 lg:w-[150px] w-[100px] placeholder:text-gray-100"
                 value={destination}
                 onChange={handleInputChange}
+                
               />
+              
             ) : (
-              <button 
+              <button
                 onClick={handleClick}
-                className="text-black font-bold flex items-center text-lg text-nowrap"
+                class="bg-transparent text-xl text-black rounded-2xl px-2 lg:w-[150px] w-[100px] placeholder:text-gray-100"
               >
-                Where to?
-                <RxDividerVertical size={45} className="hidden md:block ml-6 text-gray-200 "/>
-              </button>          
+               destination
+                
+              </button>
             )}
+            
+            </div>
+            <RxDividerVertical size={45} className="hidden md:block text-gray-200" />
             <div className="flex">
-              <select value={selectedOption}  onChange={handleSelectChange} className="text-lg bg-transparent border-none text-black font-bold whitespace-nowrap">
+              <select
+                value={selectedOption}
+                onChange={handleSelectChange}
+                className="bg-transparent text-xl text-black rounded-2xl px-2 lg:w-[150px] w-[100px] placeholder:text-gray-100"
+              >
                 <option className="text-black" value="">Travel Type</option>
-                <option className="text-black" value="option1">Option 1</option>
-                <option className="text-black" value="option2">Option 2</option>
-                <option className="text-black" value="option3">Option 3</option>
+                <option className="text-black" value="option1">Tours</option>
+                <option className="text-black" value="option2">Campings</option>
               </select>
-              <RxDividerVertical size={45} className="hidden md:block text-gray-200"/>
+              <RxDividerVertical size={45} className="hidden md:block text-gray-200" />
             </div>
             <div className="flex">
-              <select className="text-lg bg-transparent border-none text-black font-bold font-popp">
-                <option className="text-black" value="">Duration</option>
-                <option className="text-black" value="option1">Option 1</option>
-                <option className="text-black" value="option2">Option 2</option>
-                <option className="text-black" value="option3">Option 3</option>
-              </select>
-            </div>
-            <button 
-              onClick={closeClick}
-              className="text-lg bg-blue-400 py-2 px-3 lg:px-8 lg:h-12 rounded-2xl text-white bg-primary  hover:bg-white hover:text-primary transition-bg hover:border-primary"
+  <input 
+    type="text"
+    value={duration}
+    onChange={handleDurationChange} // Handle duration input change
+    placeholder="Duration"
+    className="bg-transparent text-xl text-black rounded-2xl px-2 lg:w-[150px] w-[100px]  placeholder:text-gray-100"
+  
+  />
+</div>
+            <button
+              onClick={handleSubmit}
+              className="text-lg bg-blue-400 py-2 px-3 lg:px-8 lg:h-12 rounded-2xl text-white bg-primary hover:bg-white hover:text-primary transition-bg hover:border-primary"
             >
               Submit
-            </button>  
+            </button>
           </div>
           <div className="lg:-top-[270px] -top-[170px] w-[450px] relative lg:w-[500px]">
             <h1 className="text-white font-bold text-3xl lg:text-5xl">
               {` No matter where you're going, we'll take you there`}
             </h1>
-          </div>  
+          </div>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 
