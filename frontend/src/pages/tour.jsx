@@ -6,18 +6,19 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdOutlineWhereToVote, MdModeOfTravel } from "react-icons/md";
 import { BsPersonVcard } from "react-icons/bs";
 import { TfiFaceSad } from "react-icons/tfi";
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCardTours, fetchCardToursById, fetchGuidesByIds } from '../features/Slices/tourSlice';
 
 const Tour = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(6);
-    const [searchTerm, setSearchTerm] = useState('');
+    // const [searchTerm, setSearchTerm] = useState('');
     const [searchCategory, setSearchCategory] = useState('');
     const [searchPrice, setSearchPrice] = useState('');
     const [searchDuration, setSearchDuration] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchTerm = searchParams.get('destination') || '';
 
     const dispatch = useDispatch();
     const tours = useSelector((state) => state.tours.cartTour);
@@ -142,24 +143,30 @@ const Tour = () => {
                             <div className="flex flex-col gap-4">
                                 <div className="gap-1"></div>
                                 <div className="relative">
-                                    <input onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm} type="text" placeholder='Search Tour' className="w-full text-center border-none h-12 rounded-full bg-white" />
+                                    <input onChange={(e) => {
+                                            setSearchParams({ destination: e.target.value });
+                                        }} 
+                                        value={searchTerm} type="text" placeholder='Search Tour' className="w-full text-center border-none h-12 rounded-full bg-white" />
                                     <IoSearch size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 " />
                                 </div>
                                 <div className="relative">
-                                    <input onChange={(e) => setSearchCategory(e.target.value)} value={searchCategory} type="text" placeholder='Category' className="w-full h-12 rounded-full text-center border-none bg-white" />
+                                    <input onChange={(e) => setSearchCategory(e.target.value)} 
+                                        value={searchCategory}  type="text" placeholder='Category' className="w-full h-12 rounded-full text-center border-none bg-white" />
                                     <MdOutlineWhereToVote size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 " />
                                 </div>
                                 <div className="relative">
-                                    <input onChange={(e) => setSearchDuration(e.target.value)} value={searchDuration} type="text" placeholder='Duration (in hours)' className="w-full h-12 rounded-full text-center border-none bg-white" />
+                                    <input onChange={(e) => setSearchDuration(e.target.value)} 
+                                        value={searchDuration}  type="text" placeholder='Duration (in hours)' className="w-full h-12 rounded-full text-center border-none bg-white" />
                                     <TbCalendarEvent size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2" />
                                 </div>
                                 <h2 className="uppercase font-bold">Filter by price</h2>
-                                <input onChange={(e) => setSearchPrice(e.target.value)} value={searchPrice} type="text" placeholder='Enter Price' className="w-full h-8 rounded-full text-center border-none bg-white" />
-                                <h4 className="text-neutral-600 capitalize">price : 12dh-3600dh</h4>
+                                <input onChange={(e) => setSearchPrice(e.target.value)} 
+                                    value={searchPrice}  type="text" placeholder='Enter Price' className="w-full h-8 rounded-full text-center border-none bg-white" />
+                                <h4 className="text-neutral-600 capitalize">ex: 200-1000 MAD </h4>
                             </div>
-                            <div className="flex justify-center py-2 w-full">
+                            {/* <div className="flex justify-center py-2 w-full">
                                 <button className="transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-white hover:text-primary border duration-100 bg-primary text-white text-lg p-1.5 rounded-full w-36">Filter</button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     {/* Pagination */}
