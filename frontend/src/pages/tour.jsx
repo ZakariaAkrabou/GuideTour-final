@@ -21,8 +21,8 @@ const Tour = () => {
     const searchTerm = searchParams.get('destination') || '';
 
     const dispatch = useDispatch();
-    const tours = useSelector((state) => state.tours.cartTour);
-    const guides = useSelector((state) => state.tours.guideIds);
+    const { loading, cartTour: tours, guideIds: guides } = useSelector((state) => state.tours);
+
 
     console.log(guides);
     
@@ -86,7 +86,11 @@ const Tour = () => {
                 <div className="shadow-2xl lg:w-4/6 relative mt-6 top-[-50px] bg-white p-2">
                     <div className="grid grid-cols-2 lg:gap-32">
                         <div className="grid relative lg:grid-cols-2 gap-x-28 gap-5 z-30">
-                            {currentTours.length > 0 ? (
+                        {loading ? (
+                               <div className="flex absolute items-center left-1/2 w-full h-screen">
+                               <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray"></div>
+                             </div>
+                            ) : currentTours.length > 0 ? (
                                 currentTours.map((tour, index) => (
                                     <Link to="/Landscapes" key={index} style={{ display: 'block' }}>
                                         <div onClick={() => handleTourId(tour._id)} className='relative bg-white p-1.5 h-max w-56 hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
@@ -134,7 +138,6 @@ const Tour = () => {
                             )}
                         </div>
 
-                        {/* Plan Tour Card */}
                         <div className="w-full h-max bg-stone-100 rounded-lg p-4">
                             <div className="text-3xl font-semibold pb-2 text-primary justify-center flex">
                                 <h1>Plan your tour</h1>
@@ -169,7 +172,7 @@ const Tour = () => {
                             </div> */}
                         </div>
                     </div>
-                    {/* Pagination */}
+
                     {currentTours.length > 0 && (
                         <div className="flex justify-center mt-3 p-2">
                             {totalPages > 1 && (
