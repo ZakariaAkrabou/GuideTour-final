@@ -35,7 +35,7 @@ function Footer() {
 
   return (
     <>
-      <hr
+          <hr
         style={{
         filter: 'blur(1px)', 
       }}
@@ -44,10 +44,12 @@ function Footer() {
         style={{ backgroundImage: `url(${FooterImage})`, backgroundSize: 'cover', backgroundPosition: 'bottom right',
              backgroundAttachment: 'fixed', }} >
         
-
+     
 
       <div className="ml-px w-full max-md:max-w-full bg-transparent">
+        
         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+          
           <div className="w-1/2 max-md:ml-0 max-md:w-full flex justify-center items-end mt-4">
             <img
               src={blackLogo}
