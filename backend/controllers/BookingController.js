@@ -77,7 +77,7 @@ exports.getCheckoutSession = async (req, res) => {
     await booking.save();
 
     res.status(200).json({ url: session.url, message: 'Checkout session created successfully' });
-    // res.redirect(session.url)
+    
   } catch (error) {
     console.error('Error creating checkout session:', error);
     res.status(500).json({ message: 'Error creating checkout session' });
