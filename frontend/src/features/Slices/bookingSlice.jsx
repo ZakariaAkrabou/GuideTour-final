@@ -11,7 +11,7 @@ const initialState = {
 }
 
 
-export const Booking = createAsyncThunk('bookings/Booking', async ({ tourId, userId, amount })  => {
+export const Booking = createAsyncThunk('bookings/Booking', async ({ tourId,campingId, userId, amount })  => {
     const token = localStorage.getItem('token') || null;
   
     const config = {
@@ -24,9 +24,10 @@ export const Booking = createAsyncThunk('bookings/Booking', async ({ tourId, use
     const response = await axios.post('http://localhost:4000/api/booking/book',{
       userId,
       tourId,
+      campingId,
       amount
     })
-    console.log("data",response);
+    console.log("Booking",response);
     return response.data
   })
 
