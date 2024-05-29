@@ -8,7 +8,7 @@ import ProgressSteps from '.././components/steps/BookingSteps';
 import Step1 from '.././components/steps/informationTours';
 import Step2 from '.././components/steps/guides';
 import Step3 from '.././components/steps/planTours';
-import Step4 from '.././components/steps/locationTours';
+// import Step4 from '.././components/steps/locationTours';
 
 const steps = [
   {
@@ -20,9 +20,9 @@ const steps = [
   {
     step: 3,
   },
-  {
-    step: 4,
-  }
+  // {
+  //   step: 4,
+  // }
 ];
 const Landscapes = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -37,14 +37,14 @@ const Landscapes = () => {
   const renderStep = (step, nextStep, prevStep, prev2Step,prev3Step) => {
     switch (step) {
       case 1:
-        return <Step1 nextStep={nextStep} />;
+        return <Step1 nextStep={nextStep}  />;
       case 2:
         return <Step2 nextStep={nextStep} prevStep={prevStep} />;
       case 3:
         return <Step3 nextStep={nextStep} prevStep={prevStep} prev2Step={prev2Step} />;
-      case 4:
-        return <Step4 nextStep={nextStep} prevStep={prevStep} prev2Step={prev2Step}  prev3Step={prev3Step}  />;
-      default:
+      // case 4:
+      //   return <Step4 nextStep={nextStep} prevStep={prevStep} prev2Step={prev2Step}  prev3Step={prev3Step}  />;
+      // default:
         return null;
     }
   };

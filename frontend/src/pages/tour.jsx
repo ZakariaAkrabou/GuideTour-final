@@ -23,6 +23,8 @@ const Tour = () => {
     const tours = useSelector((state) => state.tours.cartTour);
     const guides = useSelector((state) => state.tours.guideIds);
 
+    console.log(guides);
+    
     useEffect(() => {
         if (tours.length > 0) {
             const guideIds = tours.map(tour => tour.guide_id);
@@ -152,7 +154,7 @@ const Tour = () => {
                                     <TbCalendarEvent size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2" />
                                 </div>
                                 <h2 className="uppercase font-bold">Filter by price</h2>
-                                <input onChange={(e) => setSearchPrice(e.target.value)} value={searchPrice} type="text" placeholder='Enter Price' className="w-52 h-8 rounded-full text-center border-none bg-white" />
+                                <input onChange={(e) => setSearchPrice(e.target.value)} value={searchPrice} type="text" placeholder='Enter Price' className="w-full h-8 rounded-full text-center border-none bg-white" />
                                 <h4 className="text-neutral-600 capitalize">price : 12dh-3600dh</h4>
                             </div>
                             <div className="flex justify-center py-2 w-full">

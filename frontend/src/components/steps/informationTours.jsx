@@ -31,21 +31,17 @@ const Step1 = ({ nextStep }) => {
         <>
             <div>
                 <div className=" h-20 -top-20 absolute w-full bg-white/40 backdrop-filter backdrop-blur-sm text-1xl  font-Poppins flex  text-center  ">
-                    <button className=" w-1/4 bg-white   flex  items-center justify-center capitalize " >
+                    <button className=" w-1/3 bg-white   flex  items-center justify-center capitalize " >
                         <HiOutlineInformationCircle  size={25} className="mr-2 text-lg  " />
                         information
                     </button>
-                    <button className=" w-1/4 p-5 flex  items-center justify-center capitalize hover:bg-white/60" onClick={nextStep}>
+                    <button className=" w-1/3 p-5 flex  items-center justify-center capitalize hover:bg-white/60" onClick={nextStep}>
                         <FiFlag size={20} className="mr-2 " />
                         guide
                     </button>
-                    <button className=" w-1/4 flex  items-center justify-center capitalize hover:bg-white/60">
+                    <button className=" w-1/3 flex  items-center justify-center capitalize hover:bg-white/60">
                         <TbCalendarEvent size={20}  className=' mr-2 '/>
                         tour plan
-                    </button>
-                    <button className=" w-1/4  capitalize flex  items-center justify-center hover:bg-white/60   ">
-                        <MdOutlineWhereToVote size={20} className=" mr-2  " />
-                        location
                     </button>
                 </div>
                 <div className=" grid grid-cols-2 gap-1 ">
