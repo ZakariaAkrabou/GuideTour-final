@@ -87,55 +87,55 @@ const Tour = () => {
                     <div className="grid grid-cols-2 lg:gap-32">
                         <div className="grid relative lg:grid-cols-2 gap-x-28 gap-5 z-30">
                         {loading ? (
-                               <div className="flex absolute items-center left-1/2 w-full h-screen">
-                               <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray"></div>
-                             </div>
-                            ) : currentTours.length > 0 ? (
-                                currentTours.map((tour, index) => (
-                                    <Link to="/Landscapes" key={index} style={{ display: 'block' }}>
-                                        <div onClick={() => handleTourId(tour._id)} className='relative bg-white p-1.5 h-max w-56 hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
-                                            <div className='relative'>
-                                                <img src={tour.image} alt="Card" className='h-[260px] w-full rounded-2xl object-cover' />
-                                                <div className="absolute bottom-0 w-full h-[100px] bg-gradient-to-t via-black/50 from-black/60 to-transparent rounded-b-[15px]"></div>
-                                                <div className="flex absolute top-2 right-1 gap-1 text-white px-0.5 bg-black rounded-full">
-                                                    <div className='flex items-center'>
-                                                        <IoPricetagOutline size={15} />
-                                                    </div>
-                                                    <h2 className="">{tour.price} $</h2>
-                                                </div>
-                                                <div className='absolute bottom-0 z-10 p-1 right-0 w-full  rounded-b-2xl'>
-                                                    <div className='flex flex-col'>
-                                                        <div className="flex text-white">
-                                                            <div className='flex gap-2 items-center'>
-                                                                <MdModeOfTravel size={20} />
-                                                                <h2 className="capitalize text-xl font-medium">{tour.title}</h2>
-                                                            </div>
-                                                        </div>
-                                                        <div className="flex justify-between text-white">
-                                                            <div className="flex text-white">
-                                                                <div className='flex gap-2 items-center'>
-                                                                    <BsPersonVcard className=" ml-1" size={20} />
-                                                                    <h2 className="capitalize text-xl font-medium">{guides[index]?.firstName}</h2>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                ))
-                            ) : (
-                                (searchDuration || searchCategory || searchPrice || searchTerm) &&
-                                <div class="absolute lg:left-1/2 lg:bottom-1/3 bottom-2/3 left-1/4 opacity-20 ">
-                                <div className=" flex justify-center">
-                                <TfiFaceSad className="  lg:text-[100px] text-7xl" />
-                                    </div>                                <div class="flex flex-col justify-center items-center">
-                                  <h1 class=" lg:text-nowrap text-xl">Sorry!</h1>
-                                  <h1 class="text-xl">no tours found.</h1>
+    <div className="flex absolute items-center justify-center w-full h-full">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray"></div>
+    </div>
+) : currentTours.length > 0 ? (
+    currentTours.map((tour, index) => (
+        <Link to="/Landscapes" key={index} style={{ display: 'block' }}>
+            <div onClick={() => handleTourId(tour._id)} className='relative bg-white p-1.5 h-max w-56 hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
+                <div className='relative'>
+                    <img src={tour.image} alt="Card" className='h-[260px] w-full rounded-2xl object-cover' />
+                    <div className="absolute bottom-0 w-full h-[100px] bg-gradient-to-t via-black/50 from-black/60 to-transparent rounded-b-[15px]"></div>
+                    <div className="flex absolute top-2 right-1 gap-1 text-white px-0.5 bg-black rounded-full">
+                        <div className='flex items-center'>
+                            <IoPricetagOutline size={15} />
+                        </div>
+                        <h2 className="">{tour.price} $</h2>
+                    </div>
+                    <div className='absolute bottom-0 z-10 p-1 right-0 w-full  rounded-b-2xl'>
+                        <div className='flex flex-col'>
+                            <div className="flex text-white">
+                                <div className='flex gap-2 items-center'>
+                                    <MdModeOfTravel size={20} />
+                                    <h2 className="capitalize text-xl font-medium">{tour.title}</h2>
                                 </div>
-                              </div>
-                            )}
+                            </div>
+                            <div className="flex justify-between text-white">
+                                <div className="flex text-white">
+                                    <div className='flex gap-2 items-center'>
+                                        <BsPersonVcard className=" ml-1" size={20} />
+                                        <h2 className="capitalize text-xl font-medium">{guides[index]?.firstName}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Link>
+    ))
+) : (
+    (searchDuration || searchCategory || searchPrice || searchTerm) && (
+        <div className="flex flex-col items-center justify-center col-span-2 h-full">
+            <TfiFaceSad className="text-7xl lg:text-[100px] opacity-20" />
+            <div className="text-center">
+                <h1 className="text-xl">Sorry!</h1>
+                <h1 className="text-xl">No tours found.</h1>
+            </div>
+        </div>
+    )
+)}
                         </div>
 
                         <div className="w-full h-max bg-stone-100 rounded-lg p-4">
