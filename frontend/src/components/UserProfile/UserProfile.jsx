@@ -10,6 +10,7 @@ import { fetchProfile, updateProfile } from '../../features/Slices/userProfileSl
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+// import { updateProfile } from '../../features/Slices/guideSlice';
 
 
 
@@ -19,14 +20,12 @@ function UserProfile({handleProfileClose, handleGuide}) {
 
   const dispatch = useDispatch();
   
+  const profile = useSelector((state) => state.users.profile);
+  
   useEffect(() => {
     dispatch(fetchProfile());
   }, [dispatch]);
   
-  const {loading,
-    profile,
-    error} = useSelector((state) => state.users);
-
   useEffect(() => {
     setFormData({
       firstName: profile.firstName || profile.data?.user?.firstName ,
@@ -48,14 +47,17 @@ function UserProfile({handleProfileClose, handleGuide}) {
   });
 
   const handleSubmit = (e) => {
+    // const id = profile._id
     e.preventDefault();
     setIsSubmitted(true);
     const updatedFormData = { ...formData };
     if (updatedFormData.password.trim() === '') {
       delete updatedFormData.password;
     }
-    dispatch(updateProfile(updatedFormData));
-    console.log("nnn",error);  
+    dispatch(updateProfile(updatedFormData))
+      .then(() => {
+      dispatch(fetchProfile());
+    });  
   };
 
   const handleChange = (e) => {
@@ -80,7 +82,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
 
           <div className="relative flex justify-center -top-10 lg:-top-12">
             {profile.data?.guide ? (
-                <img src={`http://localhost:4000/${profile.data.guide.profile_picture}`} alt="" className="rounded-full h-16 w-16 lg:h-24 lg:w-24" />
+                <img src={profile.data.guide.profile_picture} alt="" className="rounded-full h-16 w-16 lg:h-24 lg:w-24" />
               ) : (
                 <img src={background2} alt="" className="rounded-full h-20 w-20 lg:h-24 lg:w-24" />
               )} 
@@ -120,7 +122,7 @@ function UserProfile({handleProfileClose, handleGuide}) {
             Become a guide
           </button>
           ) : (
-           <Link to={"/Tours"}>
+           <Link to={"/dashboard"}>
                <button  className='bg-primary text-white font-semibold p-1.5 lg:px-6 lg:py-2 rounded-full flex items-center'>
             <AiOutlineDashboard size={20} className='mr-2' />
             Dashboard

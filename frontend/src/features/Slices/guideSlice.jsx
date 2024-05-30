@@ -10,7 +10,9 @@ const initialState = {
 }
 
 
-export const fetchTours = createAsyncThunk('tours/fetchTours', async ()  => {
+export const fetchTours = createAsyncThunk('tours/fetchTours', async (__,thunkAPI)  => {
+  const guideId = thunkAPI.getState().users.profile.data?.guide?.id
+  console.log("state", guideId);
     const token = localStorage.getItem('token') || null;
 
     const config = {
@@ -20,7 +22,8 @@ export const fetchTours = createAsyncThunk('tours/fetchTours', async ()  => {
       };
       console.log(token);
 
-    const response = await axios.get('http://localhost:4000/api/tours/allGuideTours',config)
+    const response = await axios.get('http://localhost:4000/api/tours/allGuideTours',guideId)
+    console.log(response);
     return response.data;
 })
 

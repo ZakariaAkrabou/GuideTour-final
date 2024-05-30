@@ -185,7 +185,7 @@ function UpdateTour() {
           </div>
         </div>
         <div className='flex gap-20 relative top-8 left-[200px]'>
-          <Link to="/dashboardGuides">
+          <Link to="/dashboard">
             <button type='button' className='bg-primary rounded w-[150px] h-[40px] text-white'>Dashboard</button>
           </Link>
           <button type='submit' className='bg-primary rounded w-[150px] h-[40px] text-white'>Update</button>

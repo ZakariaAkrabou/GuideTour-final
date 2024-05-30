@@ -26,7 +26,7 @@ function CampingSlids() {
         const nextIndex = (currentIndex + 1) % slides.length;
         setCurrentIndex(nextIndex);
       }
-    }, 2000);
+    }, 3000);
 
     return () => clearTimeout(timeoutId);
   }, [currentIndex, slides.length, autoplay]); 
@@ -43,7 +43,7 @@ function CampingSlids() {
       ></div>
 
       <div className='flex top-4 justify-center -mt-[140px]'>
-        {slides.map((slide, slideIndex) => (
+        {/* {slides.map((slide, slideIndex) => (
           <div
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
@@ -51,7 +51,7 @@ function CampingSlids() {
           >
             <RxDotFilled />
           </div>
-        ))}
+        ))} */}
         {/* <button onClick={() => setAutoplay(!autoplay)}>
           {autoplay ? 'Pause Autoplay' : 'Start Autoplay'}
         </button> */}

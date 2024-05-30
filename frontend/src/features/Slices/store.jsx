@@ -3,15 +3,16 @@ import campingSlice from './campingSlice';
 import userProfileSlice from './userProfileSlice';
 import guideSlice from './guideSlice';
 import tourSlice from './tourSlice'
-import infoguideReducer from './infoguideSlice'
-
+import authPasswordSlice from './authPasswordSlice';
+import infoguideSlice from './infoguideSlice';
 
 const rootReducer = combineReducers({
   campings: campingSlice,
   users: userProfileSlice,
   guides: guideSlice,
   tours: tourSlice,
-  guide: infoguideReducer,
+  password: authPasswordSlice,
+  guide: infoguideSlice
 });
 const store = configureStore({
   reducer: rootReducer,

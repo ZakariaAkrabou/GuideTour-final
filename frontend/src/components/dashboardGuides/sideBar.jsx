@@ -9,6 +9,7 @@ import { fetchGuideInfo } from '../../features/Slices/infoguideSlice';
 import { FiAlertTriangle } from "react-icons/fi";
 // import { logout } from '../../features/auth/authSlice'; 
 
+
 const linkClass = 'flex items-center gap-2 px-3 m-2 py-2 w-[200px] hover:bg-white hover:rounded-l-3xl hover:duration-300 rounded-sm text-base';
 const sidebarOpenClass = 'w-56';
 const sidebarClosedClass = 'w-20';

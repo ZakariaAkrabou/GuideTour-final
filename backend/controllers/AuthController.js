@@ -36,7 +36,7 @@ exports.createUser = async (req, res) => {
       });
       newUser.confirmationToken = token;
       await newUser.save();
-      const link = `http://localhost:3000/api/auth/register/confirm/${token}`;
+      const link = `http://localhost:4000/api/auth/register/confirm/${token}`;
       await verifyEmail(email, link, newUser.firstName);
       res.status(200).json({ message: "Registred successfuly"});
     } catch (error) {
@@ -78,7 +78,7 @@ exports.emailConfirm = async (req, res) => {
       { _id: userToken._id },
       { $set: { isConfirmed: true }, $unset: { confirmationToken: 1 } }
     );
-    res.status(200).json({ message: "Verified Successfuly" });
+    res.redirect(`http://localhost:5173/email-confirmation`);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -101,7 +101,7 @@ exports.forgetPassword = async (req, res) => {
 
     await user.save();
 
-    const link = `http://localhost:3000/api/auth/rest-password/${token}`;
+    const link = `http://localhost:5173/rest-password/${token}`;
     await ResetPasswordEmail(email, link, user.firstName);
 
     res.status(200).json({ message: "Please Check Your INBOX Mail" });
@@ -122,6 +122,7 @@ exports.restPassword = async (req, res) => {
     user.forgotPasswordToken = null;
     await user.save();
     res.status(200).json({ message: "Password reset successfully" });
+    console.log("done");
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });

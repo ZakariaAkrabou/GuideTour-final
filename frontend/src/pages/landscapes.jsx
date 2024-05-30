@@ -1,14 +1,6 @@
-import Header from "../assets/header-tour.jpeg";
-import travel from '../assets/travel.png'
-import telouet from '../assets/telouet.png'
+
 import { useState } from 'react';
-import { TbCalendarEvent } from "react-icons/tb";
-import { HiOutlineArrowsUpDown } from "react-icons/hi2";
-import Tour from "./tour";
-import { CiEdit } from "react-icons/ci";
-import { MdOutlineWhereToVote } from "react-icons/md";
-import { HiOutlineInformationCircle } from "react-icons/hi";
-import { FiFlag } from "react-icons/fi";
+
 import imgheader from'../assets/landscapes.jpeg'
 
 
@@ -73,7 +65,7 @@ const Landscapes = () => {
           <div className="  flex justify-center  ">
 
 
-            <div className=" shadow-2xl w-[900px] h-[1000px]  bg-white relative mt-6  -top-[50px] ">
+            <div className=" shadow-2xl w-[900px]  max-h-[1000px]  bg-white relative mt-6  -top-[50px] ">
 
               <ProgressSteps steps={steps} renderStep={renderStep} />
 

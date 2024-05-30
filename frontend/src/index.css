@@ -5,3 +5,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Define scrollbar width and color */
+:root {
+    --scrollbar-width: 14px;
+    --scrollbar-color: #6499E9;
+  }
+  
+  /* Target the scrollbar */
+  ::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-color);
+    border-radius: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background-color: transparent; /* You can change this to any color you want */
+  }
+  
+  /* Corner */
+  ::-webkit-scrollbar-corner {
+    background-color: transparent; /* You can change this to any color you want */
+  }
+  
