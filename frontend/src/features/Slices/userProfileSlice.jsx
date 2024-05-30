@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
-
 import axios from 'axios';
+
+
 const initialState = {
     loading: false,
     profile: [],
@@ -26,7 +26,7 @@ export const fetchProfile = createAsyncThunk('users/fetchProfile', async ()  => 
 export const updateProfile = createAsyncThunk('users/updateProfile', async (updatedFormData, thunkAPI) => {
   const token = localStorage.getItem('token') || null;
   let userID = thunkAPI.getState().users.profile.data?.user?.id || thunkAPI.getState().users.profile._id;
-console.log("id",userID);
+// console.log("id",userID);
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { LiaCampgroundSolid } from "react-icons/lia";
 import { FaPeopleGroup } from "react-icons/fa6";
-import { GiPrivate } from "react-icons/gi";
-
-
-
+import { IoPricetagOutline } from "react-icons/io5";
 
 import card from '../../assets/agadir.png';
 import campingVideo from '../../assets/campingVideo.mp4';
@@ -23,12 +20,9 @@ export default function Cards({ nextStep }) {
     const [searchDate, setSearchDate] = useState('');
     const [selectedCampingId, setSelectedCampingId] = useState(null);
 
-
     useEffect(() => {
         dispatch(fetchCampings());
     }, [dispatch]);
-
-
 
     const filteredCampings = campings.filter(camping =>
         camping.location.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -49,7 +43,7 @@ export default function Cards({ nextStep }) {
 
     const toggleCampingSelection = (campingId) => {
         setSelectedCampingId(selectedCampingId === campingId ? null : campingId);
-        console.log("campingId",campingId);
+        console.log("campingId", campingId);
         dispatch(fetchCampingsById(campingId));
     };
 
@@ -64,14 +58,12 @@ export default function Cards({ nextStep }) {
     const goToNextPage = () => {
         if (campingsCards.length === itemsPerPage) {
             setCurrentPage(currentPage + 1);
-            setLastClicked('next');
         }
     };
 
     const goToPreviousPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
-            setLastClicked('previous');
         }
     };
 
@@ -80,32 +72,37 @@ export default function Cards({ nextStep }) {
             <div className="grid grid-cols-2 gap-2">
                 {/* Cards */}
                 {campingsCards.map((camping, index) => (
-                    <div onClick={nextStep} key={index} className='relative bg-white hover:-translate-y-1 h-max hover:scale-110 rounded-xl hover:shadow-2xl duration-100'>
-                    <img onClick={() => toggleCampingSelection(camping._id)} src={card} alt="Card" className='h-[250px] w-full rounded-xl' />
-                    <div className='absolute bottom-0 z-0 left-0 p-1 w-full bg-primary rounded-b-2xl'>
-                        <div className=' flex flex-col'>
-                        <div className="flex justify-between font-bold text-white pb-">
-                                    <div className=' flex items-center' >
-                                    <LiaCampgroundSolid size={20} className=''/>
-                                    <h1 className=' pl-1'>Camping</h1>
-                                    </div>
-                                    <h2 className="capitalize font-semibold">{camping.name}</h2>
+                    <div onClick={nextStep} key={index} className='relative bg-white p-1.5 h-max w-56 hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
+                        <div className='relative'>
+                            <img onClick={() => toggleCampingSelection(camping._id)} src={camping.image} alt="Card" className='h-[260px] w-full rounded-2xl object-cover' />
+                            <div className="absolute bottom-0 w-full h-[100px] bg-gradient-to-t via-black/50 from-black/60 to-transparent rounded-b-[15px]"></div>
+                            <div className="flex absolute top-2 right-1 gap-1 text-white px-0.5 bg-black rounded-full">
+                                <div className='flex items-center'>
+                                    <IoPricetagOutline size={15} />
                                 </div>
-
-                                <div className="flex justify-between font-bold text-white pb-">
-                                    <div className=' flex items-center'>
-                                    <FaPeopleGroup size={20} className=''/>
-                                    <h1 className=' pl-1'>Memebers</h1>
-                                    </div>
-                                    <h2 className="capitalize font-semibold">{camping.group_member}</h2>
-                                </div>
-                        </div>
-                    </div>
-                    <div className='p-0.5 relative'>
-                            <div className="text-center relative" >
-
-                                
+                                <h2 className="">{camping.price} $</h2>
                             </div>
+                            <div className='absolute bottom-0 z-10 p-1 right-0 w-full  rounded-b-2xl'>
+                                <div className='flex flex-col'>
+                                    <div className="flex justify-between font-bold text-white pb-">
+                                        <div className=' flex items-center' >
+                                            <LiaCampgroundSolid size={20} className='' />
+                                            <h1 className=' pl-1'>Location</h1>
+                                        </div>
+                                        <h2 className="capitalize font-semibold">{camping.location}</h2>
+                                    </div>
+                                    <div className="flex justify-between font-bold text-white pb-">
+                                        <div className=' flex items-center'>
+                                            <FaPeopleGroup size={20} className='' />
+                                            <h1 className=' pl-1'>Memebers</h1>
+                                        </div>
+                                        <h2 className="capitalize font-semibold">{camping.group_member}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='p-0.5 relative'>
+                            <div className="text-center relative"></div>
                         </div>
                     </div>
                 ))}
@@ -127,8 +124,8 @@ export default function Cards({ nextStep }) {
                 </div>
             </div>
             {/* Plan Your Tour Section */}
-            <div className="flex flex-col items-center lg:place-items-stretch ">
-                <div className="lg:w-full w-[350px] bg-stone-100 rounded-lg p-8 ">
+            <div className="flex flex-col items-center lg:place-items-stretch">
+                <div className="lg:w-full w-[350px] bg-stone-100 rounded-lg p-8">
                     <div className="text-3xl font-bold text-center text-blue_fance font-Volkhov pb-4">
                         <h1>Book your camping</h1>
                     </div>
@@ -139,7 +136,7 @@ export default function Cards({ nextStep }) {
                         <input onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm} type="text" placeholder='Search Camping' className="w-full rounded-2xl h-10 text-center border-none bg-white" />
                         <input onChange={(e) => setSearchDate(e.target.value)} value={searchDate} type="text" placeholder='Date' className="w-full h-10 text-center rounded-2xl border-none bg-white" />
                         <h2 className="uppercase font-bold -mb-3">Filter by price</h2>
-                        <div className="relative  items-center flex">
+                        <div className="relative items-center flex">
                             <input onChange={(e) => setSearchPrice(e.target.value)} value={searchPrice} type="text" placeholder='Enter price range (10-300 $)' className="w-full h-10 rounded-2xl text-center border-none bg-white pr-12" />
                             <button onClick={handleSortByPrice} className="absolute h-full w-12 left-0 bg-primary text-white rounded-l-md">
                                 Sort {sortByPrice ? '↓' : ''}
@@ -147,14 +144,14 @@ export default function Cards({ nextStep }) {
                         </div>
                         <h4 className="text-neutral-600 capitalize">ex: price 12dh-3600dh</h4>
                     </div>
-                    <div className="text-center">
-                        <button className=" bg-primary transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-2  text-white text-lg rounded-md mt-2">
+                    {/* <div className="text-center">
+                        <button className="bg-primary transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-2 text-white text-lg rounded-md mt-2">
                             Book Now
                         </button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='pt-6 flex justify-center items-center pb-1'>
-                    <video className="h-full lg:w-full w-[350px] object-cover rounded-lg shadow-2xl " src={campingVideo} autoPlay loop muted ></video>
+                    <video className="h-full lg:w-full w-[350px] object-cover rounded-lg shadow-2xl" src={campingVideo} autoPlay loop muted></video>
                 </div>
             </div>
         </div>

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Modal from "../Modals/login";
 import { IoPerson } from "react-icons/io5";
 import DropDown from "../DropDown/DropDown";
 import Modal from "../Modals/login";
@@ -12,7 +13,8 @@ const Header = ({ handleProfile }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [profileDrop, setProfileDrop] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  
+  const location = useLocation();
 
   const showDropdown = () => {
     setDropdown(!dropdown);
@@ -21,6 +23,7 @@ const Header = ({ handleProfile }) => {
   const handleProfileDrop = () => {
     setProfileDrop((prevProfileDrop) => !prevProfileDrop);
   };
+
   const handleProfileDropClose = () => {
     setProfileDrop(false);
   };
@@ -32,10 +35,14 @@ const Header = ({ handleProfile }) => {
     };
 
     window.addEventListener("scroll", handleScroll);
+    
+    // Check scroll position on mount to set initial state correctly
+    handleScroll();
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [location.pathname]); // Add location.pathname as a dependency
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -46,40 +53,39 @@ const Header = ({ handleProfile }) => {
     }
   });
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-  };
   return (
     <>
       <nav
-        className={`${isScrolled
+        className={`${
+          location.pathname === '/orders'
+            ? "bg-primary text-white"
+            : isScrolled
             ? "backdrop-blur-md text-black"
-            : "bg-transparent text-white "
-          } fixed top-0 left-0 w-full h-20 flex justify-between items-center z-40 `}
+            : "bg-transparent text-white"
+        } fixed top-0 left-0 w-full h-20 flex justify-between items-center z-40`}
       >
         <div className="container mx-auto lg:px-3 ">
           <div className="lg:w-full w-11/12 mx-auto h-full flex justify-between items-center">
             <img
-              src={isScrolled ? "/blacklogo.png" : "/img_ellipse_621.png"}
+              src={location.pathname === '/orders' ? "/img_ellipse_621.png" : (isScrolled ? "/blacklogo.png" : "/img_ellipse_621.png")}
               className="h-28 rounded-[103] object-cover -ml-8"
               alt="Logo"
             />
+            {isLoggedIn && ( 
+              <div className=" right-20 lg:right-20 absolute flex" >
+                <button onClick={handleProfileDrop}>
+                  <IoPerson size={25} />
+                </button>
+                {profileDrop && (
+                  <DropDown
+                    handleProfile={handleProfile}
+                    closeModal={handleProfileDropClose}
+                    handleProfileDropClose={handleProfileDropClose}
+                  />
+                )}
+              </div>
+            )}
             <ul className="flex items-center xl:gap-12 gap-x-4 max-lg:hidden">
-              {isLoggedIn && (
-                <div className=" right-20 lg:right-20 absolute flex" >
-                  <button onClick={handleProfileDrop}>
-                    <IoPerson size={25} />
-                  </button>
-                  {profileDrop && (
-                    <DropDown
-                      handleProfile={handleProfile}
-                      closeModal={handleProfileDropClose}
-                      handleProfileDropClose={handleProfileDropClose}
-                    />
-                  )}
-                </div>
-              )}
               <li>
                 <Link
                   to="/home"
@@ -175,33 +181,6 @@ const Header = ({ handleProfile }) => {
                       Campings
                     </Link>
                   </li>
-                  <li className="p-3">
-                    {!isLoggedIn && (
-                      <button
-                        onClick={() => setShowModal(true)}
-                        className="bg-primary rounded-2xl h-12 px-6  text-white hover:bg-white hover:text-primary transition-bg hover:border-primary"
-                      >
-                        Login
-                      </button>
-                    )}
-                  </li>
-
-                  <li className="relative -top-[18px]">
-                    {isLoggedIn && (
-                      <div>
-                        <div className={`px-6  h-8  flex items-center leading-normal no-underline font-bold text-lg ${isScrolled ? "text-black" : "text-white"
-                          } hover:text-black text-[15px]`}>
-                          <button onClick={handleProfile}>Settings</button>
-                          </div>
-                        <div className={`px-6 py-6 h-10 flex items-center leading-normal no-underline font-bold text-lg ${isScrolled ? "text-black" : "text-white"
-                          } hover:text-black text-[15px]`}>
-                          <button onClick={logout} >Logout</button>
-                          </div>
-
-                      </div>
-                    )}
-                  </li>
-
                 </ul>
               </div>
             </div>

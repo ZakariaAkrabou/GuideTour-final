@@ -1,60 +1,80 @@
-import React from 'react';
-import { MdPersonSearch, MdDeleteForever } from "react-icons/md";
+import React, { useState } from 'react';
+import { BsThreeDots } from "react-icons/bs";
+import { IoSearch } from "react-icons/io5";
+import ReviewModal from '../Modals/reviewDetails';
+import Review from '../Modals/review';
 
 export default function Orders() {
+
+const [closeModal, setCloseModal] = useState(false)
+const [reviewModal, setreviewModal] = useState(false)
+
+const handleReview = () => {
+  setreviewModal(true)
+}
+const handleReviewClose = () => {
+  setreviewModal(false)
+}
+
+const handleModal = () =>{
+  setCloseModal(prevState => !prevState)
+}
+
   return (
-    <div className="bg-[#f0f8ff] min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="bg-[#87ceeb] py-6 px-8">
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-white">Order History</h1>
-          <div className="flex items-center gap-4">
-            {/* Search Bar */}
-            <div className="relative">
-              {/* Search Icon */}
-              {/* <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" /> */}
-              {/* Input */}
-              {/* <Input
-                className="pl-10 pr-4 py-2 rounded-md border-none bg-[#a6d8f5] text-white focus:ring-0"
-                placeholder="Search orders..."
-                type="text"
-              /> */}
-            </div>
-          </div>
+    <div className="bg-[#f0f8ff] min-h-screen flex flex-col p-2">
+      <header className="bg-primary rounded-md h-20 flex items-center pl-8 mt-24">
+        <h1 className="text-3xl font-bold text-white">My Orders</h1>
+        <div className="flex items-center gap-4 absolute right-4">
+          <IoSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray" />
+          <input 
+            className="pl-10 pr-4 py-2 rounded-md border-none bg-[#c4e0f0] text-white"
+            placeholder="Search orders..."
+            type="text" 
+          />
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="flex-1 p-8">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          {/* Table */}
           <table className="w-full table-auto">
-            <thead className="bg-[#87ceeb] text-white">
-              <tr>
-                <th className="py-4 px-6 text-left font-medium">Order #</th>
-                <th className="py-4 px-6 text-left font-medium">Date</th>
-                <th className="py-4 px-6 text-left font-medium">Total</th>
-                <th className="py-4 px-6 text-left font-medium">Status</th>
-                <th className="py-4 px-6 text-left font-medium">Actions</th>
+            <thead className="bg-primary text-white">
+              <tr className='text-center'>
+                <th className="font-medium py-3">Order</th>
+                <th className="font-medium py-3">Guide</th>
+                <th className="font-medium py-3">Destination</th>
+                <th className="font-medium py-3">Status</th>
+                <th className="font-medium py-3">Actions</th>
               </tr>
             </thead>
-            <tbody>
-              {/* Sample Row */}
-              <tr className="hover:bg-[#f0f8ff] transition-colors duration-300">
-                <td className="py-4 px-6 "></td>
-                <td className="py-4 px-6 ">April 15, 2023</td>
-                <td className="py-4 px-6 ">$99.99</td>
-                <td className="py-4 px-6 ">
-                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full">Delivered</span>
+            <tbody className='text-center'>
+              <tr className="hover:bg-[#f0f8ff] transition-colors duration-300 text-center">
+                <td className="py-4">Rabata</td>
+                <td className="py-4">Ayoub</td>
+                <td className="py-4">6 hours</td>
+                <td className="py-4">
+                  <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">Paid</span>
                 </td>
-                <td className="py-4 px-6 ">
-                  <span className="bg-green-100">...</span>
+                <td className="py-4">
+                  <div onClick={handleModal} className="flex justify-center">
+                    <button>
+                    <BsThreeDots size={25}/>
+                    </button>
+                  </div>
+                  {closeModal &&
+                  <div className=' absolute bottom-56 right-44'>
+                  <ReviewModal  handleReview={handleReview}/>
+                  </div>
+                  }
                 </td>
               </tr>
             </tbody>
           </table>
+            { reviewModal && 
+             <Review handleReviewClose={handleReviewClose}/>
+            }
         </div>
       </main>
+      
     </div>
   );
 }

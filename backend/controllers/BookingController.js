@@ -11,7 +11,7 @@ exports.getCheckoutSession = async (req, res) => {
   try {
     const { userId, tourId, campingId, amount } = req.body;
 
-    let bookingData = { user: userId, amount, paymentStatus: 'approved' };
+    let bookingData = { user: userId, amount, paymentStatus: 'pending' };
     let productDetails = {};
 
     if (tourId) {
@@ -26,6 +26,7 @@ exports.getCheckoutSession = async (req, res) => {
       };
     }
 
+
     if (campingId) {
       const camping = await Camping.findById(campingId);
       if (!camping) return res.status(404).json({ message: "Camping not found" });
@@ -37,6 +38,9 @@ exports.getCheckoutSession = async (req, res) => {
         price: camping.price,
       };
     }
+
+    // console.log("tour",bookingData);
+
 
     const booking = new Booking(bookingData);
     await booking.save();
@@ -73,6 +77,7 @@ exports.getCheckoutSession = async (req, res) => {
     await booking.save();
 
     res.status(200).json({ url: session.url, message: 'Checkout session created successfully' });
+    // res.redirect(session.url)
   } catch (error) {
     console.error('Error creating checkout session:', error);
     res.status(500).json({ message: 'Error creating checkout session' });

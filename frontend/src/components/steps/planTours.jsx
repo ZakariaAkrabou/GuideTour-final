@@ -1,166 +1,120 @@
-// import { useState } from 'react';
-import card from '../../assets/agadir.png';
-import background1 from '../../assets/camper.jpg';
-import travel from '../../assets/travel.png'
-import telouet from '../../assets/telouet.png'
-import riad4 from '../../assets/riad4.jpg'
-import souk9 from '../../assets/souk9.jpg'
-import riad11 from '../../assets/riad11.jpg'
-
-import { useState } from 'react';
-
-
-
-import { MdOutlineWhereToVote } from "react-icons/md";
-import { HiOutlineInformationCircle } from "react-icons/hi";
-import { FiFlag } from "react-icons/fi";
+import React, { useEffect } from 'react';
 import { TbCalendarEvent } from "react-icons/tb";
-import { CgProfile } from "react-icons/cg";
-import { MdOutlineMail } from "react-icons/md";
-import { BsTelephone } from "react-icons/bs";
-import { BsCalendar2Date } from "react-icons/bs";
-import { IoPricetagsOutline } from "react-icons/io5";
-import { AiOutlineMessage } from "react-icons/ai";
-import { RiStarSFill } from "react-icons/ri";
 import { GrStatusGood } from "react-icons/gr";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProfile, Booking } from '../../features/Slices/bookingSlice';
+import { fetchGuideProfile } from '../../features/Slices/tourSlice';
+import img from '../../assets/hero2.jpg'
 
 const Step3 = ({ nextStep, prevStep, prev2Step }) => {
+  const dispatch = useDispatch();
+  const tour = useSelector((state) => state.tours.cartTourBuId);
+  const userId = useSelector((state) => state.bookings.profile._id);
+  const checkoutUrl = useSelector((state) => state.bookings.checkoutUrl);
+  const guideprofile = useSelector((state) => state.tours.guideProfile);
+  console.log("guideprofile",guideprofile);
+
+  
+  useEffect(() => {
+      dispatch(fetchGuideProfile());
+    }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchProfile());
+  }, [dispatch]);
+
+  const handleBooking = () => {
+    const amount = tour.price;
+    dispatch(Booking({ tourId: tour._id, userId, amount }));
+  };
+
+  useEffect(() => {
+    if (checkoutUrl) {
+      window.location.href = checkoutUrl;
+    }
+  }, [checkoutUrl]);
 
   return (
     <>
-    <div className=" h-20 -top-20 absolute w-full bg-white/40 backdrop-filter backdrop-blur-sm text-1xl  font-Poppins flex  text-center  ">
-                    <button className=" w-1/4 bg-white/60   flex  items-center justify-center capitalize text-green-500 font-bold " onClick={prev2Step} >
-                        <GrStatusGood  size={25} className="mr-2 text-lg  text-green-500 " />
-                        information
-                    </button>
-                    <button className=" w-1/4 p-5 flex  items-center justify-center capitalize bg-white/60 text-green-500 font-bold" onClick={prevStep}>
-                        <GrStatusGood size={25} className="mr-2 text-green-500 " />
-                        guide
-                    </button>
-                    <button className=" w-1/4 flex  items-center justify-center capitalize bg-white">
-                        <TbCalendarEvent size={25}  className=' mr-2 '/>
-                        tour plan
-                    </button>
-                    <button className=" w-1/4  capitalize flex  items-center justify-center hover:bg-white/60" onClick={nextStep}>
-                        <MdOutlineWhereToVote size={2} className=" mr-2  " />
-                        location
-                    </button>
-                </div>
-      <div className="  grid grid-cols-2 gap-1 ">
-        <div className='px-5 py-6  '>
-          <h3 className='py-5 text-3xl text-secondaire font-bold capitalize '>tour plan</h3>
+      <div className="h-20 -top-20 absolute w-full bg-white/40 backdrop-filter backdrop-blur-sm text-1xl font-Poppins flex text-center">
+        <button
+          className="w-1/3 bg-white/60 flex items-center justify-center capitalize text-green-500 font-bold"
+          onClick={prev2Step}
+        >
+          <GrStatusGood size={25} className="mr-2 text-lg text-green-500" />
+          information
+        </button>
+        <button
+          className="w-1/3 p-5 flex items-center justify-center capitalize bg-white/60 text-green-500 font-bold"
+          onClick={prevStep}
+        >
+          <GrStatusGood size={25} className="mr-2 text-green-500" />
+          guide
+        </button>
+        <button className="w-1/3 flex items-center justify-center capitalize bg-white">
+          <TbCalendarEvent size={25} className="mr-2" />
+          tour plan
+        </button>
+      </div>
+      <div className="relative p-4 gap-4 grid grid-cols-2">
+      <div className="bg-white text-black p-4 w-full h-screen flex flex-col shadow-2xl rounded-xl">
+          <div className="w-full h-1/2 rounded-t-xl flex items-center justify-center">
+            <img src={tour.image} alt="Tour Image" className="w-full h-full object-cover" />
+          </div>
+          <div className=' flex flex-col p-3 rounded-lg'>
+          <h1 className="text-xl font-bold">Tour Description</h1>
 
-<div className='flex gap-3  '>
- 
-
-  <label className='p-3 w-[30px] h-[30px] bg-primary rounded flex items-center justify-center text-white '>01</label>
-
-
-
-  <div className=' pb-4'>
-            <h3 className='py-4 font-bold text-lg w-3 text-secondaire '>Day1:Departure </h3>
-            <p className='py-4'>Qui tempore voluptate qui quia commodi rem praesentium alias et voluptates officia sed molestiae sint et voluptas quos. Qui harum repudiandae galisum dolorem</p>
-            <ul className="list-disc px-4 ">
-              <li  className=' '>5 Star Accommodation</li>
-              <li className=''>Breakfast</li>
-              <li className=''>5 Star Accommodation</li>
-              <li className=''>Breakfast</li>
-            </ul>
+           <span className='w-full  border-primary/10 rounded-xl max-h-44 overflow-y-auto'>{tour.description}</span>
             </div>
-           
-         
-          </div>
-          <div className='flex gap-3   '>
- 
-
-  <label className='p-3 w-[30px] h-[30px] bg-primary rounded flex items-center justify-center text-white '>02</label>
-
-          <div className=' pb-4'>
-            <h3 className='py-4 font-bold text-lg text-secondaire'>Day 2: Visiting Zurich, Geneva and Zermatt </h3>
-            <p className='py-4'>Qui tempore voluptate qui quia commodi rem praesentium alias et voluptates officia sed molestiae sint et voluptas quos. Qui harum repudiandae galisum dolorem</p>
-            <ul className="list-disc px-4 ">
-              <li  className=' '>5 Star Accommodation</li>
-              <li className=''>Breakfast</li>
-              <li className=''>5 Star Accommodation</li>
-              <li className=''>Breakfast</li>
-            </ul>
-          </div>
-          </div>
-
-          <div className='flex gap-3   '>
-
- <label className='p-3 w-[30px] h-[30px] bg-primary rounded flex items-center justify-center text-white '>03</label>
-
-         <div className=' pb-4'>
-            <h3 className='py-4 font-bold text-lg text-secondaire'>Day 3: Rest</h3>
-            <p className='py-4'>Qui tempore voluptate qui quia commodi rem praesentium alias et voluptates officia sed molestiae sint et voluptas quos. Qui harum repudiandae galisum dolorem</p>
-            <ul className="list-disc px-4 ">
-              <li  className=' '>5 Star Accommodation</li>
-              <li className=''>Breakfast</li>
-              <li className=''>5 Star Accommodation</li>
-              <li className=''>Breakfast</li>
-            </ul>
-          </div>
-          </div>
-
-
-          
-  
-        </div>
-        <div className=" relative  px-[10px] py-[90px] w-[500px] h-[1000px] bottom-2  ">
-        <div className='flex gap-3 '>
- 
-
- <label className='p-3 w-[30px] h-[30px] bg-primary rounded flex items-center justify-center text-white '>04</label>
-
-         <div className=' pb-4'>
-            <h3 className='py-4 font-bold text-lg text-secondaire'>Day 4: Historical Tour </h3>
-            <p className='py-4 w-[300px]'>Qui tempore voluptate qui quia commodi rem praesentium alias et voluptates officia sed molestiae sint et voluptas quos. Qui harum repudiandae galisum dolorem</p>
-            <ul className="list-disc px-4 ">
-              <li  className=' '>5 Star Accommodation</li>
-              <li className=''>Breakfast</li>
-              <li className=''>5 Star Accommodation</li>
-              <li className=''>Breakfast</li>
-            </ul>
-            
-          </div>
-          </div>
-            
-               
-          <div className='flex gap-3   '>
- 
-
- <label className='p-3 w-[30px] h-[30px] bg-primary rounded flex items-center justify-center text-white '>05</label>
-
-         <div className=' pb-4'>
-            <h3 className='py-4 font-bold text-lg text-secondaire'>Day 5: Return </h3>
-            <p className='py-4 w-[300px]'>Qui tempore voluptate qui quia commodi rem praesentium alias et voluptates officia sed molestiae sint et voluptas quos. Qui harum repudiandae galisum dolorem</p>
-          
-            
+          <div className="mt- p-4">
+            <div className="flex justify-between">
+              <div>
+                <h2 className="text-lg font-semibold">Duration</h2>
+                <p>{tour.duration} hours</p>
+              </div>
+              <div>
+                <h2 className="text-lg font-semibold">Category</h2>
+                <p>{tour.category}</p>
+              </div>
+            </div>
+            </div>
+            </div>
+        <div className="bg-white shadow-2xl rounded-2xl p-2 w-full h-screen flex items-center justify-center">
+          <div className="lg:w-full">
+            <div className="lg:grid lg:grid-cols-1 gap-2 text-center">
+              <img src={img} alt="" className="w-full bg-black h-20 lg:h-[150px] rounded-t-2xl" />
+              <div className="relative flex justify-center -top-12">
+                <img src={guideprofile.profile_picture} alt="" className="rounded-full h-24 w-24" />
+              </div>
+              <div className="relative -top-12">
+                <h1 className="lg:text-xl font-semibold">Tour: {tour.title}</h1>
+                <h3 className="lg:text-2xl font-year text-[#021F86] capitalize">With {guideprofile.firstName} </h3>
+                <div className="justify-between p-2 lg:px-8">
+                  <div className="bg-gray/10 rounded-xl h- text-left p-2">
+                    <h1 className="text-lg font-semibold">Payment details</h1>
+                    <hr />
+                    <div className="flex justify-between py-6 pt-">
+                      <h1 className="font-semibold">Booking</h1>
+                      <h2> {tour.price} MAD</h2>
+                    </div>
+                    <hr />
+                    <div className="flex justify-between">
+                      <h1 className="font-semibold">Total</h1>
+                      <h1 className="font-semibold">{tour.price} Dh</h1>
+                    </div>
+                  </div>
+                </div>
+                <div className="lg:pt-4">
+                  <div className="lg:mt-">
+                    <button onClick={handleBooking} className="bg-primary text-white text-lg font-semibold lg:px-12 p-2 hover:bg-white hover:text-primary border rounded-full">
+                      Pay Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-          <div className=' absolute left-[100px] top-[60%] w-[250px] h-[400px] '>
-     <img src={souk9} alt="" className='  w-full h-full  rounded-full ouverllow-hidden drop-shadow-2xl ' />
-   
-          </div>
-            
-   
-
-             
-
-             
-
-     
-
-
-         
-         
-      
-
-        </div>
-
       </div>
     </>
   );

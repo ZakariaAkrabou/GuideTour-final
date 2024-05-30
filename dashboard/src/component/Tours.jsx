@@ -23,6 +23,7 @@ export default function Users() {
   const tours = useSelector((state) => state.tours);
   const { token } = useContext(AuthContext);
 
+  console.log(tours);
   useEffect(() => {
     if (token) {
       dispatch(fetchTours(token));
