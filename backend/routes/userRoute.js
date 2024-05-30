@@ -21,4 +21,6 @@ router.put("/switch-profile/:id",authenticateUser,multerMiddleware.fields([
   );
 router.put("/update/:id", authenticateUser,/* isGuide,*/ UserController.updateUser);
 
+router.get("/myorders",authenticateUser, UserController.getMyOrders);
+
 module.exports = router;
