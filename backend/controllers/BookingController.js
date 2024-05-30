@@ -11,7 +11,7 @@ exports.getCheckoutSession = async (req, res) => {
   try {
     const { userId, tourId, campingId, amount } = req.body;
 
-    let bookingData = { user: userId, amount, paymentStatus: 'pending' };
+    let bookingData = { user: userId, amount, paymentStatus: "pending" };
     let productDetails = {};
 
     if (tourId) {
@@ -26,10 +26,10 @@ exports.getCheckoutSession = async (req, res) => {
       };
     }
 
-
     if (campingId) {
       const camping = await Camping.findById(campingId);
-      if (!camping) return res.status(404).json({ message: "Camping not found" });
+      if (!camping)
+        return res.status(404).json({ message: "Camping not found" });
 
       bookingData.camping = campingId;
       productDetails = {
@@ -40,7 +40,6 @@ exports.getCheckoutSession = async (req, res) => {
     }
 
     // console.log("tour",bookingData);
-
 
     const booking = new Booking(bookingData);
     await booking.save();
@@ -58,7 +57,7 @@ exports.getCheckoutSession = async (req, res) => {
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency: "mad",
             product_data: {
               name: productDetails.name,
               description: productDetails.description,
@@ -69,26 +68,29 @@ exports.getCheckoutSession = async (req, res) => {
         },
       ],
       payment_intent_data: {
-        description: "Booking a Travel Service",
+        description: "Payment for booking",
       },
     });
 
-    booking.paymentStatus = 'pending';
+    booking.paymentStatus = "pending";
     await booking.save();
 
-    res.status(200).json({ url: session.url, message: 'Checkout session created successfully' });
-    // res.redirect(session.url)
+    res
+      .status(200)
+      .json({
+        url: session.url,
+        message: "Checkout session created successfully",
+      });
   } catch (error) {
-    console.error('Error creating checkout session:', error);
-    res.status(500).json({ message: 'Error creating checkout session' });
+    console.error("Error creating checkout session:", error);
+    res.status(500).json({ message: "Error creating checkout session" });
   }
 };
 
 exports.paymentSuccess = (req, res) => {
-  res.status(200).json({ message: 'Payment succeeded' });
+  res.status(200).json({ message: "Payment succeeded" });
 };
 
 exports.paymentFailed = (req, res) => {
-  res.status(500).json({ message: 'Payment failed' });
+  res.status(500).json({ message: "Payment failed" });
 };
-  
