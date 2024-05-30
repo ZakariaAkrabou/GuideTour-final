@@ -91,7 +91,7 @@ const About = () => {
     return (
         <>
             <div className="App">
-                <div className="  justify-center flex w-full h-60 lg:h-screen" style={backgroundImageStyle}>
+                <div className="  justify-center flex w-full h-60 lg:h-screen " style={backgroundImageStyle}>
                     <div className=" flex items-center">
                         <h1  className=" text-white lg:text-9xl text-5xl font-year ">About us</h1>
                     </div>
@@ -126,7 +126,7 @@ const About = () => {
                 </div>
                      
 
-                <div className='grid lg:grid-cols-2 p-4 justify-center items-center '>
+                <div className='grid lg:grid-cols-2 px-4 py-10 justify-center items-center '>
                     <div className=' flex justify-center pr-6 lg:w-full -mt-20'>
                         <img className=' lg:w-full h-full lg:rounded-l-[100px] pb-2 ' src={image} alt="" />
                     </div>
@@ -157,7 +157,7 @@ const About = () => {
                 </div>
 
 
-            <div className=" grid grid-cols-1  gap-6  px-[100px]  lg:grid-cols-4 lg:gap-9  lg:px-8 ">
+            <div className=" grid grid-cols-1  gap-6  px-[35px]  lg:grid-cols-4 lg:gap-9  lg:px-8 ">
 
                 <div className="  grid gap-6 lg:gap-9 " >
 
@@ -283,8 +283,8 @@ const About = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-rows gap-6 lg:gap-9 '>
-                    <div className=" lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
+                    <div className='grid grid-rows-3 gap-6 lg:gap-9'>
+                    <div className="lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
                             <div className=" flex flex-col justify-end bg-center h-full w-full rounded-xl" style={bgToubkal}>
                                 <div className=' flex justify-between p-4 text-Poppins text-white '>
                                     <p>Toubkal</p>
