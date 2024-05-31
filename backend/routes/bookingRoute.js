@@ -11,4 +11,5 @@ router.swagger = bookingSwagger;
 router.post("/book", BookingController.getCheckoutSession);
 router.post("/payment-success",authenticateUser, BookingController.paymentSuccess);
 router.post("/payment-failed",authenticateUser, BookingController.paymentFailed);
+
 module.exports = router;
