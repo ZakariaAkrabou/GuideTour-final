@@ -6,8 +6,8 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import ReviewModal from '../Modals/reviewDetails';
 import Review from '../Modals/review';
 import { fetchOrders } from '../../features/Slices/ordersSlice';
-import { fetchGuidesByIds, fetchCardToursById } from '../../features/Slices/tourSlice';
-import { fetchCampingsById } from '../../features/Slices/campingSlice';
+import { fetchGuidesByIds, fetchCardToursById, resetCartTourBuId, resetGuideProfile } from '../../features/Slices/tourSlice';
+import { fetchCampingsById, resetCampingID } from '../../features/Slices/campingSlice';
 import OrderDetails from '../OrderDetails/OrderDetails';
 
 export default function Orders() {
@@ -26,7 +26,7 @@ export default function Orders() {
 
     useEffect(() => {
         dispatch(fetchOrders());
-    }, [dispatch]);
+    }, [orders,dispatch]);
 
     useEffect(() => {
         if (orders.length > 0) {
@@ -43,12 +43,16 @@ export default function Orders() {
         setDetailsModal(true);
     };
 
-    const handleDetailsClose = () => {
-        setDetailsModal(false);
-    };
 
     const handleReviewClose = () => {
         setReviewModal(false);
+    };
+
+    const handleDetailsClose = () => {
+        setDetailsModal(false);
+        dispatch(resetCartTourBuId());
+        dispatch(resetCampingID());
+        dispatch(resetGuideProfile());
     };
 
     const handleOrderId = (tourId, campingId) => {

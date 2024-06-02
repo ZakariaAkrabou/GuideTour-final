@@ -44,7 +44,7 @@ export const fetchCardToursById = createAsyncThunk('tours/fetchCardToursById', a
 
 export const fetchGuidesByIds = createAsyncThunk('tours/fetchGuidesByIds', async (guideIds)  => {
     const token = localStorage.getItem('token') || null;
-    console.log("guideIds",guideIds);
+    // console.log("guideIds",guideIds);
     const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -52,9 +52,10 @@ export const fetchGuidesByIds = createAsyncThunk('tours/fetchGuidesByIds', async
       };
 
     const response = await axios.post(`http://localhost:4000/api/users/guides-by-ids`,{guideIds})
-    console.log("fetchGuidesByIds",response);
+    // console.log("fetchGuidesByIds",response);
     return response.data;
 })
+
 export const fetchGuideProfile = createAsyncThunk('tours/fetchGuideProfile', async (__,thunkAPI)  => {
     const token = localStorage.getItem('token') || null;
     let guideId = thunkAPI.getState().tours.cartTourBuId._id
@@ -76,7 +77,14 @@ export const tourSlice= createSlice({
 
     name: 'tours',
     initialState,
-  
+    reducers: {
+      resetCartTourBuId: (state) => {
+          state.cartTourBuId = [];
+      },
+      resetGuideProfile: (state) => {
+          state.guideProfile = [];
+      }
+  },
     extraReducers: (builder) => {
         builder.addCase(fetchCardTours.pending, (state) => {
             state.loading = true;
@@ -137,5 +145,5 @@ export const tourSlice= createSlice({
     }
 })
 
-
+export const { resetCartTourBuId, resetGuideProfile } = tourSlice.actions;
 export default tourSlice.reducer;

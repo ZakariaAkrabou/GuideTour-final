@@ -40,6 +40,11 @@ export const fetchCampingsById = createAsyncThunk('users/fetchCampingsById',asyn
 const campingSlice = createSlice({
     name: 'campings',
     initialState,
+    reducers: {
+      resetCampingID: (state) => {
+          state.campingID = [];
+      }
+  },
     extraReducers: (builder) => {
         builder.addCase(fetchCampings.pending, (state) => {
             state.loading = true;
@@ -66,4 +71,5 @@ const campingSlice = createSlice({
     }
 })
 
+export const { resetCampingID } = campingSlice.actions;
 export default campingSlice.reducer;
