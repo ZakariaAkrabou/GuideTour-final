@@ -48,7 +48,7 @@ const Camping = () => {
             </section>
 
             <section className=' pb-24 flex justify-center relative'>
-              <div className='bg-white pb-6 top-8 max-h-[660px] shadow-2xl lg:w-4/6 relative transform'>
+              <div className='bg-white pb-6 top-8 max-h-[750px] shadow-2xl lg:w-4/6 relative transform'>
                 <ProgressSteps steps={steps} renderStep={renderStep} />
                 
               </div>
