@@ -81,7 +81,6 @@ const Layout = ({ children }) => {
         )}
       </div>
       <main>{children}</main>
-      
       <Routers handleProfile={handleProfile} handleChatClose={handleChatClose} handleGuide={handleGuide} />
       <Footer />
     </>

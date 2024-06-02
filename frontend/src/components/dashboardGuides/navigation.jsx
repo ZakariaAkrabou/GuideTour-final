@@ -23,7 +23,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'DashboardGuides',
 		label: 'Dashboard',
-		path: '/dashboard',
+		path: '/dashboard/dashboardGuides',
         icon: <LuLayoutDashboard />
 
 	},
@@ -32,7 +32,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'Tours',
 		label: 'Tours',
-		path: 'dashboard/tours',
+		path: '/dashboard/Tours',
         icon: <MdModeOfTravel />
 
 	}
