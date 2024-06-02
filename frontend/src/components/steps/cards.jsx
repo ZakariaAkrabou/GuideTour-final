@@ -4,14 +4,14 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { LiaCampgroundSolid } from "react-icons/lia";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { IoPricetagOutline } from "react-icons/io5";
-
+import { TfiFaceSad } from "react-icons/tfi";
 import card from '../../assets/agadir.png';
 import campingVideo from '../../assets/campingVideo.mp4';
 import { fetchCampings, fetchCampingsById } from '../../features/Slices/campingSlice';
 
 export default function Cards({ nextStep }) {
     const dispatch = useDispatch();
-    const campings = useSelector((state) => state.campings.campings);
+    const { campings, loading } = useSelector((state) => state.campings);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(6);
     const [searchTerm, setSearchTerm] = useState('');
@@ -69,48 +69,63 @@ export default function Cards({ nextStep }) {
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 pb-5 p-2 relative">
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2 relative">
                 {/* Cards */}
-                {campingsCards.map((camping, index) => (
-                    <div onClick={nextStep} key={index} className='relative bg-white p-1.5 h-max w-56 hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
-                        <div className='relative'>
-                            <img onClick={() => toggleCampingSelection(camping._id)} src={camping.image} alt="Card" className='h-[260px] w-full rounded-2xl object-cover' />
-                            <div className="absolute bottom-0 w-full h-[100px] bg-gradient-to-t via-black/50 from-black/60 to-transparent rounded-b-[15px]"></div>
-                            <div className="flex absolute top-2 right-1 gap-1 text-white px-0.5 bg-black rounded-full">
-                                <div className='flex items-center'>
-                                    <IoPricetagOutline size={15} />
+                {loading ? (
+                    <div className="flex absolute items-center justify-center left-0 right-0 top-0 bottom-0">
+                        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray"></div>
+                    </div>
+                ) : campingsCards.length > 0 ? (
+                    campingsCards.map((camping, index) => (
+                        <div onClick={nextStep} key={index} className='relative bg-white p-1.5 h-max w-56 hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
+                            <div className='relative'>
+                                <img onClick={() => toggleCampingSelection(camping._id)} src={camping.image} alt="Card" className='h-[260px] w-full rounded-2xl object-cover' />
+                                <div className="absolute bottom-0 w-full h-[100px] bg-gradient-to-t via-black/50 from-black/60 to-transparent rounded-b-[15px]"></div>
+                                <div className="flex absolute top-2 right-1 gap-1 text-white px-0.5 bg-black rounded-full">
+                                    <div className='flex items-center'>
+                                        <IoPricetagOutline size={15} />
+                                    </div>
+                                    <h2 className="">{camping.price} $</h2>
                                 </div>
-                                <h2 className="">{camping.price} $</h2>
+                                <div className='absolute bottom-0 z-10 p-1 right-0 w-full  rounded-b-2xl'>
+                                    <div className='flex flex-col'>
+                                        <div className="flex justify-between font-bold text-white pb-">
+                                            <div className=' flex items-center' >
+                                                <LiaCampgroundSolid size={20} className='' />
+                                                <h1 className=' pl-1'>Location</h1>
+                                            </div>
+                                            <h2 className="capitalize font-semibold">{camping.location}</h2>
+                                        </div>
+                                        <div className="flex justify-between font-bold text-white pb-">
+                                            <div className=' flex items-center'>
+                                                <FaPeopleGroup size={20} className='' />
+                                                <h1 className=' pl-1'>Memebers</h1>
+                                            </div>
+                                            <h2 className="capitalize font-semibold">{camping.group_member}</h2>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className='absolute bottom-0 z-10 p-1 right-0 w-full  rounded-b-2xl'>
-                                <div className='flex flex-col'>
-                                    <div className="flex justify-between font-bold text-white pb-">
-                                        <div className=' flex items-center' >
-                                            <LiaCampgroundSolid size={20} className='' />
-                                            <h1 className=' pl-1'>Location</h1>
-                                        </div>
-                                        <h2 className="capitalize font-semibold">{camping.location}</h2>
-                                    </div>
-                                    <div className="flex justify-between font-bold text-white pb-">
-                                        <div className=' flex items-center'>
-                                            <FaPeopleGroup size={20} className='' />
-                                            <h1 className=' pl-1'>Memebers</h1>
-                                        </div>
-                                        <h2 className="capitalize font-semibold">{camping.group_member}</h2>
-                                    </div>
-                                </div>
+                            <div className='p-0.5 relative'>
+                                <div className="text-center relative"></div>
                             </div>
                         </div>
-                        <div className='p-0.5 relative'>
-                            <div className="text-center relative"></div>
+                    ))
+                ) : (
+                    (searchPrice || searchDate || searchTerm) &&
+                    <div className="flex flex-col items-center justify-center col-span-2">
+                        <TfiFaceSad className="text-7xl lg:text-[100px] opacity-20" />
+                        <div className="text-center">
+                            <h1 className="text-xl">Sorry!</h1>
+                            <h1 className="text-xl">No tours found.</h1>
                         </div>
                     </div>
-                ))}
-                <div className="absolute -bottom-5 flex left-[100px]  lg:left-20 gap-10">
+                )}
+                <div className="absolute -bottom-5 flex left-[100px] lg:left-20 gap-10">
                     {filteredCampings.length > itemsPerPage && (
                         <>
                             <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-                                <IoIosArrowBack className=' text-primary' size={25} />
+                                {/* <IoIosArrowBack className=' text-primary' size={25} /> */}
                             </button>
                             <div className='px-2 flex gap-4'>
                                 <div className='bg-primary px-[9px] rounded-full'>{currentPage}</div>
@@ -144,11 +159,6 @@ export default function Cards({ nextStep }) {
                         </div>
                         <h4 className="text-neutral-600 capitalize">ex: price 12dh-3600dh</h4>
                     </div>
-                    {/* <div className="text-center">
-                        <button className="bg-primary transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-300 duration-100 bg-buttons p-2 text-white text-lg rounded-md mt-2">
-                            Book Now
-                        </button>
-                    </div> */}
                 </div>
                 <div className='pt-6 flex justify-center items-center pb-1'>
                     <video className="h-full lg:w-full w-[350px] object-cover rounded-lg shadow-2xl" src={campingVideo} autoPlay loop muted></video>

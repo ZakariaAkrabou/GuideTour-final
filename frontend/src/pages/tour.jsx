@@ -23,9 +23,6 @@ const Tour = () => {
     const dispatch = useDispatch();
     const { loading, cartTour: tours, guideIds: guides } = useSelector((state) => state.tours);
 
-
-    console.log(guides);
-    
     useEffect(() => {
         if (tours.length > 0) {
             const guideIds = tours.map(tour => tour.guide_id);
@@ -84,16 +81,16 @@ const Tour = () => {
             </div>
             <div className="flex justify-center">
                 <div className="shadow-2xl lg:w-4/6 relative mt-6 top-[-50px] bg-white p-2">
-                    <div className="grid grid-cols-2 lg:gap-32">
-                        <div className="grid relative lg:grid-cols-2 gap-x-28 gap-5 z-30">
-                        {loading ? (
-                               <div className="flex absolute items-center left-1/2 w-full h-screen">
-                               <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray"></div>
-                             </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 relative gap-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 z-30">
+                            {loading ? (
+                                <div className="flex absolute items-center justify-center w-1/2 h-full">
+                                    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray"></div>
+                                </div>
                             ) : currentTours.length > 0 ? (
                                 currentTours.map((tour, index) => (
                                     <Link to="/Landscapes" key={index} style={{ display: 'block' }}>
-                                        <div onClick={() => handleTourId(tour._id)} className='relative bg-white p-1.5 h-max w-56 hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
+                                        <div onClick={() => handleTourId(tour._id)} className='relative bg-white p-1.5 h-max w-full hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
                                             <div className='relative'>
                                                 <img src={tour.image} alt="Card" className='h-[260px] w-full rounded-2xl object-cover' />
                                                 <div className="absolute bottom-0 w-full h-[100px] bg-gradient-to-t via-black/50 from-black/60 to-transparent rounded-b-[15px]"></div>
@@ -126,15 +123,15 @@ const Tour = () => {
                                     </Link>
                                 ))
                             ) : (
-                                (searchDuration || searchCategory || searchPrice || searchTerm) &&
-                                <div class="absolute lg:left-1/2 lg:bottom-1/3 bottom-2/3 left-1/4 opacity-20 ">
-                                <div className=" flex justify-center">
-                                <TfiFaceSad className="  lg:text-[100px] text-7xl" />
-                                    </div>                                <div class="flex flex-col justify-center items-center">
-                                  <h1 class=" lg:text-nowrap text-xl">Sorry!</h1>
-                                  <h1 class="text-xl">no tours found.</h1>
-                                </div>
-                              </div>
+                                (searchDuration || searchCategory || searchPrice || searchTerm) && (
+                                    <div className="flex flex-col items-center justify-center col-span-2 h-full opacity-20">
+                                        <TfiFaceSad className="text-7xl lg:text-[100px] " />
+                                        <div className="text-center">
+                                            <h1 className="text-xl">Sorry!</h1>
+                                            <h1 className="text-xl">No tours found.</h1>
+                                        </div>
+                                    </div>
+                                )
                             )}
                         </div>
 
@@ -167,9 +164,6 @@ const Tour = () => {
                                     value={searchPrice}  type="text" placeholder='Enter Price' className="w-full h-8 rounded-full text-center border-none bg-white" />
                                 <h4 className="text-neutral-600 capitalize">ex: 200-1000 MAD </h4>
                             </div>
-                            {/* <div className="flex justify-center py-2 w-full">
-                                <button className="transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-110 hover:bg-white hover:text-primary border duration-100 bg-primary text-white text-lg p-1.5 rounded-full w-36">Filter</button>
-                            </div> */}
                         </div>
                     </div>
 
