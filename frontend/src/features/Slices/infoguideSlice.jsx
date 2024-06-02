@@ -17,7 +17,7 @@ export const fetchGuideInfo = createAsyncThunk('guide/fetchGuideInfo', async () 
   };
 
   const response = await axios.get('http://localhost:4000/api/users/user-profile', config);
-  // console.log("dataguide", response);
+  console.log("dataguide", response);
   return response.data.data; // Adjusted according to your backend response structure
 });
 

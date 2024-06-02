@@ -8,10 +8,6 @@ import imageEssaouira from '../../assets/essaouira.jpeg';
 import imageMarzouga from '../../assets/marzouga.jpg';
 import imageOuarzazate from '../../assets/ouarzazate.jpg';
 import imageTamezmout from '../../assets/tamezmout.jpg';
-import { Link } from 'react-router-dom';
-
-
-
 const data = [
   {
     id: 1,
@@ -104,23 +100,28 @@ const SwipperHome = () => {
   };
   return (
     <div>
-      <div className="flex flex-col pt-12 gap-5 relative lg:top-0 -top-[350px] lg:w-full w-[500px] ">
+      <div className="flex flex-col py-12 gap-5">
         <div className="flex flex-col items-center justify-center">
-        <h1 className="w-full  text-lg tracking-widest text-red-400 uppercase max-md:max-w-full text-center">
+        <h1 className="w-full text-lg tracking-widest text-red-400 uppercase max-md:max-w-full text-center">
       Promotion
     </h1>
-    <p className="mt- w-[500px] text-3xl  leading-[71px] text-secondaire font-['Volkhov'] max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[63px] text-center">
+    <p className="mt-16 w-full text-5xl leading-[71px] text-indigo-950 max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[63px] text-center">
       We Provide You Best Morocco Sightseeing Tours
     </p>
    
-   
+    <p className="mt-6 w-full text-base leading-7 text-black max-md:max-w-full text-center">
+      Et labore harum non nobis ipsum eum molestias mollitia et corporis
+      praesentium a laudantium internos. Non quis eius quo eligendi corrupti et
+      fugiat nulla qui soluta recusandae in maxime quasi aut ducimus illum aut
+      optio quibusdam!
+    </p>
     
         </div>
-        <div className=" ">
+        <div className="mx-12 ">
           <Slider {...settings}>
             {data.map((item, index) => (
-              <div key={index} className=' p-20 '>
-                <div className="shadow-2xl w-[330px] rounded-lg lg:mx-2 transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl ">
+              <div key={index}>
+                <div className="border rounded-lg mx-2">
                   <img
                     width={400}
                     height={300}
@@ -129,16 +130,13 @@ const SwipperHome = () => {
                     className="w-full h-[300px] object-cover rounded-t-lg "
                   />
                   <div className="flex flex-col gap-2 px-2 py-4">
-                    <div className="text-lg font-bold ">{item.name}</div>
+                    <div className="text-lg ">{item.name}</div>
 
                     <div className="flex flex-row justify-between items-center font-semibold">
-                      <p className='text-orange'>500.00 MAD</p>
-                    <Link to={"/tour"}>
-                     <button className="bg-primary duration-200 p-1 text-sm rounded-full text-white  hover:bg-white hover:border hover:border-primary px-4 py-2 hover:text-primary">
+                      <p>500.00 MAD</p>
+                      <button className="bg-primary duration-200 p-1 text-sm rounded-full text-white  hover:bg-white hover:border-primary hover:text-primary">
                        Book now
                       </button>
-                    </Link>
-                     
                     </div>
                   </div>
                 </div>
@@ -147,7 +145,14 @@ const SwipperHome = () => {
           </Slider>
         </div>
 
-        
+        <div className="flex flex-col justify-center items-center pt-9 ">
+          <h2 className="text-xl font-semibold tracking-tight ">
+           Discover more packages
+          </h2>
+          <div className="animate-bounce text-bold">
+            <IoIosArrowDown size={40} className="text-primary" />
+          </div>
+        </div>
       </div>
     </div>
   );
