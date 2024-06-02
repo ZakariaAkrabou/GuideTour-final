@@ -91,25 +91,30 @@ const About = () => {
     return (
         <>
             <div className="App">
-                <div className="  justify-center flex w-full h-60 lg:h-screen " style={backgroundImageStyle}>
+                <div className="  justify-center flex lg:w-full w-[365px] h-60 lg:h-screen " style={backgroundImageStyle}>
                     <div className=" flex items-center">
                         <h1  className=" text-white lg:text-9xl text-5xl font-year ">About us</h1>
                     </div>
                 </div>
 
-                <div className=' grid lg:grid-cols-2 p-4 lg:p-8'>
+                <div className=' grid lg:grid-cols-2 py-4 px-[40px] lg:p-8 lg:w-full w-[360px] '>
                     <div className=" flex justify-center items-center ">
                         <div className=' flex flex-col pb-4 gap-2 lg:gap-3'>
                             <h3 className=" text-buttons font-bold text-2xl text-primary">Promotion</h3>
                             <h1 className=" text-2xl lg:text-4xl font-['Volkhov'] font-bold text-secondaire">We Provide You Best Morocco Sightseeing Tours</h1>
-                            <p >Et labore harum non nobis ipsum eum molestias mollitia et corporis praesentium
-                                a laudantium internos. Non quis eius quo eligendi corrupti et fugiat nulla qui soluta recusandae
-                                in maxime quasi aut ducimus illum aut optio quibusdam!</p>
+                            <p >Our website is dedicated to offering the best sightseeing tours in Morocco.
+                                 We carefully select and curate each tour to ensure you experience the true essence of Morocco, 
+                                 from its bustling cities to its serene deserts and majestic mountains. Our platform provides detailed information,
+                                  high-quality images, and customer reviews to help you choose the perfect tour.
+                                   We work with experienced local guides to ensure you receive insightful and authentic experiences.
+                                    With our user-friendly interface, secure booking process, and exceptional customer service, 
+                                we make exploring Morocco easy and unforgettable. 
+                                Trust us to help you discover the best that Morocco has to offer!</p>
                         </div>
                     </div>
                     <div className=' flex justify-center '>
-                    <div className='lg:py-10 py-10 px-0   flex-col justify-center rounded-full w-[350px] h-[350px] lg:w-[600px] lg:h-[600px] border border-neutral-400'>
-                        <div className='  w-[300px] h-[300px] lg:w-[500px] lg:h-[500px]  rounded-full border border-neutral-400' style={backgroundImageStyle2}>
+                    <div className='lg:py-10 py-10 px-0   flex-col  justify-center rounded-full w-[250px] h-[250px] lg:w-[600px] lg:h-[600px] border border-neutral-400'>
+                        <div className='  w-[200px] h-[200px] lg:w-[500px] lg:h-[500px]  rounded-full border border-neutral-400' style={backgroundImageStyle2}>
 
                             <img className=" lg:w-[700px] w-[500px] h-[500px] lg:h-[700px] -mt-20  rounded-full   " src={bgstyle} alt="" />
 
@@ -119,16 +124,16 @@ const About = () => {
          
 
                 </div>
-                <div className='w-full flex justify-center items-center  '>
+                <div className='lg:w-full w-[365px] flex justify-center items-center  '>
                 <video className="lg:h-[500px] lg:w-full object-cover" src={video_sahara} autoPlay loop muted ></video>
                     <h3 className='  font-[Yesteryear] absolute  text-white text-6xl lg:text-9xl '>Sahara</h3>
                      
                 </div>
                      
 
-                <div className='grid lg:grid-cols-2 px-4 py-10 justify-center items-center '>
-                    <div className=' flex justify-center pr-6 lg:w-full -mt-20'>
-                        <img className=' lg:w-full h-full lg:rounded-l-[100px] pb-2 ' src={image} alt="" />
+                <div className='grid lg:grid-cols-2 lg:px-4 px-[180px] lg:py-10 py-[60px] justify-center items-center '>
+                    <div className=' flex justify-center pr-6 lg:w-full w-[300px] -mt-20 '>
+                        <img className=' lg:w-full lg:h-full lg:rounded-l-[100px] pb-2 ' src={image} alt="" />
                     </div>
                         <div className=' flex  flex-col -mt-10 lg:-mt-0 lg:gap-3'>
                             <h3 className=' text-buttons font-bold  uppercase text-primary'>Trend</h3>
@@ -157,11 +162,11 @@ const About = () => {
                 </div>
 
 
-            <div className=" grid grid-cols-1  gap-6  px-[35px]  lg:grid-cols-4 lg:gap-9  lg:px-8 ">
+            <div className=" grid grid-cols-1  gap-6  px-[90px]  lg:grid-cols-4 lg:gap-9  lg:px-8 ">
 
                 <div className="  grid gap-6 lg:gap-9 " >
 
-                    <div className="lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex transition bg-white ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
+                    <div className="lg:w-full lg:h-[350px]  w-[200px] h-[200px] flex transition bg-white ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
                     <div className="bg-center h-full w-full rounded-xl" style={bgOudlaw_Tetouan}>
                         <div className="flex flex-col justify-end h-full">
                             <div className="flex justify-between text-Poppins text-white p-4">
@@ -175,7 +180,7 @@ const About = () => {
                     </div>
                         </div>
 
-                        <div className="lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
+                        <div className="lg:w-full lg:h-[350px]  w-[200px] h-[200px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
                             <div className=" bg-center h-full w-full rounded-xl" style={bgait_Benhaddou}>
                                 <div className=' flex flex-col justify-end h-full'>
                                     <div className='flex justify-between p-4 text-Poppins text-white '>
@@ -191,7 +196,7 @@ const About = () => {
 
                             </div>
                         </div>
-                        <div className="lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
+                        <div className="lg:w-full lg:h-[350px]  w-[200px] h-[200px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
                             <div className=" bg-center h-full w-full rounded-xl" style={bgOzoud_waterfalls}>
                                 <div className=' flex flex-col justify-end h-full'>
                                     <div className=' flex justify-between p-4 text-Poppins text-white '>
@@ -209,7 +214,7 @@ const About = () => {
                         </div>
                     </div>
                    <div className='grid grid-rows-3 gap-6 lg:gap-9'>
-                     <div className="lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
+                     <div className="lg:w-full lg:h-[350px]  w-[200px] h-[200px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
                             <div className=" bg-center h-full w-full rounded-xl" style={bgCa_sahara}>
                                 <div className=' flex flex-col justify-end h-full'>
                                     <div className=' flex justify-between p-4 text-Poppins text-white '>
@@ -220,7 +225,7 @@ const About = () => {
                             
                             </div>
                         </div>
-                        <div className="lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
+                        <div className="lg:w-full lg:h-[350px]  w-[200px] h-[200px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
                             <div className=" bg-center h-full w-full rounded-xl" style={bgHercule_Crave}>
                                 <div className=' flex flex-col justify-end h-full'>
                                     <div className=' flex justify-between p-4 text-Poppins text-white '>
@@ -235,7 +240,7 @@ const About = () => {
                             </div>
                         </div>
 
-                        <div className="lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
+                        <div className="lg:w-full lg:h-[350px]  w-[200px] h-[200px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
                             <div className=" bg-center h-full w-full rounded-xl" style={bgAzrou}>
                                 <div className=' flex flex-col justify-end h-full'>
                                     <div className=' flex justify-between p-4 text-Poppins text-white '>
@@ -254,7 +259,7 @@ const About = () => {
                     </div>
                     <div className='grid grid-rows-2 gap-6 '>
                     <div className="row-span-2 w-full flex ">
-                            <div className=" bg-center w-[300px] h-[300px] lg:h-full lg:w-full rounded-xl transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:rounded-xl hover:shadow-2xl" style={bgDakhla_Beach}>
+                            <div className=" bg-center w-[200px] h-[200px] lg:h-full lg:w-full rounded-xl transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:rounded-xl hover:shadow-2xl" style={bgDakhla_Beach}>
                                 <div className=' flex flex-col justify-end h-full'>
                                     <div className=' flex justify-between p-4 text-Poppins text-white '>
                                         <div className=' flex gap-2'>
@@ -268,7 +273,7 @@ const About = () => {
                             </div>
                         </div>
 
-                        <div className="lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex ">
+                        <div className="lg:w-full lg:h-[350px]  w-[200px] h-[200px] flex ">
                             <div className=" bg-center h-full w-full rounded-xl transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl" style={bgatlas_mountain}>
                                 <div className=' flex flex-col justify-end h-full'>
                                     <div className=' flex justify-between p-4 text-Poppins text-white '>
@@ -284,7 +289,7 @@ const About = () => {
                         </div>
                     </div>
                     <div className='grid grid-rows-3 gap-6 lg:gap-9'>
-                    <div className="lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
+                    <div className="lg:w-full lg:h-[350px]  w-[200px] h-[200px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
                             <div className=" flex flex-col justify-end bg-center h-full w-full rounded-xl" style={bgToubkal}>
                                 <div className=' flex justify-between p-4 text-Poppins text-white '>
                                     <p>Toubkal</p>
@@ -296,7 +301,7 @@ const About = () => {
                     </div>
 
                         
-                        <div className=" lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
+                        <div className=" lg:w-full lg:h-[350px]  w-[200px] h-[200px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
                             <div className=" flex flex-col justify-end bg-center h-full w-full rounded-xl" style={bgifran}>
                                 <div className=' flex justify-between p-4 text-Poppins text-white '>
                                     <p>Ifran</p>
@@ -307,7 +312,7 @@ const About = () => {
 
                         </div>
 
-                        <div className=" lg:w-full lg:h-[350px]  w-[300px] h-[300px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
+                        <div className=" lg:w-full lg:h-[350px]  w-[200px] h-[200px] flex transition bg-white ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:rounded-xl hover:shadow-2xl">
                             <div className=" flex flex-col justify-end bg-center h-full w-full rounded-xl" style={bgagadir}>
                                 <div className=' flex justify-between p-4 text-Poppins text-white '>
                                     <p>Agadir</p>
