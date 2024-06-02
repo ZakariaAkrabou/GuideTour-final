@@ -4,6 +4,7 @@ import userProfileSlice from './userProfileSlice';
 import guideSlice from './guideSlice';
 import tourSlice from './tourSlice'
 import authPasswordSlice from './authPasswordSlice';
+import infoguideSlice from './infoguideSlice';
 import bookingSlice from './bookingSlice';
 import ordersSlice from './ordersSlice';
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   guides: guideSlice,
   tours: tourSlice,
   password: authPasswordSlice,
+  guide: infoguideSlice,
   bookings: bookingSlice,
   orders: ordersSlice
 });

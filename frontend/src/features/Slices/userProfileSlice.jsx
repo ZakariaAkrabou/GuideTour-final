@@ -86,7 +86,22 @@ const UserProfileSlice = createSlice({
           state.profile = [];
           state.error = action.error.message;
       });
-        
+
+      builder.addCase(updateProfile.pending, (state) => {
+          state.loading = true;
+      });
+  
+      builder.addCase(updateProfile.fulfilled, (state, action) => {
+          state.loading = false;
+          state.error = '';
+      });
+  
+      builder.addCase(updateProfile.rejected, (state, action) => {
+          state.loading = false;
+          state.profile = [];
+          state.error = action.payload;
+      });
+
       
   }
 })

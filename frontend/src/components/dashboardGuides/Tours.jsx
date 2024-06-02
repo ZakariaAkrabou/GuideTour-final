@@ -17,6 +17,7 @@ function Tours() {
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] = useState(false);
   const [tourIdToDelete, setTourIdToDelete] = useState(null);
   const [current, setCurrent] = useState(1);
+  const [expandedDescription, setExpandedDescription] = useState({});
   const items = 4;
 
   useEffect(() => {
@@ -56,19 +57,24 @@ function Tours() {
     }
   };
 
+  const toggleDescription = (index) => {
+    setExpandedDescription(prevState => ({
+      ...prevState,
+      [index]: !prevState[index]
+    }));
+  };
+
   return (
-    <div className='w-[1000px] h-screen bg-gray-300 shadow-xl'>
+    <div className='w-[1000px] h-[650px] bg-white shadow-xl overflow-x-auto rounded-xl'>
       <ToastContainer />
-      <div className='flex items-center gap-[200px]'>
-        <p className='text-primary text-3xl px-10 py-4'>Tours</p>
-        <div className="relative left-[400px]">
-          <Link to="/dashboard/CreateTour">
-            <button className='bg-primary w-[100px] h-[40px] rounded text-white font-bold'>Add New</button>
-          </Link>
-        </div>
+      <div className='flex items-center justify-between px-10 py-4'>
+        <p className='text-primary font-bold text-3xl'>Tours</p>
+        <Link to="/CreateTour">
+          <button className='bg-primary rounded-lg w-[150px] h-[40px]  border 2 border-primary text-white hover:bg-white hover:text-primary hover:border-primary'>Add New</button>
+        </Link>
       </div>
 
-      <div className='p-6 w-[900px] relative'>
+      <div className='p-6 w-full'>
         <table className='w-full p-5 shadow-xl'>
           <thead className='bg-slate-200 border-b-2 border-slate-300'>
             <tr>
@@ -87,7 +93,14 @@ function Tours() {
               <tr key={index} className='border-b-2 border-slate-300'>
                 <td></td>
                 <td className="p-3 text-sm text-gray-700">{tour.title}</td>
-                <td className="p-3 text-sm text-gray-700">{tour.description}</td>
+                <td className="p-3 text-sm text-gray-700">
+                  <div className="text-balance overflow-hidden text-ellipsis" style={{ maxWidth: '200px' }}>
+                    {expandedDescription[index] ? tour.description : `${tour.description.substring(0, 10)}...`}
+                    <button  onClick={() => toggleDescription(index)} className="  text-primary text-blue-500 ml-2">
+                      {expandedDescription[index] ? 'View Less' : 'View More'}
+                    </button>
+                  </div>
+                </td>
                 <td className="p-3 text-sm text-gray-700">{tour.category}</td>
                 <td className="p-3 text-sm text-gray-700">{tour.duration}</td>
                 <td className="p-3 text-sm text-gray-700">{tour.price} DH</td>
@@ -96,7 +109,7 @@ function Tours() {
                 </td>
                 <td className='p-3 text-sm text-gray-700'>
                   <div className='flex items-center'>
-                    <Link to={`/dashboard/UpdateTour`}>
+                    <Link to={`/UpdateTour`}>
                       <IoCreate onClick={() => dispatch(fetchToursById(tour._id))} size={30} className='text-primary' />
                     </Link>
                     <button onClick={() => handleDeleteClick(tour._id)}>

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { RxDividerVertical } from "react-icons/rx";
 import heroImg from '../../assets/hero1.jpg';
 
+
 const Hero = () => {
   const [showInput, setShowInput] = useState(false);
   const [destination, setDestination] = useState("");
@@ -43,11 +44,11 @@ const Hero = () => {
   };
 
   return (
-    <div className="w-full h-screen relative">
+    <div className=" lg:w-full w-[500px] h-screen relative">
       <div className="relative justify-center rounded-2xl lg:bp-32 lg:h-screen">
         <img src={heroImg} alt="" className="w-full h-full object-cover" />
-        <div className="lg:w-4/5 lg:pl-20 p-2 lg:h-screen h-full lg:mt-[-150px] mt-[-120px]">
-          <div className="bg-white/40 backdrop-filter backdrop-blur-md rounded-md lg:h-20 lg:w-[730px] flex items-center justify-between p-4">
+        <div className="lg:w-4/5 lg:pl-20 p-2 lg:h-screen h-full lg:mt-[-150px] mt-[-120px] ">
+          <div className="bg-white/40 backdrop-filter backdrop-blur-md rounded-md lg:h-20 h-[60px] lg:w-[730px] w-[470px] flex items-center justify-between p-4 ">
             <div>
 
             
@@ -55,7 +56,7 @@ const Hero = () => {
               <input
                 type="text"
                 placeholder="Destination"
-                className="bg-transparent text-xl text-black rounded-2xl px-2 lg:w-[150px] w-[100px] placeholder:text-gray-100"
+                className="bg-transparent lg:text-xl  text-black rounded-2xl px-2 lg:w-[150px] w-[100px] placeholder:text-gray-100"
                 value={destination}
                 onChange={handleInputChange}
                 
@@ -64,9 +65,9 @@ const Hero = () => {
             ) : (
               <button
                 onClick={handleClick}
-                class="bg-transparent text-xl text-black rounded-2xl px-2 lg:w-[150px] w-[100px] placeholder:text-gray-100"
+                class="bg-transparent lg:text-xl text-black rounded-2xl px-2 lg:w-[150px] w-[100px] placeholder:text-gray-100"
               >
-               destination
+               Destination
                 
               </button>
             )}
@@ -77,9 +78,9 @@ const Hero = () => {
               <select
                 value={selectedOption}
                 onChange={handleSelectChange}
-                className="bg-transparent text-xl text-black rounded-2xl px-2 lg:w-[150px] w-[100px] placeholder:text-gray-100"
+                className="bg-transparent lg:text-xl text-black rounded-2xl px-2 lg:w-[150px] w-[130px] placeholder:text-gray-100"
               >
-                <option className="text-black" value="">Travel Type</option>
+                <option className="text-black " value="">Travel Type</option>
                 <option className="text-black" value="option1">Tours</option>
                 <option className="text-black" value="option2">Campings</option>
               </select>

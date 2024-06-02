@@ -6,6 +6,7 @@ import EmailConfirmation from './pages/emailConfermation';
 import ResetPassword from './components/Modals/restPassword';
 import Chat from './components/Chat/Chat';
 
+
 const App = () => {
   return (
     <Router>
