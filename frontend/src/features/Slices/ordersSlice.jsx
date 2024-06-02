@@ -16,10 +16,10 @@ export const fetchOrders = createAsyncThunk('orders/fetchOrders', async ()  => {
           Authorization: `Bearer ${token}`,
         },
       };
-      console.log(token);
+      // console.log(token);
   
     const response = await axios.get('http://localhost:4000/api/users/myorders',config)
-    console.log("ordrs",response);
+    // console.log("ordrs",response);
     return response.data
   })
 
@@ -34,7 +34,6 @@ export const fetchOrders = createAsyncThunk('orders/fetchOrders', async ()  => {
         builder.addCase(fetchOrders.fulfilled, (state, action) => {
             state.loading = false;
             state.orders = action.payload;
-            console.log("state.orders",state.orders);
             state.error = '';
         });
     

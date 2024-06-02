@@ -32,6 +32,7 @@ export const fetchCampingsById = createAsyncThunk('users/fetchCampingsById',asyn
       };
 
       const response = await axios.get(`http://localhost:4000/api/camping/get/${campingId}`,config);
+          console.log("data",response);
       return response.data;
     }
   )

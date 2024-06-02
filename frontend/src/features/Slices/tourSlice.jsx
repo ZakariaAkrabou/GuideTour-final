@@ -38,7 +38,7 @@ export const fetchCardToursById = createAsyncThunk('tours/fetchCardToursById', a
     //   console.log(tourId);
 
     const response = await axios.get(`http://localhost:4000/api/tours/getTour/${tourId}`,config)
-    // console.log("data",response);
+    console.log("data",response);
     return response.data;
 })
 
@@ -52,7 +52,7 @@ export const fetchGuidesByIds = createAsyncThunk('tours/fetchGuidesByIds', async
       };
 
     const response = await axios.post(`http://localhost:4000/api/users/guides-by-ids`,{guideIds})
-    // console.log("fetchGuidesByIds",response);
+    console.log("fetchGuidesByIds",response);
     return response.data;
 })
 export const fetchGuideProfile = createAsyncThunk('tours/fetchGuideProfile', async (__,thunkAPI)  => {

@@ -6,16 +6,22 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import ReviewModal from '../Modals/reviewDetails';
 import Review from '../Modals/review';
 import { fetchOrders } from '../../features/Slices/ordersSlice';
-import { fetchGuidesByIds } from '../../features/Slices/tourSlice';
+import { fetchGuidesByIds, fetchCardToursById } from '../../features/Slices/tourSlice';
+import { fetchCampingsById } from '../../features/Slices/campingSlice';
+import OrderDetails from '../OrderDetails/OrderDetails';
 
 export default function Orders() {
     const [closeModal, setCloseModal] = useState(false);
     const [reviewModal, setReviewModal] = useState(false);
+    const [detailsModal, setDetailsModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(6);
+    const [modalPosition, setModalPosition] = useState({ top: 0, right: 0 });
+    const [activeButton, setActiveButton] = useState(null);
 
     const dispatch = useDispatch();
     const orders = useSelector((state) => state.orders.orders);
+    // console.log(orders);
     const guideIdName = useSelector((state) => state.tours.guideIds);
 
     useEffect(() => {
@@ -33,12 +39,37 @@ export default function Orders() {
         setReviewModal(true);
     };
 
+    const handleDetails = () => {
+        setDetailsModal(true);
+    };
+
+    const handleDetailsClose = () => {
+        setDetailsModal(false);
+    };
+
     const handleReviewClose = () => {
         setReviewModal(false);
     };
 
-    const handleModal = () =>{
-        setCloseModal(prevState => !prevState);
+    const handleOrderId = (tourId, campingId) => {
+        if (tourId) {
+            dispatch(fetchCardToursById(tourId));
+        } else if (campingId) {
+            dispatch(fetchCampingsById(campingId));
+        }
+    };
+
+    const handleModal = (event, index) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        const newPosition = { top: rect.bottom + window.scrollY, right: window.innerWidth - rect.right };
+        
+        if (closeModal && activeButton === index) {
+            setCloseModal(false);
+        } else {
+            setModalPosition(newPosition);
+            setCloseModal(true);
+            setActiveButton(index);
+        }
     };
 
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -94,21 +125,16 @@ export default function Orders() {
                                     <td className="font-medium py-3">{order.camping?.location || order.tour?.title}</td>
                                     <td className="font-medium py-3">{order.amount} MAD</td>
                                     <td className="py-4">
-                                        <span className={`px-3 py-1.5 rounded-full font-medium ${order.paymentStatus === 'completed' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' || order.paymentStatus === 'pending' ?  'bg-gray/20 text-black' : ''}`}>
+                                        <span className={`px-3 py-1.5 rounded-full font-medium ${order.paymentStatus === 'completed' ? 'bg-green-100 text-green-800' : order.paymentStatus === 'pending' ? 'bg-gray/20 text-black' : 'bg-red-100 text-red-800'}`}>
                                             {order.paymentStatus}
                                         </span>
                                     </td>
                                     <td className="py-4">
-                                        <div onClick={handleModal} className="flex justify-center">
-                                            <button>
-                                                <BsThreeDots size={25}/>
+                                        <div className="flex justify-center">
+                                            <button onClick={(e) => { handleOrderId(order.tour?._id, order.camping?._id ); handleModal(e, index); }}>
+                                                <BsThreeDots size={25} />
                                             </button>
                                         </div>
-                                        {closeModal &&
-                                            <div className=' absolute bottom-56 right-44'>
-                                                <ReviewModal  handleReview={handleReview}/>
-                                            </div>
-                                        }
                                     </td>
                                 </tr>
                             ))}
@@ -132,9 +158,18 @@ export default function Orders() {
                     )}
                 </div>
             </main>
-            
+
+            {closeModal &&
+                <div style={{ position: 'absolute', top: modalPosition.top - 56, right: modalPosition.right + 25 }}>
+                    <ReviewModal handleDetails={handleDetails} handleReview={handleReview} />
+                </div>
+            }
+
             {reviewModal && 
-                <Review handleReviewClose={handleReviewClose}/>
+                <Review handleReviewClose={handleReviewClose} />
+            }
+            {detailsModal && 
+                <OrderDetails handleDetailsClose={handleDetailsClose} />
             }
         </div>
     );
