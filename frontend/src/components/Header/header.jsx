@@ -121,7 +121,7 @@ const Header = ({ handleProfile }) => {
               {!isLoggedIn && (
                 <button
                   onClick={() => setShowModal(true)}
-                  className="bg-primary rounded-2xl h-12 px-6 text-white hover:bg-white hover:text-primary transition-bg hover:border-primary"
+                  className={`${location.pathname === '/orders' ? 'bg-white text-primary' : 'bg-primary'} rounded-2xl h-12 px-6 text- hover:bg-white hover:text-primary transition-bg hover:border-primary`}
                 >
                   Login
                 </button>

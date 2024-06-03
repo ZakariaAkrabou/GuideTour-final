@@ -35,11 +35,12 @@ exports.extractUserId = (req, res, next) => {
 
 exports.reviewSave = async (req, res) => {
     try {
-        const userId = req.userId;
+        const{ userId, tourId} = req.body;
 
+        console.log("userId",userId, "tourId",tourId);
         const review = new Review({
             user_id: userId,
-            tour_id: req.body.tour_id, 
+            tour_id: tourId, 
             rating: req.body.rating,
             comment: req.body.comment
         });

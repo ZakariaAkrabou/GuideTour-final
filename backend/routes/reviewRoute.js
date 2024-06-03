@@ -7,6 +7,6 @@ router.swagger = reviewSwagger;
 
 
 
-router.post("/feedback",authenticateUser, extractUserId, reviewSave);
+router.post("/feedback",authenticateUser, reviewSave);
 
 module.exports = router;

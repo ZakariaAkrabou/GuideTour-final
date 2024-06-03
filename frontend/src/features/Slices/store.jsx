@@ -6,6 +6,7 @@ import tourSlice from './tourSlice'
 import authPasswordSlice from './authPasswordSlice';
 import bookingSlice from './bookingSlice';
 import ordersSlice from './ordersSlice';
+import reviewSlice from './reviewSlice';
 
 const rootReducer = combineReducers({
   campings: campingSlice,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   tours: tourSlice,
   password: authPasswordSlice,
   bookings: bookingSlice,
-  orders: ordersSlice
+  orders: ordersSlice,
+  reviews: reviewSlice
 });
 const store = configureStore({
   reducer: rootReducer,
