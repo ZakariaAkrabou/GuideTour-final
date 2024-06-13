@@ -64,7 +64,7 @@ const Hero = () => {
               ) : (
                 <button
                   onClick={handleClick}
-                  className="bg-transparent text-xl text-white rounded-2xl px-2 lg:w-[150px] w-[100px] placeholder:text-gray-100"
+                  className="bg-transparent text-xl text-white rounded-2xl px-2 lg:w-[150px] w-[100px] "
                 >
                   Where ?
                 </button>
