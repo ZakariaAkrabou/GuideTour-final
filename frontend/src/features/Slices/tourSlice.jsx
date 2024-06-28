@@ -38,7 +38,7 @@ export const fetchCardToursById = createAsyncThunk('tours/fetchCardToursById', a
     //   console.log(tourId);
 
     const response = await axios.get(`http://localhost:4000/api/tours/getTour/${tourId}`,config)
-    // console.log("data",response);
+    console.log("data",response);
     return response.data;
 })
 
@@ -55,6 +55,7 @@ export const fetchGuidesByIds = createAsyncThunk('tours/fetchGuidesByIds', async
     // console.log("fetchGuidesByIds",response);
     return response.data;
 })
+
 export const fetchGuideProfile = createAsyncThunk('tours/fetchGuideProfile', async (__,thunkAPI)  => {
     const token = localStorage.getItem('token') || null;
     let guideId = thunkAPI.getState().tours.cartTourBuId._id
@@ -76,7 +77,14 @@ export const tourSlice= createSlice({
 
     name: 'tours',
     initialState,
-  
+    reducers: {
+      resetCartTourBuId: (state) => {
+          state.cartTourBuId = [];
+      },
+      resetGuideProfile: (state) => {
+          state.guideProfile = [];
+      }
+  },
     extraReducers: (builder) => {
         builder.addCase(fetchCardTours.pending, (state) => {
             state.loading = true;
@@ -137,5 +145,5 @@ export const tourSlice= createSlice({
     }
 })
 
-
+export const { resetCartTourBuId, resetGuideProfile } = tourSlice.actions;
 export default tourSlice.reducer;

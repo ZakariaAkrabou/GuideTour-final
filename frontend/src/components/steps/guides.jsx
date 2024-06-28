@@ -26,22 +26,19 @@ const Step2 = ({ nextStep, prevStep }) => {
     return (
         <>
             <div className=" h-20 -top-20 absolute w-full bg-white/40 backdrop-filter backdrop-blur-sm text-1xl  font-Poppins flex  text-center  ">
-                <button className=" w-1/4 hover:bg-white/60  bg-white/60 flex  items-center justify-center capitalize text-green-500 font-bold " onClick={prevStep} >
+                <button className=" w-1/3 hover:bg-white/60  bg-white/60 flex  items-center justify-center capitalize text-green-500 font-bold " onClick={prevStep} >
                     <GrStatusGood size={25} className="mr-2 text-lg text-green-500 " />
                     information
                 </button>
-                <button className=" w-1/4 p-5 flex  items-center justify-center capitalize bg-white" >
+                <button className=" w-1/3 p-5 flex  items-center justify-center capitalize bg-white" >
                     <FiFlag size={20} className="mr-2 " />
                     guide
                 </button>
-                <button onClick={nextStep} className=" w-1/4 flex  items-center justify-center capitalize hover:bg-white/60">
+                <button onClick={nextStep} className=" w-1/3 flex  items-center justify-center capitalize hover:bg-white/60">
                     <TbCalendarEvent size={20} className=' mr-2 ' />
                     tour plan
                 </button>
-                <button className=" w-1/4  capitalize flex  items-center justify-center hover:bg-white/60   ">
-                    <MdOutlineWhereToVote size={20} className=" mr-2  " />
-                    location
-                </button>
+                
             </div>
             
             <div className="grid grid-cols-3 w-full gap-8 p-4">

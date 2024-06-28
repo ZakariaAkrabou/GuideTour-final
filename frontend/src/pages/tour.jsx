@@ -208,16 +208,21 @@ import { fetchCardTours, fetchCardToursById, fetchGuidesByIds } from '../feature
 const Tour = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(6);
+<<<<<<< HEAD
+=======
+    // const [searchTerm, setSearchTerm] = useState('');
+>>>>>>> 23c04d69b593632edc03c1448d503a3b553f9c0e
     const [searchCategory, setSearchCategory] = useState('');
     const [searchPrice, setSearchPrice] = useState('');
     const [searchDuration, setSearchDuration] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchTerm = searchParams.get('destination') || '';
 
     const [searchParams, setSearchParams] = useSearchParams();
     const searchTerm = searchParams.get('destination') || '';
     
     const dispatch = useDispatch();
-    const tours = useSelector((state) => state.tours.cartTour);
-    const guides = useSelector((state) => state.tours.guideIds);
+    const { loading, cartTour: tours, guideIds: guides } = useSelector((state) => state.tours);
 
     useEffect(() => {
         if (tours.length > 0) {
@@ -277,12 +282,16 @@ const Tour = () => {
             </div>
             <div className="flex justify-center">
                 <div className="shadow-2xl lg:w-4/6 relative mt-6 top-[-50px] bg-white p-2">
-                    <div className="grid grid-cols-2 lg:gap-32">
-                        <div className="grid relative lg:grid-cols-2 gap-x-28 gap-5 z-30">
-                            {currentTours.length > 0 ? (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 relative gap-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 z-30">
+                            {loading ? (
+                                <div className="flex absolute items-center justify-center w-1/2 h-full">
+                                    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray"></div>
+                                </div>
+                            ) : currentTours.length > 0 ? (
                                 currentTours.map((tour, index) => (
                                     <Link to="/Landscapes" key={index} style={{ display: 'block' }}>
-                                        <div onClick={() => handleTourId(tour._id)} className='relative bg-white p-1.5 h-max w-56 hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
+                                        <div onClick={() => handleTourId(tour._id)} className='relative bg-white p-1.5 h-max w-full hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
                                             <div className='relative'>
                                                 <img src={tour.image} alt="Card" className='h-[260px] w-full rounded-2xl object-cover' />
                                                 <div className="absolute bottom-0 w-full h-[100px] bg-gradient-to-t via-black/50 from-black/60 to-transparent rounded-b-[15px]"></div>
@@ -315,6 +324,7 @@ const Tour = () => {
                                     </Link>
                                 ))
                             ) : (
+<<<<<<< HEAD
                                 (searchDuration || searchCategory || searchPrice || searchTerm) &&
                                 <div className="absolute lg:left-1/2 lg:bottom-1/3 bottom-2/3 left-1/4 opacity-20">
                                     <div className="flex justify-center">
@@ -325,10 +335,20 @@ const Tour = () => {
                                         <h1 className="text-xl">no tours found.</h1>
                                     </div>
                                 </div>
+=======
+                                (searchDuration || searchCategory || searchPrice || searchTerm) && (
+                                    <div className="flex flex-col items-center justify-center col-span-2 h-full opacity-20">
+                                        <TfiFaceSad className="text-7xl lg:text-[100px] " />
+                                        <div className="text-center">
+                                            <h1 className="text-xl">Sorry!</h1>
+                                            <h1 className="text-xl">No tours found.</h1>
+                                        </div>
+                                    </div>
+                                )
+>>>>>>> 23c04d69b593632edc03c1448d503a3b553f9c0e
                             )}
                         </div>
 
-                        {/* Plan Tour Card */}
                         <div className="w-full h-max bg-stone-100 rounded-lg p-4">
                             <div className="text-3xl font-semibold pb-2 text-primary justify-center flex">
                                 <h1>Plan your tour</h1>
@@ -337,6 +357,7 @@ const Tour = () => {
                             <div className="flex flex-col gap-4">
                                 <div className="gap-1"></div>
                                 <div className="relative">
+<<<<<<< HEAD
                                     <input 
                                         onChange={(e) => {
                                             setSearchParams({ destination: e.target.value });
@@ -387,6 +408,54 @@ const Tour = () => {
                         <button onClick={goToNextPage} disabled={currentPage === totalPages} className="px-4 py-2 bg-gray-200 rounded-full">
                             <IoIosArrowForward size={20} />
                         </button>
+=======
+                                    <input onChange={(e) => {
+                                            setSearchParams({ destination: e.target.value });
+                                        }} 
+                                        value={searchTerm} type="text" placeholder='Search Tour' className="w-full text-center border-none h-12 rounded-full bg-white" />
+                                    <IoSearch size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 " />
+                                </div>
+                                <div className="relative">
+                                    <input onChange={(e) => setSearchCategory(e.target.value)} 
+                                        value={searchCategory}  type="text" placeholder='Category' className="w-full h-12 rounded-full text-center border-none bg-white" />
+                                    <MdOutlineWhereToVote size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 " />
+                                </div>
+                                <div className="relative">
+                                    <input onChange={(e) => setSearchDuration(e.target.value)} 
+                                        value={searchDuration}  type="text" placeholder='Duration (in hours)' className="w-full h-12 rounded-full text-center border-none bg-white" />
+                                    <TbCalendarEvent size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2" />
+                                </div>
+                                <h2 className="uppercase font-bold">Filter by price</h2>
+                                <input onChange={(e) => setSearchPrice(e.target.value)} 
+                                    value={searchPrice}  type="text" placeholder='Enter Price' className="w-full h-8 rounded-full text-center border-none bg-white" />
+                                <h4 className="text-neutral-600 capitalize">ex: 200-1000 MAD </h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    {currentTours.length > 0 && (
+                        <div className="flex justify-center mt-3 p-2">
+                            {totalPages > 1 && (
+                                <div className="flex items-center gap-4">
+                                    <button onClick={goToPreviousPage} disabled={currentPage === 1} className="disabled:opacity-50">
+                                        <IoIosArrowBack className='text-primary' size={25} />
+                                    </button>
+                                    <span className="px-2 flex gap-2 items-center">
+                                        <div className='bg-primary px-[9px] rounded-full text-white'>{currentPage}</div>
+                                        of {totalPages}
+                                    </span>
+                                    <button onClick={goToNextPage} disabled={currentPage === totalPages} className="disabled:opacity-50">
+                                        <IoIosArrowForward className='text-primary' size={25} />
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                    <div className="h-20 left-0 -top-20 absolute w-full bg-white/50 backdrop-filter backdrop-blur-sm">
+                        <div className="text-2xl font-bold text-back text-center pt-5">
+                            <h1>Tours Lists</h1>
+                        </div>
+>>>>>>> 23c04d69b593632edc03c1448d503a3b553f9c0e
                     </div>
                 </div>
             </div>

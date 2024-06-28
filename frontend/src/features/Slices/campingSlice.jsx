@@ -32,6 +32,7 @@ export const fetchCampingsById = createAsyncThunk('users/fetchCampingsById',asyn
       };
 
       const response = await axios.get(`http://localhost:4000/api/camping/get/${campingId}`,config);
+          console.log("data",response);
       return response.data;
     }
   )
@@ -39,6 +40,11 @@ export const fetchCampingsById = createAsyncThunk('users/fetchCampingsById',asyn
 const campingSlice = createSlice({
     name: 'campings',
     initialState,
+    reducers: {
+      resetCampingID: (state) => {
+          state.campingID = [];
+      }
+  },
     extraReducers: (builder) => {
         builder.addCase(fetchCampings.pending, (state) => {
             state.loading = true;
@@ -65,4 +71,5 @@ const campingSlice = createSlice({
     }
 })
 
+export const { resetCampingID } = campingSlice.actions;
 export default campingSlice.reducer;
