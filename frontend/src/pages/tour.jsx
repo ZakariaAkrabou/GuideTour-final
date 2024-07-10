@@ -81,8 +81,8 @@ const Tour = () => {
             </div>
             <div className="flex justify-center">
                 <div className="shadow-2xl lg:w-4/6 relative mt-6 top-[-50px] bg-white p-2">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 relative gap-4">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 z-30">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 relative gap-2 lg:gap-4">
+                        <div className="grid grid-cols-3 lg:grid-cols-2 gap-2 lg:gap-4 z-30">
                             {loading ? (
                                 <div className="flex absolute items-center justify-center w-1/2 h-full">
                                     <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray"></div>
@@ -92,27 +92,27 @@ const Tour = () => {
                                     <Link to="/Landscapes" key={index} style={{ display: 'block' }}>
                                         <div onClick={() => handleTourId(tour._id)} className='relative bg-white p-1.5 h-max w-full hover:scale-105 rounded-xl hover:shadow-2xl shadow-md duration-100'>
                                             <div className='relative'>
-                                                <img src={tour.image} alt="Card" className='h-[260px] w-full rounded-2xl object-cover' />
+                                                <img src={tour.image} alt="Card" className='lg:h-[260px] h-[180px] w-full rounded-2xl object-cover' />
                                                 <div className="absolute bottom-0 w-full h-[100px] bg-gradient-to-t via-black/50 from-black/60 to-transparent rounded-b-[15px]"></div>
                                                 <div className="flex absolute top-2 right-1 gap-1 text-white px-0.5 bg-black rounded-full">
                                                     <div className='flex items-center'>
                                                         <IoPricetagOutline size={15} />
                                                     </div>
-                                                    <h2 className="">{tour.price} $</h2>
+                                                    <h2 className=" text-sm lg:text-lg">{tour.price} $</h2>
                                                 </div>
                                                 <div className='absolute bottom-0 z-10 p-1 right-0 w-full  rounded-b-2xl'>
                                                     <div className='flex flex-col'>
                                                         <div className="flex text-white">
-                                                            <div className='flex gap-2 items-center'>
-                                                                <MdModeOfTravel size={20} />
-                                                                <h2 className="capitalize text-xl font-medium">{tour.title}</h2>
+                                                            <div className='flex lg:gap-2 gap-0.5 items-center'>
+                                                                <MdModeOfTravel className=" lg:text-xl" />
+                                                                <h2 className="capitalize lg:text-xl font-medium">{tour.title}</h2>
                                                             </div>
                                                         </div>
                                                         <div className="flex justify-between text-white">
                                                             <div className="flex text-white">
-                                                                <div className='flex gap-2 items-center'>
-                                                                    <BsPersonVcard className=" ml-1" size={20} />
-                                                                    <h2 className="capitalize text-xl font-medium">{guides[index]?.firstName}</h2>
+                                                                <div className='flex lg:gap-2 gap-0.5 items-center'>
+                                                                    <BsPersonVcard className=" ml-1 lg:text-xl" />
+                                                                    <h2 className="capitalize text-nowrap text-sm lg:text-xl font-medium">{guides[index]?.firstName}</h2>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -120,7 +120,7 @@ const Tour = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </Link>
+                                     </Link>
                                 ))
                             ) : (
                                 (searchDuration || searchCategory || searchPrice || searchTerm) && (
@@ -135,8 +135,8 @@ const Tour = () => {
                             )}
                         </div>
 
-                        <div className="w-full h-max bg-stone-100 rounded-lg p-4">
-                            <div className="text-3xl font-semibold pb-2 text-primary justify-center flex">
+                        <div className="w-full h-max bg-stone-100 rounded-lg p-2 lg:p-4 hidden lg:block">
+                            <div className="lg:text-3xl text-xl font-semibold pb-2 text-primary justify-center flex">
                                 <h1>Plan your tour</h1>
                             </div>
                             <p className="text-center">Ex optio sequi et quos praesentium in nostrum labore nam rerum iusto aut magni nesciunt? Quo quidem neque iste expedita est dolo.</p>

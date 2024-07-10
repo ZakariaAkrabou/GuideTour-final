@@ -58,14 +58,13 @@ const Landscapes = () => {
           <div className="text-white h-screen flex items-center justify-center" style={bgheadertour}>
 
             <div className=" max-w-xl">
-              <h3 className=" text-center font-bold mb-8 uppercase">Explore</h3>
-              <h1 className="  text-8xl font-yeste text-center capitalize">Landscapes</h1>
+              <h1 className="lg:text-9xl text-7xl text-nowrap font-year text-center capitalize">Landscapes</h1>
             </div>
           </div>
           <div className="  flex justify-center  ">
 
 
-            <div className=" shadow-2xl w-[900px]  max-h-[1000px]  bg-white relative mt-6  -top-[50px] ">
+            <div className=" shadow-2xl w-[900px]  max-h-[950px]  bg-white relative mt-6  -top-[50px] ">
 
               <ProgressSteps steps={steps} renderStep={renderStep} />
 

@@ -46,10 +46,10 @@ const Step1 = ({ nextStep }) => {
                 </div>
                 <div className=" grid grid-cols-2 gap-1 ">
                     <div className='px-8 py-[25px] '>
-                        <div className='flex gap-8 '>
+                        <div className='flex gap-2 '>
                             <h3 className='text-3xl text-secondaire font-bold capitalize'>{tour.title}</h3>
-                            <h1 className='py-1 text-2xl text-primary capitalize '>{tour.price} <strong className=" text-black font-medium">DH</strong></h1>
-                            <h1 className='mr-2 py-2 text-1xl text-gray text-popp capitalize'>/per couple</h1>
+                            <h1 className='py-1 text-2xl capitalize '> <strong className=" text-black font-medium">{tour.price} DH</strong></h1>
+                            <h1 className=' py-2 text-xl text-gray capitalize'>/per couple</h1>
                         </div>
                         <div className='flex '>   
                             <RiStarSFill size={20} className='text-yellow-300'/> 
@@ -59,7 +59,8 @@ const Step1 = ({ nextStep }) => {
                             <RiStarSFill size={20} className='text-yellow-300'/> 
                             <h1 className='text-gray px-4'>(2.3k review)</h1>
                         </div>
-                        <p className='py-[50px] text-pretty text-1xl '>{tour.description}</p>
+                        <h1 className=" text-lg font-bold mt-10 py-3">About this Tour</h1>
+                        <p className='py[50px] text-pretty text-lg '>{tour.description}</p>
                         <div className='grid grid-cols-2 gap-4 text-left pt-4'>
                             <label htmlFor="name" className="text-primary font-semibold text-lg">Destination:</label>
                             <div id="name">{tour.category}</div>
