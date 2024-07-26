@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
-const Message = require('../models/mongoDEMO'); // Assuming you have a Chat model for conversations
+const Message = require('../models/mongoDEMO'); 
 const jwt = require('jsonwebtoken');
 
 const app = express();

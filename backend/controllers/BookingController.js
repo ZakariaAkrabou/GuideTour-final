@@ -39,7 +39,6 @@ exports.getCheckoutSession = async (req, res) => {
       };
     }
 
-    // console.log("tour",bookingData);
 
     const booking = new Booking(bookingData);
     await booking.save();
@@ -50,7 +49,7 @@ exports.getCheckoutSession = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: "http://127.0.0.1/success.html",
+      success_url: "http://localhost:5173/home",
       cancel_url: "http://127.0.0.1/cancel.html",
       customer_email: user.email,
       client_reference_id: booking._id.toString(),
