@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "jest"
+    "test": "jest",
+    "preinstall": "npx npm-force-resolutions",
+    "install": "npm install"
   },
   "keywords": [],
   "author": "",
@@ -34,5 +36,12 @@
     "jest": "^29.7.0",
     "nodemon": "^3.1.4",
     "supertest": "^6.3.4"
+  },
+  "resolutions": {
+    "braces": "3.0.3",
+    "micromatch": "4.0.7",
+    "chokidar": "3.5.3",
+    "onchange": "7.0.2",
+    "readdirp": "3.6.0"
   }
 }
